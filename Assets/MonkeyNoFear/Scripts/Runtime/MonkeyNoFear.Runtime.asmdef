@@ -1,0 +1,14 @@
+{
+    "name": "MonkeyNoFear.Runtime",
+    "rootNamespace": "MonkeyNoFear",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

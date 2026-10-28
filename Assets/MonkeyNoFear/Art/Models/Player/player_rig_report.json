@@ -1,0 +1,148 @@
+{
+ "scale_applied": 0.2196643999260386,
+ "arm_length_m": 0.74,
+ "bones": {
+  "torso": {
+   "parent": null,
+   "head": [
+    -0.0,
+    0.093,
+    -0.2869
+   ],
+   "tail": [
+    -0.0,
+    0.0323,
+    0.0629
+   ],
+   "length": 0.355
+  },
+  "neck": {
+   "parent": "torso",
+   "head": [
+    -0.0,
+    0.0323,
+    0.0629
+   ],
+   "tail": [
+    -0.0,
+    0.0333,
+    0.1413
+   ],
+   "length": 0.0785
+  },
+  "head": {
+   "parent": "neck",
+   "head": [
+    -0.0,
+    0.0333,
+    0.1413
+   ],
+   "tail": [
+    -0.0,
+    -0.0376,
+    0.36
+   ],
+   "length": 0.2299
+  },
+  "left backarm": {
+   "parent": "torso",
+   "head": [
+    0.1083,
+    0.0323,
+    0.0398
+   ],
+   "tail": [
+    0.3814,
+    0.0323,
+    0.0411
+   ],
+   "length": 0.2731
+  },
+  "left forearm": {
+   "parent": "left backarm",
+   "head": [
+    0.3814,
+    0.0323,
+    0.0411
+   ],
+   "tail": [
+    0.7073,
+    0.0323,
+    0.0389
+   ],
+   "length": 0.3259
+  },
+  "left hand": {
+   "parent": "left forearm",
+   "head": [
+    0.7073,
+    0.0323,
+    0.0389
+   ],
+   "tail": [
+    0.822,
+    0.0323,
+    0.0389
+   ],
+   "length": 0.1147
+  },
+  "right backarm": {
+   "parent": "torso",
+   "head": [
+    -0.1083,
+    0.0323,
+    0.0398
+   ],
+   "tail": [
+    -0.3814,
+    0.0323,
+    0.0411
+   ],
+   "length": 0.2731
+  },
+  "right forearm": {
+   "parent": "right backarm",
+   "head": [
+    -0.3814,
+    0.0323,
+    0.0411
+   ],
+   "tail": [
+    -0.7073,
+    0.0323,
+    0.0389
+   ],
+   "length": 0.3259
+  },
+  "right hand": {
+   "parent": "right forearm",
+   "head": [
+    -0.7073,
+    0.0323,
+    0.0389
+   ],
+   "tail": [
+    -0.822,
+    0.0323,
+    0.0389
+   ],
+   "length": 0.1147
+  }
+ },
+ "mesh_bounds_min": [
+  -0.8381,
+  -0.1451,
+  -0.3235
+ ],
+ "mesh_bounds_max": [
+  0.8483,
+  0.1626,
+  0.3799
+ ],
+ "tris": 888,
+ "materials": [
+  "MNF_Player_Fur",
+  "MNF_Player_Face",
+  "MNF_Player_Dark"
+ ]
+}
