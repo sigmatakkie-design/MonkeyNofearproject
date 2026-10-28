@@ -1,0 +1,45 @@
+=== Kit_Bunker validation (Assets/MonkeyNoFear/Art/Models/Props/Kit_Bunker.fbx) ===
+object                       tris budget  status     children / helpers
+Workbench                    2926   5000  ok         COL_Pegboard, COL_Top
+Terminal                     2344   5000  ok         COL_Console, COL_Monitor, Screen
+TerminalButton_Body           210   1500  ok         SOCKET_Cap
+TerminalButton_Cap            108   1500  ok         
+BigButton_Body                680   1500  ok         SOCKET_Cap
+BigButton_Cap                 192   1500  ok         
+Lever_Base                    736   1500  ok         SOCKET_Handle
+Lever_Handle                  264   1500  ok         
+SecurityGate_Frame           3556   5000  ok         COL_Header, COL_JambL, COL_JambR, SOCKET_Bars
+SecurityGate_Bars            2256   5000  ok         COL_Bars
+WarningBeacon                1240   1500  ok         Lamp
+FluorescentFixture           1440   1500  ok         Tube
+CageLamp                     1058   1500  ok         Bulb
+EmergencyLight                508   1500  ok         Bulb
+ToolRack                     2276   5000  ok         SOCKET_0, SOCKET_1, SOCKET_2, SOCKET_3, SOCKET_4, SOCKET_5
+ShelfUnit                    3440   5000  ok         COL_Shelf
+StorageLocker                1494   5000  ok         COL_Body, SOCKET_Deposit
+SellMachine                  2560   5000  ok         COL_Cabinet, COL_Tower, SOCKET_Bin, Screen
+Dispenser                    1340   1500  ok         SOCKET_Out
+Bunkbed                      2360   5000  ok         COL_Frame, COL_Lower, COL_Upper
+Generator                    4136   5000  ok         COL_Body
+VentFan                      1496   1500  ok         Fan
+Pipe_Straight                1160   1500  ok         
+Pipe_Elbow                   1116   1500  ok         
+Pipe_Valve                   1616   1500  OVER       
+CableBundle                  1268   1500  ok         
+Crate_A                      1460   1500  ok         
+Crate_B                       744   1500  ok         
+Barrel                        812   1500  ok         
+Chair                         596   1500  ok         
+Table                         704   5000  ok         COL_Top
+Radio                        1162   1500  ok         Dial
+Clipboard                     160   1500  ok         
+Locker_Tall                  1160   5000  ok         
+FuseBox                       824   1500  ok         
+Bucket                        870   1500  ok         
+BlastDoor                    4048   5000  ok         COL_Door, COL_Hinge
+PosterBoard                   690   1500  ok         
+
+top-level objects in FBX: 38 (expected 38)
+Blender re-import: 78 objects, 38 top-level
+ERROR Pipe_Valve: 1616 tris over budget 1500
+RESULT: FAIL (1 errors, 0 warnings)

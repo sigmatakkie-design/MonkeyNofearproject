@@ -1,0 +1,12 @@
+sounds checked: 166, files: 313, total size: 7.07 MB
+FAIL: 0  WARN: 1
+WARN  Forest/frogs_loop.ogg                    loop 0.5 s end/start RMS differ by 13.9 dB
+sheet: /home/user/MonkeyNoFear/Docs/previews/audio/Bunker_01.png
+sheet: /home/user/MonkeyNoFear/Docs/previews/audio/Creatures_01.png
+sheet: /home/user/MonkeyNoFear/Docs/previews/audio/Creatures_02.png
+sheet: /home/user/MonkeyNoFear/Docs/previews/audio/Forest_01.png
+sheet: /home/user/MonkeyNoFear/Docs/previews/audio/Mine_01.png
+sheet: /home/user/MonkeyNoFear/Docs/previews/audio/Music_01.png
+sheet: /home/user/MonkeyNoFear/Docs/previews/audio/Player_01.png
+sheet: /home/user/MonkeyNoFear/Docs/previews/audio/Tools_01.png
+sheet: /home/user/MonkeyNoFear/Docs/previews/audio/Tools_02.png

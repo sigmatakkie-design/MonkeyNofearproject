@@ -13,6 +13,7 @@ namespace MonkeyNoFear.Player
         public Vector3 localOffset = new Vector3(0.0f, 0.035f, -0.09f);
         public Vector3 localEuler = new Vector3(70f, 0f, 0f);
         public float lineHeight = 0.0075f;
+        public Material backingMaterial;
 
         PlayerRig _rig;
         TextMesh _text;
@@ -30,8 +31,7 @@ namespace MonkeyNoFear.Player
             back.transform.SetParent(transform, false);
             back.transform.localPosition = new Vector3(0, 0, 0.001f);
             back.transform.localScale = new Vector3(0.085f, 0.06f, 1f);
-            var mat = new Material(Shader.Find("Unlit/Color")) { color = new Color(0.02f, 0.03f, 0.02f) };
-            back.GetComponent<Renderer>().sharedMaterial = mat;
+            if (backingMaterial) back.GetComponent<Renderer>().sharedMaterial = backingMaterial;
         }
 
         void OnEnable() => GameEvents.ToastMessage += OnToast;

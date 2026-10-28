@@ -86,6 +86,14 @@ namespace MonkeyNoFear.World
             foreach (var r in roots)
                 if (r) r.gameObject.SetActive(r.ShouldBeActive(id));
             if (_reverb) _reverb.reverbPreset = CurrentProfile ? CurrentProfile.reverb : AudioReverbPreset.Off;
+            var gr = GameRoot.I;
+            if (gr)
+            {
+                if (id == AreaId.Forest) gr.Progress.Discover("area_forest");
+                else if (id == AreaId.MineShallow) gr.Progress.Discover("area_mine1");
+                else if (id == AreaId.MineMid) gr.Progress.Discover("area_mine2");
+                else if (id == AreaId.MineDeep) gr.Progress.Discover("area_mine3");
+            }
             GameEvents.RaiseAreaChanged(old, id);
         }
 

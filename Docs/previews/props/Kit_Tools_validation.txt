@@ -1,0 +1,33 @@
+=== Kit_Tools validation (Assets/MonkeyNoFear/Art/Models/Props/Kit_Tools.fbx) ===
+object                       tris budget  status     children / helpers
+Pickaxe_T1                   1344   1500  ok         COL_Handle, COL_Head, TIP
+Pickaxe_T2                   1326   1500  ok         COL_Handle, COL_Head, TIP
+Pickaxe_T3                   1454   1500  ok         COL_Handle, COL_Head, TIP
+Spear                        1426   1500  ok         COL_Blade, COL_Shaft, TIP
+Flashlight                   1362   1500  ok         Bulb, LIGHT
+Headlamp                     1164   1500  ok         Bulb, LIGHT
+Glowstick                     704   1500  ok         
+Flare                         376   1500  ok         TIP
+Noisemaker                   1266   1500  ok         
+Scanner                      1454   1500  ok         Lamp, Screen
+RopeCoil                     1448   1500  ok         TIP
+Medkit                        616   1500  ok         
+MarkerBeacon                  680   1500  ok         Lamp
+Backpack                     1428   1500  ok         
+Battery                       718   1500  ok         
+FoodCan                      1068   1500  ok         
+RabbitMeat                    420   1500  ok         
+BoarMeat                      888   1500  ok         
+FalsekinGland                1296   1500  ok         
+LoreTape                      496   1500  ok         
+MinerTag                      504   1500  ok         
+OreChunk_Iron                 852   1500  ok         
+OreChunk_Copper               532   1500  ok         
+OreChunk_Crystal              216   1500  ok         
+OreChunk_Blackstone           110   1500  low        
+OreChunk_Anomalous            952   1500  ok         
+
+top-level objects in FBX: 26 (expected 26)
+Blender re-import: 47 objects, 26 top-level
+WARN  OreChunk_Blackstone: 110 tris below the 150 guideline
+RESULT: PASS (0 errors, 1 warnings)

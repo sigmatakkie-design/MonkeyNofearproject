@@ -1,0 +1,14 @@
+=== Kit_Deposits validation (Assets/MonkeyNoFear/Art/Models/Props/Kit_Deposits.fbx) ===
+object                       tris budget  status     children / helpers
+Deposit_Iron                 4080   5000  ok         Base, COL_Body, Chunk_00, Chunk_01, Chunk_02, Chunk_03, Chunk_04
+Deposit_Copper               2790   5000  ok         Base, COL_Body, Chunk_00, Chunk_01, Chunk_02, Chunk_03, Chunk_04
+Deposit_Crystal              2564   5000  ok         Base, COL_Body, Chunk_00, Chunk_01, Chunk_02, Chunk_03, Chunk_04
+Deposit_Blackstone           1010   5000  ok         Base, COL_Body, Chunk_00, Chunk_01, Chunk_02, Chunk_03, Chunk_04
+Deposit_Anomalous            4820   5000  ok         Base, COL_Body, Chunk_00, Chunk_01, Chunk_02, Chunk_03, Chunk_04
+Deposit_Iron_Wall            4080   5000  ok         Base, COL_Body, Chunk_00, Chunk_01, Chunk_02, Chunk_03, Chunk_04
+Deposit_Copper_Wall          2680   5000  ok         Base, COL_Body, Chunk_00, Chunk_01, Chunk_02, Chunk_03, Chunk_04
+Deposit_Crystal_Wall         2564   5000  ok         Base, COL_Body, Chunk_00, Chunk_01, Chunk_02, Chunk_03, Chunk_04
+
+top-level objects in FBX: 8 (expected 8)
+Blender re-import: 64 objects, 8 top-level
+RESULT: PASS (0 errors, 0 warnings)

@@ -1,0 +1,78 @@
+====================================================================================================
+Kit_Forest  (/home/user/MonkeyNoFear/Assets/MonkeyNoFear/Art/Models/Props/Kit_Forest.fbx, 4.9 MB)
+====================================================================================================
+object                   tris budget size xyz (m)                 materials              children / helpers
+Tree_Pine_A              2892   4000 9.08 x 8.92 x 15.38          BarkPine,FoliagePine   COL_Trunk
+Tree_Pine_B              2656   4000 9.34 x 8.83 x 17.89          BarkPine,FoliagePine   COL_Trunk
+Tree_Pine_C              2784   4000 8.71 x 8.23 x 12.84          BarkPine,FoliagePine   COL_Trunk
+Tree_Dead_A              2999   4000 8.78 x 9.60 x 11.04          BarkDead               COL_Trunk
+Tree_Dead_B              2794   4000 5.83 x 9.22 x 8.38           BarkDead               COL_Trunk
+Tree_Dead_C              1878   4000 6.51 x 7.47 x 8.60           BarkDead,WoodRotten    COL_Trunk
+Tree_Gnarled             3867   4000 7.73 x 9.07 x 9.99           BarkDead,FoliageLeaf,W COL_Trunk
+Rock_A                    128   1500 0.62 x 0.50 x 0.43           RockDry                COL_Rock_CONVEX
+Rock_B                    512   1500 1.19 x 0.87 x 0.60           Moss,RockDry           COL_Rock_CONVEX
+Rock_C                    512   1500 0.85 x 0.94 x 1.70           Moss,RockDry           COL_Rock_CONVEX
+Rock_D                    608   1500 2.17 x 1.73 x 1.39           Moss,RockDry           COL_Rock_CONVEX
+Rock_E                    656   1500 3.08 x 2.57 x 2.28           Moss,RockDry           COL_Rock_CONVEX
+Boulder_Large            3232   5000 6.70 x 5.67 x 3.96           Moss,RockDry           COL_Boulder_CONVEX COL_Step_CONVEX
+CliffChunk_A             4896   5000 8.03 x 4.24 x 11.46          Moss,RockDry_Tri       COL_Block_0_CONVEX COL_Block_1_CONVEX COL_Block_2_CONVEX COL_Block_3_CONVEX COL_Block_4_CONVEX COL_Block_5_CONVEX COL_Block_6_CONVEX COL_Block_7_CONVEX COL_Block_8_CONVEX
+CliffChunk_B             3872   5000 6.36 x 4.42 x 13.03          Moss,RockDry_Tri       COL_Block_0_CONVEX COL_Block_1_CONVEX COL_Block_2_CONVEX COL_Block_3_CONVEX COL_Block_4_CONVEX COL_Block_5_CONVEX COL_Block_6_CONVEX
+MineEntrance             4402   5000 11.00 x 7.56 x 5.19          MetalBare,MetalRusted, Board COL_Ceiling COL_Floor COL_Header COL_Post_L COL_Post_R COL_RocksL_CONVEX COL_RocksR_CONVEX COL_RocksTop_CONVEX COL_Wall_L COL_Wall_R
+Stump                     440   1500 2.48 x 2.51 x 0.94           BarkPine,Gums,Teeth,Wo COL_Stump
+Log                       248   1500 3.29 x 0.65 x 0.57           BarkPine,Gums,Moss,Tee COL_Log
+FallenTree               1115   5000 13.75 x 5.27 x 2.52          BarkDead,BarkPine,Moss COL_Log COL_RootPlate
+Bush_A                    324   1500 2.73 x 2.38 x 1.56           BarkDead,FoliageLeaf   
+Bush_B                    220   1500 1.95 x 1.80 x 1.14           BarkDead,FoliageLeaf   
+Fern                       32   1500 1.28 x 1.39 x 0.69           Fern                   
+GrassTuft                  12   1500 0.60 x 0.57 x 0.46           Grass                  
+MushroomCluster           632   1500 0.63 x 0.39 x 0.35           Gums,Moss,Teeth,WoodRo 
+Fence_Section             480   1500 2.66 x 0.18 x 1.63           MetalRusted,WoodBeam,W COL_Fence
+Fence_Broken              586   1500 3.04 x 0.84 x 1.66           MetalRusted,WoodBeam,W COL_Fence
+SignPost                  218   1500 0.66 x 0.18 x 2.53           MetalRusted,Signs,Wood Board COL_Post COL_Sign
+WarningBoard              534   1500 2.16 x 0.27 x 2.85           MetalRusted,Signs,Wood Board COL_Board
+Tent                      412   1500 2.14 x 4.23 x 1.30           FabricBlanket,FabricCa COL_Tent
+Campfire                 1120   1500 1.26 x 1.29 x 0.36           BarkDead,Blackstone,Mu SOCKET_Fire
+CampLantern               638   1500 0.18 x 0.15 x 0.34           BulbWarm,Glass,MetalPa Bulb
+Cabin_Ruin               4076   5000 6.36 x 6.18 x 3.55           Fern,Grass,WoodBeam,Wo COL_Floor COL_Lintel COL_Roof_L_CONVEX COL_Wall_Back COL_Wall_FrontL COL_Wall_FrontR COL_Wall_Left COL_Wall_Right_A COL_Wall_Right_B
+Watchtower               2688   5000 3.06 x 3.65 x 6.76           WoodBeam,WoodHandle,Wo COL_Ladder COL_Platform COL_Post_0 COL_Post_1 COL_Post_2 COL_Post_3 COL_Rail_Back COL_Rail_FrontL COL_Rail_FrontR COL_Rail_Left COL_Rail_Right COL_Roof SOCKET_LadderTop
+Bridge_Broken            2340   5000 2.22 x 10.13 x 4.36          BarkPine,Rope,WoodBeam COL_DeckEnd_A_CONVEX COL_DeckEnd_B_CONVEX COL_Deck_A COL_Deck_B COL_Post_AL COL_Post_AR COL_Post_BL COL_Post_BR
+Minecart_Abandoned       1628   5000 2.91 x 1.93 x 0.99           Grass,MetalBare,MetalR COL_Cart_CONVEX
+Nest                     1724   5000 1.32 x 1.31 x 0.40           BarkDead,ForestFloor,F 
+Burrow                    674   1500 1.60 x 1.63 x 0.72           ForestFloor,Grass,Mud  SOCKET_Hole
+-> 37 objects, 58829 tris total, 0 error(s)
+====================================================================================================
+Kit_Mine  (/home/user/MonkeyNoFear/Assets/MonkeyNoFear/Art/Models/Props/Kit_Mine.fbx, 2.0 MB)
+====================================================================================================
+object                   tris budget size xyz (m)                 materials              children / helpers
+SupportFrame             1088   5000 4.46 x 0.93 x 3.64           MetalRusted,WoodBeam,W COL_Header COL_Post_L COL_Post_R
+SupportFrame_Broken      1834   5000 4.98 x 2.60 x 3.75           MetalRusted,RockMine,W COL_Header_CONVEX COL_PostStump_L COL_Post_R COL_Rubble_CONVEX
+Rail_Straight             488   5000 1.12 x 2.00 x 0.19           MetalBare,MetalRusted, COL_Track SOCKET_End
+Rail_Curve                824   5000 1.30 x 2.16 x 0.19           MetalBare,MetalRusted, COL_Track_CONVEX SOCKET_End
+Rail_End                  756   5000 1.44 x 1.98 x 0.78           Hazard,MetalBare,Metal COL_Stop COL_Track
+MineLamp                  580   1500 0.22 x 0.41 x 0.35           BulbWarm,MetalPainted_ Bulb
+LampString                984   5000 4.06 x 0.06 x 0.81           BulbWarm,MetalRusted,P Bulb_0 Bulb_1 Bulb_2 Bulb_3
+Ladder                    320   1500 0.55 x 0.21 x 3.13           MetalRusted,WoodBeam,W COL_Ladder SOCKET_Top
+Walkway                   448   1500 2.00 x 1.06 x 1.33           MetalGrate,MetalPainte COL_Floor COL_Rail_Back COL_Rail_Front
+Railing                   458   1500 2.04 x 0.14 x 1.12           MetalPainted_Yellow,Me COL_Railing
+Elevator_Platform         896   5000 3.00 x 3.00 x 4.88           BulbRed,Hazard,MetalBa COL_Floor COL_Rail_Back COL_Rail_Left COL_Rail_Right Lamp
+Elevator_Frame            732   5000 3.67 x 3.63 x 8.00           MetalPainted_Yellow,Me COL_Guide_0 COL_Guide_1 COL_Guide_2 COL_Guide_3 COL_Side_Back COL_Side_L COL_Side_R
+Minecart                 1564   5000 0.95 x 1.80 x 1.12           MetalBare,MetalRusted, COL_Body COL_Wheels
+Helmet                    450   1500 0.30 x 0.34 x 0.19           Glass,MetalBare,Plasti COL_Helmet
+Workstation              1430   5000 1.73 x 1.59 x 1.13           Glass,MetalBare,MetalP COL_Chair COL_Desk
+RubblePile_A             1480   5000 3.40 x 2.71 x 1.43           RockMine,WoodBeam,Wood COL_Pile_CONVEX
+RubblePile_B              888   5000 2.44 x 1.78 x 1.05           RockMine,WoodBeam,Wood COL_Pile_CONVEX
+LooseRockWall            3500   5000 4.55 x 2.27 x 3.79           RockMine,WoodBeam      COL_Wall
+BorerHole                1462   5000 5.80 x 4.83 x 4.38           Blackstone,RockMine    COL_Floor COL_Wall_L COL_Wall_R COL_Wall_Top
+PA_Speaker                566   1500 0.46 x 0.69 x 0.50           MetalPainted_Gray,Meta SOCKET_Sound
+Crate_Mine                924   1500 0.93 x 0.68 x 0.61           MetalRusted,WoodCrate  COL_Crate
+Barrel_Mine               340   1500 0.60 x 0.60 x 0.88           MetalPainted_Red,Metal COL_Barrel
+ToolPile                  364   1500 1.33 x 1.48 x 1.26           MetalRusted,WoodHandle COL_Pile
+Sign_Level                374   1500 0.52 x 0.22 x 1.85           MetalPainted_Gray,Meta Board COL_Post
+TunnelMarker_Red          148   1500 0.34 x 0.07 x 0.34           MetalPainted_Red,Metal Plate
+TunnelMarker_Yellow       148   1500 0.34 x 0.07 x 0.34           MetalPainted_Yellow,Me Plate
+TunnelMarker_Green        148   1500 0.34 x 0.07 x 0.34           MetalPainted_Green,Met Plate
+PipeRun                   856   5000 4.05 x 0.88 x 1.00           MetalPainted_Green,Met COL_Pipe
+Generator_Small           947   5000 1.98 x 1.07 x 1.06           Glass,Hazard,MetalBare COL_Body
+ScratchedPlate           1980   5000 2.00 x 0.08 x 2.00           MetalPainted_Gray,Meta COL_Plate
+-> 30 objects, 26977 tris total, 0 error(s)
+VALIDATION PASSED
