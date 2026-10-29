@@ -47,6 +47,7 @@ namespace MonkeyNoFear.EditorTools
             Ignore(Layers.Player, Layers.PlayerHand);
             Ignore(Layers.Player, Layers.HeldItem);
             Ignore(Layers.PlayerHand, Layers.HeldItem);
+            Ignore(Layers.PlayerHand, Layers.Item);        // the palm must not shove items it reaches for (grabs use overlap queries)
             Ignore(Layers.PlayerHand, Layers.PlayerHand);
             Ignore(Layers.PlayerHand, Layers.Environment); // hands are solved kinematically by PhysicsHand
             Ignore(Layers.PlayerHand, Layers.Default);

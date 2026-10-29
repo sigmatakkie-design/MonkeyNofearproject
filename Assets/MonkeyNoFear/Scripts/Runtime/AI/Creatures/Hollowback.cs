@@ -226,7 +226,8 @@ namespace MonkeyNoFear.AI.Creatures
                     animator?.SyncSpeed("walk", CurrentSpeed);
                     if (WantsChase()) { Enter(S.Chase); break; }
                     if (Awareness > followThreshold && SawPlayerRecently(1.5f)) { Enter(S.Follow); break; }
-                    if (Arrived(1.2f)) Enter(S.Search);
+                    // stuck on the way (blocked path, unreachable sound): search from here instead of standing still
+                    if (Arrived(1.2f) || stateTime > 30f) Enter(S.Search);
                     break;
                 case S.Search:
                     DoSearch();
@@ -235,7 +236,7 @@ namespace MonkeyNoFear.AI.Creatures
                     animator?.SyncSpeed("follow", CurrentSpeed);
                     if (WantsChase()) { Enter(S.Chase); break; }
                     MoveTo(LastKnownPlayerPos, profile.alertSpeed);
-                    if (DistToPlayer < profile.attackRange && SawPlayerRecently(0.5f)) { Enter(S.Attack); break; }
+                    if (DistToPlayer < profile.attackRange && SawPlayerRecently(0.5f) && AttackReady) { Enter(S.Attack); break; }
                     if (Arrived(1.5f) && !SawPlayerRecently(2f)) Enter(S.Search);
                     if (!SawPlayerRecently(profile.loseInterestTime) && !HeardPlayerRecently(profile.loseInterestTime)) Enter(S.Search);
                     break;
@@ -285,7 +286,6 @@ namespace MonkeyNoFear.AI.Creatures
 
         void DoSearch()
         {
-            animator?.SyncSpeed("walk", CurrentSpeed);
             if (WantsChase()) { Enter(S.Chase); return; }
             if (SawPlayerRecently(0.3f) && DistToPlayer < 3f) { Enter(AttackReady ? S.Attack : S.Chase); return; }
             if (stateTime > _stateDur || _searchIndex >= _searchPoints.Count)
@@ -295,7 +295,12 @@ namespace MonkeyNoFear.AI.Creatures
                 return;
             }
             var p = _searchPoints[_searchIndex];
-            if ((transform.position - p).sqrMagnitude > 1.6f * 1.6f) { MoveTo(p, profile.walkSpeed * 1.2f); animator?.Play("walk", 0.3f); }
+            if ((transform.position - p).sqrMagnitude > 1.6f * 1.6f)
+            {
+                MoveTo(p, profile.walkSpeed * 1.2f);
+                animator?.Play("walk", 0.3f);
+                animator?.SyncSpeed("walk", CurrentSpeed); // after Play: Play resets the clip speed to 1
+            }
             else
             {
                 // peer around the cover

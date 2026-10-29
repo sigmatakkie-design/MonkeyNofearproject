@@ -945,7 +945,7 @@ def export_kit(tops, path):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     bpy.ops.export_scene.fbx(filepath=path, use_selection=True, object_types={'ARMATURE', 'MESH', 'EMPTY'},
                              apply_scale_options='FBX_SCALE_ALL', axis_forward='-Z', axis_up='Y',
-                             bake_space_transform=False, use_mesh_modifiers=True, mesh_smooth_type='FACE',
+                             bake_space_transform=True, use_mesh_modifiers=True, mesh_smooth_type='FACE',
                              use_tspace=True, add_leaf_bones=False, primary_bone_axis='Y',
                              secondary_bone_axis='X', armature_nodetype='NULL', bake_anim=False,
                              bake_anim_use_all_actions=True, bake_anim_use_nla_strips=False,

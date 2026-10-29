@@ -43,6 +43,7 @@ namespace MonkeyNoFear.Bunker
         Vector3 _barsRest;
         Material[] _lampMats;
         readonly Collider[] _hits = new Collider[8];
+        UnityEngine.AI.NavMeshObstacle _obstacle;
         static readonly int EmissionId = Shader.PropertyToID("_EmissionColor");
 
         void Awake()
@@ -52,7 +53,19 @@ namespace MonkeyNoFear.Bunker
             for (int i = 0; i < statusLamps.Length; i++) if (statusLamps[i]) _lampMats[i] = statusLamps[i].material;
             var rb = bars ? bars.GetComponent<Rigidbody>() : null;
             if (bars && !rb) rb = bars.gameObject.AddComponent<Rigidbody>();
-            if (rb) { rb.isKinematic = true; rb.interpolation = RigidbodyInterpolation.Interpolate; }
+            // moved through the transform every frame: interpolation would overwrite those writes with stale poses
+            if (rb) { rb.isKinematic = true; rb.interpolation = RigidbodyInterpolation.None; }
+            // the NavMesh is baked without the gate (it moves), so creatures would path straight through the
+            // closed bars: carve the opening shut while the bars are down
+            if (barsCollider)
+            {
+                _obstacle = barsCollider.gameObject.AddComponent<UnityEngine.AI.NavMeshObstacle>();
+                _obstacle.shape = UnityEngine.AI.NavMeshObstacleShape.Box;
+                _obstacle.center = barsCollider.center;
+                _obstacle.size = barsCollider.size + new Vector3(0f, 0f, 0.3f);
+                _obstacle.carving = true;
+                _obstacle.carveOnlyStationary = false;
+            }
         }
 
         void Start()
@@ -120,6 +133,7 @@ namespace MonkeyNoFear.Bunker
             }
             else if (bars) bars.localPosition = _barsRest + Vector3.up * _h;
 
+            if (_obstacle) _obstacle.enabled = _h < 1.6f; // passable once a creature fits under the bars
             bool moving = Current == State.Opening || Current == State.Closing;
             for (int i = 0; i < beacons.Length; i++)
             {

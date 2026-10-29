@@ -41,7 +41,7 @@ namespace MonkeyNoFear.AI.Creatures
         S _s = S.Dormant;
         float _agitation, _lastVibration, _cooldownUntil, _dur, _hitAt;
         bool _warned1, _warned2, _hit;
-        Vector3 _target, _lastNoise;
+        Vector3 _target, _lastNoise, _returnPoint;
         BorerHole _hole;
         Renderer[] _renderers;
         Collider[] _colliders;
@@ -99,6 +99,7 @@ namespace MonkeyNoFear.AI.Creatures
                 case S.Emerging:
                     _hole = BorerHole.Nearest(_lastNoise);
                     var p = _hole ? _hole.transform.position : Centre;
+                    SampleNav(p, 3f, out p); // emerge onto walkable floor, never inside the rock around the hole
                     transform.position = p;
                     transform.rotation = _hole ? Quaternion.LookRotation(Vector3.ProjectOnPlane(_hole.transform.forward, Vector3.up)) : transform.rotation;
                     SetPresent(true);
@@ -116,6 +117,7 @@ namespace MonkeyNoFear.AI.Creatures
                     break;
                 case S.Return:
                     _hole = BorerHole.Nearest(transform.position);
+                    if (_hole) SampleNav(_hole.transform.position, 3f, out _returnPoint);
                     animator?.Play("walk", 0.3f);
                     break;
                 case S.Sense:
@@ -123,9 +125,11 @@ namespace MonkeyNoFear.AI.Creatures
                     animator?.Play("sense", 0.4f);
                     break;
                 case S.Charge:
+                    // straight-line rush steered by hand (agent.Move keeps it on the NavMesh): a pathing agent
+                    // would turn on the spot and slide sideways instead of overshooting a side-step
+                    Stop();
                     animator?.Play("charge", 0.15f);
                     Say("borer_roar", 1f);
-                    if (HasAgent) agent.angularSpeed = chargeTurnRate;
                     _dur = chargeMaxTime;
                     break;
                 case S.Attack:
@@ -188,8 +192,9 @@ namespace MonkeyNoFear.AI.Creatures
                     animator?.SyncSpeed("walk", CurrentSpeed);
                     MoveTo(_target, profile.walkSpeed);
                     if (CanCharge()) { Enter(S.Charge); break; }
-                    if (DistToPlayer < profile.attackRange && SeesPlayerClose()) { Enter(S.Attack); break; }
-                    if (Time.time - _lastVibration > quietToBurrow && Arrived(1.5f)) Enter(S.Sense);
+                    if (DistToPlayer < profile.attackRange && SeesPlayerClose() && AttackReady) { Enter(S.Attack); break; }
+                    // quiet: listen where it stands once there, or give up on a target it cannot reach
+                    if (Time.time - _lastVibration > quietToBurrow && (Arrived(1.5f) || Time.time - _lastVibration > quietToBurrow * 3f)) Enter(S.Sense);
                     break;
                 case S.Sense:
                     Feel();
@@ -200,14 +205,22 @@ namespace MonkeyNoFear.AI.Creatures
                     Feel();
                     if (Time.time - _lastVibration < 0.5f) { Enter(S.Hunt); break; }
                     if (!_hole) { Enter(S.Burrowing); break; }
-                    MoveTo(_hole.transform.position, profile.walkSpeed);
+                    MoveTo(_returnPoint, profile.walkSpeed);
                     animator?.SyncSpeed("walk", CurrentSpeed);
-                    if (Vector3.Distance(transform.position, _hole.transform.position) < 2f || stateTime > 30f) Enter(S.Burrowing);
+                    // the hole marker can sit in the rock face: walk to the floor in front of it
+                    if (Vector3.Distance(transform.position, _returnPoint) < 2f || (stateTime > 1f && Arrived(1.5f)) || stateTime > 30f) Enter(S.Burrowing);
                     break;
                 case S.Charge:
                     Feel();
-                    MoveTo(PlayerFeet, chargeSpeed);
-                    animator?.SyncSpeed("charge", CurrentSpeed);
+                    {
+                        var to = PlayerFeet - transform.position; to.y = 0f;
+                        var heading = to.sqrMagnitude > 0.01f
+                            ? Vector3.RotateTowards(transform.forward, to.normalized, chargeTurnRate * Mathf.Deg2Rad * dt, 0f) : transform.forward;
+                        heading.y = 0f;
+                        if (heading.sqrMagnitude > 0.0001f) transform.rotation = Quaternion.LookRotation(heading.normalized);
+                        if (HasAgent) agent.Move(transform.forward * chargeSpeed * dt);
+                        animator?.SyncSpeed("charge", chargeSpeed); // agent.Move does not report a velocity
+                    }
                     if (DistToPlayer < profile.attackRange) { Enter(S.Attack); break; }
                     if (stateTime > _dur) Enter(S.Hunt);
                     break;

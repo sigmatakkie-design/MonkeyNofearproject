@@ -100,14 +100,14 @@ namespace MonkeyNoFear.AI.Creatures
             {
                 case S.Absent: SetVisible(false); _buzz?.FadeOut(1f); break;
                 case S.Observe: Stop(); animator?.Play("idle", 0.4f); _dur = Random.Range(6f, 12f); break;
-                case S.Retreat: animator?.Play("retreat", 0.3f); if (HasAgent) agent.updateRotation = false; break;
+                case S.Retreat: animator?.Play("retreat", 0.3f); if (agent) agent.updateRotation = false; break;
                 case S.Lure:
                     animator?.Play("walk", 0.3f);
-                    if (HasAgent) agent.updateRotation = true;
+                    if (agent) agent.updateRotation = true;
                     _lure = NearestLure();
                     if (_lure) MoveTo(_lure.transform.position, profile.walkSpeed); else Enter(S.Vanish);
                     break;
-                case S.Drawn: animator?.Play("walk", 0.3f); if (HasAgent) agent.updateRotation = true; break;
+                case S.Drawn: animator?.Play("walk", 0.3f); if (agent) agent.updateRotation = true; break;
                 case S.Confused:
                     Stop(); _dur = animator ? animator.PlayOnce("turn_head", 0.2f) : 1.5f;
                     _reachCharge = 0f;
@@ -142,9 +142,11 @@ namespace MonkeyNoFear.AI.Creatures
             if (Random.value > appearChance) return;
             var p = PickAppearPoint();
             if (!p) return;
-            transform.position = p.transform.position;
+            // appear standing on the NavMesh (the marker may float or sit in rubble)
+            if (!SampleNav(p.transform.position, 3f, out var at)) return;
+            transform.position = at;
             SetVisible(true);
-            if (HasAgent) agent.Warp(p.transform.position);
+            if (HasAgent) agent.Warp(at);
             transform.rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(PlayerFeet - transform.position, Vector3.up).normalized + Vector3.forward * 0.001f);
             _appearances++;
             _fade = 0f;
@@ -165,6 +167,8 @@ namespace MonkeyNoFear.AI.Creatures
                 // prefer points the player can glimpse down a passage
                 bool los = !Physics.Linecast(m.transform.position + Vector3.up * 1.8f, PlayerHead, Layers.Occluders);
                 float angle = Vector3.Angle(Player.HeadForward, m.transform.position - PlayerHead);
+                // it is there when you turn around, it never pops into existence in front of your eyes
+                if (los && angle < 65f) continue;
                 float score = (los ? 10f : 0f) - angle * 0.05f + Random.value * 3f;
                 if (score > bestScore) { bestScore = score; best = m; }
             }
@@ -225,12 +229,20 @@ namespace MonkeyNoFear.AI.Creatures
                         if (HasAgent && agent.pathStatus != UnityEngine.AI.NavMeshPathStatus.PathComplete && stateTime > 2f) { Enter(S.Vanish); break; }
                     }
                     else Stop();
+                    if (animator)
+                    {
+                        // backing off at the player's pace: the step rate follows the real speed
+                        if (CurrentSpeed > 0.1f) { animator.Play("retreat", 0.3f); animator.SyncSpeed("retreat", CurrentSpeed, 0.5f, 3f); }
+                        else animator.Play("idle", 0.4f);
+                    }
                     if (stateTime > 45f) Enter(S.Vanish);
                     break;
 
                 case S.Lure:
                     if (drawnByPlayer) { Enter(S.Drawn); break; }
                     if (_lure && Arrived(1.5f)) { Stop(); animator?.Play("idle", 0.4f); if (d < 12f) Enter(S.Vanish); }
+                    else animator?.SyncSpeed("walk", CurrentSpeed);
+                    if (stateTime > 90f) Enter(S.Vanish); // never left standing at a lure nobody comes to
                     break;
 
                 case S.Drawn:
@@ -240,6 +252,7 @@ namespace MonkeyNoFear.AI.Creatures
                     if (attractor != null && attractor.Strength > lightStrength) { lightPos = attractor.Position; lightStrength = attractor.Strength; }
                     if (lightStrength <= 0f) { Enter(playerLight ? S.Drawn : S.Confused); if (!playerLight) break; }
                     MoveTo(lightPos, drawnSpeed);
+                    if (animator && CurrentSpeed > 0.1f) { animator.Play("walk", 0.3f); animator.SyncSpeed("walk", CurrentSpeed); }
                     bool targetingPlayer = lightPos == PlayerFeet;
                     float interference = targetingPlayer ? Mathf.Clamp01(1f - (d - reachRange) / (interferenceRange - reachRange)) : 0f;
                     if (interference > 0f)

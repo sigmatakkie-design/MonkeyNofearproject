@@ -20,7 +20,8 @@ namespace MonkeyNoFear.AI.Creatures
         public readonly List<ClerkNode> neighbours = new List<ClerkNode>();
         public bool Valid { get; private set; }
 
-        void OnEnable() { All.Add(this); Snap(); }
+        // keep a good snap when the mine's AreaRoot is switched back on (its ceiling collider may enable after us)
+        void OnEnable() { All.Add(this); if (!Valid) Snap(); }
         void OnDisable() => All.Remove(this);
 
         void Snap()
@@ -35,7 +36,10 @@ namespace MonkeyNoFear.AI.Creatures
         /// <summary>Called once all nodes exist (by the first Clerk).</summary>
         public static void LinkAll()
         {
-            foreach (var n in All) n.neighbours.Clear();
+            // re-snap now that every level collider exists: a node enabled before its ceiling's collider
+            // (scene load order) would otherwise stay invalid for the whole session
+            Physics.SyncTransforms();
+            foreach (var n in All) { n.Snap(); n.neighbours.Clear(); }
             for (int i = 0; i < All.Count; i++)
             for (int j = i + 1; j < All.Count; j++)
             {

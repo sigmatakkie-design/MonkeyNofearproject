@@ -39,6 +39,7 @@ namespace MonkeyNoFear.EditorTools
             D("MNF_MetalPainted_Gray", Kind.Std, "metal_painted").tint = new Color(0.48f, 0.5f, 0.52f);
             D("MNF_MetalPainted_Yellow", Kind.Std, "metal_painted").tint = new Color(0.86f, 0.66f, 0.14f);
             D("MNF_MetalPainted_Red", Kind.Std, "metal_painted").tint = new Color(0.62f, 0.13f, 0.1f);
+            D("MNF_MetalPainted_Blue", Kind.Std, "metal_painted").tint = new Color(0.16f, 0.4f, 0.78f);
             D("MNF_MetalBare", Kind.Std, "metal_bare");
             D("MNF_Hazard", Kind.Std, "hazard_stripes");
             D("MNF_Rubber", Kind.Std, "rubber");
@@ -152,6 +153,7 @@ namespace MonkeyNoFear.EditorTools
             string path = $"{MNFPaths.Materials}/{d.name}.mat";
             var m = AssetDatabase.LoadAssetAtPath<Material>(path);
             Shader sh = ShaderFor(d.kind);
+            if (!sh) { Debug.LogWarning($"[MNF] Shader for {d.name} ({d.kind}) not found — using Standard."); sh = Shader.Find("Standard"); }
             if (!m) { m = new Material(sh) { name = d.name }; AssetDatabase.CreateAsset(m, path); }
             else m.shader = sh;
             m.enableInstancing = true;

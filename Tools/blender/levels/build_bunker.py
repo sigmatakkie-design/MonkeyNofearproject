@@ -76,6 +76,24 @@ def pipe_run(g, pts, r, mat):
             g.box((p.x - 0.04, p.y - 0.04, p.z), (p.x + 0.04, p.y + 0.04, p.z + r + 0.35), 'MNF_MetalRusted')
 
 
+TABLE_TOP = 0.78
+
+
+def mess_area(g):
+    """Canteen in the middle of the hall: two long blue-topped tables with benches (the Gorilla-Tag-bunker look)."""
+    for cy in (-6.5, -9.2):
+        x0, x1 = -2.2, 2.2
+        # table top + frame legs
+        g.box((x0, cy - 0.42, Z0 + TABLE_TOP - 0.05), (x1, cy + 0.42, Z0 + TABLE_TOP), 'MNF_MetalPainted_Blue', tile=1.0)
+        for x in (x0 + 0.15, 0.0, x1 - 0.15):
+            g.box((x - 0.04, cy - 0.34, Z0), (x + 0.04, cy + 0.34, Z0 + TABLE_TOP - 0.05), 'MNF_MetalPainted_Gray', tile=1.0)
+        # benches either side
+        for by in (cy - 0.82, cy + 0.82):
+            g.box((x0 + 0.1, by - 0.18, Z0 + 0.42), (x1 - 0.1, by + 0.18, Z0 + 0.47), 'MNF_MetalPainted_Blue', tile=1.0)
+            for x in (x0 + 0.3, 0.0, x1 - 0.3):
+                g.box((x - 0.035, by - 0.14, Z0), (x + 0.035, by + 0.14, Z0 + 0.42), 'MNF_MetalPainted_Gray', tile=1.0)
+
+
 def build(out_dir):
     reset_scene()
     geo_c = collection('BunkerGeometry')
@@ -161,6 +179,15 @@ def build(out_dir):
     g.box((-2.0, 44.25, 3.5), (2.0, 44.35, 3.9), 'MNF_Hazard', tile=0.8)
     hazard_strip(g, -2.0, 41.0, 2.0, 42.0, 0.0)
 
+    mess_area(g)
+    # yellow floor guide line: gate -> hall -> bunk room door (painted 5 mm strip, not coplanar with the floor)
+    for (x0, y0, x1, y1) in ((-0.06, -3.5, 0.06, 2.55), (-7.95, -3.56, 0.06, -3.44), (-7.95, -6.94, -7.83, -3.44)):
+        g.box((x0, y0, Z0), (x1, y1, Z0 + 0.005), 'MNF_MetalPainted_Yellow', faces='Z', tile=1.0)
+    # exit corridor: conduit + cable tray following the ramp on the east wall, hazard band at the ramp foot
+    ys_c = [4.6] + [10 + i * 2.5 for i in range(13)] + [42.3]
+    pipe_run(g, [(1.82, y, ramp_floor_z(y) + 2.95) for y in ys_c], 0.07, 'MNF_MetalPainted_Gray')
+    pipe_run(g, [(1.85, y, ramp_floor_z(y) + 2.75) for y in ys_c], 0.04, 'MNF_MetalPainted_Red')
+    hazard_strip(g, -2.0, 9.6, 2.0, 10.1, ramp_floor_z(9.85))
     ob = g.build('BunkerShell', geo_c)
     merge_by_distance(ob)
 
@@ -183,23 +210,32 @@ def build(out_dir):
     M('MK_STATION_Bed', (-15.6, -4.6, Z0), E)
     M('MK_PROP_Bunkbed', (-15.6, -9.8, Z0), E)
     M('MK_PROP_Table', (-10.4, -11.2, Z0), N)
-    M('MK_STATION_Radio', (-10.4, -11.2, Z0 + 0.78), N)
+    M('MK_STATION_Radio', (-10.2, -11.2, Z0 + 0.76), N)
     M('MK_PROP_Chair', (-10.4, -10.3, Z0), S)
     M('MK_PROP_Locker_Tall', (-12.8, -2.35, Z0), S)
     M('MK_PROP_Locker_Tall', (-13.8, -2.35, Z0), S)
-    M('MK_PROP_PosterBoard', (-16.25, -7.0, Z0 + 1.5), E)
-    M('MK_LORE_lore_welcome', (-10.2, -11.0, Z0 + 0.82), N)
+    M('MK_PROP_PosterBoard', (-16.3, -7.0, Z0 + 1.5), E)
+    M('MK_PROP_Crate_B', (-14.55, -4.6, Z0), E)                     # footlockers
+    M('MK_PROP_Crate_B', (-14.55, -9.8, Z0), E)
+    M('MK_PROP_Chair', (-15.4, -7.1, Z0), E)
+    M('MK_PROP_Bucket', (-8.9, -11.5, Z0), N)
+    M('MK_LORE_lore_welcome', (-10.8, -11.05, Z0 + 0.766), N)
     M('MK_STATION_Generator', (12.5, -7.0, Z0), W)
     M('MK_PROP_FuseBox', (16.25, -5.0, Z0 + 1.5), W)
     M('MK_PROP_VentFan', (16.25, -9.5, Z0 + 2.6), W)
     M('MK_PROP_Barrel', (15.4, -11.3, Z0), N)
     M('MK_PROP_Barrel', (14.6, -11.4, Z0), N)
     M('MK_PROP_Bucket', (9.2, -11.4, Z0), N)
+    M('MK_PROP_ShelfUnit', (11.8, -11.7, Z0), N)
+    M('MK_PROP_Crate_A', (13.3, -11.5, Z0), N)
+    M('MK_PROP_Barrel', (9.2, -2.7, Z0), S)
     # hall clutter
-    M('MK_PROP_Table', (2.5, -6.5, Z0), S)
-    M('MK_PROP_Chair', (2.5, -7.4, Z0), N)
-    M('MK_PROP_Chair', (1.5, -5.8, Z0), E)
-    M('MK_PROP_Clipboard', (2.6, -6.4, Z0 + 0.8), S)
+    # mess area (tables/benches are shell geometry, see mess_area); loose things on the tables
+    M('MK_PROP_Clipboard', (1.15, -6.2, Z0 + TABLE_TOP + 0.001), S)
+    M('MK_PROP_Chair', (2.7, -6.3, Z0), W)                         # a pulled-up chair at the end of the tables
+    M('MK_PROP_PosterBoard', (4.0, 3.98, Z0 + 1.55), S)            # expedition map board beside the gate
+    M('MK_PROP_Crate_A', (-6.9, -10.4, Z0), N)
+    M('MK_PROP_Crate_B', (-6.9, -10.4, Z0 + 0.55), E)              # stacked on the crate
     M('MK_PROP_ShelfUnit', (-6.8, -11.6, Z0), N)
     M('MK_PROP_ShelfUnit', (-4.6, -11.6, Z0), N)
     M('MK_PROP_ShelfUnit', (4.6, -11.6, Z0), N)
@@ -208,9 +244,10 @@ def build(out_dir):
     M('MK_PROP_Crate_A', (-7.3, -8.9, Z0), E)
     M('MK_PROP_VentFan', (0.0, -11.95, Z0 + 3.4), N)
     M('MK_PROP_CableBundle', (-5.0, 3.9, Z0 + 3.2), S)
-    M('MK_ITEM_food_can', (2.2, -6.7, Z0 + 0.8), S)
-    M('MK_ITEM_glowstick', (-3.3, 3.2, Z0 + 0.96), S)
-    M('MK_ITEM_glowstick', (-3.15, 3.25, Z0 + 0.96), S)
+    M('MK_ITEM_food_can', (-1.1, -6.7, Z0 + TABLE_TOP + 0.065), S)
+    M('MK_ITEM_food_can', (-0.95, -6.75, Z0 + TABLE_TOP + 0.065), S)
+    M('MK_ITEM_glowstick', (-3.95, 3.05, Z0 + 0.95 + 0.016), E)    # on the workbench top
+    M('MK_ITEM_glowstick', (-3.8, 3.0, Z0 + 0.95 + 0.016), E)
     # utility corridor and storage
     for y in (-15, -18.5, -22.5, -26.5):
         M('MK_PROP_ShelfUnit', (-1.15, y, Z0), E)
@@ -225,15 +262,16 @@ def build(out_dir):
     M('MK_EVENT_PipeKnock', (7.7, -6.0, Z0 + 3.3))
     M('MK_EVENT_BunkerCreak', (0, -28.0, Z0 + 2.5))
     # signs and decals
-    M('MK_SIGN_1_0.7_0.7', (2.2, 3.98, Z0 + 1.8), S)              # KEEP GATE CLOSED (hall side)
-    M('MK_SIGN_2_0.9_0.9', (-2.3, 4.52, Z0 + 2.0), N)             # SURVIVOR BUNKER 7 (corridor side)
+    M('MK_SIGN_1_0.7_0.7', (2.35, 4.0, Z0 + 2.2), S)              # KEEP GATE CLOSED (hall side, over the gate buttons)
+    M('MK_SIGN_2_0.9_0.9', (-2.0, 6.7, Z0 + 1.95), E)             # SURVIVOR BUNKER 7 (corridor west wall)
     M('MK_SIGN_10_0.6_0.6', (-6.0, 3.98, Z0 + 2.6), S)            # EQUIPMENT
     M('MK_SIGN_9_0.6_0.6', (7.98, -1.5, Z0 + 2.4), W)             # ASSAY / TRADE
     M('MK_SIGN_11_0.6_0.6', (7.98, 1.8, Z0 + 2.4), W)             # STORAGE
-    M('MK_SIGN_4_0.5_0.5', (8.32, -3.6, Z0 + 1.8), W)             # HIGH VOLTAGE next to the generator door
+    M('MK_SIGN_4_0.5_0.5', (8.0, -3.6, Z0 + 1.8), W)             # HIGH VOLTAGE next to the generator door
     M('MK_SIGN_0_0.8_0.8', (0.0, -29.65, Z0 + 1.7), N)            # DANGER on SECTOR B door
     M('MK_SIGN_12_0.5_0.6', (-16.25, -5.4, Z0 + 1.6), E)          # MISSING poster
-    M('MK_SIGN_8_0.6_0.6', (2.05, 4.52, Z0 + 2.0), N)             # EVACUATION ROUTE
+    M('MK_SIGN_8_0.6_0.6', (2.0, 6.7, Z0 + 1.95), W)              # EVACUATION ROUTE (corridor east wall)
+    M('MK_SIGN_3_0.7_0.7', (2.0, 40.5, ramp_floor_z(40.5) + 1.9), W)   # MINE ACCESS -> near the portal
     M('MK_DECAL_5_1.0', (0.0, -29.62, Z0 + 1.0), N)               # deep claw scratches on the sealed door
     M('MK_DECAL_4_0.8', (-0.9, -29.62, Z0 + 0.6), N)
     M('MK_DECAL_1_1.2', (-7.95, -9.0, Z0 + 2.6), E)
@@ -250,15 +288,15 @@ def build(out_dir):
     M('MK_LIGHT_FluorBad', (0.0, -16.0, Z0 + 3.2), S)
     M('MK_LIGHT_FluorBad', (0.0, -24.0, Z0 + 3.2), S)
     M('MK_LIGHT_Cage', (5.4, -14.98, Z0 + 2.4), S)
-    M('MK_LIGHT_Red', (-1.9, 3.98, Z0 + 3.2), S)
-    M('MK_LIGHT_Red', (1.9, 3.98, Z0 + 3.2), S)
+    M('MK_LIGHT_Red', (-2.4, 4.0, Z0 + 3.2), S)                   # clear of the gate frame (+-1.86)
+    M('MK_LIGHT_Red', (2.4, 4.0, Z0 + 3.2), S)
     M('MK_LIGHT_Emergency', (-7.98, -4.0, Z0 + 3.0), E)
     M('MK_LIGHT_Emergency', (7.98, 0.0, Z0 + 3.0), W)
     M('MK_LIGHT_Emergency', (-12.0, -2.02, Z0 + 3.0), S)
     M('MK_LIGHT_Emergency', (12.0, -2.02, Z0 + 3.0), S)
     for y in (9.0, 18.0, 27.0, 36.0):
         M('MK_LIGHT_Cage', (1.98, y, ramp_floor_z(y) + 2.6), W)
-    M('MK_LIGHT_Red', (0.0, 42.6, 3.4), S)
+    M('MK_LIGHT_Red', (0.0, 42.5, 3.4), S)
     # outside: the blast door swung open against the cut wall
     M('MK_PROP_BlastDoor', (5.45, 47.5, 0.0), W)                   # swung open, flat against the cut wall
     M('MK_TELEPORT_Bunker', (0, -4, Z0), N)

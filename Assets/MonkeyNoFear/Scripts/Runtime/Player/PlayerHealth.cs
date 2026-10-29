@@ -94,7 +94,10 @@ namespace MonkeyNoFear.Player
             if (gr) { gr.Progress.Stats.deaths++; gr.Progress.MarkDirty(); }
             AudioManager.Instance?.Play2D("death_sting", 1f);
             if (_rig) _rig.locomotion.Pinned = true;
-            Backpack.Instance?.DropAllAsLostPack(transform.position);
+            // under the body, not at the tracking-space origin (room-scale offset can put that inside a wall)
+            var feet = transform.position;
+            if (_rig) feet += Vector3.ProjectOnPlane(_rig.HeadPosition - transform.position, Vector3.up);
+            Backpack.Instance?.DropAllAsLostPack(feet);
             GameEvents.RaisePlayerDied();
             ScreenFader.Instance?.FadeTo(Color.black, 1.5f);
             yield return new WaitForSeconds(3f);

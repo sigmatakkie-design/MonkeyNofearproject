@@ -111,7 +111,7 @@ namespace MonkeyNoFear.Items
                 var rig = PlayerRig.Instance;
                 bool x = rig && rig.Controller(Player.Hand.Left).primary;
                 var grab = GetComponent<Grabbable>();
-                bool worn = grab && grab.Holster != null;
+                bool worn = grab && grab.Holster != null && grab.Holster.headSlot; // not while hanging on the tool rack
                 if (worn && x && !_headToggleWas) Toggle();
                 _headToggleWas = x;
             }

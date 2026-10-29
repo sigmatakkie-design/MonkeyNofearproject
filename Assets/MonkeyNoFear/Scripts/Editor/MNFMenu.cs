@@ -14,6 +14,7 @@ namespace MonkeyNoFear.EditorTools
         [MenuItem("Monkey No Fear/Build Game (Full)", priority = 0)]
         public static void BuildAll()
         {
+            if (EditorApplication.isPlayingOrWillChangePlaymode) { Debug.LogError("[MNF] Exit Play Mode before running Build Game."); return; }
             try
             {
                 Step("Project settings", 0.05f); ProjectSetup.Apply();

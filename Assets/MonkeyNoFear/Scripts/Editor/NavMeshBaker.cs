@@ -17,6 +17,7 @@ namespace MonkeyNoFear.EditorTools
         {
             var sources = new List<NavMeshBuildSource>();
             var markups = new List<NavMeshBuildMarkup>();
+            Physics.SyncTransforms(); // autoSyncTransforms is off (ProjectSetup): placed props would report stale bounds
             var bounds = WorldBounds(worldRoot);
             int mask = (1 << Layers.Environment) | (1 << Layers.Default) | (1 << Layers.NoClimb);
             NavMeshBuilder.CollectSources(bounds, mask, NavMeshCollectGeometry.PhysicsColliders, 0, markups, sources);
@@ -53,9 +54,13 @@ namespace MonkeyNoFear.EditorTools
         static Bounds WorldBounds(Transform root)
         {
             var cols = root ? root.GetComponentsInChildren<Collider>() : Object.FindObjectsOfType<Collider>();
-            if (cols.Length == 0) return new Bounds(Vector3.zero, Vector3.one * 100f);
-            var b = cols[0].bounds;
-            foreach (var c in cols) if (!c.isTrigger) b.Encapsulate(c.bounds);
+            bool any = false; var b = new Bounds();
+            foreach (var c in cols)
+            {
+                if (c.isTrigger) continue;
+                if (any) b.Encapsulate(c.bounds); else { b = c.bounds; any = true; }
+            }
+            if (!any) return new Bounds(Vector3.zero, Vector3.one * 100f);
             b.Expand(4f);
             return b;
         }

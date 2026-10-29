@@ -70,6 +70,8 @@ namespace MonkeyNoFear.AI.Creatures
         {
             _freezeCount = 0; _exposure = 0f; _ambushReadyAt = 0f;
             ReleasePlayer();
+            if (agent) agent.enabled = false;
+            _to = null; _progress = 0f; // a half-crawled edge from the old node would cut through the rock
             if (ClerkNode.All.Count > 0)
             {
                 _at = ClerkNode.All[rng.Next(ClerkNode.All.Count)];
@@ -106,7 +108,15 @@ namespace MonkeyNoFear.AI.Creatures
                     Say("clerk_hiss", 0.5f);
                     break;
                 case S.Retreat:
-                    _to = FarthestDarkNode(3);
+                    // hop by hop along linked nodes (a far node is not a straight, clear crawl away)
+                    _retreatHops = 3;
+                    if (_to != null && _progress > 0f && _progress < 1f)
+                    {
+                        // already between two nodes: finish the edge toward the end farther from the player
+                        if (Horizontal(_at.SurfacePoint, PlayerFeet) > Horizontal(_to.SurfacePoint, PlayerFeet))
+                        { var t = _at; _at = _to; _to = t; _progress = 1f - _progress; }
+                    }
+                    else _to = FarthestDarkNode(1);
                     animator?.Play("flee", 0.1f);
                     Say("clerk_skitter", 0.9f);
                     break;
@@ -129,7 +139,9 @@ namespace MonkeyNoFear.AI.Creatures
                     break;
                 case S.Flee:
                     animator?.Play("flee", 0.1f);
-                    _at = FarthestDarkNode(4);
+                    _to = null; _progress = 0f;
+                    var far = FarthestDarkNode(4);
+                    _at = far ? far : NearestNode(transform.position, null);
                     if (_at)
                     {
                         _climbTo = _at.HangPoint(hangOffset);
@@ -137,8 +149,21 @@ namespace MonkeyNoFear.AI.Creatures
                         if (Physics.Raycast(_climbTo, Vector3.down, out var hit, 8f, Layers.Occluders)) below = hit.point;
                         _climbFrom = below;
                     }
+                    // on the floor it runs on the NavMesh like anything else: never straight through a wall
+                    {
+                        var floor = transform.position;
+                        if (Physics.Raycast(floor + Vector3.up * 0.3f, Vector3.down, out var g0, 3f, Layers.Occluders)) floor = g0.point;
+                        if (SampleNav(floor, 1.5f, out var onNav))
+                        {
+                            transform.position = onNav;
+                            EnsureFloorAgent();
+                            agent.enabled = true;
+                            agent.Warp(onNav);
+                        }
+                    }
                     break;
                 case S.Climb:
+                    if (agent) agent.enabled = false;
                     _climbFrom = transform.position;
                     break;
             }
@@ -150,7 +175,8 @@ namespace MonkeyNoFear.AI.Creatures
             if (!_at && _s != S.Drop && _s != S.Grab) { _at = NearestNode(transform.position, null); if (!_at) return; }
             float d = DistToPlayer;
             bool lit = IsLit();
-            if (lit && (_s == S.Stalk || _s == S.Windup || _s == S.Dormant)) _exposure += dt; else _exposure = Mathf.Max(0f, _exposure - dt * 0.25f);
+            // frozen counts as exposed: chaining freezes under a steady beam must end in a retreat
+            if (lit && (_s == S.Stalk || _s == S.Windup || _s == S.Dormant || _s == S.Freeze)) _exposure += dt; else _exposure = Mathf.Max(0f, _exposure - dt * 0.25f);
 
             switch (_s)
             {
@@ -174,6 +200,7 @@ namespace MonkeyNoFear.AI.Creatures
                     break;
 
                 case S.Retreat:
+                    if (_to == null && --_retreatHops > 0) _to = FarthestDarkNode(1);
                     if (_to == null) { _exposure = 0f; Enter(S.Stalk); break; }
                     Crawl(dt, fleeSpeed);
                     break;
@@ -197,10 +224,18 @@ namespace MonkeyNoFear.AI.Creatures
                         if (Player && d < grabRange && PlayerHealth.Instance && !PlayerHealth.Instance.IsDead) Enter(S.Grab);
                         else Enter(S.Flee);
                     }
+                    else if (_t > 4f)
+                    {
+                        // fell into a pit with no floor in reach: hang it back on the nearest node, out of sight
+                        _at = NearestNode(transform.position, null);
+                        if (_at) PlaceOn(_at.HangPoint(hangOffset), _at.Normal, transform.forward);
+                        _ambushReadyAt = Time.time + ambushCooldown;
+                        Enter(S.Dormant);
+                    }
                     else
                     {
+                        // the drop clip itself rolls the body belly-down; the root stays as it was until it lands
                         transform.position = next;
-                        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(transform.forward, Vector3.up), dt * 6f);
                     }
                     break;
 
@@ -212,16 +247,27 @@ namespace MonkeyNoFear.AI.Creatures
                     // scuttle along the floor to below a dark node, then climb up to it
                     if (!_at) { Enter(S.Dormant); break; }
                     var to = _climbFrom - transform.position; to.y = 0f;
-                    if (to.magnitude > 0.4f)
+                    if (HasAgent && to.magnitude > 0.6f && _t < 12f && !(_t > 0.5f && Arrived(0.6f)))
                     {
-                        var step = to.normalized * fleeSpeed * dt;
-                        var pos = transform.position + step;
-                        if (Physics.Raycast(pos + Vector3.up * 0.8f, Vector3.down, out var g, 2f, Layers.Occluders)) pos.y = g.point.y;
-                        transform.position = pos;
-                        transform.rotation = Quaternion.LookRotation(to.normalized, Vector3.up);
-                        Taps(dt, 0.08f);
+                        MoveTo(_climbFrom, fleeSpeed);
+                        if (animator) { animator.Play("flee", 0.1f); animator.SyncSpeed("flee", CurrentSpeed); }
+                        if (CurrentSpeed > 0.3f) Taps(dt, 0.08f);
                     }
-                    else Enter(S.Climb);
+                    else if (to.magnitude <= 1.5f && ClimbPathClear()) Enter(S.Climb);
+                    else
+                    {
+                        // could not get under its node (no NavMesh, no path): climb to the nearest node it can
+                        // reach in a straight, unobstructed line; failing that, wait until unobserved
+                        var alt = NearestClearNode();
+                        if (alt) { _at = alt; _climbTo = alt.HangPoint(hangOffset); Enter(S.Climb); }
+                        else if (!Observed())
+                        {
+                            if (agent) agent.enabled = false;
+                            PlaceOn(_climbTo, _at.Normal, transform.forward);
+                            _ambushReadyAt = Time.time + ambushCooldown;
+                            Enter(S.Stalk);
+                        }
+                    }
                     break;
 
                 case S.Climb:
@@ -273,7 +319,9 @@ namespace MonkeyNoFear.AI.Creatures
 
         void ReleasePlayer()
         {
-            if (Player && Player.locomotion.Pinned && _s == S.Grab) Player.locomotion.Pinned = false;
+            // a dead player stays pinned: PlayerHealth unpins after the respawn teleport
+            bool dead = PlayerHealth.Instance && PlayerHealth.Instance.IsDead;
+            if (Player && Player.locomotion.Pinned && _s == S.Grab && !dead) Player.locomotion.Pinned = false;
             if (Player && _s == S.Grab) Player.locomotion.AddImpulse(-Player.HeadForward * 1.5f);
         }
 
@@ -296,6 +344,35 @@ namespace MonkeyNoFear.AI.Creatures
             }
         }
         float _progress, _punchCooldown;
+        int _retreatHops;
+
+        /// <summary>The builder gives the Clerk no NavMeshAgent (it lives on the node graph); one is added the
+        /// first time it has to cross the floor, sized like the Clerk, and kept disabled on the ceiling.</summary>
+        void EnsureFloorAgent()
+        {
+            if (agent) return;
+            agent = gameObject.AddComponent<UnityEngine.AI.NavMeshAgent>();
+            agent.radius = 0.35f; agent.height = 0.6f; agent.baseOffset = 0f; agent.stoppingDistance = 0.3f;
+            agent.speed = fleeSpeed; agent.acceleration = 14f; agent.angularSpeed = 540f;
+            agent.obstacleAvoidanceType = UnityEngine.AI.ObstacleAvoidanceType.LowQualityObstacleAvoidance;
+        }
+
+        /// <summary>Straight climb from the floor up to the target node is not blocked by rock.</summary>
+        bool ClimbPathClear() => _at && !Physics.Linecast(transform.position + Vector3.up * 0.3f, _at.HangPoint(hangOffset), Layers.Occluders, QueryTriggerInteraction.Ignore);
+
+        ClerkNode NearestClearNode()
+        {
+            ClerkNode best = null; float bd = 12f * 12f;
+            var from = transform.position + Vector3.up * 0.3f;
+            foreach (var n in ClerkNode.All)
+            {
+                if (!n || !n.Valid) continue;
+                float d = (n.SurfacePoint - from).sqrMagnitude;
+                if (d >= bd || Physics.Linecast(from, n.HangPoint(hangOffset), Layers.Occluders, QueryTriggerInteraction.Ignore)) continue;
+                bd = d; best = n;
+            }
+            return best;
+        }
 
         void Taps(float dt, float interval)
         {

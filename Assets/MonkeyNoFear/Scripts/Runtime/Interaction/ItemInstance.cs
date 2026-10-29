@@ -15,9 +15,8 @@ namespace MonkeyNoFear.Interaction
         public string toolId;
 
         public bool IsTool => !string.IsNullOrEmpty(toolId);
-        public Grabbable Grab { get; private set; }
-
-        void Awake() { Grab = GetComponent<Grabbable>(); }
+        public Grabbable Grab => _grab ? _grab : (_grab = GetComponent<Grabbable>());
+        Grabbable _grab;
         void OnEnable() { if (!All.Contains(this)) All.Add(this); }
         void OnDestroy() { All.Remove(this); }
 
@@ -34,6 +33,7 @@ namespace MonkeyNoFear.Interaction
                 go.transform.localScale = Vector3.one * 0.12f;
                 go.name = def.displayName + " (fallback)";
                 go.AddComponent<Rigidbody>().mass = def.mass;
+                go.AddComponent<ItemInstance>(); // before Grabbable, which links its item in Awake
                 go.AddComponent<Grabbable>();
                 Debug.LogWarning($"[Item] '{def.id}' has no prefab — spawned a fallback cube.");
             }

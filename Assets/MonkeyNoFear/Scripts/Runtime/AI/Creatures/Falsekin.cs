@@ -98,7 +98,8 @@ namespace MonkeyNoFear.AI.Creatures
             {
                 case S.Disguised:
                     ShowRevealed(false);
-                    if (HasAgent) agent.updateRotation = false;
+                    // set even before the agent is seated on the NavMesh (Awake): the back-away tell needs it
+                    if (agent) agent.updateRotation = false;
                     animator?.Play("idle", 0.3f, wrongBreathingSpeed);
                     _closeTime = 0f; _nestTime = 0f;
                     break;
@@ -113,7 +114,7 @@ namespace MonkeyNoFear.AI.Creatures
                     GameRoot.I?.Progress.Discover("creature_falsekin");
                     break;
                 case S.Ambush:
-                    if (HasAgent) { agent.updateRotation = true; }
+                    if (agent) agent.updateRotation = true;
                     animator?.Play("run", 0.08f);
                     var to = PlayerFeet - transform.position; to.y = 0f;
                     _lungeDir = to.normalized;
@@ -123,7 +124,9 @@ namespace MonkeyNoFear.AI.Creatures
                     break;
                 case S.Retreat:
                     animator?.Play(animator && animator.Has("retreat") ? "retreat" : "run", 0.15f);
-                    MoveTo(PickCover(), profile.runSpeed);
+                    var cover = PickCover();
+                    SampleNav(cover, 4f, out cover); // cover markers sit beside bushes, not necessarily on the NavMesh
+                    MoveTo(cover, profile.runSpeed);
                     _dur = 7f;
                     break;
                 case S.Hidden:
@@ -153,7 +156,15 @@ namespace MonkeyNoFear.AI.Creatures
                     break;
                 case S.Ambush: Ambush(dt); break;
                 case S.Retreat:
-                    if (Arrived(1f) || stateTime > _dur) Enter(S.Hidden);
+                    if (animator)
+                    {
+                        // the scuttle cycle is authored slower than its sprint: use the run cycle at speed
+                        string clip = CurrentSpeed < 0.2f ? "idle" : CurrentSpeed > 4.5f || !animator.Has("retreat") ? "run" : "retreat";
+                        animator.Play(clip, 0.2f);
+                        animator.SyncSpeed(clip, CurrentSpeed);
+                    }
+                    // it only drops out of existence where nobody is watching it do so
+                    if (((Arrived(1f) || stateTime > _dur) && (!Watched() || DistToPlayer > 25f)) || stateTime > _dur * 3f) Enter(S.Hidden);
                     break;
                 case S.Hidden:
                     if (stateTime > _dur && DistToPlayer > 20f) Redisguise();
@@ -195,7 +206,9 @@ namespace MonkeyNoFear.AI.Creatures
                 if (!watched && Random.value < skipChancePerSecond * dt)
                 {
                     var toward = (PlayerFeet - transform.position); toward.y = 0f;
-                    if (SampleNav(transform.position + toward.normalized * Random.Range(0.6f, 1.3f), 0.8f, out var p) && HasAgent)
+                    // only along open NavMesh: never through a wall, rock or tree trunk
+                    if (HasAgent && SampleNav(transform.position + toward.normalized * Random.Range(0.6f, 1.3f), 0.8f, out var p) &&
+                        !UnityEngine.AI.NavMesh.Raycast(transform.position, p, out _, UnityEngine.AI.NavMesh.AllAreas))
                         agent.Warp(p);
                 }
             }
@@ -208,9 +221,10 @@ namespace MonkeyNoFear.AI.Creatures
             {
                 // short, extremely fast lunge along the initial direction (dodgeable), slight homing
                 var to = PlayerFeet - transform.position; to.y = 0f;
-                _lungeDir = Vector3.Slerp(_lungeDir, to.normalized, dt * 2f);
-                if (HasAgent) agent.Move(_lungeDir * lungeSpeed * dt);
-                transform.rotation = Quaternion.LookRotation(_lungeDir);
+                if (to.sqrMagnitude > 0.0001f) _lungeDir = Vector3.Slerp(_lungeDir, to.normalized, dt * 2f);
+                if (HasAgent) agent.Move(_lungeDir * lungeSpeed * dt); // Move stays on the NavMesh
+                if (_lungeDir.sqrMagnitude > 0.0001f) transform.rotation = Quaternion.LookRotation(_lungeDir);
+                animator?.SyncSpeed("run", lungeSpeed); // agent.Move does not report a velocity
                 if (d < hitRange)
                 {
                     _hitDone = true;
@@ -246,14 +260,20 @@ namespace MonkeyNoFear.AI.Creatures
         void Redisguise()
         {
             Vector3 p = transform.position;
-            if (redisguisePoints.Count > 0)
+            for (int i = 0; i < 6 && redisguisePoints.Count > 0; i++)
             {
                 var t = redisguisePoints[Random.Range(0, redisguisePoints.Count)];
-                if (t) RandomNavPoint(t.position, 6f, out p);
+                if (!t || !RandomNavPoint(t.position, 6f, out var c)) continue;
+                p = c;
+                // the rabbit is simply there next time you look: do not put it back on in plain view
+                if (!Player || Vector3.Distance(c, PlayerFeet) > 35f || Vector3.Angle(Player.HeadForward, c - Player.HeadPosition) > 70f) break;
             }
             if (HasAgent) agent.Warp(p); else transform.position = p;
             Enter(S.Disguised);
         }
+
+        bool Watched() => Player && Vector3.Angle(Player.HeadForward, EyePosition - Player.HeadPosition) < 55f &&
+                          !Physics.Linecast(Player.HeadPosition, EyePosition, Layers.Occluders, QueryTriggerInteraction.Ignore);
 
         public override void OnNoiseHeard(in NoiseEvent e, float perceived) { /* it does not startle: a clue */ }
 

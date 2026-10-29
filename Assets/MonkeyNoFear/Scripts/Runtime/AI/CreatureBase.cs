@@ -40,7 +40,7 @@ namespace MonkeyNoFear.AI
         protected ManagedLoop voice;
         protected Vector3 home;
         protected float recentDamage, recentDamageTime;
-        float _visionTimer, _discoverTimer, _attackReadyAt;
+        float _visionTimer, _discoverTimer, _attackReadyAt, _navBindTimer;
         float _lastStimulus;
 
         protected PlayerRig Player => PlayerRig.Instance;
@@ -93,6 +93,7 @@ namespace MonkeyNoFear.AI
                 if (voice) { if (Active) voice.FadeIn(); else voice.FadeOut(); }
             }
             if (!Active) return;
+            BindToNavMesh();
             stateTime += Time.deltaTime;
             if (Time.time - recentDamageTime > 2f) recentDamage = 0f;
 
@@ -172,11 +173,29 @@ namespace MonkeyNoFear.AI
         // -------------------------------------------------------------------- movement
         protected bool HasAgent => agent && agent.enabled && agent.isOnNavMesh;
 
+        /// <summary>An enabled agent that is not on the NavMesh never moves (spawned before the runtime NavMesh
+        /// data was added, or placed slightly off it). Re-seat it on the nearest NavMesh point; Warp only ever
+        /// targets a validated NavMesh position.</summary>
+        void BindToNavMesh()
+        {
+            if (!agent || !agent.enabled || agent.isOnNavMesh) return;
+            _navBindTimer -= Time.deltaTime;
+            if (_navBindTimer > 0f) return;
+            _navBindTimer = 1f;
+            if (SampleNav(transform.position, 2f, out var p)) agent.Warp(p);
+        }
+
         protected void MoveTo(Vector3 p, float speed)
         {
             if (!HasAgent) return;
             agent.isStopped = false;
             agent.speed = speed;
+            // do not restart a path request that is still being computed (re-issuing it every frame for a moving
+            // or off-mesh target could keep a long path from ever finishing)
+            if (agent.pathPending) return;
+            // targets are often off the mesh (a noise on a wall, a deposit, a player on a ledge): aim for the
+            // walkable point below/beside it, which also keeps the comparison below stable
+            SampleNav(p, 2.5f, out p);
             if (!agent.hasPath || (agent.destination - p).sqrMagnitude > 0.25f) agent.SetDestination(p);
         }
 
@@ -192,6 +211,7 @@ namespace MonkeyNoFear.AI
         {
             if (!HasAgent) return true;
             if (agent.pathPending) return false;
+            if (!agent.hasPath) return true; // no path (failed or cleared): nothing left to walk, let the state move on
             return agent.remainingDistance <= Mathf.Max(tolerance, agent.stoppingDistance);
         }
 

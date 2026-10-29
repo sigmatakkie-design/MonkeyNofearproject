@@ -58,7 +58,7 @@ namespace MonkeyNoFear.AI.Wildlife
             for (int i = 0; i < falsekin.Count; i++)
             {
                 var f = falsekin[i];
-                if (!f) continue;
+                if (!f || !f.IsAlive) continue; // a killed one stays where it fell until it is cleaned up
                 bool active = i < falsekinPerExpedition && candidates.Count > 0;
                 f.gameObject.SetActive(active);
                 if (!active) continue;

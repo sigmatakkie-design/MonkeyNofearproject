@@ -87,6 +87,7 @@ namespace MonkeyNoFear.EditorTools
             bool small = KitLibrary.RenderBounds(go).size.magnitude < 0.6f;
             ShadowsFor(go, !foliageOnly && !small);
             SetStatic(go, true);
+            foreach (var sp in go.GetComponentsInChildren<Spinner>(true)) SetStatic(sp.gameObject, false); // moving parts cannot be static-batched
             Save(go, PropsDir, "Prop_" + name);
         }
 

@@ -66,7 +66,7 @@ namespace MonkeyNoFear.EditorTools
         static CreatureAnimator SetupAnimator(GameObject host, GameObject model, Dictionary<string, object> info)
         {
             var ca = host.AddComponent<CreatureAnimator>();
-            ca.anim = model.GetComponent<Animation>() ?? model.GetComponentInChildren<Animation>();
+            ca.anim = model.GetComponentInChildren<Animation>(); // includes the root; avoids `??` on Unity fake-null
             if (ca.anim) { ca.anim.playAutomatically = true; ca.anim.cullingType = AnimationCullingType.BasedOnRenderers; }
             ca.visualRoot = model.transform;
             float fps = info != null ? info.GetFloat("fps", 30f) : 30f;

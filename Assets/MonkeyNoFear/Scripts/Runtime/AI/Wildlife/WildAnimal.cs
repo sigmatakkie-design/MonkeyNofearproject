@@ -161,6 +161,7 @@ namespace MonkeyNoFear.AI.Wildlife
                     break;
                 case S.Charge:
                     MoveTo(PlayerFeet, profile.runSpeed * 1.05f);
+                    animator?.SyncSpeed(animator.Has("charge") ? "charge" : "run", CurrentSpeed);
                     if (d < profile.attackRange && AttackReady)
                     {
                         TryHitPlayer(profile.attackRange * 1.2f, 90f, profile.attackDamage, DamageType.Melee);
@@ -178,6 +179,7 @@ namespace MonkeyNoFear.AI.Wildlife
             if (_blinkTimer <= 0f)
             {
                 _blinkTimer = Random.Range(0.5f, 2f) / Mathf.Max(0.01f, blinkRate);
+                animator.anim["blink"].time = 0f; // Play does not rewind a state that is still clamped at its end
                 animator.anim.Play("blink", PlayMode.StopSameLayer);
             }
         }

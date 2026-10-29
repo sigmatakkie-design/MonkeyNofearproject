@@ -56,6 +56,10 @@ namespace MonkeyNoFear.Player
             if (!col) col = gameObject.AddComponent<SphereCollider>();
             col.radius = radius * 0.9f;
             gameObject.layer = Layers.PlayerHand;
+            // Hands never shove loose items: a kinematic palm sphere would kick an item away while the hand
+            // reaches for it, and launch it by depenetration the moment it is dropped (it is released while
+            // still overlapping the palm). Mirrors the editor collision matrix in case it was not applied.
+            Physics.IgnoreLayerCollision(Layers.PlayerHand, Layers.Item, true);
         }
 
         public void Teleport(Vector3 p)

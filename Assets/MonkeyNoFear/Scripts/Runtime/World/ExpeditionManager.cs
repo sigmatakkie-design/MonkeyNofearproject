@@ -102,7 +102,13 @@ namespace MonkeyNoFear.World
         {
             int index = GameRoot.I ? GameRoot.I.Progress.Stats.expeditions : 0;
             var rng = new System.Random(System.Environment.TickCount ^ (index * 7919));
-            foreach (var r in Resettables.ToArray())
+            // AreaRoots switch whole regions off while the player is elsewhere (the mine and forest are off in
+            // the bunker, where this runs), and disabled components unregister themselves. Sweep the scene,
+            // inactive objects included, so creatures, holes and spawners in a switched-off region re-roll too.
+            var targets = new List<IExpeditionReset>(Resettables);
+            foreach (var mb in FindObjectsOfType<MonoBehaviour>(true))
+                if (mb is IExpeditionReset r && !targets.Contains(r)) targets.Add(r);
+            foreach (var r in targets)
             {
                 try { r.OnNewExpedition(index, rng); }
                 catch (System.Exception e) { Debug.LogException(e); }

@@ -20,6 +20,8 @@ namespace MonkeyNoFear.Bunker
     {
         public TerminalScreen screen;
         public SellStation sellStation;
+        [Tooltip("Security gate the EXPED page opens and closes. Found in the scene when not assigned.")]
+        public SecurityGate gate;
 
         static readonly string[] Pages = { "HOME", "SHOP", "STORAGE", "EXPED", "ARCHIVE", "STATS", "SETUP" };
 
@@ -46,6 +48,7 @@ namespace MonkeyNoFear.Bunker
         void Start()
         {
             if (screen) { screen.Build(); screen.Clear(); }
+            if (!gate) gate = FindObjectOfType<SecurityGate>(); // the world builder does not wire this link
         }
 
         public void OnButton(string command)
@@ -251,6 +254,17 @@ namespace MonkeyNoFear.Bunker
         {
             var p = gr.Progress;
             Info("EXPEDITION PLANNING");
+            if (gate)
+            {
+                var gs = gate.Current;
+                bool open = gs == SecurityGate.State.Open || gs == SecurityGate.State.Opening;
+                Option("SECURITY GATE", gs.ToString().ToUpperInvariant() + (open ? "  [CLOSE]" : "  [OPEN]"), () =>
+                {
+                    if (!gate.Powered) { Status("GATE: NO POWER - USE MANUAL OVERRIDE", false); return; }
+                    gate.OnButton(open ? "close" : "open");
+                    Status(open ? "GATE CLOSING" : "GATE OPENING", true);
+                });
+            }
             Info("ROUTE", "GATE > FOREST TRAIL > MINE");
             Info("SURFACE", p.IsDiscovered("area_forest") ? "SURVEYED" : "UNKNOWN");
             Info("MINE LEVEL 1", p.IsDiscovered("area_mine1") ? "IRON / COPPER" : "UNKNOWN");

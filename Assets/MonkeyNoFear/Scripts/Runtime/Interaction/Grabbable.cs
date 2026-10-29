@@ -56,11 +56,19 @@ namespace MonkeyNoFear.Interaction
         public event Action<HandGrabber> Grabbed;
         public event Action<HandGrabber> Released;
 
+        /// <summary>Velocity of the hand-driven target pose while held: what the controller does, not what
+        /// the body was allowed to do. Pressing a held tool into a surface gives zero here.</summary>
+        public Vector3 TargetVelocity { get; private set; }
+        public Vector3 TargetAngularVelocity { get; private set; }
+
         int[] _layers;
         Transform[] _layerTargets;
         Vector3 _attachPos;
         Quaternion _attachRot = Quaternion.identity;
         float _lastImpact;
+        Vector3 _lastTargetPos;
+        Quaternion _lastTargetRot = Quaternion.identity;
+        bool _hasTarget;
 
         void Awake()
         {
@@ -100,6 +108,34 @@ namespace MonkeyNoFear.Interaction
         }
 
         public virtual void UpdateGrab(HandGrabber hand, float dt) { }
+
+        /// <summary>Hand-driven velocity of a point on the item (world space), for strike validation.</summary>
+        public Vector3 TargetPointVelocity(Vector3 worldPoint)
+        {
+            if (Holder == null || !_hasTarget) return Vector3.zero;
+            // the point's offset from the body, carried over to the target pose
+            var offset = _lastTargetRot * (Quaternion.Inverse(transform.rotation) * (worldPoint - transform.position));
+            return TargetVelocity + Vector3.Cross(TargetAngularVelocity, offset);
+        }
+
+        void Update()
+        {
+            // render rate, after PlayerRig (-50) has resolved the hands for this frame
+            if (Holder == null) { _hasTarget = false; TargetVelocity = TargetAngularVelocity = Vector3.zero; return; }
+            var rot = Holder.HandRotation * _attachRot;
+            var pos = Holder.HandPosition + Holder.HandRotation * _attachPos;
+            float dt = Time.deltaTime;
+            if (_hasTarget && dt > 0f && (pos - _lastTargetPos).sqrMagnitude < 1f) // ignore snap turns / teleports
+            {
+                TargetVelocity = Vector3.Lerp(TargetVelocity, (pos - _lastTargetPos) / dt, 0.5f);
+                (rot * Quaternion.Inverse(_lastTargetRot)).ToAngleAxis(out float angle, out Vector3 axis);
+                if (angle > 180f) angle -= 360f;
+                var w = Mathf.Abs(angle) > 0.01f && !float.IsInfinity(axis.x) && !float.IsNaN(axis.x) ? axis * (angle * Mathf.Deg2Rad / dt) : Vector3.zero;
+                TargetAngularVelocity = Vector3.Lerp(TargetAngularVelocity, w, 0.5f);
+            }
+            else { TargetVelocity = Vector3.zero; TargetAngularVelocity = Vector3.zero; }
+            _lastTargetPos = pos; _lastTargetRot = rot; _hasTarget = true;
+        }
 
         void FixedUpdate()
         {

@@ -10,7 +10,7 @@ namespace MonkeyNoFear.Core
     {
         public const int Default = 0;
         public const int Player = 8;        // body capsule
-        public const int PlayerHand = 9;    // kinematic hand spheres (push loose props)
+        public const int PlayerHand = 9;    // kinematic hand spheres (collide with nothing; hands use queries)
         public const int Item = 10;         // loose grabbable items
         public const int HeldItem = 11;     // items currently in a hand (ignore the player)
         public const int Creature = 12;

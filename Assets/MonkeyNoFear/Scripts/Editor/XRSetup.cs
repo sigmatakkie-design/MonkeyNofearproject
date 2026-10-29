@@ -69,6 +69,13 @@ namespace MonkeyNoFear.EditorTools
                 foreach (var f in settings.GetFeatures<ValveIndexControllerProfile>()) f.enabled = true;
                 foreach (var f in settings.GetFeatures<HTCViveControllerProfile>()) f.enabled = true;
             }
+            else
+            {
+                // Meta Quest Support (by type name: its assembly differs between OpenXR versions)
+                bool quest = false;
+                foreach (var f in settings.GetFeatures()) if (f && f.GetType().Name == "MetaQuestFeature") { f.enabled = true; quest = true; }
+                if (!quest) Debug.LogWarning("[MNF] OpenXR 'Meta Quest Support' feature not found — enable it manually for Android.");
+            }
             EditorUtility.SetDirty(settings);
         }
 #endif

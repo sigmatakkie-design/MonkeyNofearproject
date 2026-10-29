@@ -12,7 +12,7 @@ from mathutils import Vector, Matrix, Euler
 PREVIEW = {
     'MNF_ConcreteWall': (0.33, 0.33, 0.32), 'MNF_ConcreteFloor': (0.22, 0.22, 0.22), 'MNF_MetalGrate': (0.25, 0.26, 0.27),
     'MNF_MetalDiamond': (0.38, 0.38, 0.4), 'MNF_MetalRusted': (0.35, 0.2, 0.12), 'MNF_MetalPainted_Green': (0.2, 0.3, 0.2),
-    'MNF_MetalPainted_Gray': (0.35, 0.36, 0.37), 'MNF_MetalPainted_Yellow': (0.7, 0.55, 0.1), 'MNF_MetalPainted_Red': (0.5, 0.1, 0.08),
+    'MNF_MetalPainted_Gray': (0.35, 0.36, 0.37), 'MNF_MetalPainted_Yellow': (0.7, 0.55, 0.1), 'MNF_MetalPainted_Red': (0.5, 0.1, 0.08), 'MNF_MetalPainted_Blue': (0.16, 0.4, 0.78),
     'MNF_Hazard': (0.75, 0.6, 0.05), 'MNF_WoodPlanks': (0.35, 0.25, 0.16), 'MNF_WoodBeam': (0.3, 0.22, 0.14), 'MNF_WoodRotten': (0.2, 0.15, 0.1),
     'MNF_Terrain': (0.18, 0.16, 0.12), 'MNF_RockDry_Tri': (0.3, 0.29, 0.27), 'MNF_RockWet_Tri': (0.15, 0.15, 0.15), 'MNF_RockMine_Tri': (0.22, 0.19, 0.16),
     'MNF_Water': (0.03, 0.05, 0.05), 'MNF_Mud': (0.15, 0.11, 0.08), 'MNF_RockDry': (0.3, 0.29, 0.27), 'MNF_Rubber': (0.05, 0.05, 0.05),
@@ -204,7 +204,7 @@ def export_fbx(path, objects):
         bpy.context.view_layer.objects.active = objects[0]
     os.makedirs(os.path.dirname(path), exist_ok=True)
     bpy.ops.export_scene.fbx(filepath=path, use_selection=True, object_types={'MESH', 'EMPTY'},
-                             apply_scale_options='FBX_SCALE_ALL', axis_forward='-Z', axis_up='Y', bake_space_transform=False,
+                             apply_scale_options='FBX_SCALE_ALL', axis_forward='-Z', axis_up='Y', bake_space_transform=True,
                              use_mesh_modifiers=True, mesh_smooth_type='FACE', use_tspace=True, add_leaf_bones=False,
                              bake_anim=False, path_mode='STRIP', colors_type='LINEAR')
 

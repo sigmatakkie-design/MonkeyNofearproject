@@ -49,7 +49,14 @@ namespace MonkeyNoFear.Interaction
             Apply();
             float t = Mathf.InverseLerp(minAngle, maxAngle, _angle);
             if (!_down && t >= triggerFraction) { _down = true; Fire(commandDown); hand.Rig?.Haptic(hand.Side, 0.7f, 0.08f); }
-            else if (_down && t <= 1f - triggerFraction) { _down = false; Fire(commandUp); hand.Rig?.Haptic(hand.Side, 0.5f, 0.06f); }
+            else if (_down && t <= 1f - triggerFraction)
+            {
+                // a spring-return lever is momentary: walking it back by hand must not fire a second command
+                // (the spring returning it never does), or a pull-and-return would undo itself (gate override)
+                _down = false;
+                if (!springReturn) Fire(commandUp);
+                hand.Rig?.Haptic(hand.Side, 0.5f, 0.06f);
+            }
         }
 
         void Fire(string cmd)

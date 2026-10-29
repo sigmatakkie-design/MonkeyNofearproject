@@ -1,0 +1,39 @@
+# Bunker assembly audit (126 placed parts, 999 level polys)
+
+## missing: 0
+
+## float: 1
+  CableBundle @ (-5.0, 3.9, -6.8) (MK_PROP_CableBundle): floats 2.65 m
+
+## sunk: 0
+
+## wallgap: 2
+  BlastDoor @ (5.45, 47.5, 0.0) (MK_PROP_BlastDoor): no wall behind
+  VentFan @ (0.0, -11.95, -6.6) (MK_PROP_VentFan): 0.05 m off the wall
+
+## embedded: 1
+  EmergencyLight @ (0.0, 42.6, 3.4) (MK_LIGHT_Red): 0.10 m inside the wall
+
+## dupe: 0
+
+## overlap: 9
+  FoodCan x Table @ (2.2, -6.7, -9.2) (48 pairs)
+  EmergencyLight x SecurityGate_Frame @ (-1.9, 3.91, -6.68) (50 pairs)
+  SecurityGate_Frame x SecurityGate_Bars @ (0.0, 4.15, -8.3) (17 pairs)
+  Terminal x KeypadPlate @ (-6.65, 3.41, -9.23) (6 pairs)
+  ToolRack x Pickaxe_T1 @ (-7.89, -1.0, -8.65) (44 pairs)
+  ToolRack x Flashlight @ (-7.89, -1.0, -8.65) (101 pairs)
+  ToolRack x Spear @ (-7.89, -1.0, -8.65) (144 pairs)
+  EmergencyLight x SecurityGate_Frame @ (1.9, 3.91, -6.68) (42 pairs)
+  Clipboard x Radio @ (-10.2, -11.0, -9.17) (136 pairs)
+
+## coplanar: 0
+
+## level_x: 5
+  CageLamp @ (5.4, -15.06, -7.59) (MK_LIGHT_Cage): 14 triangle pairs cross level geometry
+  SecurityGate_Frame @ (-0.13, 4.25, -7.84) (MK_STATION_Gate): 593 triangle pairs cross level geometry
+  SecurityGate_Bars @ (-0.0, 4.15, -8.62) (gate): 169 triangle pairs cross level geometry
+  Terminal @ (-6.65, 3.33, -9.1) (MK_STATION_Terminal): 60 triangle pairs cross level geometry
+  Workbench @ (-4.64, 3.38, -9.0) (MK_STATION_Workbench): 32 triangle pairs cross level geometry
+
+(audit 0.2s)

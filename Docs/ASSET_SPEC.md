@@ -28,7 +28,14 @@ Project root: `/home/user/MonkeyNoFear` (Unity 2022.3 LTS, Built-in Render Pipel
       bake_anim=<True for animated>, bake_anim_use_all_actions=True, bake_anim_use_nla_strips=False,
       bake_anim_force_startend_keying=True, bake_anim_simplify_factor=0.0, path_mode='STRIP')
   ```
-  Unity imports with "Bake Axis Conversion" enabled, so object rotations come out clean.
+  **Static models (levels, prop kits) use `bake_space_transform=True`** ("Apply Transform"): the axis
+  conversion is baked into the mesh data, so every root node imports with identity rotation and empties carry
+  only their real rotation (Blender −Y -> Unity `transform.forward`). With `False`, Blender writes a −90° X
+  rotation into every root node; Unity keeps it (Bake Axis Conversion does not remove it for a Y-up file), so
+  marker `transform.forward` would point up and `KitLibrary.Copy` (which zeroes the root rotation) would lay
+  every prop on its back. **Rigged models (creatures, player) keep `False`** (the option is unreliable with
+  armatures); they are only ever instantiated whole and parented with their imported child rotations intact.
+  Check with `Tools/common/fbx_audit.py`.
 * Apply all object transforms (rotation & scale) on meshes before export (armature objects too, except
   where noted). No negative scales anywhere.
 * Every mesh must have a UV map named `UVMap` and sensible normals (auto smooth / weighted normals OK).
@@ -61,7 +68,7 @@ R = metallic, G = ambient occlusion, B = height/cavity, A = smoothness), optiona
 | MNF_MetalGrate | metal_grate | floor grating, alpha cutout holes |
 | MNF_MetalDiamond | metal_diamond | worn diamond tread plate |
 | MNF_MetalRusted | metal_rusted | heavy rust, pitting |
-| MNF_MetalPainted_Green / _Gray / _Yellow / _Red | metal_painted | worn industrial paint; Unity tints the (neutral-light) albedo |
+| MNF_MetalPainted_Green / _Gray / _Yellow / _Red / _Blue | metal_painted | worn industrial paint; Unity tints the (neutral-light) albedo |
 | MNF_MetalBare | metal_bare | brushed/scratched steel (tool heads, rails) |
 | MNF_Hazard | hazard_stripes | worn black/yellow 45° caution stripes, tile along U |
 | MNF_Rubber | rubber | cables, grips, hoses |

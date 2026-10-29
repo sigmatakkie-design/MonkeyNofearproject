@@ -274,7 +274,7 @@ namespace MonkeyNoFear.EditorTools
             gate.closeButtons = closeB.ToArray();
 
             // manual override lever on the inside wall
-            MakeLever(root.transform, new Vector3(-2.35f, 1.3f, -0.15f), Vector3.back, gate, "override", "override", "MANUAL\nOVERRIDE");
+            MakeLever(root.transform, new Vector3(-2.35f, 1.3f, -0.15f), Vector3.back, gate, "override", "", "MANUAL\nOVERRIDE");
             Layers.SetLayerRecursive(barsRoot, Layers.Environment);
             if (frame) Layers.SetLayerRecursive(frame, Layers.Environment);
             Save(root, StationsDir, "Station_Gate");

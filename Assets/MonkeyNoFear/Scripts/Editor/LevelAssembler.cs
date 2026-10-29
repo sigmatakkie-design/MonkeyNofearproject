@@ -108,8 +108,9 @@ namespace MonkeyNoFear.EditorTools
 
         static string CleanName(string n)
         {
+            // strip only Blender's duplicate suffix ".001"; marker args such as MK_SIGN_0_0.6_0.6 keep their decimals
             int dot = n.LastIndexOf('.');
-            if (dot > 0 && dot < n.Length - 1 && char.IsDigit(n[dot + 1])) n = n.Substring(0, dot);
+            if (dot > 0 && n.Length - dot == 4 && char.IsDigit(n[dot + 1]) && char.IsDigit(n[dot + 2]) && char.IsDigit(n[dot + 3])) n = n.Substring(0, dot);
             return n;
         }
 
@@ -331,7 +332,7 @@ namespace MonkeyNoFear.EditorTools
         {
             var go = new GameObject($"{name}_{cell}");
             go.transform.SetParent(parent, false);
-            go.transform.SetPositionAndRotation(m.position + m.forward * 0.01f, m.rotation);
+            go.transform.SetPositionAndRotation(m.position + m.forward * (mat == "MNF_Signs" ? 0.02f : 0.01f), m.rotation);
             go.AddComponent<MeshFilter>().sharedMesh = PrefabFactory.AtlasQuad(cell, w, h);
             var r = go.AddComponent<MeshRenderer>();
             r.sharedMaterial = MaterialFactory.Get(mat);
@@ -503,7 +504,8 @@ namespace MonkeyNoFear.EditorTools
             gr.itemDatabase = AssetDatabase.LoadAssetAtPath<ItemDatabase>(MNFPaths.Data + "/ItemDatabase.asset");
             gr.shopCatalog = AssetDatabase.LoadAssetAtPath<ShopCatalog>(MNFPaths.Data + "/ShopCatalog.asset");
             gr.loreDatabase = AssetDatabase.LoadAssetAtPath<LoreDatabase>(MNFPaths.Data + "/LoreDatabase.asset");
-            gr.lostPackPrefab = PrefabFactory.Load(PrefabFactory.ItemsDir, "Item_Backpack");
+            gr.lostPackPrefab = PrefabFactory.Load(PrefabFactory.ItemsDir, "Item_Backpack") ?? PrefabFactory.Prop("Backpack");
+            if (!gr.lostPackPrefab) Debug.LogWarning("[MNF] No Backpack prefab — lost packs will be invisible (light only).");
 
             var audio = rootGo.AddComponent<AudioManager>();
             audio.bank = AssetDatabase.LoadAssetAtPath<SoundBank>(AudioFactory.BankPath);
@@ -584,6 +586,7 @@ namespace MonkeyNoFear.EditorTools
             power.gate = gate; power.generator = gen; power.emergencyLights = ctx.emergencyLights.ToArray();
             if (ctx.stations.TryGetValue("Terminal", out t) && ctx.stations.TryGetValue("SellMachine", out var s))
                 t.GetComponent<BunkerTerminal>().sellStation = s.GetComponent<SellStation>();
+            if (ctx.stations.TryGetValue("Terminal", out t) && gate) t.GetComponent<BunkerTerminal>().gate = gate;
             foreach (var key in new[] { "Terminal", "SellMachine", "StorageLocker", "ToolRack", "Dispenser", "Bed", "Gate" })
                 if (!ctx.stations.ContainsKey(key)) Debug.LogWarning("[MNF] Bunker is missing station marker MK_STATION_" + key);
         }
@@ -655,7 +658,13 @@ namespace MonkeyNoFear.EditorTools
             var plat = Place(PrefabFactory.Load(PrefabFactory.StationsDir, "Station_ElevatorPlatform"), top, go.transform);
             if (plat) { PrefabFactory.SetStatic(plat, false); el.platform = plat.transform; }
             // controls: a button on the platform, call buttons at each stop, breaker lever at the bottom
-            if (plat) PrefabFactory.MakeButton(plat.transform, "Btn_Go", new Vector3(1.3f, 1.1f, 1.3f), Vector3.up, "BigButton_Body", "BigButton_Cap", el, "go", "LIFT", 0.06f);
+            if (plat)
+            {
+                // control box on the inside of the +X side rail, button facing into the cage (kit buttons face +Z: wallMounted)
+                var box = PrefabFactory.Primitive(PrimitiveType.Cube, "ControlBox", plat.transform, new Vector3(1.4f, 1.05f, 0.9f), new Vector3(0.1f, 0.4f, 0.3f), "MNF_MetalPainted_Yellow");
+                box.layer = Layers.Environment;
+                PrefabFactory.MakeButton(plat.transform, "Btn_Go", new Vector3(1.35f, 1.1f, 0.9f), Vector3.left, "BigButton_Body", "BigButton_Cap", el, "go", "LIFT", 0.06f, true);
+            }
             if (ctx.elev.TryGetValue("CallTop", out var ct)) PrefabFactory.MakeButton(go.transform, "Btn_CallTop", go.transform.InverseTransformPoint(ct.position), go.transform.InverseTransformDirection(ct.forward), "BigButton_Body", "BigButton_Cap", el, "call_top", "CALL", 0.06f, true);
             if (ctx.elev.TryGetValue("CallBottom", out var cb)) PrefabFactory.MakeButton(go.transform, "Btn_CallBottom", go.transform.InverseTransformPoint(cb.position), go.transform.InverseTransformDirection(cb.forward), "BigButton_Body", "BigButton_Cap", el, "call_bottom", "CALL", 0.06f, true);
             if (ctx.elev.TryGetValue("Breaker", out var br))
@@ -694,6 +703,8 @@ namespace MonkeyNoFear.EditorTools
             if (!ls) { ls = new LightingSettings { name = "WorldLighting" }; AssetDatabase.CreateAsset(ls, lsPath); }
             ls.bakedGI = false;
             ls.realtimeGI = false;
+            ls.autoGenerate = false;
+            EditorUtility.SetDirty(ls);
             Lightmapping.lightingSettings = ls;
         }
     }

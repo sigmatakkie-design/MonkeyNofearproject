@@ -102,7 +102,9 @@ namespace MonkeyNoFear.EditorTools
             foreach (var c in root.GetComponentsInChildren<Collider>(true))
             {
                 if (c.GetComponent<Surface>()) continue;
-                var r = c.GetComponent<Renderer>() ?? c.GetComponentInParent<Renderer>() ?? root.GetComponentInChildren<Renderer>();
+                Renderer r = c.GetComponent<Renderer>();
+                if (!r) r = c.GetComponentInParent<Renderer>();
+                if (!r) r = root.GetComponentInChildren<Renderer>();
                 if (!r || !r.sharedMaterial) continue;
                 var s = c.gameObject.AddComponent<Surface>();
                 s.kind = Surface.FromName(r.sharedMaterial.name);
