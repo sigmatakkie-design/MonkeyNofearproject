@@ -76,3 +76,15 @@ blender -b -P Tools/blender/levels/build_mine.py -- .
 ```bash
 python3 Tools/common/validate_scripts.py
 ```
+
+## Offline validation (no Unity needed)
+
+These checks run with Blender 4.2+/5.x (or the `bpy` Python module) and plain Python:
+
+| Check | What it verifies |
+|---|---|
+| `Tools/common/fbx_audit.py` | Orientation of every exported FBX: the axis conversion is baked, no mirrored or zero scales, and the rigged roots are correct. |
+| `Tools/blender/levels/assemble_world.py -- . --level Bunker\|Forest\|Mine\|Forest+Mine [--audit] [--views] [--backface]` | Re-imports the exported levels and kits and places everything the way the Unity builder does. **Audit** looks for floating, sunk, intersecting and duplicate props, coplanar z-fighting faces, and signs or decals that don't sit flush. **Views** renders player-eye views with the shipping look. **Backface** renders with back-face culling as Unity draws, so holes show magenta. Output goes to `Docs/previews/assembly/`. |
+| `Tools/common/validate_scripts.py`, `Tools/common/check_references.py` | C# file/class rules, and that every sound and clip reference resolves. |
+
+`--backface` uses Blender's Workbench engine. On a headless Linux box, install Mesa EGL (`libegl1 libegl-mesa0 libgl1-mesa-dri`) and set `EGL_PLATFORM=surfaceless`.

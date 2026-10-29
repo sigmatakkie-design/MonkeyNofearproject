@@ -1,164 +1,14 @@
-# Forest assembly audit (2240 placed parts, 40027 level polys)
+# Forest assembly audit (2240 placed parts, 43618 level polys)
 
 ## missing: 0
 
-## float: 153
+## float: 2
   Medkit @ (-47.7, 187.3, 12.42) (MK_ITEM_medkit): floats 4.06 m
-  Tree_Pine_A @ (-167.03, 168.92, 31.58) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (-156.77, -46.92, 28.42) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (-162.34, -41.42, 29.49) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (-158.61, -9.37, 22.96) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (-159.41, 2.59, 24.23) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (-163.19, 26.89, 25.51) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (-162.68, 67.05, 33.53) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (-156.17, 91.41, 27.28) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (-156.09, 121.23, -1.87) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (-163.67, 157.19, 30.19) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (-161.58, 216.19, 31.2) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (-158.02, 229.02, 39.46) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (-159.45, 237.29, 61.33) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (-158.88, 251.54, 62.67) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (-143.21, -68.44, 51.5) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (-123.45, -70.2, 24.08) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (-114.0, -69.29, 22.89) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (-67.06, -73.16, 24.38) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (-68.06, 253.09, 30.22) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (-46.09, -67.12, 25.97) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (-51.55, 253.78, 27.13) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (-40.45, 253.5, 29.22) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (-9.35, 253.31, 31.08) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (3.98, -71.4, 26.94) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (9.9, -70.13, 25.58) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (6.7, 257.27, 39.46) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (18.64, -73.18, 26.57) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (31.62, -72.26, 22.74) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (61.62, -68.61, 24.99) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (71.13, -73.48, 25.79) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (83.39, 252.05, 31.3) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (90.57, -70.55, 23.91) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (98.76, -68.01, 24.09) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (108.99, -72.64, 26.89) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (113.96, 249.51, 33.52) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (122.31, -73.3, 26.8) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (121.15, 256.64, 42.37) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (126.98, -70.6, 25.87) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (140.69, -72.36, 52.38) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (150.56, -67.48, 51.47) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (157.22, -68.84, 53.55) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (156.51, -30.83, 26.21) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (158.98, -17.8, 26.9) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (159.63, 19.72, 25.71) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (163.27, 152.32, 26.2) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (163.56, 220.22, 32.58) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (162.94, 227.99, 32.01) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (160.73, 253.84, 59.33) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (166.52, 51.76, 29.7) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (167.23, 83.2, 36.37) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_A @ (167.61, 120.92, 26.58) (MK_PROP_Tree_Pine_A): no ground below
-  Tree_Pine_B @ (-167.52, 91.79, 33.1) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (-161.82, -18.45, 22.93) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (-156.99, 20.55, 24.29) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (-160.8, 42.26, 26.33) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (-156.95, 47.47, 26.36) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (-156.7, 59.98, 27.51) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (-158.54, 81.28, 28.42) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (-162.37, 169.49, 30.18) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (-160.51, 176.97, 33.64) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (-163.82, 186.11, 38.29) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (-160.42, 198.53, 37.3) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (-153.13, 247.09, 58.56) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (-139.57, 250.74, 52.95) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (-136.37, 256.14, 41.37) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (-132.75, -70.71, 27.91) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (-117.39, 251.28, 31.7) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (-87.66, -69.75, 23.37) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (-93.55, 257.38, 34.46) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (-78.75, -70.55, 24.54) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (-76.17, 249.08, 29.2) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (-61.9, 252.03, 30.21) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (-30.29, -77.52, 32.57) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (-30.45, 253.06, 31.62) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (-16.06, -69.88, 24.41) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (-20.86, 249.52, 32.12) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (28.16, 246.63, 29.63) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (61.39, -77.05, 34.8) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (76.28, -73.15, 24.15) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (86.14, 251.11, 29.7) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (108.17, 256.22, 40.13) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (127.3, 253.3, 39.38) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (141.63, 246.82, 55.21) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (151.26, 256.84, 56.49) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (158.18, -63.65, 51.38) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (162.07, -40.8, 28.75) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (156.82, -9.46, 26.0) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (161.48, 9.25, 23.47) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (162.74, 33.04, 29.21) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (163.51, 62.13, 30.16) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (163.07, 76.53, 31.01) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (160.15, 98.1, 25.91) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (161.35, 111.58, 25.64) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (156.39, 122.15, 23.46) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (156.01, 131.83, 23.35) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (159.14, 167.4, 24.43) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (161.16, 190.44, 28.78) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (159.87, 208.99, 32.05) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (160.56, 240.64, 54.82) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (167.26, -11.19, 24.77) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (166.33, 32.0, 30.45) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (166.7, 40.58, 31.18) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (166.76, 100.8, 7.33) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_B @ (166.48, 140.13, 29.53) (MK_PROP_Tree_Pine_B): no ground below
-  Tree_Pine_C @ (-157.58, -76.12, 54.54) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (-157.09, -67.59, 52.4) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (-161.63, -59.74, 52.29) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (-160.34, -26.86, 26.23) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (-161.81, 7.6, 24.44) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (-161.79, 98.4, 27.36) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (-160.33, 111.75, 27.25) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (-163.96, 133.63, 28.58) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (-162.84, 142.57, 24.21) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (-159.77, 150.62, 22.24) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (-162.59, 211.35, 32.42) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (-152.24, -72.21, 52.62) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (-133.55, 246.17, 28.87) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (-110.96, 246.78, 26.97) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (-98.76, -68.24, 23.6) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (-96.95, 250.7, 27.3) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (-86.77, 246.6, 26.86) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (-62.58, -69.32, 24.2) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (-43.97, -70.55, 28.59) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (-31.22, -73.69, 29.59) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (-10.69, -70.21, 23.64) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (-3.53, 247.59, 30.18) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (11.75, 251.98, 31.86) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (23.6, 251.22, 35.35) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (41.75, -66.57, 23.08) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (41.31, 249.78, 32.49) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (48.12, -68.08, 25.29) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (49.22, 246.46, 27.17) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (59.64, 249.6, 27.57) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (69.77, 250.47, 29.14) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (101.47, 251.99, 32.47) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (118.97, 250.72, 37.14) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (151.13, 248.24, 53.29) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (163.17, -50.12, 45.37) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (157.25, 3.54, 24.26) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (156.12, 37.56, 26.97) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (157.22, 52.69, 26.79) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (156.56, 67.89, 25.46) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (161.69, 91.79, 31.32) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (159.09, 140.74, 23.89) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (156.8, 162.92, 24.64) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (163.82, 183.01, 30.02) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (156.95, 197.68, 28.57) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (167.66, 10.04, 25.27) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (167.89, 16.68, 28.91) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (167.93, 67.37, 36.19) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (166.52, 132.41, 26.81) (MK_PROP_Tree_Pine_C): no ground below
-  Tree_Pine_C @ (167.24, 183.11, 33.27) (MK_PROP_Tree_Pine_C): no ground below
+  Rail_Straight @ (25.0, 233.5, 3.98) (MK_PROP_Rail_Straight): no ground below
 
-## sunk: 1
-  Rail_Straight @ (25.6, 234.0, 3.98) (MK_PROP_Rail_Straight): base 0.61 m below ground
+## sunk: 2
+  MineEntrance @ (25.0, 235.3, 4.0) (MK_PROP_MineEntrance): base 4.50 m below ground
+  Tree_Pine_A @ (-156.09, 121.23, -0.58) (MK_PROP_Tree_Pine_A): base 0.84 m below ground
 
 ## wallgap: 1
   MineLamp @ (27.6, 234.6, 6.8) (MK_LIGHT_MineLampDim): no wall behind
@@ -195,6 +45,6 @@
   Clipboard @ (86.2, 195.56, 1.68) (MK_LORE_lore_borer): 6 triangle pairs cross level geometry
 
 ## sign: 1
-  MK_SIGN_12_0.55_0.7 @ (-13.4, 57.87, -1.54): corners ['overhangs'] (4/4)
+  MK_SIGN_12_0.55_0.7 @ (-16.0, 57.87, -1.48): corners ['overhangs'] (4/4)
 
-(audit 3.2s)
+(audit 6.2s)

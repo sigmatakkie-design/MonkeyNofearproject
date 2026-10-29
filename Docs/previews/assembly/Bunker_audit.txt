@@ -18,18 +18,18 @@
   ToolRack x Flashlight @ (-7.89, -1.0, -8.65) (101 pairs)
   ToolRack x Spear @ (-7.89, -1.0, -8.65) (144 pairs)
   SecurityGate_Frame x SecurityGate_Bars @ (0.0, 4.15, -8.3) (17 pairs)
-  Terminal x KeypadPlate @ (-6.65, 3.41, -9.17) (6 pairs)
+  Terminal x KeypadPlate @ (-6.65, 3.38, -9.17) (6 pairs)
 
 ## coplanar: 1
   BunkerShell:PREV_MNF_MetalPainted_Green / BunkerShell:PREV_MNF_MetalDiamond @ (0.0, 3.95, -10.0) normal (0.0, 0.0, -1.0)
 
 ## level_x: 5
   Clipboard @ (1.15, -6.39, -9.21) (MK_PROP_Clipboard): 14 triangle pairs cross level geometry
-  SecurityGate_Frame @ (-0.13, 4.25, -7.84) (MK_STATION_Gate): 781 triangle pairs cross level geometry
+  SecurityGate_Frame @ (-0.13, 4.25, -7.84) (MK_STATION_Gate): 777 triangle pairs cross level geometry
   SecurityGate_Bars @ (-0.0, 4.15, -8.62) (gate): 169 triangle pairs cross level geometry
   Gate_PanelInside @ (2.35, 3.97, -8.75) (Gate_PanelInside): 12 triangle pairs cross level geometry
-  Terminal @ (-6.65, 3.33, -9.04) (MK_STATION_Terminal): 39 triangle pairs cross level geometry
+  Terminal @ (-6.65, 3.3, -9.04) (MK_STATION_Terminal): 12 triangle pairs cross level geometry
 
 ## sign: 0
 
-(audit 0.2s)
+(audit 0.6s)

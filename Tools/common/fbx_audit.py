@@ -5,7 +5,7 @@
 Checks, per node, straight from the binary FBX (no Blender import, so nothing is "fixed up" on the way):
   * no negative or zero scale anywhere (mirroring / collapsed objects)
   * static models (Levels/, Props/): root meshes have identity rotation, empties only rotate about the up axis
-    (Unity +Y) except wall ore markers (*_Wall) and decals, which may lie on floors/ceilings, i.e. the
+    (Unity +Y) except wall ore markers (*_Wall), decals, and rails/logs that follow the ground slope, i.e. the
     axis conversion is baked into the data (see ASSET_SPEC.md §1)
   * rigged models (Creatures/, Player/): armature/mesh roots carry exactly the -90° X conversion and nothing else,
     so the model faces Blender -Y = Unity +Z
@@ -64,7 +64,10 @@ def audit(path, static):
         if static:
             if kind == 'Mesh' and not all(near(r, 0.0) for r in rot):
                 problems.append(f'{name}: root mesh rotated {[round(r, 1) for r in rot]} (axis conversion not baked)')
-            if kind == 'Null' and not (near(rot[0], 0.0) or name.endswith('_Wall') or name.startswith('MK_DECAL_')):
+            # allowed to tilt: wall ore, decals, and long props that follow the ground (rails pitched along ramps,
+            # logs/fallen trees resting on both ends)
+            tilt_ok = name.endswith('_Wall') or name.startswith(('MK_DECAL_', 'MK_PROP_Rail_', 'MK_PROP_Log', 'MK_PROP_FallenTree'))
+            if kind == 'Null' and not (near(rot[0], 0.0) or tilt_ok):
                 if not (near(abs(rot[0]), 180.0) and near(abs(rot[2]), 180.0)):   # yaw expressed as (180, y, 180)
                     problems.append(f'{name}: marker pitched {[round(r, 1) for r in rot]}')
         else:

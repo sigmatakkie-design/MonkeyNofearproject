@@ -262,8 +262,10 @@ def build_backdrop(coll, T, M, rot):
         steep = math.degrees(math.atan(math.hypot(*g)))
         b = float(smooth(25, 40, steep))
         cols.append((0.0, 0.6 * (1 - b), b, 1.0))
-    T._mesh(coll, 'NOCOL_Backdrop', verts, faces, cols)
-    # treeline on the lower backdrop slopes
+    bd = T._mesh(coll, 'NOCOL_Backdrop', verts, faces, cols)
+    from mathutils.bvhtree import BVHTree
+    bvh = BVHTree.FromPolygons([v.co.copy() for v in bd.data.vertices], [list(p.vertices) for p in bd.data.polygons])
+    # treeline on the lower backdrop slopes, seated on the actual (6 m grid) mesh, not the analytic height
     rng = random.Random(4242)
     n = 0
     for x in np.arange(X0 - 20, X1 + 20.1, 10.0):
@@ -271,7 +273,10 @@ def build_backdrop(coll, T, M, rot):
             px, py = float(x + rng.uniform(-4, 4)), float(y + rng.uniform(-4, 4))
             if not (5.0 < d_out(px, py) < 18.0):
                 continue
-            M('MK_PROP_Tree_Pine_' + rng.choice('ABC'), (px, py, height(px, py) - 0.3), rot(rng.uniform(0, 360)), scale=rng.uniform(1.0, 1.4))
+            h = bvh.ray_cast(Vector((px, py, 400.0)), Vector((0, 0, -1)), 800.0)
+            if h[0] is None:
+                continue
+            M('MK_PROP_Tree_Pine_' + rng.choice('ABC'), (px, py, h[0].z - 0.3), rot(rng.uniform(0, 360)), scale=rng.uniform(1.0, 1.4))
             n += 1
     return n
 

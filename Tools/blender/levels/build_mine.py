@@ -374,6 +374,16 @@ def dress(mk):
         M(f'MK_DECAL_{c}_1.4', (x, y, gz + 1.5), f)
     M('MK_LORE_lore_borer', (58, 326.5, L2 + 0.05), S)
     M('MK_LIGHT_MineLampDim', (gx - 12.6, gy - 7, gz + 3.0), E)
+    # a worked hall, not an empty cavern: string lights, wall lamps, the grinder's generator + pipe run, a parked cart,
+    # tool and supply piles (all snapped to the rock by snap_markers)
+    M('MK_LIGHT_String', (gx - 4, gy, gz + 7.5), E); M('MK_LIGHT_String', (gx + 5, gy + 1, gz + 7.5), (0.2, 1, 0))
+    M('MK_LIGHT_MineLamp', (gx + 12.6, gy + 3, gz + 3.0), W); M('MK_LIGHT_MineLamp', (gx - 2, gy + 9.6, gz + 3.0), S)
+    M('MK_PROP_Generator_Small', (gx + 9.5, gy + 6.5, gz), S); M('MK_PROP_PipeRun', (gx + 12.7, gy + 6.0, gz + 2.2), W)
+    M('MK_PROP_Minecart', (gx - 4.0, gy - 4.5, gz), E); M('MK_PROP_ToolPile', (gx - 7.5, gy - 3.0, gz), E)
+    M('MK_PROP_Barrel_Mine', (gx + 7.4, gy + 7.6, gz), S); M('MK_PROP_Barrel_Mine', (gx + 6.6, gy + 7.9, gz), S)
+    M('MK_PROP_Crate_Mine', (gx + 10.2, gy + 3.2, gz), W); M('MK_PROP_Crate_Mine', (gx + 9.4, gy + 2.0, gz), (-0.9, 0.4, 0))
+    M('MK_PROP_Sign_Level', (gx - 11.0, gy + 7.5, gz), (0.6, -0.8, 0))
+    M('MK_SIGN_4_0.6_0.6', (gx + 12.4, gy + 5.0, gz + 1.8), W)            # HIGH VOLTAGE by the generator
     # flooded gallery + pump room
     for (x, y, z), (dx, dy) in seg_points(FLOOD[1:3], 2.0, 1.0):
         M('MK_PROP_Walkway', (x - dy * 1.3, y + dx * 1.3, -25.45), (dy, -dx, 0))      # long axis (local X) along the tunnel
