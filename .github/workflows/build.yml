@@ -1,0 +1,53 @@
+# Builds Monkey No Fear on GitHub's servers - no Unity needed on your computer.
+# Needs three repository secrets (Settings > Secrets and variables > Actions):
+#   UNITY_EMAIL, UNITY_PASSWORD  - your free Unity account
+#   UNITY_LICENSE                - the contents of your Unity_lic.ulf (see README "Build without Unity")
+# Run it from the Actions tab ("Build game" > Run workflow). The .exe and .apk appear as downloadable artifacts.
+name: Build game
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    name: Build ${{ matrix.targetPlatform }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        targetPlatform: [StandaloneWindows64, Android]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Free disk space (Unity + Android images are large)
+        uses: jlumbroso/free-disk-space@v1.3.1
+        with:
+          tool-cache: false
+
+      - uses: actions/cache@v4
+        with:
+          path: Library
+          key: Library-${{ matrix.targetPlatform }}-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: Library-${{ matrix.targetPlatform }}-
+
+      - uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          unityVersion: 2022.3.20f1
+          targetPlatform: ${{ matrix.targetPlatform }}
+          buildName: MonkeyNoFear
+          buildMethod: MonkeyNoFear.EditorTools.CIBuild.Build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MonkeyNoFear-${{ matrix.targetPlatform }}
+          path: build/${{ matrix.targetPlatform }}
+          retention-days: 14

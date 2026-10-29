@@ -88,3 +88,18 @@ These checks run with Blender 4.2+/5.x (or the `bpy` Python module) and plain Py
 | `Tools/common/validate_scripts.py`, `Tools/common/check_references.py` | C# file/class rules, and that every sound and clip reference resolves. |
 
 `--backface` uses Blender's Workbench engine. On a headless Linux box, install Mesa EGL (`libegl1 libegl-mesa0 libgl1-mesa-dri`) and set `EGL_PLATFORM=surfaceless`.
+
+## Build without Unity (GitHub Actions)
+
+`.github/workflows/build.yml` builds the Windows `.exe` and the Quest `.apk` on GitHub's servers, using GameCI and `CIBuild.Build`.
+
+1. Push this project to a GitHub repository. Builds are free for public repositories; private ones use your Actions minutes.
+2. In the repository, go to **Settings > Secrets and variables > Actions** and add three secrets:
+   - `UNITY_EMAIL` and `UNITY_PASSWORD`: your free Unity account.
+   - `UNITY_LICENSE`: the full text of your `Unity_lic.ulf`.
+
+   Unity creates that file the first time you sign in to Unity Hub on any computer. On Windows it's at `C:\ProgramData\Unity\Unity_lic.ulf`, and on macOS at `/Library/Application Support/Unity/Unity_lic.ulf`. See https://game.ci/docs/github/activation for other ways to get it.
+3. Open the **Actions** tab, choose **Build game**, then **Run workflow**. A run takes 30–60 minutes the first time.
+4. Download the `MonkeyNoFear-StandaloneWindows64` and `MonkeyNoFear-Android` artifacts from the finished run.
+
+The APK sideloads onto a Quest with Developer Mode enabled, using SideQuest or `adb install`.
