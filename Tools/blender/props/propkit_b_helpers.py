@@ -385,15 +385,19 @@ class MB:
             bmesh.ops.triangulate(bm, faces=ng, quad_method='BEAUTY', ngon_method='EAR_CLIP')
             bm.to_mesh(me)
             bm.free()
+        has_custom = any(c is not None for c in self.cn)
+        fix_winding(me)
         if sharp_angle is not None:
             me.set_sharp_from_angle(angle=math.radians(sharp_angle))
-        if any(c is not None for c in self.cn):
+        if has_custom:
             vn = [(0.0, 0.0, 0.0)] * len(self.v)
             for i, f in enumerate(self.f):
                 cn = self.cn[i]
                 if cn is not None:
                     for vi, n in zip(f, cn):
                         vn[vi] = tuple(n)
+            # vertices added by fix_winding (double-sided copies) keep the auto normal (zero vector)
+            vn += [(0.0, 0.0, 0.0)] * (len(me.vertices) - len(vn))
             me.normals_split_custom_set_from_vertices(vn)
         me.validate(clean_customdata=False)
         me.update()
@@ -403,6 +407,52 @@ class MB:
             ob.parent = parent
         ob.location = loc
         return ob
+
+
+# Surfaces that must stay single-sided: foliage cards (two-sided shader), and text / screen / decal quads whose one
+# face normal the Unity builder reads (TextRotationOnQuad) or that would show a mirrored image from behind.
+SINGLE_SIDED = {'MNF_FoliagePine', 'MNF_FoliageLeaf', 'MNF_Fern', 'MNF_Grass', 'MNF_Signs', 'MNF_Screen', 'MNF_Decals'}
+
+
+def fix_winding(me, double_open=True):
+    """Unity culls back faces, so every visible surface must face outwards:
+    closed (watertight) islands get consistent outward normals; open shells (nest bowls, horns, cloth, sheet
+    metal) are made double-sided by adding a reversed copy."""
+    bm = bmesh.new()
+    bm.from_mesh(me)
+    bm.faces.ensure_lookup_table()
+    seen, islands = set(), []
+    for f in bm.faces:
+        if f.index in seen:
+            continue
+        stack, isl = [f], []
+        seen.add(f.index)
+        while stack:
+            g = stack.pop()
+            isl.append(g)
+            for e in g.edges:
+                for h in e.link_faces:
+                    if h.index not in seen:
+                        seen.add(h.index)
+                        stack.append(h)
+        islands.append(isl)
+    dup = []
+    for isl in islands:
+        mats = {me.materials[f.material_index].name.split('.')[0] for f in isl if f.material_index < len(me.materials)}
+        if mats & SINGLE_SIDED:
+            continue
+        edges = {e for f in isl for e in f.edges}
+        if all(len(e.link_faces) == 2 for e in edges):
+            bmesh.ops.recalc_face_normals(bm, faces=isl)
+        elif double_open:
+            dup.extend(isl)
+    if dup:
+        verts = {v for f in dup for v in f.verts}
+        edges = {e for f in dup for e in f.edges}
+        r = bmesh.ops.duplicate(bm, geom=list(verts) + list(edges) + dup)
+        bmesh.ops.reverse_faces(bm, faces=[g for g in r['geom'] if isinstance(g, bmesh.types.BMFace)])
+    bm.to_mesh(me)
+    bm.free()
 
 
 # --------------------------------------------------------------------------------------------
@@ -427,6 +477,13 @@ def add_box(mb, size, mm, mat, bevel=0.0, tile=1.5, jitter=0.0, seed=0, smooth=F
     bm.free()
 
 
+def _flip_from(mb, start):
+    """Reverse the winding of every face added since `start` (with its UVs)."""
+    for k in range(start, len(mb.f)):
+        mb.f[k] = list(reversed(mb.f[k]))
+        mb.uv[k] = list(reversed(mb.uv[k]))
+
+
 def add_beam(mb, p0, p1, w, h, mat, up=(0, 0, 1), chamfer=0.012, segs=1, warp=0.0, jag0=0.0, jag1=0.0,
              seed=0, tile=2.0, twist=0.0, taper=1.0, cap0=True, cap1=True, rough=0.0, uv_shift=None, board=None,
              top_mat=None):
@@ -439,6 +496,7 @@ def add_beam(mb, p0, p1, w, h, mat, up=(0, 0, 1), chamfer=0.012, segs=1, warp=0.
     L = d.length
     if L < 1e-5:
         return
+    start = len(mb.f)
     F = frame_from(d, up)
     side, fwd, upv = F.col[0], F.col[1], F.col[2]
     c = min(chamfer, w * 0.3, h * 0.3)
@@ -499,6 +557,8 @@ def add_beam(mb, p0, p1, w, h, mat, up=(0, 0, 1), chamfer=0.012, segs=1, warp=0.
     if cap1:
         ring = rings[-1]
         mb.face([ring[i][0] for i in range(np_)], [(pr[i].x / tile, pr[i].y / tile) for i in range(np_)], mat)
+    # the (side, fwd, up) frame is right-handed, so the loops above wind inwards: flip to outward-facing
+    _flip_from(mb, start)
 
 
 def add_cyl(mb, p0, p1, r0, r1, segs, mat, cap0=True, cap1=True, tile=1.0, urep=1, smooth=True,
@@ -507,6 +567,7 @@ def add_cyl(mb, p0, p1, r0, r1, segs, mat, cap0=True, cap1=True, tile=1.0, urep=
     p0 = Vector(p0); p1 = Vector(p1)
     d = p1 - p0
     L = d.length
+    start = len(mb.f)
     F = frame_from(d, up)
     side, fwd, upv = F.col[0], F.col[1], F.col[2]
     off = seed * 7.31
@@ -539,6 +600,7 @@ def add_cyl(mb, p0, p1, r0, r1, segs, mat, cap0=True, cap1=True, tile=1.0, urep=
             pv = mb.v[i] - (p0 + fwd * z)
             uvs.append((0.5 + pv.dot(side) / (2 * rad) * 0.5, 0.5 + pv.dot(upv) / (2 * rad) * 0.5))
         mb.face(ids, uvs, mat, False)
+    _flip_from(mb, start)       # same right-handed frame as add_beam: outward-facing after the flip
 
 
 def _transport_frames(pts, n0=None):

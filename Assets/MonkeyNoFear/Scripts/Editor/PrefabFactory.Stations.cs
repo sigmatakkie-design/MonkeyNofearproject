@@ -237,7 +237,7 @@ namespace MonkeyNoFear.EditorTools
             // beacons on the housing corners
             var beacons = new List<Light>(); var rotors = new List<Transform>(); var lamps = new List<Renderer>();
             foreach (float x in new[] { -1.75f, 1.75f })
-                foreach (float z in new[] { -0.35f, 0.35f })
+                foreach (float z in new[] { -0.28f, 0.28f })   // on the frame faces (frame is 0.56 deep); beacon pivot = its wall plate
                 {
                     var bgo = KitLibrary.Copy("WarningBeacon") ?? Primitive(PrimitiveType.Sphere, "Beacon", null, Vector3.zero, Vector3.one * 0.15f, "MNF_BulbRed");
                     bgo.transform.SetParent(root.transform, false);

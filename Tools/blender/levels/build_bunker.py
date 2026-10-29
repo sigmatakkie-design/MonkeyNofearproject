@@ -55,6 +55,24 @@ def wall_y(g, y0, y1, x, z0, h, openings, mat='MNF_ConcreteWall', t=T):
         g.box((x, y, z0), (x + t, y1, z0 + h), mat)
 
 
+def dado(g, axis, a0, a1, face, inward, openings=(), h=1.05, mat='MNF_MetalPainted_Green', t=0.02):
+    """Painted sheet-metal panels on the lower wall: a t-thick band on the wall face `face` (x or y of the face plane),
+    growing `inward` (+1/-1) into the room, cut at door openings (no lintels: openings are taller than the band)."""
+    spans, c = [], a0
+    for cx, w, _ in sorted(openings):
+        if cx - w / 2 > c:
+            spans.append((c, cx - w / 2))
+        c = cx + w / 2
+    if c < a1:
+        spans.append((c, a1))
+    f0, f1 = sorted((face, face + inward * t))
+    for s0, s1 in spans:
+        if axis == 'x':
+            g.box((s0, f0, Z0), (s1, f1, Z0 + h), mat, tile=1.0)
+        else:
+            g.box((f0, s0, Z0), (f1, s1, Z0 + h), mat, tile=1.0)
+
+
 def floor_ceiling(g, x0, x1, y0, y1, z0, h, floor_mat='MNF_ConcreteFloor', ceil_mat='MNF_ConcreteWall'):
     g.box((x0 - T, y0 - T, z0 - 0.4), (x1 + T, y1 + T, z0), floor_mat)
     g.box((x0 - T, y0 - T, z0 + h), (x1 + T, y1 + T, z0 + h + 0.4), ceil_mat)
@@ -77,6 +95,7 @@ def pipe_run(g, pts, r, mat):
 
 
 TABLE_TOP = 0.78
+PLATE = 0.06      # raised diamond-plate floor under the workbench
 
 
 def mess_area(g):
@@ -115,7 +134,7 @@ def build(out_dir):
     hazard_strip(g, -2.2, 2.6, 2.2, 3.95, Z0)
     hazard_strip(g, 6.2, -2.8, 7.95, -0.2, Z0)
     # raised metal floor plate at the workbench
-    g.box((-7.6, 1.6, Z0), (-1.6, 3.95, Z0 + 0.06), 'MNF_MetalDiamond', tile=1.2)
+    g.box((-7.6, 1.6, Z0), (-1.6, 3.95, Z0 + PLATE), 'MNF_MetalDiamond', tile=1.2)
     # pipes along the north and east walls
     pipe_run(g, [(-7.7, 3.7, Z0 + 3.6), (7.7, 3.7, Z0 + 3.6)], 0.09, 'MNF_MetalPainted_Green')
     pipe_run(g, [(-7.7, 3.45, Z0 + 3.85), (7.7, 3.45, Z0 + 3.85)], 0.06, 'MNF_MetalPainted_Red')
@@ -171,22 +190,35 @@ def build(out_dir):
         # hand rail on the west wall
         g.cylinder((-hw + 0.08, a, za + 1.0), (-hw + 0.08, b, zb + 1.0), 0.03, 'MNF_MetalPainted_Yellow', seg=6, caps=False)
     # corridor-side wall around the gate (thicker frame face) and lights recess
-    g.box((-2.0, 4.3, Z0 + 2.8), (2.0, 4.5, Z0 + CORR_H), 'MNF_Hazard', tile=0.8)
+    g.box((-2.0, 4.3, Z0 + 2.8), (2.0, 4.40, Z0 + CORR_H), 'MNF_Hazard', tile=0.8)   # 3 cm behind the gate frame face (no coplanar faces)
     # portal frame at the mouth
     g.box((-3.2, 42.8, 0), (-2.0, 44.3, 4.4), 'MNF_ConcreteWall')
     g.box((2.0, 42.8, 0), (3.2, 44.3, 4.4), 'MNF_ConcreteWall')
     g.box((-3.2, 42.8, 3.5), (3.2, 44.3, 4.6), 'MNF_ConcreteWall')
-    g.box((-2.0, 44.25, 3.5), (2.0, 44.35, 3.9), 'MNF_Hazard', tile=0.8)
+    g.box((-2.0, 44.25, 3.52), (2.0, 44.35, 3.9), 'MNF_Hazard', tile=0.8)     # 2 cm above the lintel underside (no coplanar faces)
     hazard_strip(g, -2.0, 41.0, 2.0, 42.0, 0.0)
 
     mess_area(g)
+    # painted dado panels (hall + bunk room); trimmed 2 cm at the corners so no faces overlap
+    dado(g, 'x', -7.98, 7.98, 4.0, -1, [(0.0, 3.0, 2.8)])
+    dado(g, 'x', -7.98, 7.98, -12.0, +1, [(0.0, 2.0, 2.4)])
+    dado(g, 'y', -11.98, 3.98, -8.0, +1, [(-7.0, 1.6, 2.3)])
+    dado(g, 'y', -11.98, 3.98, 8.0, -1, [(-5.0, 1.6, 2.3)])
+    dado(g, 'x', -16.28, -8.32, -2.0, -1, [], mat='MNF_MetalPainted_Blue')
+    dado(g, 'x', -16.28, -8.32, -12.0, +1, [], mat='MNF_MetalPainted_Blue')
+    dado(g, 'y', -11.98, -2.02, -16.3, +1, [], mat='MNF_MetalPainted_Blue')
+    dado(g, 'y', -11.98, -2.02, -8.3, -1, [(-7.0, 1.6, 2.3)], mat='MNF_MetalPainted_Blue')
+    # bunk room rug
+    g.box((-13.6, -8.7, Z0), (-11.2, -5.3, Z0 + 0.012), 'MNF_FabricBlanket', tile=1.2)
     # yellow floor guide line: gate -> hall -> bunk room door (painted 5 mm strip, not coplanar with the floor)
     for (x0, y0, x1, y1) in ((-0.06, -3.5, 0.06, 2.55), (-7.95, -3.56, 0.06, -3.44), (-7.95, -6.94, -7.83, -3.44)):
         g.box((x0, y0, Z0), (x1, y1, Z0 + 0.005), 'MNF_MetalPainted_Yellow', faces='Z', tile=1.0)
     # exit corridor: conduit + cable tray following the ramp on the east wall, hazard band at the ramp foot
-    ys_c = [4.6] + [10 + i * 2.5 for i in range(13)] + [42.3]
-    pipe_run(g, [(1.82, y, ramp_floor_z(y) + 2.95) for y in ys_c], 0.07, 'MNF_MetalPainted_Gray')
-    pipe_run(g, [(1.85, y, ramp_floor_z(y) + 2.75) for y in ys_c], 0.04, 'MNF_MetalPainted_Red')
+    # both start out of the gate header face (y 4.40) and end in the portal frame (y 42.8): no loose ends
+    ys_c = [4.40] + [10 + i * 2.5 for i in range(13)] + [42.8]
+    pipe_run(g, [(-1.86, y, ramp_floor_z(y) + 3.3) for y in ys_c] + [(-1.86, 42.8, 3.65)], 0.07, 'MNF_MetalPainted_Gray')   # west wall, above
+    pipe_run(g, [(-1.91, y, ramp_floor_z(y) + 3.1) for y in ys_c] + [(-1.91, 42.8, 3.65)], 0.035, 'MNF_MetalPainted_Red')  # the gate beacon;
+    # the last leg turns up into the portal lintel
     hazard_strip(g, -2.0, 9.6, 2.0, 10.1, ramp_floor_z(9.85))
     ob = g.build('BunkerShell', geo_c)
     merge_by_distance(ob)
@@ -201,8 +233,8 @@ def build(out_dir):
     M('MK_SPAWN_Player', (-11.5, -7.0, Z0), E)
     M('MK_SPAWN_Respawn', (-11.5, -8.5, Z0), E)
     M('MK_STATION_Gate', (0, 4.15, Z0), N)
-    M('MK_STATION_Workbench', (-4.6, 3.35, Z0), S)
-    M('MK_STATION_Terminal', (-6.65, 3.45, Z0), S)                 # floor console beside the bench
+    M('MK_STATION_Workbench', (-4.6, 3.35, Z0 + PLATE), S)          # stands on the diamond plate
+    M('MK_STATION_Terminal', (-6.65, 3.42, Z0 + PLATE), S)   # floor console beside the bench; back clear of the dado
     M('MK_STATION_Dispenser', (-3.0, 3.98, Z0 + 1.05), S)
     M('MK_STATION_ToolRack', (-7.98, -1.0, Z0 + 1.35), E)
     M('MK_STATION_SellMachine', (7.3, -1.5, Z0), W)
@@ -210,7 +242,7 @@ def build(out_dir):
     M('MK_STATION_Bed', (-15.6, -4.6, Z0), E)
     M('MK_PROP_Bunkbed', (-15.6, -9.8, Z0), E)
     M('MK_PROP_Table', (-10.4, -11.2, Z0), N)
-    M('MK_STATION_Radio', (-10.2, -11.2, Z0 + 0.76), N)
+    M('MK_STATION_Radio', (-10.2, -11.2, Z0 + 0.763), N)
     M('MK_PROP_Chair', (-10.4, -10.3, Z0), S)
     M('MK_PROP_Locker_Tall', (-12.8, -2.35, Z0), S)
     M('MK_PROP_Locker_Tall', (-13.8, -2.35, Z0), S)
@@ -221,8 +253,8 @@ def build(out_dir):
     M('MK_PROP_Bucket', (-8.9, -11.5, Z0), N)
     M('MK_LORE_lore_welcome', (-10.8, -11.05, Z0 + 0.766), N)
     M('MK_STATION_Generator', (12.5, -7.0, Z0), W)
-    M('MK_PROP_FuseBox', (16.25, -5.0, Z0 + 1.5), W)
-    M('MK_PROP_VentFan', (16.25, -9.5, Z0 + 2.6), W)
+    M('MK_PROP_FuseBox', (16.3, -5.0, Z0 + 1.5), W)
+    M('MK_PROP_VentFan', (16.3, -9.5, Z0 + 2.6), W)
     M('MK_PROP_Barrel', (15.4, -11.3, Z0), N)
     M('MK_PROP_Barrel', (14.6, -11.4, Z0), N)
     M('MK_PROP_Bucket', (9.2, -11.4, Z0), N)
@@ -231,7 +263,7 @@ def build(out_dir):
     M('MK_PROP_Barrel', (9.2, -2.7, Z0), S)
     # hall clutter
     # mess area (tables/benches are shell geometry, see mess_area); loose things on the tables
-    M('MK_PROP_Clipboard', (1.15, -6.2, Z0 + TABLE_TOP + 0.001), S)
+    M('MK_PROP_Clipboard', (1.15, -6.45, Z0 + TABLE_TOP + 0.003), S)
     M('MK_PROP_Chair', (2.7, -6.3, Z0), W)                         # a pulled-up chair at the end of the tables
     M('MK_PROP_PosterBoard', (4.0, 3.98, Z0 + 1.55), S)            # expedition map board beside the gate
     M('MK_PROP_Crate_A', (-6.9, -10.4, Z0), N)
@@ -242,12 +274,12 @@ def build(out_dir):
     M('MK_PROP_Crate_A', (6.8, -11.2, Z0), N)
     M('MK_PROP_Crate_B', (6.9, -10.2, Z0), W)
     M('MK_PROP_Crate_A', (-7.3, -8.9, Z0), E)
-    M('MK_PROP_VentFan', (0.0, -11.95, Z0 + 3.4), N)
-    M('MK_PROP_CableBundle', (-5.0, 3.9, Z0 + 3.2), S)
+    M('MK_PROP_VentFan', (0.0, -12.0, Z0 + 3.4), N)
+    M('MK_PROP_CableBundle', (-5.0, 3.96, Z0 + 3.2), S)
     M('MK_ITEM_food_can', (-1.1, -6.7, Z0 + TABLE_TOP + 0.065), S)
     M('MK_ITEM_food_can', (-0.95, -6.75, Z0 + TABLE_TOP + 0.065), S)
-    M('MK_ITEM_glowstick', (-3.95, 3.05, Z0 + 0.95 + 0.016), E)    # on the workbench top
-    M('MK_ITEM_glowstick', (-3.8, 3.0, Z0 + 0.95 + 0.016), E)
+    M('MK_ITEM_glowstick', (-3.95, 3.05, Z0 + PLATE + 0.95 + 0.016), E)    # on the workbench top
+    M('MK_ITEM_glowstick', (-3.8, 3.0, Z0 + PLATE + 0.95 + 0.016), E)
     # utility corridor and storage
     for y in (-15, -18.5, -22.5, -26.5):
         M('MK_PROP_ShelfUnit', (-1.15, y, Z0), E)
@@ -257,7 +289,7 @@ def build(out_dir):
     M('MK_PROP_Crate_B', (4.3, -23.4, Z0), N)
     M('MK_PROP_Crate_A', (3.4, -22.2, Z0 + 0.0), E)
     M('MK_PROP_Barrel', (7.8, -15.7, Z0), S)
-    M('MK_LORE_lore_radio', (4.0, -23.2, Z0 + 0.75), N)
+    M('MK_LORE_lore_radio', (4.3, -23.4, Z0 + 0.466), N)        # on the crate
     M('MK_EVENT_PipeKnock', (-1.2, -21.0, Z0 + 2.9))
     M('MK_EVENT_PipeKnock', (7.7, -6.0, Z0 + 3.3))
     M('MK_EVENT_BunkerCreak', (0, -28.0, Z0 + 2.5))
@@ -268,17 +300,17 @@ def build(out_dir):
     M('MK_SIGN_9_0.6_0.6', (7.98, -1.5, Z0 + 2.4), W)             # ASSAY / TRADE
     M('MK_SIGN_11_0.6_0.6', (7.98, 1.8, Z0 + 2.4), W)             # STORAGE
     M('MK_SIGN_4_0.5_0.5', (8.0, -3.6, Z0 + 1.8), W)             # HIGH VOLTAGE next to the generator door
-    M('MK_SIGN_0_0.8_0.8', (0.0, -29.65, Z0 + 1.7), N)            # DANGER on SECTOR B door
-    M('MK_SIGN_12_0.5_0.6', (-16.25, -5.4, Z0 + 1.6), E)          # MISSING poster
+    M('MK_SIGN_0_0.8_0.8', (0.0, -29.7, Z0 + 1.85), N)            # DANGER on SECTOR B door
+    M('MK_SIGN_12_0.5_0.6', (-16.3, -5.4, Z0 + 1.65), E)          # MISSING poster
     M('MK_SIGN_8_0.6_0.6', (2.0, 6.7, Z0 + 1.95), W)              # EVACUATION ROUTE (corridor east wall)
     M('MK_SIGN_3_0.7_0.7', (2.0, 40.5, ramp_floor_z(40.5) + 1.9), W)   # MINE ACCESS -> near the portal
-    M('MK_DECAL_5_1.0', (0.0, -29.62, Z0 + 1.0), N)               # deep claw scratches on the sealed door
-    M('MK_DECAL_4_0.8', (-0.9, -29.62, Z0 + 0.6), N)
-    M('MK_DECAL_1_1.2', (-7.95, -9.0, Z0 + 2.6), E)
-    M('MK_DECAL_1_1.2', (7.98, -9.5, Z0 + 2.8), W)
+    M('MK_DECAL_5_1.0', (0.3, -29.7, Z0 + 0.95), N)               # deep claw scratches on the sealed door
+    M('MK_DECAL_4_0.8', (-0.85, -29.7, Z0 + 0.42), N)
+    M('MK_DECAL_1_1.2', (-8.0, -9.0, Z0 + 2.6), E)
+    M('MK_DECAL_1_1.2', (8.0, -9.5, Z0 + 2.8), W)
     M('MK_DECAL_3_1.2', (0.5, -3.0, Z0 + 0.02), (0, 0, 1), pitch=math.radians(-90))  # oil stain on the floor
-    M('MK_DECAL_9_0.6', (-16.25, -10.5, Z0 + 1.2), E)             # tally marks by the beds
-    M('MK_DECAL_12_1.0', (16.25, -7.0, Z0 + 3.0), W)              # rust drips
+    M('MK_DECAL_9_0.6', (-16.28, -10.5, Z0 + 1.45), E)   # above the dado panels             # tally marks by the beds
+    M('MK_DECAL_12_1.0', (16.3, -7.0, Z0 + 3.0), W)              # rust drips
     # lights
     for x in (-4.0, 4.0):
         for y in (-8.0, -2.5, 2.0):
@@ -287,7 +319,7 @@ def build(out_dir):
     M('MK_LIGHT_FluorBad', (12.3, -7.0, Z0 + H), S)
     M('MK_LIGHT_FluorBad', (0.0, -16.0, Z0 + 3.2), S)
     M('MK_LIGHT_FluorBad', (0.0, -24.0, Z0 + 3.2), S)
-    M('MK_LIGHT_Cage', (5.4, -14.98, Z0 + 2.4), S)
+    M('MK_LIGHT_Cage', (5.4, -15.0, Z0 + 2.4), S)
     M('MK_LIGHT_Red', (-2.4, 4.0, Z0 + 3.2), S)                   # clear of the gate frame (+-1.86)
     M('MK_LIGHT_Red', (2.4, 4.0, Z0 + 3.2), S)
     M('MK_LIGHT_Emergency', (-7.98, -4.0, Z0 + 3.0), E)

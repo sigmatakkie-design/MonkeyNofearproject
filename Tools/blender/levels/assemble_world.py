@@ -9,8 +9,8 @@ hand-placed station parts: gate panels/buttons/lever/beacons, terminal keypad, s
 the real texture sets with the shipping look (point-filtered, low-res, distance fog per area) and then
 
   --views     renders the player-eye views listed in VIEWS to Docs/previews/assembly/<level>_<view>.png
-  --backface  renders the same views with every back face painted magenta: anything magenta would be culled
-              (invisible) in Unity, i.e. inside-out or missing geometry
+  --backface  renders the same views with Workbench back-face culling (as Unity draws them) over a magenta world:
+              any magenta inside a surface is a hole the player would see (inside-out or missing geometry)
   --audit     writes Docs/previews/assembly/<level>_audit.txt: floating / sunk / wall-gap props, prop-vs-level and
               prop-vs-prop intersections, duplicate placements, coplanar same-facing faces (z-fighting)
 
@@ -179,9 +179,20 @@ def mnf_material(name):
         sepc = nt.nodes.new('ShaderNodeSeparateColor')
         nt.links.new(vc.outputs['Color'], sepc.inputs[0])
         cur = layers[0].outputs['Color']
+        # like MNF/TerrainBlend: rock is triplanar (box projected) and also comes in on steep slopes
+        rock_box = _tex_node(nt, image('rock_dry'), None, box=True)
+        sc = nt.nodes.new('ShaderNodeVectorMath'); sc.operation = 'SCALE'; sc.inputs['Scale'].default_value = 0.25
+        nt.links.new(geo.outputs['Position'], sc.inputs[0]); nt.links.new(sc.outputs[0], rock_box.inputs['Vector'])
+        layers[3] = rock_box
+        sepn = nt.nodes.new('ShaderNodeSeparateXYZ'); nt.links.new(geo.outputs['Normal'], sepn.inputs[0])
+        steep = nt.nodes.new('ShaderNodeMapRange'); steep.inputs['From Min'].default_value = 0.8; steep.inputs['From Max'].default_value = 0.6
+        nt.links.new(sepn.outputs['Z'], steep.inputs['Value'])
+        mx_ = nt.nodes.new('ShaderNodeMath'); mx_.operation = 'MAXIMUM'
+        nt.links.new(sepc.outputs['Blue'], mx_.inputs[0]); nt.links.new(steep.outputs['Result'], mx_.inputs[1])
+        rock_fac = mx_.outputs[0]
         for lay, ch in zip(layers[1:], ('Red', 'Green', 'Blue')):
             mix = nt.nodes.new('ShaderNodeMix'); mix.data_type = 'RGBA'
-            nt.links.new(sepc.outputs[ch], mix.inputs['Factor'])
+            nt.links.new(rock_fac if ch == 'Blue' else sepc.outputs[ch], mix.inputs['Factor'])
             nt.links.new(cur, mix.inputs[6]); nt.links.new(lay.outputs['Color'], mix.inputs[7])
             cur = mix.outputs[2]
         col_out = cur
@@ -269,7 +280,15 @@ def add_fog(m):
     mix = nt.nodes.new('ShaderNodeMixShader'); mix.name = 'FOG_mix'
     nt.links.new(inv.outputs[0], mix.inputs[0])
     nt.links.new(src, mix.inputs[1]); nt.links.new(em.outputs[0], mix.inputs[2])
-    nt.links.new(mix.outputs[0], out.inputs['Surface'])
+    final = mix.outputs[0]
+    if bsdf and bsdf.inputs['Alpha'].links:
+        # cutout cards: fog/ambient emission only where the card is opaque
+        tr = nt.nodes.new('ShaderNodeBsdfTransparent')
+        amix = nt.nodes.new('ShaderNodeMixShader')
+        nt.links.new(bsdf.inputs['Alpha'].links[0].from_socket, amix.inputs[0])
+        nt.links.new(tr.outputs[0], amix.inputs[1]); nt.links.new(final, amix.inputs[2])
+        final = amix.outputs[0]
+    nt.links.new(final, out.inputs['Surface'])
 
 
 def remap_materials(objs):
@@ -286,6 +305,20 @@ KIT = {}        # name -> collection (render meshes)
 KITCOL = {}     # name -> list of (local matrix, mesh) collider helpers
 KITSOCK = {}    # name -> {helper name: local matrix}
 KITBOUNDS = {}  # name -> (min, max) local render bounds
+
+
+def bake_world(objs):
+    """Bake each mesh's world matrix into its data (object space == world space), so box/triplanar projections
+    behave like Unity's world-space triplanar shader. Hierarchy-derived data must be read before calling this."""
+    done = set()
+    for o in objs:
+        if o.type != 'MESH' or o.data in done:
+            continue
+        mw = o.matrix_world.copy()
+        o.parent = None
+        o.data.transform(mw)
+        o.matrix_world = Matrix.Identity(4)
+        done.add(o.data)
 
 
 def import_fbx(path):
@@ -327,6 +360,7 @@ def load_kits():
                         mn = Vector(map(min, mn, p)); mx = Vector(map(max, mx, p))
             KIT[name] = col
             KITBOUNDS[name] = (mn, mx)
+            bake_world(list(col.objects))
     bpy.context.view_layer.layer_collection.children['_Lib'].exclude = True
 
 
@@ -346,7 +380,15 @@ def place(key, matrix, src='', kind=None):
     WORLD.objects.link(e)
     mn, mx = KITBOUNDS[key]
     if kind is None:
-        if mx.y < 0.02 and mn.y < -0.02 and mn.z > -0.6 and (mx.z - mn.z) < 3.5 and key not in WALL_EXCEPT:
+        if key in WALL_FORCE:
+            kind = 'wall'
+        elif key in CEILING_FORCE:
+            kind = 'ceiling'
+        elif key.startswith(SPAN):
+            kind = 'span'
+        elif key.startswith('Rail_'):
+            kind = 'floor'
+        elif mx.y < 0.02 and mn.y < -0.02 and (mx.z - mn.z) < 3.5 and key not in WALL_EXCEPT:
             kind = 'wall'
         elif mx.z < 0.05:
             kind = 'ceiling'
@@ -356,7 +398,11 @@ def place(key, matrix, src='', kind=None):
     return e
 
 
-WALL_EXCEPT = {'LooseRockWall'}
+WALL_EXCEPT = {'LooseRockWall', 'Rail_Straight', 'Rail_Curve', 'Rail_End'}
+level_is_cave = False
+SPAN = ('Bridge_Broken', 'FallenTree', 'Walkway', 'Log')   # rest on their two ends
+CEILING_FORCE = {'LampString', 'CampLantern', 'FluorescentFixture'}
+WALL_FORCE = {'CableBundle', 'PipeRun', 'PosterBoard'}   # thin wall pieces whose bounds poke slightly behind the pivot
 
 
 def box(name, center, size, mat, parent_m=None):
@@ -428,7 +474,7 @@ def station(name, m):
     if name == 'Gate':
         place('SecurityGate_Bars', m, 'gate', 'part')
         for x in (-1.75, 1.75):
-            for z in (-0.35, 0.35):
+            for z in (-0.28, 0.28):
                 place('WarningBeacon', m @ trs(U(x, 3.0, z), u_look((0, 0, 1) if z > 0 else (0, 0, -1))), 'gate', 'part')
         for pos, d, size, pn in (((2.35, 1.25, -0.18), (0, 0, -1), (0.45, 0.6, 0.05), 'PanelInside'),
                                  ((-1.98, 1.25, 1.4), (1, 0, 0), (0.05, 0.6, 0.45), 'PanelOutside')):
@@ -484,6 +530,7 @@ def assemble(level):
         elif n.startswith('MK_'):
             markers.append((n, o))
             o.hide_render = True
+    bake_world(geo)
     for n, o in markers:
         p = n.split('_')
         t, a1 = p[1], (p[2] if len(p) > 2 else '')
@@ -546,10 +593,10 @@ def assemble(level):
 
 
 # ============================================================================== look: world, fog, cameras
-AREA_LOOK = {   # ambient colour/strength, fog colour, fog half-distance (m)
-    'Bunker': ((0.55, 0.58, 0.62), 0.35, (0.16, 0.17, 0.18), 60.0),
-    'Forest': ((0.32, 0.45, 0.45), 0.55, (0.22, 0.33, 0.32), 38.0),
-    'Mine': ((0.18, 0.3, 0.3), 0.22, (0.04, 0.08, 0.08), 26.0),
+AREA_LOOK = {   # mirrors DataFactory.BuildAtmospheres: ambient (~trilight equator), strength, fog colour, fog half-distance
+    'Bunker': ((0.45, 0.47, 0.5), 1.0, (0.6, 0.64, 0.68), math.sqrt(math.log(2)) / 0.006),
+    'Forest': ((0.22, 0.3, 0.3), 1.0, (0.21, 0.33, 0.32), math.sqrt(math.log(2)) / 0.026),
+    'Mine': ((0.13, 0.2, 0.2), 1.0, (0.05, 0.1, 0.1), math.sqrt(math.log(2)) / 0.03),
 }
 
 
@@ -571,6 +618,10 @@ def setup_look(level, backface=False):
         d = m.node_tree.nodes.get('FOG_density')
         if d:
             d.inputs[1].default_value = 0.0 if backface else FOG['density']
+    if backface:
+        bg.inputs[0].default_value = (1, 0, 1, 1)
+        bg.inputs[1].default_value = 1.0
+        scn.cycles.transparent_max_bounces = 16
 
 
 def backface_materials(on):
@@ -581,8 +632,9 @@ def backface_materials(on):
             if m.get('mnf_kind') in ('Foliage', 'Decal', 'Fade', 'Cutout'):
                 continue       # rendered two-sided / blended in Unity
             geo = nt.nodes.new('ShaderNodeNewGeometry'); geo.name = 'BF_geo'
-            em = nt.nodes.new('ShaderNodeEmission'); em.name = 'BF_em'
-            em.inputs['Color'].default_value = (1, 0, 1, 1); em.inputs['Strength'].default_value = 4.0
+            # Unity culls back faces: render them transparent; whatever then shows the magenta world behind a
+            # surface is a hole the player would see (inside-out or missing faces)
+            em = nt.nodes.new('ShaderNodeBsdfTransparent'); em.name = 'BF_em'
             mixs = nt.nodes.new('ShaderNodeMixShader'); mixs.name = 'BF_mix'
             fog = nt.nodes.get('FOG_mix')
             target = fog.inputs[1] if fog else out.inputs['Surface']
@@ -619,7 +671,9 @@ VIEWS = {
         'sell_storage': ((3.0, -0.5, -10 + EYE), (7.5, 0.2, -10 + 1.1)),
         'gate_corridor': ((0.6, 10.0, -10 + 1.2 + EYE), (0.0, 4.3, -10 + 1.4)),
         'corridor_up': ((0.0, 6.0, -10 + EYE), (0.0, 30.0, -4.0)),
-        'bunks': ((-11.5, -2.0, -10 + EYE), (-15.5, -6.0, -10 + 0.8)),
+        'bunks': ((-9.2, -3.2, -10 + EYE + 0.4), (-15.5, -8.0, -10 + 0.8)),
+        'mess': ((3.6, -3.4, -10 + EYE + 0.3), (-0.5, -8.0, -10 + 0.6)),
+        'gate_beacon': ((-0.9, 5.4, -10 + 2.7), (-1.75, 4.4, -10 + 3.0)),
         'generator': ((9.5, -4.0, -10 + EYE), (12.5, -7.0, -10 + 0.8)),
     },
     'Forest': {
@@ -629,9 +683,18 @@ VIEWS = {
         'river_ford': ((62.0, 108.0, 2.5), (72.0, 128.0, 0.5)),
         'mine_approach': ((25.0, 205.0, 4.0), (25.0, 232.0, 4.0)),
         'mine_mouth': ((25.0, 226.0, 4.6), (25.0, 240.0, 3.6)),
+        'watchtower_deck': ((-46.9, 186.4, 14.6), (-47.7, 187.3, 12.3)),
+        'fallen_tree': ((-46.0, 96.0, 2.2), (-40.0, 102.0, 0.5)),
+        'edge_west_high': ((-112.0, 120.0, 22.0), (-150.0, 120.0, 22.0)),
+        'edge_south_high': ((30.0, -28.0, 22.0), (30.0, -62.0, 20.0)),
+        'edge_north_high': ((-60.0, 215.0, 30.0), (-60.0, 245.0, 32.0)),
         'edge_west': ((-130.0, 120.0, 4.0), (-160.0, 120.0, 4.0)),
         'edge_east': ((130.0, 80.0, 4.0), (160.0, 80.0, 4.0)),
         'edge_south': ((40.0, -40.0, 4.0), (40.0, -70.0, 4.0)),
+    },
+    'Forest+Mine': {
+        'junction_out': ((25.0, 224.0, 4.0 + EYE), (25.0, 245.0, 3.6)),
+        'junction_in': ((25.0, 244.0, 3.3 + EYE), (25.0, 222.0, 5.0)),
     },
     'Mine': {
         'entrance_in': ((25.0, 236.0, 4.0 + EYE), (25.0, 265.0, 2.0)),
@@ -693,20 +756,22 @@ def instance_mesh(rec, colliders=False):
     return verts, polys
 
 
-SKIP_INTERSECT = ('Tree_', 'Rock_', 'Boulder', 'CliffChunk', 'Bush', 'Fern', 'GrassTuft', 'Mushroom', 'Stump', 'Log',
+SKIP_INTERSECT = ('Fence', 'SignPost', 'WarningBoard', 'Tent', 'Campfire', 'Tree_', 'Rock_', 'Boulder', 'CliffChunk', 'Bush', 'Fern', 'GrassTuft', 'Mushroom', 'Stump', 'Log',
                   'FallenTree', 'Rail_', 'RubblePile', 'LooseRockWall', 'BorerHole', 'Deposit_', 'Nest', 'Burrow',
                   'MineEntrance', 'Bridge_Broken', 'Cabin_Ruin', 'Watchtower', 'Minecart_Abandoned')
-EMBED_OK = ('Tree_', 'Rock_', 'Boulder', 'CliffChunk', 'Stump', 'FallenTree', 'Log', 'RubblePile', 'Deposit_', 'Nest',
+EMBED_OK = ('SupportFrame_Broken', 'Tree_', 'Rock_', 'Boulder', 'CliffChunk', 'Stump', 'FallenTree', 'Log', 'RubblePile', 'Deposit_', 'Nest',
             'Burrow', 'MineEntrance', 'Bridge_Broken', 'Cabin_Ruin', 'Watchtower', 'Minecart_Abandoned', 'Fence', 'SignPost',
             'WarningBoard', 'Tent', 'Campfire', 'BorerHole', 'LooseRockWall', 'Bush', 'Fern', 'GrassTuft', 'Mushroom')
 
 
 def audit(level, geo, path):
+    global level_is_cave
+    level_is_cave = 'Mine' in level or 'Bunker' in level
     t0 = time.time()
     dg = bpy.context.evaluated_depsgraph_get()
-    lvl_bvh, lvl_v, lvl_p = world_bvh([g for g in geo if not clean(g.name).startswith(('WATER_', 'NOCOL_'))], dg)
+    lvl_bvh, lvl_v, lvl_p = world_bvh([g for g in geo if not clean(g.name).startswith(('WATER_', 'NOCOL_DECAL'))], dg)
     lines = [f'# {level} assembly audit ({len(PLACED)} placed parts, {len(lvl_p)} level polys)', '']
-    issues = {'missing': [], 'float': [], 'sunk': [], 'wallgap': [], 'embedded': [], 'dupe': [], 'overlap': [], 'coplanar': [], 'level_x': []}
+    issues = {'missing': [], 'float': [], 'sunk': [], 'wallgap': [], 'embedded': [], 'dupe': [], 'overlap': [], 'coplanar': [], 'level_x': [], 'sign': []}
 
     # all other placed instances as one BVH for support checks (props standing on props)
     prop_bvh_data = [instance_mesh(r) for r in PLACED]
@@ -727,17 +792,19 @@ def audit(level, geo, path):
             continue
         mn, mx = KITBOUNDS[key]
         loc = m.translation
-        if kind == 'floor':
+        if kind in ('floor', 'item'):
             # five points on the footprint, cast down from 0.6 m above the base
             pts = [Vector(((mn.x + mx.x) / 2, (mn.y + mx.y) / 2, mn.z))]
             for fx in (0.25, 0.75):
                 for fy in (0.25, 0.75):
                     pts.append(Vector((mn.x + (mx.x - mn.x) * fx, mn.y + (mx.y - mn.y) * fy, mn.z)))
             gaps = []
+            # start above the prop so sunk props still find their ground, but inside caves stay under the ceiling
+            up = min((mx.z - mn.z) + 0.5, 1.2) if level_is_cave else (mx.z - mn.z) + 0.5
             for p in pts:
                 w = m @ p
-                d = ray(w + Vector((0, 0, 0.6)), Vector((0, 0, -1)), 6.0)
-                gaps.append(None if d is None else d - 0.6)
+                d = ray(w + Vector((0, 0, up)), Vector((0, 0, -1)), up + 30.0)
+                gaps.append(None if d is None else d - up)
             # stacked on another placed prop? (crates on crates, radio on a table, ...)
             valid = [g for g in gaps if g is not None]
             if not valid:
@@ -745,18 +812,56 @@ def audit(level, geo, path):
                 continue
             if min(valid) > 0.06 and not on_other_prop(i, m, mn, prop_bvh_data):
                 issues['float'].append(f"{key} @ {tuple(round(c, 2) for c in loc)} ({r['src']}): floats {min(valid):.2f} m")
-            tol = 0.7 if key.startswith(EMBED_OK) else 0.12
+            tol = (1.6 if key.startswith(('Boulder', 'CliffChunk', 'MineEntrance', 'Rock_')) else 0.7) if key.startswith(EMBED_OK) else 0.12
             if max(valid) < -tol:
                 issues['sunk'].append(f"{key} @ {tuple(round(c, 2) for c in loc)} ({r['src']}): base {-max(valid):.2f} m below ground")
+        elif kind == 'span':
+            # the two ends (10 % in from each end of the long axis) must touch something
+            long_x = (mx.x - mn.x) >= (mx.y - mn.y)
+            ends = []
+            for f in (0.1, 0.9):
+                p = Vector((mn.x + (mx.x - mn.x) * f, (mn.y + mx.y) / 2, mn.z)) if long_x else Vector(((mn.x + mx.x) / 2, mn.y + (mx.y - mn.y) * f, mn.z))
+                w = m @ p
+                d = ray(w + Vector((0, 0, 3.0)), Vector((0, 0, -1)), 40.0)
+                ends.append(None if d is None else d - 3.0)
+            if any(g is None or g > 0.25 for g in ends):
+                issues['float'].append(f"{key} @ {tuple(round(c, 2) for c in loc)} ({r['src']}): span ends gap {[None if g is None else round(g, 2) for g in ends]}")
         elif kind == 'wall':
             fwd = (m.to_3x3() @ Vector((0, -1, 0))).normalized()
             centre = m @ Vector(((mn.x + mx.x) / 2, 0, (mn.z + mx.z) / 2))
             d = ray(centre + fwd * 0.25, -fwd, 1.0)
+            near = local_bvh(loc, 2.0, prop_bvh_data, skip=r)
+            if near:
+                h = near.ray_cast(centre + fwd * 0.25, -fwd, 1.0)
+                if h[0] is not None and (d is None or h[3] < d):
+                    d = h[3]
             gap = None if d is None else d - 0.25
             if gap is None or gap > 0.05:
                 issues['wallgap'].append(f"{key} @ {tuple(round(c, 2) for c in loc)} ({r['src']}): " + ('no wall behind' if gap is None else f'{gap:.2f} m off the wall'))
             elif gap < -0.08 and not key.startswith(EMBED_OK):
                 issues['embedded'].append(f"{key} @ {tuple(round(c, 2) for c in loc)} ({r['src']}): {-gap:.2f} m inside the wall")
+
+    # signs/decals: every corner must sit on a surface (no overhang into air, no corner buried in a side wall)
+    for r in PLACED:
+        if r['kind'] != 'quad':
+            continue
+        o = r['obj']
+        fwd = (r['matrix'].to_3x3() @ Vector((0, -1, 0))).normalized()
+        bad = []
+        near = local_bvh(r['matrix'].translation, 3.0, prop_bvh_data, skip=r)
+        for v in o.data.vertices:
+            w = o.matrix_world @ v.co
+            d = ray(w + fwd * 0.15, -fwd, 0.3)
+            if near:
+                h = near.ray_cast(w + fwd * 0.15, -fwd, 0.3)
+                if h[0] is not None and (d is None or h[3] < d):
+                    d = h[3]
+            if d is None or d > 0.15 + 0.05:
+                bad.append('overhangs')
+            elif d < 0.15 - 0.004:
+                bad.append('buried')
+        if bad:
+            issues['sign'].append(f"{r['src']} @ {tuple(round(c, 2) for c in r['matrix'].translation)}: corners {sorted(set(bad))} ({len(bad)}/4)")
 
     # duplicates: same kit object at (almost) the same transform
     seen = {}
@@ -827,8 +932,8 @@ def audit(level, geo, path):
 
     # coplanar same-facing faces of different objects (z-fighting); level geometry + quads + boxes
     planes = {}
-    def add_faces(tag, verts, polys):
-        for poly in polys:
+    def add_faces(tag, verts, polys, mats=None):
+        for pi, poly in enumerate(polys):
             if len(poly) < 3:
                 continue
             a, b, c = (Vector(verts[poly[0]]), Vector(verts[poly[1]]), Vector(verts[poly[2]]))
@@ -839,30 +944,31 @@ def audit(level, geo, path):
             n.normalize()
             d = n.dot(a)
             k = (round(n.x, 2), round(n.y, 2), round(n.z, 2), round(d * 200))
-            planes.setdefault(k, []).append((tag, [Vector(verts[i]) for i in poly], n, area))
+            planes.setdefault(k, []).append((tag, [Vector(verts[i]) for i in poly], n, area, mats[pi] if mats else ''))
     for g in geo:
         if clean(g.name).startswith(('WATER_', 'NOCOL_')) and level != 'Bunker':
             continue
         me = g.data
         mw = g.matrix_world
-        add_faces(clean(g.name), [mw @ v.co for v in me.vertices], [list(p.vertices) for p in me.polygons])
+        mnames = [clean(ms.material.name) if ms.material else '' for ms in g.material_slots]
+        add_faces(clean(g.name), [mw @ v.co for v in me.vertices], [list(p.vertices) for p in me.polygons],
+                  [mnames[p.material_index] if p.material_index < len(mnames) else '' for p in me.polygons])
     for i, r in enumerate(PLACED):
         if r['kind'] in ('quad', 'part') and r['obj'] is not None and r['obj'].type == 'MESH':
             add_faces(r['src'], *prop_bvh_data[i])
     for k, faces in planes.items():
         if len(faces) < 2 or len(faces) > 400:
             continue
-        tags = {f[0] for f in faces}
-        if len(tags) < 2:
-            continue
         for x in range(len(faces)):
             for y in range(x + 1, len(faces)):
                 fa, fb = faces[x], faces[y]
-                if fa[0] == fb[0]:
+                # same mesh counts too (the level shells are single meshes); edge-sharing faces have no overlap area.
+                # Same mesh + same material = same world-space UVs and texels: overlapping, but cannot flicker.
+                if fa[0] == fb[0] and fa[4] == fb[4]:
                     continue
                 if overlap_2d(fa[1], fb[1], fa[2]):
                     c = sum(fa[1], Vector()) / len(fa[1])
-                    issues['coplanar'].append(f"{fa[0]} / {fb[0]} @ {tuple(round(v, 2) for v in c)} normal {tuple(round(v, 2) for v in fa[2])}")
+                    issues['coplanar'].append(f"{fa[0]}:{fa[4]} / {fb[0]}:{fb[4]} @ {tuple(round(v, 2) for v in c)} normal {tuple(round(v, 2) for v in fa[2])}")
     seen_c = []
     for s in issues['coplanar']:
         if s not in seen_c:
@@ -878,6 +984,18 @@ def audit(level, geo, path):
         f.write('\n'.join(lines))
     print('\n'.join(f'{k}: {len(v)}' for k, v in issues.items()))
     return issues
+
+
+def local_bvh(centre, radius, data, skip=None):
+    verts, polys = [], []
+    for j, (v, p) in enumerate(data):
+        r = PLACED[j]
+        if r is skip or not p or (r['matrix'].translation - centre).length > radius + 6.0:
+            continue
+        off = len(verts)
+        verts.extend(v)
+        polys.extend([off + i for i in poly] for poly in p)
+    return BVHTree.FromPolygons(verts, polys) if polys else None
 
 
 def on_other_prop(i, m, mn, data):
@@ -922,30 +1040,42 @@ def main():
         bpy.ops.wm.read_factory_settings(use_empty=True)
         KIT.clear(); KITCOL.clear(); KITSOCK.clear(); KITBOUNDS.clear(); PLACED.clear(); _MATS.clear(); _IMG.clear()
         t0 = time.time()
-        _amb, _k, fogc, half = AREA_LOOK[level]
+        look = level.split('+')[0]
+        _amb, _k, fogc, half = AREA_LOOK[look]
         FOG['color'] = fogc
         FOG['ambient'] = tuple(c * _k for c in _amb)
         FOG['density'] = math.sqrt(math.log(2.0)) / half
         load_kits()
-        geo = assemble(level)
+        geo = []
+        for part in level.split('+'):
+            geo += assemble(part)
         print(f'{level}: {len(geo)} level meshes, {len(PLACED)} placed parts ({time.time() - t0:.1f}s)')
         if opt('--audit'):
             audit(level, geo, os.path.join(OUT, f'{level}_audit.txt'))
-        views = VIEWS[level]
+        views = dict(VIEWS.get(level, VIEWS.get(look, {})))
         if opt('--only'):
             views = {k: v for k, v in views.items() if k in opt('--only').split(',')}
         if opt('--focus'):
             f = [float(x) for x in opt('--focus').split(',')]
             views = {'focus': ((f[0], f[1], f[2]), (f[3], f[4], f[5]))}
         if opt('--views'):
-            setup_look(level)
+            setup_look(look)
             for vn, (cam, tgt) in views.items():
                 render(os.path.join(OUT, f'{level}_{vn}.png'), cam, tgt)
         if opt('--backface'):
-            setup_look(level, backface=True)
-            backface_materials(True)
+            # Workbench rasterises with real back-face culling (exactly Unity's Cull Back, including coincident
+            # double-sided copies). Needs EGL (Mesa llvmpipe is fine: EGL_PLATFORM=surfaceless).
+            scn = bpy.context.scene
+            scn.render.engine = 'BLENDER_WORKBENCH'
+            sh = scn.display.shading
+            sh.show_backface_culling = True
+            sh.color_type = 'TEXTURE'
+            sh.light = 'STUDIO'
+            if not scn.world:
+                scn.world = bpy.data.worlds.new('W')
+            scn.world.color = (1, 0, 1)
             for vn, (cam, tgt) in views.items():
-                render(os.path.join(OUT, f'{level}_{vn}_backface.png'), cam, tgt)
+                render(os.path.join(OUT, f'{level}_{vn}_culled.png'), cam, tgt)
         if opt('--blend'):
             bpy.ops.wm.save_as_mainfile(filepath=opt('--blend').replace('{level}', level))
 

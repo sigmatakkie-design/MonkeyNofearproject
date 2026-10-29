@@ -157,6 +157,8 @@ namespace MonkeyNoFear.EditorTools
             if (mr)
             {
                 mr.shadowCastingMode = level == "Forest" ? UnityEngine.Rendering.ShadowCastingMode.On : UnityEngine.Rendering.ShadowCastingMode.TwoSided;
+                // conforming decal meshes and the out-of-bounds mountain backdrop never cast shadows
+                if (name.Contains("DECAL") || name.Contains("Backdrop")) mr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 mr.receiveShadows = true;
             }
             if (name.StartsWith("UNSTABLE_"))
@@ -693,8 +695,8 @@ namespace MonkeyNoFear.EditorTools
             RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Trilight;
             RenderSettings.fog = true;
             RenderSettings.fogMode = FogMode.ExponentialSquared;
-            RenderSettings.fogColor = new Color(0.05f, 0.05f, 0.055f);
-            RenderSettings.fogDensity = 0.012f;
+            RenderSettings.fogColor = new Color(0.6f, 0.64f, 0.68f);     // the bunker profile; AreaManager blends per area
+            RenderSettings.fogDensity = 0.006f;
             RenderSettings.sun = moon;
             // realtime lighting only: no lightmap bakes are triggered by opening the scene
             MNFPaths.Ensure(MNFPaths.Generated);

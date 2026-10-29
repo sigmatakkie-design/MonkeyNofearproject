@@ -21,6 +21,15 @@ Blender duplicate suffixes (`.001`) are stripped before parsing. Fields are sepa
 
 Flags combine; for example `COLONLY_NOCLIMB_Bounds` is an invisible, unclimbable boundary.
 
+Generated pieces that use these flags:
+
+| Object | What it is |
+|---|---|
+| `NOCLIMB_TerrainEdge_i_j` (Forest) | Outer boundary cliffs and the north cliff face. These are terrain faces on the NoClimb layer, so players slide back down long before they reach the `COLONLY_NOCLIMB_Bounds` safety wall. |
+| `NOCOL_Backdrop` (Forest) | The mountain ring rising beyond every map edge, plus its treeline. It is seamless with the terrain edge and has no collider or shadows. No reachable spot can see past it. |
+| `NOCOL_DECAL_<cell>` (Mine) | Decals as meshes projected onto the rock (7 × 7 grid, 12 mm off the surface). A flat atlas quad cannot sit on curved rock. |
+| `MineDressing` (Mine) | Timber backing planks behind every rock-mounted sign, and walkway support posts down to the floor. |
+
 ## Markers (empties named `MK_<TYPE>_…`)
 
 | Marker | Meaning |
@@ -49,3 +58,19 @@ Flags combine; for example `COLONLY_NOCLIMB_Bounds` is an invisible, unclimbable
 | `MK_TELEPORT_<name>` | Debug teleport target (F6) |
 
 When the assembler cannot resolve a marker, it logs `[MNF] Unknown marker …` or `[MNF] No prop prefab for …` and counts it in the build summary.
+
+## Placement rules the generators guarantee
+
+Both `Tools/blender/levels/assemble_world.py --audit` and the generators check these rules. The emulator re-imports the exported FBX files, places everything the way `LevelAssembler` does, and reports problems.
+
+- **Axis export:** static models are exported with `bake_space_transform=True`, so every marker's `transform.forward` is its Blender −Y. `Tools/common/fbx_audit.py` checks this.
+- **Wall-mounted props:** this covers lamps, PA speakers, `_Wall` ore, wall-scratch plates, elevator call buttons and the breaker. Each pivot sits on the wall face.
+  - In the mine, `build_mine.snap_markers` ray-casts the generated rock and turns each prop along the surface normal.
+  - Lamps and ores are moved along the wall out of timber-frame posts.
+- **Floor props and items:** each one rests on the real floor.
+  - Items use their rest height above the floor: 0.006 m for notes and tags, 0.065 m for cans, 0.205 m for the medkit, which hangs from its handle.
+  - Anything on furniture uses the furniture's top height. Examples: `TABLE_TOP` in the bunker and the 0.06 m diamond plate under the workbench.
+- **Long props on slopes:** rails are pitched along the slope. Logs and the fallen tree are tilted so both ends touch the ground (`rest_long`).
+- **Forest scatter:** an occupancy grid keeps trunks, rocks, logs and cliff chunks from interpenetrating. Free-standing structures reserve their footprint before scatter.
+- **Signs and decals:** they are flush with a surface: no corner overhangs into the air or is buried. Overlapping decals never share a depth.
+- **Coplanar faces:** coplanar, same-facing faces only occur where they share a mesh, material and world UVs. Everywhere else, 2–3 cm offsets keep them apart. Examples: the gate header recessed behind the frame face, and the portal hazard band above the lintel underside.

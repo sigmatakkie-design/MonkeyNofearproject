@@ -1,0 +1,252 @@
+# Mine assembly audit (413 placed parts, 170172 level polys)
+
+## missing: 0
+
+## float: 20
+  Rail_Straight @ (36.95, 277.3, 1.0) (MK_PROP_Rail_Straight): floats 0.12 m
+  Rail_Straight @ (38.86, 277.89, 1.0) (MK_PROP_Rail_Straight): floats 0.11 m
+  Rail_Straight @ (40.77, 278.49, 1.0) (MK_PROP_Rail_Straight): floats 0.10 m
+  Rail_Straight @ (42.68, 279.09, 1.0) (MK_PROP_Rail_Straight): floats 0.09 m
+  Rail_Straight @ (44.59, 279.68, 1.0) (MK_PROP_Rail_Straight): floats 0.10 m
+  Rail_Straight @ (46.5, 280.28, 1.0) (MK_PROP_Rail_Straight): floats 0.10 m
+  Rail_Straight @ (48.41, 280.88, 1.0) (MK_PROP_Rail_Straight): floats 0.11 m
+  Rail_Straight @ (50.32, 281.47, 1.0) (MK_PROP_Rail_Straight): floats 0.12 m
+  Railing @ (31.0, 398.6, -55.0) (MK_PROP_Railing): floats 8.55 m
+  Railing @ (33.0, 398.6, -55.0) (MK_PROP_Railing): floats 11.46 m
+  Railing @ (35.0, 398.6, -55.0) (MK_PROP_Railing): floats 10.93 m
+  Railing @ (37.0, 398.6, -55.0) (MK_PROP_Railing): floats 1.07 m
+  Walkway @ (51.24, 277.08, -25.45) (MK_PROP_Walkway): span ends gap [0.75, 0.75]
+  Walkway @ (55.16, 276.29, -25.45) (MK_PROP_Walkway): span ends gap [-2.95, 0.75]
+  Walkway @ (57.12, 275.9, -25.45) (MK_PROP_Walkway): span ends gap [0.75, 0.75]
+  Walkway @ (59.08, 275.51, -25.45) (MK_PROP_Walkway): span ends gap [0.75, -2.88]
+  Walkway @ (63.0, 274.73, -25.45) (MK_PROP_Walkway): span ends gap [-2.91, 0.74]
+  Walkway @ (64.96, 274.33, -25.45) (MK_PROP_Walkway): span ends gap [0.74, -2.99]
+  Walkway @ (66.92, 273.94, -25.45) (MK_PROP_Walkway): span ends gap [-2.97, 0.74]
+  Walkway @ (68.89, 273.55, -25.45) (MK_PROP_Walkway): span ends gap [0.75, 0.75]
+
+## sunk: 0
+
+## wallgap: 1
+  Deposit_Copper_Wall @ (24.63, 350.24, -27.61) (MK_ORE_Mid_Wall): 0.07 m off the wall
+
+## embedded: 1
+  MineLamp @ (26.34, 345.53, -23.5) (MK_LIGHT_MineLampDim): 0.13 m inside the wall
+
+## dupe: 0
+
+## overlap: 21
+  ScratchedPlate x Deposit_Crystal @ (82.49, 368.77, -55.0) (8 pairs)
+  MineLamp x SupportFrame @ (-11.01, 269.79, 3.42) (16 pairs)
+  Walkway x Walkway @ (51.24, 277.08, -24.78) (1 pairs)
+  Walkway x Walkway @ (53.2, 276.69, -24.78) (25 pairs)
+  Walkway x Walkway @ (55.16, 276.29, -24.78) (15 pairs)
+  Deposit_Iron_Wall x SupportFrame @ (64.5, 291.78, 1.94) (10 pairs)
+  Deposit_Iron x ToolPile @ (16.99, 284.0, 1.24) (6 pairs)
+  Deposit_Iron_Wall x SupportFrame @ (44.28, 321.98, -13.53) (8 pairs)
+  SupportFrame x SupportFrame @ (49.27, 322.7, -23.26) (6 pairs)
+  SupportFrame x SupportFrame @ (42.57, 299.09, -19.78) (7 pairs)
+  SupportFrame x SupportFrame @ (-11.76, 328.01, -23.26) (11 pairs)
+  Helmet x Workstation @ (-16.6, 336.27, -24.94) (6 pairs)
+  Deposit_Copper_Wall x SupportFrame @ (-8.2, 332.94, -24.09) (8 pairs)
+  Deposit_Copper_Wall x SupportFrame @ (13.97, 388.14, -41.48) (8 pairs)
+  RubblePile_A x SupportFrame @ (-25.45, 296.53, 0.96) (18 pairs)
+  SupportFrame x SupportFrame @ (-6.25, 296.77, -23.26) (25 pairs)
+  Walkway x Walkway @ (61.04, 275.12, -24.78) (35 pairs)
+  Walkway x Walkway @ (63.0, 274.73, -24.78) (1 pairs)
+  Walkway x Walkway @ (64.96, 274.33, -24.78) (3 pairs)
+  Walkway x Walkway @ (66.92, 273.94, -24.78) (4 pairs)
+  Elevator_Platform x ElevControlBox @ (5.0, 282.0, 2.34) (4 pairs)
+
+## coplanar: 0
+
+## level_x: 186
+  ScratchedPlate @ (10.46, 337.88, -23.83) (MK_EVENT_WallScratch): 84 triangle pairs cross level geometry
+  ScratchedPlate @ (82.49, 368.77, -55.03) (MK_EVENT_WallScratch): 109 triangle pairs cross level geometry
+  MineLamp @ (-25.48, 287.18, 3.09) (MK_LIGHT_MineLamp): 55 triangle pairs cross level geometry
+  MineLamp @ (19.14, 313.65, -4.59) (MK_LIGHT_MineLampDim): 23 triangle pairs cross level geometry
+  MineLamp @ (26.34, 345.29, -23.58) (MK_LIGHT_MineLampDim): 77 triangle pairs cross level geometry
+  LampString @ (25.0, 274.99, 7.82) (MK_LIGHT_String): 8 triangle pairs cross level geometry
+  LoreTape @ (14.0, 367.5, -55.0) (MK_LORE_lore_foreman_Tape): 28 triangle pairs cross level geometry
+  LoreTape @ (20.5, 291.4, -54.99) (MK_LORE_lore_last_Tape): 40 triangle pairs cross level geometry
+  Barrel_Mine @ (34.6, 272.2, 1.57) (MK_PROP_Barrel_Mine): 21 triangle pairs cross level geometry
+  Crate_Mine @ (34.0, 271.0, 1.32) (MK_PROP_Crate_Mine): 18 triangle pairs cross level geometry
+  Crate_Mine @ (66.0, 303.3, 1.31) (MK_PROP_Crate_Mine): 25 triangle pairs cross level geometry
+  Crate_Mine @ (65.8, 302.0, 1.32) (MK_PROP_Crate_Mine): 23 triangle pairs cross level geometry
+  Generator_Small @ (71.64, 302.88, 1.46) (MK_PROP_Generator_Small): 17 triangle pairs cross level geometry
+  Helmet @ (-16.6, 336.26, -24.95) (MK_PROP_Helmet): 8 triangle pairs cross level geometry
+  Minecart @ (19.01, 273.02, 1.45) (MK_PROP_Minecart): 36 triangle pairs cross level geometry
+  Minecart @ (34.02, 286.99, -24.55) (MK_PROP_Minecart): 40 triangle pairs cross level geometry
+  PipeRun @ (14.01, 271.0, 5.76) (MK_PROP_PipeRun): 80 triangle pairs cross level geometry
+  SupportFrame @ (24.85, 236.27, 6.88) (MK_PROP_SupportFrame): 88 triangle pairs cross level geometry
+  SupportFrame @ (24.85, 239.77, 6.66) (MK_PROP_SupportFrame): 154 triangle pairs cross level geometry
+  SupportFrame @ (24.85, 246.77, 6.2) (MK_PROP_SupportFrame): 148 triangle pairs cross level geometry
+  SupportFrame @ (24.85, 250.27, 5.96) (MK_PROP_SupportFrame): 150 triangle pairs cross level geometry
+  SupportFrame @ (24.85, 253.77, 5.58) (MK_PROP_SupportFrame): 100 triangle pairs cross level geometry
+  SupportFrame @ (24.85, 257.27, 5.19) (MK_PROP_SupportFrame): 150 triangle pairs cross level geometry
+  SupportFrame @ (24.85, 260.77, 4.8) (MK_PROP_SupportFrame): 159 triangle pairs cross level geometry
+  SupportFrame @ (24.85, 264.27, 4.41) (MK_PROP_SupportFrame): 163 triangle pairs cross level geometry
+  SupportFrame @ (24.85, 267.77, 4.03) (MK_PROP_SupportFrame): 155 triangle pairs cross level geometry
+  SupportFrame @ (12.14, 273.51, 4.0) (MK_PROP_SupportFrame): 124 triangle pairs cross level geometry
+  SupportFrame @ (-2.81, 270.79, 3.99) (MK_PROP_SupportFrame): 165 triangle pairs cross level geometry
+  SupportFrame @ (-6.55, 270.11, 3.99) (MK_PROP_SupportFrame): 159 triangle pairs cross level geometry
+  SupportFrame @ (-9.89, 271.42, 3.97) (MK_PROP_SupportFrame): 179 triangle pairs cross level geometry
+  SupportFrame @ (-12.77, 273.89, 3.93) (MK_PROP_SupportFrame): 169 triangle pairs cross level geometry
+  SupportFrame @ (-15.66, 276.36, 3.89) (MK_PROP_SupportFrame): 221 triangle pairs cross level geometry
+  SupportFrame @ (-18.54, 278.84, 3.85) (MK_PROP_SupportFrame): 182 triangle pairs cross level geometry
+  SupportFrame @ (-21.43, 281.31, 3.8) (MK_PROP_SupportFrame): 156 triangle pairs cross level geometry
+  SupportFrame @ (-22.95, 284.76, 3.74) (MK_PROP_SupportFrame): 180 triangle pairs cross level geometry
+  SupportFrame @ (-23.99, 288.42, 3.66) (MK_PROP_SupportFrame): 154 triangle pairs cross level geometry
+  SupportFrame @ (-25.04, 292.07, 3.58) (MK_PROP_SupportFrame): 172 triangle pairs cross level geometry
+  SupportFrame @ (-26.08, 295.72, 3.5) (MK_PROP_SupportFrame): 119 triangle pairs cross level geometry
+  SupportFrame @ (37.78, 277.72, 4.0) (MK_PROP_SupportFrame): 142 triangle pairs cross level geometry
+  SupportFrame @ (41.41, 278.85, 3.99) (MK_PROP_SupportFrame): 117 triangle pairs cross level geometry
+  SupportFrame @ (45.04, 279.98, 3.99) (MK_PROP_SupportFrame): 165 triangle pairs cross level geometry
+  SupportFrame @ (48.66, 281.12, 3.99) (MK_PROP_SupportFrame): 171 triangle pairs cross level geometry
+  SupportFrame @ (54.83, 285.04, 4.0) (MK_PROP_SupportFrame): 134 triangle pairs cross level geometry
+  SupportFrame @ (57.52, 287.73, 4.0) (MK_PROP_SupportFrame): 180 triangle pairs cross level geometry
+  SupportFrame @ (60.2, 290.42, 3.99) (MK_PROP_SupportFrame): 174 triangle pairs cross level geometry
+  SupportFrame @ (62.76, 293.2, 3.99) (MK_PROP_SupportFrame): 116 triangle pairs cross level geometry
+  SupportFrame @ (65.14, 296.16, 3.99) (MK_PROP_SupportFrame): 127 triangle pairs cross level geometry
+  SupportFrame @ (24.85, 286.52, 3.37) (MK_PROP_SupportFrame): 165 triangle pairs cross level geometry
+  SupportFrame @ (24.85, 291.52, 2.12) (MK_PROP_SupportFrame): 132 triangle pairs cross level geometry
+  SupportFrame @ (24.85, 296.52, 0.87) (MK_PROP_SupportFrame): 145 triangle pairs cross level geometry
+  SupportFrame @ (24.45, 301.42, -0.41) (MK_PROP_SupportFrame): 130 triangle pairs cross level geometry
+  SupportFrame @ (21.77, 311.06, -3.08) (MK_PROP_SupportFrame): 215 triangle pairs cross level geometry
+  SupportFrame @ (20.43, 315.87, -4.5) (MK_PROP_SupportFrame): 159 triangle pairs cross level geometry
+  SupportFrame @ (22.4, 319.52, -5.62) (MK_PROP_SupportFrame): 204 triangle pairs cross level geometry
+  SupportFrame @ (26.75, 321.97, -6.71) (MK_PROP_SupportFrame): 204 triangle pairs cross level geometry
+  SupportFrame @ (31.11, 324.42, -7.8) (MK_PROP_SupportFrame): 132 triangle pairs cross level geometry
+  SupportFrame @ (35.47, 326.88, -9.02) (MK_PROP_SupportFrame): 63 triangle pairs cross level geometry
+  SupportFrame @ (39.4, 324.09, -10.1) (MK_PROP_SupportFrame): 172 triangle pairs cross level geometry
+  SupportFrame @ (43.09, 320.71, -11.33) (MK_PROP_SupportFrame): 112 triangle pairs cross level geometry
+  SupportFrame @ (46.77, 317.33, -12.98) (MK_PROP_SupportFrame): 158 triangle pairs cross level geometry
+  SupportFrame @ (47.37, 312.86, -13.97) (MK_PROP_SupportFrame): 179 triangle pairs cross level geometry
+  SupportFrame @ (46.16, 308.01, -15.48) (MK_PROP_SupportFrame): 185 triangle pairs cross level geometry
+  SupportFrame @ (44.95, 303.16, -17.0) (MK_PROP_SupportFrame): 169 triangle pairs cross level geometry
+  SupportFrame @ (42.64, 298.96, -18.52) (MK_PROP_SupportFrame): 188 triangle pairs cross level geometry
+  SupportFrame @ (34.21, 293.59, -22.0) (MK_PROP_SupportFrame): 42 triangle pairs cross level geometry
+  SupportFrame @ (20.48, 293.05, -22.0) (MK_PROP_SupportFrame): 162 triangle pairs cross level geometry
+  SupportFrame @ (17.5, 293.45, -22.0) (MK_PROP_SupportFrame): 220 triangle pairs cross level geometry
+  SupportFrame @ (14.53, 293.84, -22.0) (MK_PROP_SupportFrame): 164 triangle pairs cross level geometry
+  SupportFrame @ (11.56, 294.24, -22.0) (MK_PROP_SupportFrame): 186 triangle pairs cross level geometry
+  SupportFrame @ (8.58, 294.64, -22.0) (MK_PROP_SupportFrame): 153 triangle pairs cross level geometry
+  SupportFrame @ (5.61, 295.03, -22.0) (MK_PROP_SupportFrame): 205 triangle pairs cross level geometry
+  SupportFrame @ (2.63, 295.43, -22.0) (MK_PROP_SupportFrame): 165 triangle pairs cross level geometry
+  SupportFrame @ (-3.31, 296.22, -22.0) (MK_PROP_SupportFrame): 182 triangle pairs cross level geometry
+  SupportFrame @ (-6.29, 296.62, -22.0) (MK_PROP_SupportFrame): 176 triangle pairs cross level geometry
+  SupportFrame @ (-8.3, 298.22, -22.0) (MK_PROP_SupportFrame): 141 triangle pairs cross level geometry
+  SupportFrame @ (-9.02, 304.18, -22.0) (MK_PROP_SupportFrame): 164 triangle pairs cross level geometry
+  SupportFrame @ (-9.38, 307.16, -22.0) (MK_PROP_SupportFrame): 170 triangle pairs cross level geometry
+  SupportFrame @ (-9.75, 310.14, -22.0) (MK_PROP_SupportFrame): 166 triangle pairs cross level geometry
+  SupportFrame @ (-10.11, 313.11, -22.0) (MK_PROP_SupportFrame): 186 triangle pairs cross level geometry
+  SupportFrame @ (-10.47, 316.09, -22.0) (MK_PROP_SupportFrame): 208 triangle pairs cross level geometry
+  SupportFrame @ (-10.83, 319.07, -22.0) (MK_PROP_SupportFrame): 183 triangle pairs cross level geometry
+  SupportFrame @ (-11.19, 322.05, -22.0) (MK_PROP_SupportFrame): 174 triangle pairs cross level geometry
+  SupportFrame @ (-11.55, 325.03, -22.0) (MK_PROP_SupportFrame): 162 triangle pairs cross level geometry
+  SupportFrame @ (-11.91, 328.01, -22.0) (MK_PROP_SupportFrame): 232 triangle pairs cross level geometry
+  SupportFrame @ (-11.06, 330.4, -22.0) (MK_PROP_SupportFrame): 48 triangle pairs cross level geometry
+  SupportFrame @ (-8.16, 331.16, -22.0) (MK_PROP_SupportFrame): 179 triangle pairs cross level geometry
+  SupportFrame @ (-5.26, 331.92, -22.0) (MK_PROP_SupportFrame): 136 triangle pairs cross level geometry
+  SupportFrame @ (0.55, 333.44, -22.0) (MK_PROP_SupportFrame): 202 triangle pairs cross level geometry
+  SupportFrame @ (3.45, 334.2, -22.0) (MK_PROP_SupportFrame): 175 triangle pairs cross level geometry
+  SupportFrame @ (6.35, 334.96, -22.0) (MK_PROP_SupportFrame): 190 triangle pairs cross level geometry
+  SupportFrame @ (9.25, 335.72, -22.0) (MK_PROP_SupportFrame): 197 triangle pairs cross level geometry
+  SupportFrame @ (12.15, 336.48, -22.0) (MK_PROP_SupportFrame): 240 triangle pairs cross level geometry
+  SupportFrame @ (15.06, 337.24, -22.0) (MK_PROP_SupportFrame): 231 triangle pairs cross level geometry
+  SupportFrame @ (17.96, 338.0, -22.0) (MK_PROP_SupportFrame): 190 triangle pairs cross level geometry
+  SupportFrame @ (20.86, 338.76, -22.0) (MK_PROP_SupportFrame): 158 triangle pairs cross level geometry
+  SupportFrame @ (23.76, 339.52, -22.0) (MK_PROP_SupportFrame): 142 triangle pairs cross level geometry
+  SupportFrame @ (26.67, 340.28, -22.0) (MK_PROP_SupportFrame): 158 triangle pairs cross level geometry
+  SupportFrame @ (29.57, 341.04, -22.03) (MK_PROP_SupportFrame): 93 triangle pairs cross level geometry
+  SupportFrame @ (31.98, 339.32, -22.0) (MK_PROP_SupportFrame): 190 triangle pairs cross level geometry
+  SupportFrame @ (34.16, 337.26, -22.0) (MK_PROP_SupportFrame): 194 triangle pairs cross level geometry
+  SupportFrame @ (36.33, 335.19, -22.0) (MK_PROP_SupportFrame): 187 triangle pairs cross level geometry
+  SupportFrame @ (38.51, 333.13, -22.0) (MK_PROP_SupportFrame): 176 triangle pairs cross level geometry
+  SupportFrame @ (40.68, 331.06, -22.0) (MK_PROP_SupportFrame): 201 triangle pairs cross level geometry
+  SupportFrame @ (42.86, 328.99, -22.0) (MK_PROP_SupportFrame): 199 triangle pairs cross level geometry
+  SupportFrame @ (45.03, 326.93, -22.0) (MK_PROP_SupportFrame): 195 triangle pairs cross level geometry
+  SupportFrame @ (47.21, 324.86, -22.0) (MK_PROP_SupportFrame): 220 triangle pairs cross level geometry
+  SupportFrame @ (49.38, 322.79, -22.0) (MK_PROP_SupportFrame): 87 triangle pairs cross level geometry
+  SupportFrame @ (49.31, 320.11, -22.0) (MK_PROP_SupportFrame): 195 triangle pairs cross level geometry
+  SupportFrame @ (48.07, 317.38, -22.0) (MK_PROP_SupportFrame): 214 triangle pairs cross level geometry
+  SupportFrame @ (46.83, 314.65, -22.0) (MK_PROP_SupportFrame): 162 triangle pairs cross level geometry
+  SupportFrame @ (45.58, 311.92, -22.0) (MK_PROP_SupportFrame): 169 triangle pairs cross level geometry
+  SupportFrame @ (44.34, 309.19, -22.0) (MK_PROP_SupportFrame): 214 triangle pairs cross level geometry
+  SupportFrame @ (41.86, 303.72, -22.0) (MK_PROP_SupportFrame): 165 triangle pairs cross level geometry
+  SupportFrame @ (40.62, 300.99, -22.0) (MK_PROP_SupportFrame): 119 triangle pairs cross level geometry
+  SupportFrame @ (38.81, 298.59, -22.0) (MK_PROP_SupportFrame): 121 triangle pairs cross level geometry
+  SupportFrame @ (36.68, 296.47, -22.0) (MK_PROP_SupportFrame): 84 triangle pairs cross level geometry
+  SupportFrame @ (21.58, 359.77, -28.87) (MK_PROP_SupportFrame): 191 triangle pairs cross level geometry
+  SupportFrame @ (12.27, 367.33, -32.36) (MK_PROP_SupportFrame): 182 triangle pairs cross level geometry
+  SupportFrame @ (8.02, 371.4, -34.12) (MK_PROP_SupportFrame): 87 triangle pairs cross level geometry
+  SupportFrame @ (10.58, 376.83, -36.03) (MK_PROP_SupportFrame): 190 triangle pairs cross level geometry
+  SupportFrame @ (15.69, 387.69, -40.02) (MK_PROP_SupportFrame): 79 triangle pairs cross level geometry
+  SupportFrame @ (27.34, 385.63, -43.77) (MK_PROP_SupportFrame): 210 triangle pairs cross level geometry
+  SupportFrame @ (33.2, 384.33, -46.42) (MK_PROP_SupportFrame): 127 triangle pairs cross level geometry
+  SupportFrame @ (36.29, 379.39, -48.15) (MK_PROP_SupportFrame): 137 triangle pairs cross level geometry
+  SupportFrame @ (23.08, 314.76, -52.0) (MK_PROP_SupportFrame): 122 triangle pairs cross level geometry
+  SupportFrame @ (29.54, 334.75, -52.0) (MK_PROP_SupportFrame): 172 triangle pairs cross level geometry
+  SupportFrame @ (36.6, 354.53, -52.0) (MK_PROP_SupportFrame): 215 triangle pairs cross level geometry
+  SupportFrame @ (27.99, 365.28, -52.01) (MK_PROP_SupportFrame): 161 triangle pairs cross level geometry
+  SupportFrame @ (4.23, 368.67, -52.0) (MK_PROP_SupportFrame): 162 triangle pairs cross level geometry
+  SupportFrame @ (-1.71, 369.52, -51.98) (MK_PROP_SupportFrame): 132 triangle pairs cross level geometry
+  SupportFrame @ (-2.59, 379.01, -58.32) (MK_PROP_SupportFrame): 36 triangle pairs cross level geometry
+  SupportFrame @ (13.85, 392.11, -53.54) (MK_PROP_SupportFrame): 38 triangle pairs cross level geometry
+  SupportFrame @ (51.98, 365.5, -52.0) (MK_PROP_SupportFrame): 109 triangle pairs cross level geometry
+  SupportFrame @ (57.94, 366.18, -52.01) (MK_PROP_SupportFrame): 107 triangle pairs cross level geometry
+  SupportFrame @ (81.73, 369.23, -52.0) (MK_PROP_SupportFrame): 137 triangle pairs cross level geometry
+  SupportFrame @ (99.51, 372.08, -52.01) (MK_PROP_SupportFrame): 104 triangle pairs cross level geometry
+  SupportFrame @ (105.07, 374.19, -52.0) (MK_PROP_SupportFrame): 172 triangle pairs cross level geometry
+  SupportFrame_Broken @ (25.6, 243.1, 4.02) (MK_PROP_SupportFrame_Broken): 395 triangle pairs cross level geometry
+  SupportFrame_Broken @ (8.43, 273.6, 1.58) (MK_PROP_SupportFrame_Broken): 354 triangle pairs cross level geometry
+  SupportFrame_Broken @ (4.69, 272.92, 1.58) (MK_PROP_SupportFrame_Broken): 325 triangle pairs cross level geometry
+  SupportFrame_Broken @ (0.95, 272.24, 1.58) (MK_PROP_SupportFrame_Broken): 342 triangle pairs cross level geometry
+  SupportFrame_Broken @ (52.56, 281.71, 1.58) (MK_PROP_SupportFrame_Broken): 321 triangle pairs cross level geometry
+  SupportFrame_Broken @ (23.88, 306.28, -4.16) (MK_PROP_SupportFrame_Broken): 506 triangle pairs cross level geometry
+  SupportFrame_Broken @ (38.16, 296.99, -24.42) (MK_PROP_SupportFrame_Broken): 383 triangle pairs cross level geometry
+  SupportFrame_Broken @ (-0.08, 296.55, -24.42) (MK_PROP_SupportFrame_Broken): 340 triangle pairs cross level geometry
+  SupportFrame_Broken @ (-7.9, 301.13, -24.42) (MK_PROP_SupportFrame_Broken): 337 triangle pairs cross level geometry
+  SupportFrame_Broken @ (-2.32, 331.92, -24.42) (MK_PROP_SupportFrame_Broken): 363 triangle pairs cross level geometry
+  SupportFrame_Broken @ (42.49, 306.92, -24.42) (MK_PROP_SupportFrame_Broken): 371 triangle pairs cross level geometry
+  SupportFrame_Broken @ (61.66, 327.9, -24.42) (MK_PROP_SupportFrame_Broken): 316 triangle pairs cross level geometry
+  SupportFrame_Broken @ (29.62, 343.89, -25.42) (MK_PROP_SupportFrame_Broken): 432 triangle pairs cross level geometry
+  SupportFrame_Broken @ (27.62, 349.55, -27.41) (MK_PROP_SupportFrame_Broken): 432 triangle pairs cross level geometry
+  SupportFrame_Broken @ (25.62, 355.2, -29.44) (MK_PROP_SupportFrame_Broken): 426 triangle pairs cross level geometry
+  SupportFrame_Broken @ (17.53, 364.03, -33.03) (MK_PROP_SupportFrame_Broken): 433 triangle pairs cross level geometry
+  SupportFrame_Broken @ (13.74, 381.79, -40.36) (MK_PROP_SupportFrame_Broken): 385 triangle pairs cross level geometry
+  SupportFrame_Broken @ (21.16, 386.24, -44.23) (MK_PROP_SupportFrame_Broken): 398 triangle pairs cross level geometry
+  SupportFrame_Broken @ (38.06, 373.78, -54.41) (MK_PROP_SupportFrame_Broken): 314 triangle pairs cross level geometry
+  SupportFrame_Broken @ (19.57, 301.02, -54.41) (MK_PROP_SupportFrame_Broken): 343 triangle pairs cross level geometry
+  SupportFrame_Broken @ (21.66, 307.7, -54.42) (MK_PROP_SupportFrame_Broken): 398 triangle pairs cross level geometry
+  SupportFrame_Broken @ (25.83, 321.07, -54.42) (MK_PROP_SupportFrame_Broken): 362 triangle pairs cross level geometry
+  SupportFrame_Broken @ (27.92, 327.75, -54.42) (MK_PROP_SupportFrame_Broken): 360 triangle pairs cross level geometry
+  SupportFrame_Broken @ (32.54, 340.94, -54.42) (MK_PROP_SupportFrame_Broken): 368 triangle pairs cross level geometry
+  SupportFrame_Broken @ (34.9, 347.53, -54.42) (MK_PROP_SupportFrame_Broken): 383 triangle pairs cross level geometry
+  SupportFrame_Broken @ (22.32, 366.84, -54.42) (MK_PROP_SupportFrame_Broken): 381 triangle pairs cross level geometry
+  SupportFrame_Broken @ (16.38, 367.69, -54.42) (MK_PROP_SupportFrame_Broken): 313 triangle pairs cross level geometry
+  SupportFrame_Broken @ (10.44, 368.54, -54.43) (MK_PROP_SupportFrame_Broken): 355 triangle pairs cross level geometry
+  SupportFrame_Broken @ (-7.38, 371.09, -54.43) (MK_PROP_SupportFrame_Broken): 356 triangle pairs cross level geometry
+  SupportFrame_Broken @ (-13.32, 371.94, -54.42) (MK_PROP_SupportFrame_Broken): 341 triangle pairs cross level geometry
+  SupportFrame_Broken @ (-19.1, 373.0, -54.42) (MK_PROP_SupportFrame_Broken): 357 triangle pairs cross level geometry
+  SupportFrame_Broken @ (-24.79, 374.89, -54.41) (MK_PROP_SupportFrame_Broken): 362 triangle pairs cross level geometry
+  SupportFrame_Broken @ (-2.22, 372.81, -62.42) (MK_PROP_SupportFrame_Broken): 311 triangle pairs cross level geometry
+  SupportFrame_Broken @ (-1.48, 384.79, -59.61) (MK_PROP_SupportFrame_Broken): 243 triangle pairs cross level geometry
+  SupportFrame_Broken @ (2.72, 387.13, -58.4) (MK_PROP_SupportFrame_Broken): 208 triangle pairs cross level geometry
+  SupportFrame_Broken @ (8.34, 389.24, -57.18) (MK_PROP_SupportFrame_Broken): 205 triangle pairs cross level geometry
+  SupportFrame_Broken @ (19.73, 391.4, -55.24) (MK_PROP_SupportFrame_Broken): 254 triangle pairs cross level geometry
+  SupportFrame_Broken @ (25.73, 391.4, -54.55) (MK_PROP_SupportFrame_Broken): 223 triangle pairs cross level geometry
+  SupportFrame_Broken @ (63.82, 366.11, -54.42) (MK_PROP_SupportFrame_Broken): 362 triangle pairs cross level geometry
+  SupportFrame_Broken @ (69.78, 366.8, -54.42) (MK_PROP_SupportFrame_Broken): 346 triangle pairs cross level geometry
+  SupportFrame_Broken @ (75.77, 367.52, -54.42) (MK_PROP_SupportFrame_Broken): 368 triangle pairs cross level geometry
+  SupportFrame_Broken @ (87.61, 369.41, -54.42) (MK_PROP_SupportFrame_Broken): 328 triangle pairs cross level geometry
+  SupportFrame_Broken @ (93.54, 370.36, -54.42) (MK_PROP_SupportFrame_Broken): 370 triangle pairs cross level geometry
+  ToolPile @ (15.86, 282.95, 1.21) (MK_PROP_ToolPile): 5 triangle pairs cross level geometry
+  Workstation @ (32.95, 282.36, 1.61) (MK_PROP_Workstation): 36 triangle pairs cross level geometry
+  Workstation @ (66.55, 298.94, 1.61) (MK_PROP_Workstation): 60 triangle pairs cross level geometry
+  Workstation @ (-17.05, 336.36, -24.39) (MK_PROP_Workstation): 8 triangle pairs cross level geometry
+  Workstation @ (19.55, 291.64, -54.39) (MK_PROP_Workstation): 48 triangle pairs cross level geometry
+  MK_ROPE_26 @ (53.2, 286.8, -11.4) (MK_ROPE_26): 32 triangle pairs cross level geometry
+
+## sign: 0
+
+(audit 2.4s)

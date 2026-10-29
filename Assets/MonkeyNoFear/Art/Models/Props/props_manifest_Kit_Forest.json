@@ -16,7 +16,7 @@
       8.742,
       15.365
     ],
-    "tris": 2892,
+    "tris": 4652,
     "materials": [
       "MNF_BarkPine",
       "MNF_FoliagePine"
@@ -48,7 +48,7 @@
       8.697,
       17.898
     ],
-    "tris": 2656,
+    "tris": 4296,
     "materials": [
       "MNF_BarkPine",
       "MNF_FoliagePine"
@@ -80,7 +80,7 @@
       8.231,
       12.806
     ],
-    "tris": 2784,
+    "tris": 4442,
     "materials": [
       "MNF_BarkPine",
       "MNF_FoliagePine"
@@ -112,7 +112,7 @@
       6.721,
       10.634
     ],
-    "tris": 2999,
+    "tris": 5998,
     "materials": [
       "MNF_BarkDead"
     ],
@@ -143,7 +143,7 @@
       9.525,
       9.174
     ],
-    "tris": 2794,
+    "tris": 5588,
     "materials": [
       "MNF_BarkDead"
     ],
@@ -174,7 +174,7 @@
       7.846,
       9.025
     ],
-    "tris": 1878,
+    "tris": 3756,
     "materials": [
       "MNF_BarkDead",
       "MNF_WoodRotten"
@@ -206,7 +206,7 @@
       10.412,
       9.318
     ],
-    "tris": 3867,
+    "tris": 7702,
     "materials": [
       "MNF_BarkDead",
       "MNF_WoodRotten",
@@ -569,7 +569,7 @@
       7.556,
       5.186
     ],
-    "tris": 4402,
+    "tris": 4562,
     "materials": [
       "MNF_WoodBeam",
       "MNF_WoodPlanks",
@@ -654,7 +654,7 @@
       2.508,
       0.941
     ],
-    "tris": 440,
+    "tris": 820,
     "materials": [
       "MNF_BarkPine",
       "MNF_WoodRotten",
@@ -688,7 +688,7 @@
       0.645,
       0.569
     ],
-    "tris": 248,
+    "tris": 360,
     "materials": [
       "MNF_BarkPine",
       "MNF_Moss",
@@ -723,7 +723,7 @@
       5.047,
       2.784
     ],
-    "tris": 1115,
+    "tris": 2038,
     "materials": [
       "MNF_BarkPine",
       "MNF_Moss",
@@ -764,7 +764,7 @@
       2.385,
       1.56
     ],
-    "tris": 324,
+    "tris": 520,
     "materials": [
       "MNF_BarkDead",
       "MNF_FoliageLeaf"
@@ -790,7 +790,7 @@
       1.798,
       1.14
     ],
-    "tris": 220,
+    "tris": 360,
     "materials": [
       "MNF_BarkDead",
       "MNF_FoliageLeaf"
@@ -866,7 +866,7 @@
       0.394,
       0.349
     ],
-    "tris": 632,
+    "tris": 1220,
     "materials": [
       "MNF_WoodRotten",
       "MNF_Moss",
@@ -894,7 +894,7 @@
       0.177,
       1.63
     ],
-    "tris": 480,
+    "tris": 792,
     "materials": [
       "MNF_WoodBeam",
       "MNF_WoodPlanks",
@@ -927,7 +927,7 @@
       0.836,
       1.655
     ],
-    "tris": 586,
+    "tris": 976,
     "materials": [
       "MNF_WoodBeam",
       "MNF_WoodPlanks",
@@ -960,7 +960,7 @@
       0.181,
       2.531
     ],
-    "tris": 218,
+    "tris": 282,
     "materials": [
       "MNF_WoodBeam",
       "MNF_WoodPlanks",
@@ -1001,7 +1001,7 @@
       0.265,
       2.852
     ],
-    "tris": 534,
+    "tris": 758,
     "materials": [
       "MNF_WoodBeam",
       "MNF_WoodPlanks",
@@ -1037,7 +1037,7 @@
       4.23,
       1.3
     ],
-    "tris": 412,
+    "tris": 758,
     "materials": [
       "MNF_FabricCanvas",
       "MNF_WoodHandle",
@@ -1071,7 +1071,7 @@
       1.29,
       0.364
     ],
-    "tris": 1120,
+    "tris": 1244,
     "materials": [
       "MNF_RockDry",
       "MNF_Mud",
@@ -1105,7 +1105,7 @@
       0.154,
       0.338
     ],
-    "tris": 638,
+    "tris": 1006,
     "materials": [
       "MNF_MetalRusted",
       "MNF_MetalPainted_Red",
@@ -1210,7 +1210,7 @@
       3.655,
       6.761
     ],
-    "tris": 2688,
+    "tris": 2856,
     "materials": [
       "MNF_WoodBeam",
       "MNF_WoodPlanks",
@@ -1304,7 +1304,7 @@
       10.131,
       4.36
     ],
-    "tris": 2340,
+    "tris": 3140,
     "materials": [
       "MNF_BarkPine",
       "MNF_WoodRotten",
@@ -1374,7 +1374,7 @@
       1.931,
       0.99
     ],
-    "tris": 1628,
+    "tris": 1872,
     "materials": [
       "MNF_MetalRusted",
       "MNF_MetalBare",
@@ -1409,7 +1409,7 @@
       1.272,
       0.379
     ],
-    "tris": 1442,
+    "tris": 2320,
     "materials": [
       "MNF_FurRotten",
       "MNF_ForestFloor",
@@ -1439,7 +1439,7 @@
       1.632,
       0.725
     ],
-    "tris": 674,
+    "tris": 1134,
     "materials": [
       "MNF_Mud",
       "MNF_ForestFloor",

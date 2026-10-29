@@ -34,6 +34,43 @@ import mnf_sets_cards  # noqa: E402,F401
 import mnf_sets_atlas  # noqa: E402,F401
 
 
+# Art grade (Gorilla Tag fan-game look): brighter, cleaner, more saturated and more readable than the raw PBR
+# generators. Applied to the sRGB albedo after generation. tint = colour the luminance is mapped onto (0..1),
+# mix = how far toward it, lift/contrast/sat = basic grade around the mean.
+GRADE = {
+    "concrete_wall": dict(lift=0.16, contrast=0.62, sat=0.6),                                # clean pale bunker concrete
+    "concrete_floor": dict(lift=0.10, contrast=0.75, sat=0.7),
+    "rock_mine": dict(tint=(0.42, 0.66, 0.64), mix=0.7, lift=0.05, contrast=0.9),            # teal mine rock
+    "rock_wet": dict(tint=(0.30, 0.52, 0.52), mix=0.6, lift=0.03),
+    "forest_floor": dict(tint=(0.36, 0.52, 0.22), mix=0.55, lift=0.02, sat=1.15),           # mossy green litter
+    "wood_beam": dict(tint=(0.86, 0.66, 0.34), mix=0.55, lift=0.10, sat=1.1),               # warm yellow timbers
+    "wood_planks": dict(tint=(0.80, 0.62, 0.36), mix=0.4, lift=0.06),
+    "foliage_pine": dict(sat=1.25, lift=0.02),
+}
+
+
+def grade(alb, g):
+    a = np.asarray(alb, dtype=np.float32)
+    rgb = a[..., :3]
+    lum = (rgb * np.array([0.299, 0.587, 0.114], np.float32)).sum(-1, keepdims=True)
+    if "tint" in g:
+        # map luminance onto the tint colour, normalised so mid-grey keeps its brightness
+        t = np.array(g["tint"], np.float32)
+        tinted = lum * t / max(1e-3, float((t * np.array([0.299, 0.587, 0.114])).sum()))
+        rgb = rgb * (1 - g.get("mix", 1.0)) + tinted * g.get("mix", 1.0)
+        lum = (rgb * np.array([0.299, 0.587, 0.114], np.float32)).sum(-1, keepdims=True)
+    if "sat" in g:
+        rgb = lum + (rgb - lum) * g["sat"]
+    if "contrast" in g:
+        m = float(rgb.mean())
+        rgb = m + (rgb - m) * g["contrast"]
+    if "lift" in g:
+        rgb = g["lift"] + rgb * (1 - g["lift"])
+    out = a.copy()
+    out[..., :3] = np.clip(rgb, 0, 1)
+    return out
+
+
 def build_one(name):
     t0 = time.time()
     meta = REGISTRY[name]
@@ -45,6 +82,8 @@ def build_one(name):
         tio.save_png(os.path.join(OUT, fn), tio.to8(arr))
         files["albedo"] = fn
     else:
+        if name in GRADE and res.albedo is not None:
+            res.albedo = grade(res.albedo, GRADE[name])
         files = tio.write_set(OUT, name, res, normal_only=meta["kind"] == "normal")
     return name, files, time.time() - t0
 

@@ -100,9 +100,14 @@ namespace MonkeyNoFear.EditorTools
             if (!IsOurs) return;
             var ti = (TextureImporter)assetImporter;
             var n = Path.GetFileNameWithoutExtension(assetPath);
+            // Art direction (Gorilla Tag fan-game look): chunky point-filtered low-res surfaces. Sign/decal atlases keep
+            // enough resolution for their lettering; particles and screens stay smooth.
+            bool smooth = n.StartsWith("fx_") || n.StartsWith("screen_") || n == "vignette";
+            int size = n.Contains("atlas") ? 512 : smooth ? 256 : assetPath.StartsWith(MNFPaths.Player) ? 256 : 128;
             ti.mipmapEnabled = true;
-            ti.maxTextureSize = n.Contains("atlas") ? 1024 : 1024;
-            ti.anisoLevel = 4;
+            ti.maxTextureSize = size;
+            ti.filterMode = smooth ? FilterMode.Bilinear : FilterMode.Point;
+            ti.anisoLevel = smooth ? 1 : 0;
             ti.textureCompression = TextureImporterCompression.Compressed;
             if (n.EndsWith("_N"))
             {
@@ -125,11 +130,11 @@ namespace MonkeyNoFear.EditorTools
             }
             if (n.StartsWith("fx_") || n.Contains("atlas")) ti.wrapMode = TextureWrapMode.Clamp;
             else ti.wrapMode = TextureWrapMode.Repeat;
-            if (assetPath.StartsWith(MNFPaths.Player)) { ti.filterMode = FilterMode.Bilinear; ti.mipmapEnabled = false; }
+            if (assetPath.StartsWith(MNFPaths.Player)) ti.mipmapEnabled = false;
 
             var android = ti.GetPlatformTextureSettings("Android");
             android.overridden = true;
-            android.maxTextureSize = n.Contains("atlas") ? 1024 : 512;
+            android.maxTextureSize = size;
             android.format = TextureImporterFormat.ASTC_6x6;
             ti.SetPlatformTextureSettings(android);
         }

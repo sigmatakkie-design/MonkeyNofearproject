@@ -177,12 +177,13 @@ def yaw_from_forward(fwd):
     return math.atan2(fx, -fy)
 
 
-def marker(name, loc, forward=(0, -1, 0), coll=None, scale=1.0, pitch=0.0):
+def marker(name, loc, forward=(0, -1, 0), coll=None, scale=1.0, pitch=0.0, tilt=0.0):
+    """pitch: about the local X axis, tilt: about the local Y axis (both before the yaw)."""
     e = bpy.data.objects.new(name, None)
     e.empty_display_type = 'ARROWS'
     e.empty_display_size = 0.5
     e.location = loc
-    e.rotation_euler = Euler((pitch, 0.0, yaw_from_forward(forward)), 'XYZ')
+    e.rotation_euler = Euler((pitch, tilt, yaw_from_forward(forward)), 'XYZ')
     if scale != 1.0:
         e.scale = (scale, scale, scale)
     (coll or bpy.context.scene.collection).objects.link(e)

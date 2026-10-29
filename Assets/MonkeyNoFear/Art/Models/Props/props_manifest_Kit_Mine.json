@@ -16,7 +16,7 @@
       0.931,
       3.637
     ],
-    "tris": 1088,
+    "tris": 1184,
     "materials": [
       "MNF_WoodBeam",
       "MNF_MetalRusted",
@@ -59,7 +59,7 @@
       2.603,
       3.748
     ],
-    "tris": 1834,
+    "tris": 1850,
     "materials": [
       "MNF_WoodBeam",
       "MNF_MetalRusted",
@@ -184,7 +184,7 @@
       1.979,
       0.78
     ],
-    "tris": 756,
+    "tris": 852,
     "materials": [
       "MNF_WoodBeam",
       "MNF_MetalRusted",
@@ -223,7 +223,7 @@
       0.409,
       0.346
     ],
-    "tris": 580,
+    "tris": 902,
     "materials": [
       "MNF_MetalRusted",
       "MNF_Plastic_Black",
@@ -254,7 +254,7 @@
       0.064,
       0.814
     ],
-    "tris": 984,
+    "tris": 1336,
     "materials": [
       "MNF_Rubber",
       "MNF_MetalRusted",
@@ -287,7 +287,7 @@
       0.212,
       3.132
     ],
-    "tris": 320,
+    "tris": 472,
     "materials": [
       "MNF_WoodBeam",
       "MNF_MetalRusted",
@@ -325,7 +325,7 @@
       1.06,
       1.332
     ],
-    "tris": 448,
+    "tris": 580,
     "materials": [
       "MNF_MetalRusted",
       "MNF_MetalGrate",
@@ -368,7 +368,7 @@
       0.14,
       1.122
     ],
-    "tris": 458,
+    "tris": 716,
     "materials": [
       "MNF_MetalPainted_Yellow",
       "MNF_MetalRusted"
@@ -400,7 +400,7 @@
       3.0,
       4.88
     ],
-    "tris": 896,
+    "tris": 960,
     "materials": [
       "MNF_MetalPainted_Yellow",
       "MNF_MetalRusted",
@@ -519,7 +519,7 @@
       1.8,
       1.118
     ],
-    "tris": 1564,
+    "tris": 1836,
     "materials": [
       "MNF_MetalRusted",
       "MNF_MetalBare",
@@ -558,7 +558,7 @@
       0.341,
       0.191
     ],
-    "tris": 450,
+    "tris": 766,
     "materials": [
       "MNF_Plastic_Yellow",
       "MNF_Plastic_Black",
@@ -593,7 +593,7 @@
       1.589,
       1.134
     ],
-    "tris": 1430,
+    "tris": 1802,
     "materials": [
       "MNF_MetalPainted_Gray",
       "MNF_WoodPlanks",
@@ -735,7 +735,7 @@
       4.834,
       4.381
     ],
-    "tris": 1462,
+    "tris": 2056,
     "materials": [
       "MNF_RockMine",
       "MNF_Blackstone"
@@ -782,7 +782,7 @@
       0.686,
       0.504
     ],
-    "tris": 566,
+    "tris": 1012,
     "materials": [
       "MNF_MetalRusted",
       "MNF_MetalPainted_Gray",
@@ -847,7 +847,7 @@
       0.6,
       0.88
     ],
-    "tris": 340,
+    "tris": 624,
     "materials": [
       "MNF_MetalRusted",
       "MNF_MetalPainted_Red"
@@ -879,7 +879,7 @@
       1.479,
       1.261
     ],
-    "tris": 364,
+    "tris": 480,
     "materials": [
       "MNF_WoodHandle",
       "MNF_MetalRusted"
@@ -911,7 +911,7 @@
       0.22,
       1.85
     ],
-    "tris": 374,
+    "tris": 630,
     "materials": [
       "MNF_MetalRusted",
       "MNF_MetalPainted_Gray",
@@ -946,7 +946,7 @@
       0.068,
       0.337
     ],
-    "tris": 148,
+    "tris": 196,
     "materials": [
       "MNF_MetalRusted",
       "MNF_MetalPainted_Red"
@@ -974,7 +974,7 @@
       0.068,
       0.337
     ],
-    "tris": 148,
+    "tris": 196,
     "materials": [
       "MNF_MetalRusted",
       "MNF_MetalPainted_Yellow"
@@ -1002,7 +1002,7 @@
       0.068,
       0.337
     ],
-    "tris": 148,
+    "tris": 196,
     "materials": [
       "MNF_MetalRusted",
       "MNF_MetalPainted_Green"
@@ -1030,7 +1030,7 @@
       0.88,
       0.999
     ],
-    "tris": 856,
+    "tris": 1428,
     "materials": [
       "MNF_MetalRusted",
       "MNF_Rubber",
@@ -1063,7 +1063,7 @@
       1.073,
       1.056
     ],
-    "tris": 947,
+    "tris": 1310,
     "materials": [
       "MNF_MetalRusted",
       "MNF_Hazard",
@@ -1102,7 +1102,7 @@
       0.079,
       2.0
     ],
-    "tris": 1980,
+    "tris": 3948,
     "materials": [
       "MNF_MetalPainted_Gray",
       "MNF_MetalRusted"

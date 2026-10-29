@@ -358,7 +358,7 @@ def dress(mk):
     M('MK_DECAL_9_0.9', (wx - 4.6, wy, wz + 1.6), E); M('MK_DECAL_6_0.4', (wx + 4.6, wy + 1, wz + 1.3), W)
     M('MK_SIGN_14_0.4_0.4', (wx + 4.6, wy - 2, wz + 2.0), W)
     M('MK_EVENT_LightTurnsOn', (wx + 4.4, wy + 3, wz + 2.4), W)
-    M('MK_EVENT_WallScratch', (10.0, 339.0, L2), S)
+    M('MK_EVENT_WallScratch', (10.0, 339.0, L2 + 1.2), S)              # plate is centred on its pivot
     M('MK_EVENT_PhantomFootsteps', (-11, 316, L2)); M('MK_EVENT_PeripheralSilhouette', (-12, 327, L2), S)
     drips(GALLERY, 6)
     # grinding hall (Borer)
@@ -376,7 +376,7 @@ def dress(mk):
     M('MK_LIGHT_MineLampDim', (gx - 12.6, gy - 7, gz + 3.0), E)
     # flooded gallery + pump room
     for (x, y, z), (dx, dy) in seg_points(FLOOD[1:3], 2.0, 1.0):
-        M('MK_PROP_Walkway', (x - dy * 1.3, y + dx * 1.3, -25.45), (dx, dy, 0))
+        M('MK_PROP_Walkway', (x - dy * 1.3, y + dx * 1.3, -25.45), (dy, -dx, 0))      # long axis (local X) along the tunnel
     for x, y in ((52, 276), (66, 272), (79, 276)):
         M('MK_SOUND_water_trickle_loop', (x, y, -25.0))
     px, py, pz = PUMP[:3]
@@ -492,6 +492,222 @@ def zones(coll):
     zone_box('KILL_Chasm', (CHASM[0], CHASM[2], CHASM[4] + 1), (CHASM[1], CHASM[3], CHASM[4] + 10), coll)
 
 
+# -------------------------------------------------------------------------------------------- surface snapping
+WALL_PREFIX = ('MK_LIGHT_MineLamp', 'MK_EVENT_LightTurnsOn', 'MK_EVENT_PARecording', 'MK_EVENT_WallScratch', 'MK_PROP_PA_Speaker',
+               'MK_PROP_TunnelMarker_', 'MK_PROP_ScratchedPlate', 'MK_PROP_MineLamp', 'MK_ELEV_CallTop', 'MK_ELEV_CallBottom',
+               'MK_ELEV_Breaker', 'MK_SIGN_', 'MK_DECAL_', 'MK_PROP_PipeRun')
+FLOOR_PREFIX = ('MK_PROP_', 'MK_ORE_', 'MK_ITEM_', 'MK_LORE_', 'MK_BORER_HOLE', 'MK_EVENT_MinecartNudge', 'MK_EVENT_PeripheralSilhouette',
+                'MK_TELEPORT_', 'MK_MOURNER_', 'MK_GAUNT_')
+REST = {'MK_ITEM_miner_tag': 0.006, 'MK_ITEM_food_can': 0.065, 'MK_ITEM_glowstick': 0.016, 'MK_ITEM_medkit': 0.205,
+        'MK_ITEM_battery': 0.02, 'MK_ITEM_flare': 0.017, 'MK_LORE_': 0.006}
+ATLAS = 4
+
+
+def _clean(n):
+    import re
+    return re.sub(r'\.\d{3}$', '', n)
+
+
+def _set_fwd(e, f, pitch=None):
+    e.rotation_euler = Euler((e.rotation_euler.x if pitch is None else pitch, e.rotation_euler.y, yaw_from_forward(f)), 'XYZ')
+
+
+def obox(g, centre, right, up, fwd, hw, hh, hd, mat):
+    """Oriented box: half extents along right/up/fwd."""
+    c = Vector(centre)
+    P = lambda a, b, d: tuple(c + right * (a * hw) + up * (b * hh) + fwd * (d * hd))
+    q = [((-1, -1, 1), (1, -1, 1), (1, 1, 1), (-1, 1, 1)), ((1, -1, -1), (-1, -1, -1), (-1, 1, -1), (1, 1, -1)),
+         ((-1, -1, -1), (-1, -1, 1), (-1, 1, 1), (-1, 1, -1)), ((1, -1, 1), (1, -1, -1), (1, 1, -1), (1, 1, 1)),
+         ((-1, 1, 1), (1, 1, 1), (1, 1, -1), (-1, 1, -1)), ((-1, -1, -1), (1, -1, -1), (1, -1, 1), (-1, -1, 1))]
+    for quad in q:
+        g.face([P(*v) for v in quad], mat)
+
+
+def snap_markers(geo_coll, mk_coll):
+    """The rock is an SDF with noise, the markers were laid out on the nominal tunnel: put every wall prop on the
+    real wall (facing out along the surface), every floor prop/item on the real floor, rails along the slope, signs
+    on backing planks and decals as meshes that follow the rock."""
+    from mathutils.bvhtree import BVHTree
+    import bmesh as _bm
+    rock = [o for o in geo_coll.objects if o.type == 'MESH' and not o.name.startswith(('ZONE_', 'WATER_', 'KILL_', 'GAUNTVIEW'))]
+    bm = _bm.new()
+    for o in rock:
+        tmp = o.data.copy()
+        tmp.transform(o.matrix_world)
+        bm.from_mesh(tmp)
+        bpy.data.meshes.remove(tmp)
+    bvh = BVHTree.FromBMesh(bm)
+    bm.free()
+    deco = Geo(tile=1.0)
+    stats = {}
+    up = Vector((0, 0, 1))
+
+    def count(k):
+        stats[k] = stats.get(k, 0) + 1
+
+    def wall_hit(p, f):
+        h = bvh.ray_cast(p + f * 0.6, -f, 4.0)
+        if h[0] is not None:
+            return h
+        best = None
+        for k in range(16):
+            a = k * math.pi / 8
+            d = Vector((math.cos(a), math.sin(a), 0))
+            hh = bvh.ray_cast(p, d, 4.0)
+            if hh[0] is not None and (best is None or hh[3] < best[3]):
+                best = hh
+        return best
+
+    def floor_z(p, above=0.8, depth=3.0):
+        h = bvh.ray_cast(p + up * above, -up, above + depth)
+        return None if h[0] is None else h[0].z
+
+    frames = []
+    for e in mk_coll.objects:
+        if _clean(e.name).startswith('MK_PROP_SupportFrame'):
+            ff = e.matrix_world.to_3x3() @ Vector((0, -1, 0))
+            frames.append((e.location.copy(), Vector((ff.x, ff.y, 0)).normalized()))
+
+    def in_frame(q):
+        for fp, ff in frames:
+            d = q - fp
+            if abs(d.z) < 4.5 and d.length < 3.2 and abs(d.dot(ff)) < 0.65:
+                return True
+        return False
+
+    def clear_of_frames(e, tangent):
+        q = e.location.copy()
+        if not in_frame(q):
+            return
+        for off in (1.2, -1.2, 1.9, -1.9):
+            if not in_frame(q + tangent * off):
+                e.location = q + tangent * off
+                count('moved_off_frame')
+                return
+
+    for e in list(mk_coll.objects):
+        n = _clean(e.name)
+        if n.startswith(('MK_LIGHT_MineLamp', 'MK_ORE_', 'MK_EVENT_LightTurnsOn', 'MK_PROP_PA_Speaker')):
+            ff = e.matrix_world.to_3x3() @ Vector((0, -1, 0))
+            clear_of_frames(e, Vector((-ff.y, ff.x, 0)).normalized() if not n.startswith('MK_ORE_') or n.endswith('_Wall')
+                            else Vector((ff.x, ff.y, 0)).normalized())
+        p = e.location.copy()
+        f = e.matrix_world.to_3x3() @ Vector((0, -1, 0))
+        f.z = 0
+        f = f.normalized() if f.length > 1e-4 else Vector((0, -1, 0))
+        if n.startswith(WALL_PREFIX) or (n.startswith('MK_ORE_') and n.endswith('_Wall')):
+            if abs(e.rotation_euler.x) > 0.3:         # floor/ceiling decals: leave
+                continue
+            h = wall_hit(p, f)
+            if h is None:
+                count('wall_miss'); continue
+            loc, nrm = h[0], h[1]
+            nh = Vector((nrm.x, nrm.y, 0))
+            nf = nh.normalized() if nh.length > 0.35 else f
+            if nf.dot(f) < -0.2:
+                nf = f
+            e.location = loc
+            _set_fwd(e, nf)
+            count('wall')
+            if n.startswith('MK_SIGN_'):
+                parts = n.split('_')
+                w, hgt = float(parts[3]), float(parts[4]) if len(parts) > 4 else float(parts[3])
+                right = Vector((-nf.y, nf.x, 0)).normalized()           # Blender local +X of a marker facing nf
+                # backing plank bolted to the rock (its back on the most protruding rock under it), sign on its face
+                prot = 0.0
+                for a_ in (-1, 0, 1):
+                    for b_ in (-1, 0, 1):
+                        c = loc + right * (a_ * (w / 2 + 0.06)) + up * (b_ * (hgt / 2 + 0.06))
+                        hh = bvh.ray_cast(c + nf * 0.6, -nf, 1.2)
+                        if hh[0] is not None:
+                            prot = max(prot, 0.6 - hh[3])
+                base = loc + nf * prot
+                obox(deco, base + nf * 0.03, right, up, nf, w / 2 + 0.06, hgt / 2 + 0.06, 0.03, 'MNF_WoodPlanks')
+                e.location = base + nf * 0.06
+                count('sign_plank')
+            elif n.startswith('MK_DECAL_'):
+                parts = n.split('_')
+                cell, size = int(parts[2]), float(parts[3])
+                right = Vector((-nf.y, nf.x, 0)).normalized()
+                N = 7
+                verts, uvs, faces = [], [], []
+                for j in range(N + 1):
+                    for i in range(N + 1):
+                        u, v = i / N, j / N
+                        q = loc + right * ((u - 0.5) * size) + up * ((v - 0.5) * size)
+                        hh = bvh.ray_cast(q + nf * 0.6, -nf, 1.4)
+                        verts.append(tuple((hh[0] + hh[1].normalized() * 0.012) if hh[0] is not None else (q + nf * 0.012)))
+                        r_, c_ = divmod(cell, ATLAS)
+                        uvs.append((c_ / ATLAS + (0.004 + u * (1 / ATLAS - 0.008)), 1 - (r_ + 1) / ATLAS + (0.004 + v * (1 / ATLAS - 0.008))))
+                for j in range(N):
+                    for i in range(N):
+                        a0 = j * (N + 1) + i
+                        faces.append((a0, a0 + 1, a0 + N + 2, a0 + N + 1))
+                me = bpy.data.meshes.new('NOCOL_DECAL_%d' % cell)
+                me.from_pydata(verts, [], faces)
+                uvl = me.uv_layers.new(name='UVMap')
+                for poly in me.polygons:
+                    for li in poly.loop_indices:
+                        uvl.data[li].uv = uvs[me.loops[li].vertex_index]
+                me.materials.append(material('MNF_Decals'))
+                ob = bpy.data.objects.new('NOCOL_DECAL_%d' % cell, me)
+                geo_coll.objects.link(ob)
+                bpy.data.objects.remove(e)
+                count('decal_mesh')
+            continue
+        if n.startswith('MK_LIGHT_String'):
+            h = bvh.ray_cast(p, up, 6.0)
+            if h[0] is not None:
+                e.location.z = h[0].z
+                count('ceiling')
+            continue
+        if n.startswith('MK_PROP_Walkway'):
+            fz = floor_z(p, above=0.3, depth=4.0)
+            if fz is None or fz > p.z - 0.1:
+                bpy.data.objects.remove(e)                   # dry floor here: no catwalk needed
+                count('walkway_removed'); continue
+            right = Vector((-f.y, f.x, 0))
+            for a in (-0.85, 0.85):
+                for b in (-0.45, 0.45):
+                    c = p + right * a + f * b
+                    cz = floor_z(c, above=0.1, depth=4.0)
+                    if cz is not None and cz < p.z - 0.05:
+                        deco.box((c.x - 0.04, c.y - 0.04, cz - 0.1), (c.x + 0.04, c.y + 0.04, p.z), 'MNF_MetalRusted')
+            count('walkway_posts'); continue
+        if n.startswith('MK_PROP_Railing'):
+            q = p.copy()
+            for k in range(41):
+                fz = floor_z(q + f * 0.1, above=0.5, depth=0.6)
+                if fz is not None:
+                    break
+                q -= f * 0.25
+            if fz is not None:
+                e.location = Vector((q.x, q.y, fz))
+                count('railing')
+            continue
+        if n.startswith('MK_PROP_Rail_'):
+            z0 = floor_z(p, above=0.5, depth=1.5)
+            z1 = floor_z(p + f * 2.0, above=0.5, depth=1.5)
+            if z0 is not None and z1 is not None:
+                e.location.z = z0
+                _set_fwd(e, f, pitch=-math.atan2(z1 - z0, 2.0))
+                count('rail')
+            continue
+        if n.startswith(FLOOR_PREFIX) and not n.startswith(('MK_PROP_Elevator', 'MK_PROP_LampString')):
+            fz = floor_z(p, above=0.8, depth=3.5)
+            if fz is None or not (-0.6 < p.z - fz < 3.0):
+                continue                                     # on furniture / in a shaft: keep the authored height
+            rest = next((v for k, v in REST.items() if n.startswith(k)), None)
+            if n.startswith(('MK_ITEM_', 'MK_LORE_')):
+                e.location.z = fz + (rest if rest is not None else 0.01)
+            else:
+                e.location.z = fz - (0.02 if n.startswith('MK_PROP_') else 0.0)
+            count('floor')
+    if deco.faces:
+        deco.build('MineDressing', geo_coll)
+    print('snap:', stats)
+
+
 def build(out_dir):
     reset_scene()
     geo = collection('MineGeometry')
@@ -501,6 +717,7 @@ def build(out_dir):
     extra_geometry(geo)
     zones(geo)
     dress(mk)
+    snap_markers(geo, mk)
     objs = [o for o in bpy.data.objects if o.type in ('MESH', 'EMPTY')]
     export_fbx(os.path.join(out_dir, 'Mine.fbx'), objs)
     return objs, tris

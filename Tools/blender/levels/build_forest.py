@@ -146,7 +146,7 @@ class Terrain:
         for j in range(chunks):
             for i in range(chunks):
                 ia, ib, ja, jb = cx[i], cx[i + 1], cy[j], cy[j + 1]
-                verts, faces, cols = [], [], []
+                verts, faces, cols, edge_faces = [], [], [], []
                 w = ib - ia + 1
                 for yy in range(ja, jb + 1):
                     for xx in range(ia, ib + 1):
@@ -159,27 +159,121 @@ class Terrain:
                         # skip the faces that would cover the mine tunnel mouth
                         cxm = (verts[a][0] + verts[c][0]) / 2; cym = (verts[a][1] + verts[c][1]) / 2
                         czm = (verts[a][2] + verts[c][2]) / 2
-                        if abs(cxm - MINE_X) < 3.4 and 234.0 < cym < 239.5 and czm < 10.5:
+                        # the whole notch slot behind the portal face is open (the PortalHeadwall seals it around the
+                        # tunnel): the cliff jumps 4 -> 30 m inside one cell, so a z test alone left quads across the mouth
+                        if abs(cxm - MINE_X) < 2.1 and 233.6 < cym < 241.0 and not (cym < 234.5 and czm < 4.6):
                             continue
-                        faces.append((a, b, c, d))
-                me = bpy.data.meshes.new(f'Terrain_{i}_{j}')
-                me.from_pydata(verts, [], faces)
-                me.update()
-                uv = me.uv_layers.new(name='UVMap')
-                for poly in me.polygons:
-                    for li in poly.loop_indices:
-                        v = me.vertices[me.loops[li].vertex_index].co
-                        uv.data[li].uv = (v.x / 3.0, v.y / 3.0)
-                ca = me.color_attributes.new('Col', 'FLOAT_COLOR', 'POINT')
-                for k, c in enumerate(cols):
-                    ca.data[k].color = c
-                me.materials.append(material('MNF_Terrain'))
-                for p in me.polygons:
-                    p.use_smooth = True
-                ob = bpy.data.objects.new(f'Terrain_{i}_{j}', me)
-                coll.objects.link(ob)
-                objs.append(ob)
+                        # boundary band (outer cliffs, north cliff face): its own slippery NOCLIMB mesh, so players
+                        # slide back down long before the safety wall instead of climbing into it
+                        band = (abs(cxm) > 135.5 or cym < -47.5 or cym > 231.0) and czm > MINE_Z + 0.6
+                        (edge_faces if band else faces).append((a, b, c, d))
+                for name, fl in ((f'Terrain_{i}_{j}', faces), (f'NOCLIMB_TerrainEdge_{i}_{j}', edge_faces)):
+                    if not fl:
+                        continue
+                    objs.append(self._mesh(coll, name, verts, fl, cols))
         return objs
+
+    @staticmethod
+    def _mesh(coll, name, verts, faces, cols):
+        me = bpy.data.meshes.new(name)
+        me.from_pydata(verts, [], faces)
+        me.update()
+        uv = me.uv_layers.new(name='UVMap')
+        for poly in me.polygons:
+            for li in poly.loop_indices:
+                v = me.vertices[me.loops[li].vertex_index].co
+                uv.data[li].uv = (v.x / 3.0, v.y / 3.0)
+        ca = me.color_attributes.new('Col', 'FLOAT_COLOR', 'POINT')
+        for k, c in enumerate(cols):
+            ca.data[k].color = c
+        me.materials.append(material('MNF_Terrain'))
+        for p in me.polygons:
+            p.use_smooth = True
+        # drop vertices no face uses (the chunk's vertex grid is shared by the two meshes)
+        import bmesh as _bm
+        bm = _bm.new(); bm.from_mesh(me)
+        _bm.ops.delete(bm, geom=[v for v in bm.verts if not v.link_faces], context='VERTS')
+        bm.to_mesh(me); bm.free()
+        ob = bpy.data.objects.new(name, me)
+        coll.objects.link(ob)
+        return ob
+
+
+def portal_headwall(coll, T, yh=235.9, x0=MINE_X - 4.4, x1=MINE_X + 4.4, hole=(MINE_X - 1.8, MINE_X + 1.8, MINE_Z, MINE_Z + 3.6)):
+    """Rock face sealing the cliff slot around the mine tunnel (just behind the timber portal). Its opening is a
+    little smaller than the 4 x 4 m tunnel so the noisy rock tube never shows a gap; the top follows the cliff."""
+    verts, faces = [], []
+    hx0, hx1, hz0, hz1 = hole
+    xs = list(np.linspace(x0, x1, 15))
+    xs = sorted(set([float(x) for x in xs] + [hx0, hx1]))
+    for a, b in zip(xs[:-1], xs[1:]):
+        ta, tb = T.h(a, yh + 1.5) - 0.3, T.h(b, yh + 1.5) - 0.3
+        mid = (a + b) / 2
+        z_lo = hz1 if hx0 <= mid <= hx1 else MINE_Z - 0.5
+        if max(ta, tb) <= z_lo:
+            continue
+        # quad facing -Y (the forest)
+        k = len(verts)
+        verts += [(b, yh, max(tb, z_lo)), (a, yh, max(ta, z_lo)), (a, yh, z_lo), (b, yh, z_lo)]
+        faces.append((k, k + 1, k + 2, k + 3))
+    # terrain material painted as rock (B): the TerrainBlend shader projects rock triplanar, like the cliffs around it
+    T._mesh(coll, 'PortalHeadwall', verts, faces, [(0.0, 0.15, 1.0, 1.0)] * len(verts))
+
+
+def build_backdrop(coll, T, M, rot):
+    """Mountains rising out of every map edge (no collider: they are beyond the boundary band and the safety
+    wall). Seamless with the terrain edge, high enough that no reachable spot sees past them, with a treeline."""
+    def d_out(x, y):
+        dx = max(X0 - x, 0.0, x - X1)
+        dy = max(Y0 - y, 0.0, y - Y1)
+        if dx == 0 and dy == 0:
+            return -min(x - X0, X1 - x, y - Y0, Y1 - y)
+        return math.hypot(dx, dy)
+
+    def noise(x, y):
+        return (math.sin(x * 0.061 + 1.3) * math.cos(y * 0.047 - 0.4) + 0.6 * math.sin(x * 0.13 + y * 0.11 + 2.1)
+                + 0.3 * math.sin(x * 0.31 - y * 0.27))
+
+    def height(x, y):
+        d = d_out(x, y)
+        cx, cy = min(max(x, X0 + 0.5), X1 - 0.5), min(max(y, Y0 + 0.5), Y1 - 0.5)
+        base = T.h(cx, cy) - 0.4
+        dd = max(d, 0.0)
+        return base + 26.0 * float(smooth(0, 55, dd)) + 22.0 * float(smooth(35, 95, dd)) + 7.0 * noise(x, y) * float(smooth(0, 25, dd))
+
+    step = 6.0
+    xs = np.arange(X0 - 84, X1 + 84 + 0.1, step)
+    ys = np.arange(Y0 - 84, Y1 + 84 + 0.1, step)
+    idx, verts, cols, faces = {}, [], [], []
+    for j, y in enumerate(ys):
+        for i, x in enumerate(xs):
+            if d_out(x, y) < -2.5:
+                continue
+            idx[(i, j)] = len(verts)
+            z = height(x, y)
+            verts.append((float(x), float(y), z))
+    for (i, j), a in idx.items():
+        k = [idx.get(q) for q in ((i + 1, j), (i + 1, j + 1), (i, j + 1))]
+        if None not in k:
+            faces.append((a, k[0], k[1], k[2]))
+    # colour: rock on the steep parts, moss elsewhere
+    for (x, y, z) in verts:
+        g = (height(x + 3, y) - height(x - 3, y)) / 6.0, (height(x, y + 3) - height(x, y - 3)) / 6.0
+        steep = math.degrees(math.atan(math.hypot(*g)))
+        b = float(smooth(25, 40, steep))
+        cols.append((0.0, 0.6 * (1 - b), b, 1.0))
+    T._mesh(coll, 'NOCOL_Backdrop', verts, faces, cols)
+    # treeline on the lower backdrop slopes
+    rng = random.Random(4242)
+    n = 0
+    for x in np.arange(X0 - 20, X1 + 20.1, 10.0):
+        for y in np.arange(Y0 - 20, Y1 + 20.1, 10.0):
+            px, py = float(x + rng.uniform(-4, 4)), float(y + rng.uniform(-4, 4))
+            if not (5.0 < d_out(px, py) < 18.0):
+                continue
+            M('MK_PROP_Tree_Pine_' + rng.choice('ABC'), (px, py, height(px, py) - 0.3), rot(rng.uniform(0, 360)), scale=rng.uniform(1.0, 1.4))
+            n += 1
+    return n
 
 
 def build(out_dir):
@@ -191,6 +285,19 @@ def build(out_dir):
     M = lambda n, loc, fwd=(0, -1, 0), **k: marker(n, loc, fwd, mk_c, **k)
     S, N, E, W = (0, -1, 0), (0, 1, 0), (1, 0, 0), (-1, 0, 0)
     rot = lambda deg: fwd_from_yaw_deg(deg)
+    print('backdrop trees', build_backdrop(geo_c, T, M, rot))
+
+    # long props resting on uneven ground: tilt along their long (local X) axis so both ends sit on the terrain
+    LONG = {'Log': (-1.611, 1.677, -0.018), 'FallenTree': (-7.564, 6.233, -0.361)}
+
+    def rest_long(name, x, y, yaw_deg, s=1.0, sink=0.03):
+        x0, x1, zmin = LONG[name]
+        xa, xb = (x0 + (x1 - x0) * 0.1) * s, (x0 + (x1 - x0) * 0.9) * s
+        c, sn = math.cos(math.radians(yaw_deg)), math.sin(math.radians(yaw_deg))
+        ha, hb = T.h(x + c * xa, y + sn * xa), T.h(x + c * xb, y + sn * xb)
+        k = (hb - ha) / (xb - xa)
+        z = ha - zmin * s + k * (0.0 - xa) - sink
+        M('MK_PROP_' + name, (x, y, z), rot(yaw_deg), scale=s, tilt=-math.atan(k))
 
     # ---------------- concrete cut at the bunker portal + water + invisible boundary
     g = Geo(tile=2.0)
@@ -231,18 +338,52 @@ def build(out_dir):
         d_trail = float(dist_polyline(np.array([[x]]), np.array([[y]]), TRAIL)[0, 0])
         if d_trail < 3.8 + margin:
             return True
-        for (cx, cy), r in [((0, 54), 12), (CAMP_A, 8), (CLEARING, 16), (CABIN, 9), ((MINE_X, 222), 15), (GROTTO, 7), ((0, 0), 0)]:
+        # sites + free-standing structures placed later (watchtower, abandoned cart, broken fence)
+        for (cx, cy), r in [((0, 54), 12), (CAMP_A, 8), (CLEARING, 16), (CABIN, 9), ((MINE_X, 222), 15), (GROTTO, 7),
+                            ((CABIN[0] + 12, CABIN[1] + 11), 4.0), ((-14, 92), 3.0), ((6, 130), 2.5)]:
             if math.hypot(x - cx, y - cy) < r + margin:
                 return True
         if abs(x) < 7 and 30 < y < 64:
             return True
         return False
 
+    # occupancy: solid scatter (trunks, rocks, logs, cliff chunks) never interpenetrates; foliage only avoids solids
+    FOOT = (('Tree_', 0.9), ('Boulder', 3.2), ('CliffChunk', 4.2), ('Log', 1.8), ('Stump', 1.2), ('Rock_E', 1.6),
+            ('Rock_D', 1.2), ('Rock_', 0.6))
+    VEG = ('Bush', 'Fern', 'GrassTuft', 'Mushroom')
+    occ = {}
+
+    def footprint(name, s):
+        for pre, r in FOOT:
+            if name.startswith(pre):
+                return r * s
+        return 0.35 * s
+
+    def free(x, y, r):
+        for gx_ in range(int((x - 12) // 10), int((x + 12) // 10) + 1):
+            for gy_ in range(int((y - 12) // 10), int((y + 12) // 10) + 1):
+                for ox, oy, orad in occ.get((gx_, gy_), ()):
+                    if math.hypot(x - ox, y - oy) < (r + orad) * 0.85:
+                        return False
+        return True
+
+    def occupy(x, y, r):
+        occ.setdefault((int(x // 10), int(y // 10)), []).append((x, y, r))
+
     def place(name, x, y, sink=0.12, scale=(0.85, 1.25), yaw=None, slope_max=30):
         if T.slope(x, y) > slope_max:
             return False
         s = RNG.uniform(*scale)
-        M(f'MK_PROP_{name}', (x, y, T.h(x, y) - sink), rot(yaw if yaw is not None else RNG.uniform(0, 360)), scale=s)
+        r = footprint(name, s)
+        if not free(x, y, r):
+            return False
+        if not name.startswith(VEG):
+            occupy(x, y, r)
+        yaw = yaw if yaw is not None else RNG.uniform(0, 360)
+        if name in LONG:
+            rest_long(name, x, y, yaw, s)
+        else:
+            M(f'MK_PROP_{name}', (x, y, T.h(x, y) - sink), rot(yaw), scale=s)
         return True
 
     counts = {}
@@ -296,19 +437,34 @@ def build(out_dir):
         place(RNG.choice(['Fern', 'GrassTuft', 'Rock_A', 'Rock_B']), x, y, sink=0.05)
 
     # ---------------- break up the north cliff with rock chunks along its base
-    for x in np.arange(-128, 130, 11.0):
+    for x in np.arange(-128, 130, 17.0):
         if abs(x - MINE_X) < 10:
             continue
-        xx = float(x + RNG.uniform(-3, 3))
-        yy = 229.0 + RNG.uniform(-1.0, 1.5)
-        M('MK_PROP_CliffChunk_' + RNG.choice('AB'), (xx, yy, T.h(xx, yy) - 0.6), rot(RNG.uniform(160, 200)), scale=RNG.uniform(0.9, 1.5))
+        # talus at the cliff foot: a boulder or two with loose rocks (the noisy cliff face itself is the wall)
+        for k in range(RNG.choice((1, 2))):
+            xx = float(x + RNG.uniform(-6, 6))
+            yy = 228.0 + RNG.uniform(-1.0, 1.5)
+            sc = RNG.uniform(0.9, 1.5)
+            if free(xx, yy, footprint('Boulder_Large', sc) * 0.6):
+                occupy(xx, yy, footprint('Boulder_Large', sc) * 0.6)
+                M('MK_PROP_Boulder_Large', (xx, yy, T.h(xx, yy) - 0.5), rot(RNG.uniform(0, 360)), scale=sc)
+        for k in range(3):
+            place('Rock_' + RNG.choice('CDE'), float(x + RNG.uniform(-8, 8)), 225.5 + RNG.uniform(-2, 2), sink=0.15, scale=(0.8, 1.5), slope_max=45)
+
+    # river gorges at the east/west map edges: a debris jam (boulders + a fallen trunk) closes each one
+    for gx_ in (-131.0, 131.0):
+        ry = float(river_y(gx_))
+        for k, (dx_, dy_, sc) in enumerate(((0.0, -2.5, 1.6), (1.5, 2.0, 1.4), (3.5, -0.5, 1.7), (2.0, 5.0, 1.2), (2.5, -5.0, 1.3))):
+            bx_ = gx_ + (dx_ if gx_ > 0 else -dx_)
+            M('MK_PROP_Boulder_Large', (bx_, ry + dy_, T.h(bx_, ry + dy_) - 0.6), rot(RNG.uniform(0, 360)), scale=sc)
+        rest_long('Log', gx_ - (1.0 if gx_ > 0 else -1.0), ry + 0.5, 80.0, s=1.3)
 
     # ---------------- portal approach
     M('MK_PROP_WarningBoard', (-7.5, 60, T.h(-7.5, 60) - 0.1), S)
     M('MK_PROP_SignPost', (4.2, 64, T.h(4.2, 64) - 0.1), S)
     for k, x in enumerate((-16, -13.4, -10.8)):
         M('MK_PROP_Fence_Section' if k != 1 else 'MK_PROP_Fence_Broken', (x, 58, T.h(x, 58) - 0.1), S)
-    M('MK_SIGN_12_0.55_0.7', (-13.4, 57.86, T.h(-13.4, 58) + 1.0), S)       # missing poster pinned to the fence
+    M('MK_SIGN_12_0.55_0.7', (-16.0, 57.888, T.h(-16.0, 58) + 1.0), S)      # missing poster pinned flat on the intact fence
     M('MK_PROP_Barrel', (4.5, 49, 0.0), W)
     M('MK_PROP_Crate_Mine', (-4.2, 48.5, 0.0), E)
 
@@ -319,13 +475,15 @@ def build(out_dir):
             M('MK_PROP_SignPost', (sx, sy, T.h(sx, sy) - 0.1), rot(RNG.uniform(-20, 20)))
     M('MK_PROP_Minecart_Abandoned', (-14, 92, T.h(-14, 92) - 0.1), rot(70))
     M('MK_PROP_Fence_Broken', (6, 130, T.h(6, 130) - 0.1), rot(30))
-    M('MK_SIGN_15_0.55_0.55', (1.4, 76, T.h(1.4, 76) + 1.6), S)
+    M('MK_PROP_SignPost', (1.4, 76.1, T.h(1.4, 76.1) - 0.1), S)
+    M('MK_SIGN_15_0.55_0.55', (1.4, 76.0, T.h(1.4, 76.1) - 0.1 + 1.82), S)   # on the post's board front
 
     # ---------------- river crossings
     bx = 2.0
     M('MK_PROP_Bridge_Broken', (bx, float(river_y(bx)), -0.15), S)
     lx = -40.0
-    M('MK_PROP_FallenTree', (lx, float(river_y(lx)), 0.1), E)
+    ry = float(river_y(lx))
+    rest_long('FallenTree', lx, ry, 90.0)           # trunk across the river, resting on both banks
     M('MK_ITEM_miner_tag', (bx + 0.4, float(river_y(bx)) - 6.5, T.h(bx, float(river_y(bx)) - 6.5) + 0.05), S)
     for x in (-90, -25, 45, 110):
         M('MK_SOUND_stream_loop', (x, float(river_y(x)), -0.8))
@@ -339,10 +497,10 @@ def build(out_dir):
     M('MK_PROP_Campfire', (cx + 0.5, cy - 0.5, cz - 0.05))
     M('MK_PROP_Crate_Mine', (cx + 2.8, cy + 2.2, cz), rot(15))
     M('MK_PROP_Barrel_Mine', (cx + 3.6, cy + 1.0, cz), rot(0))
-    M('MK_PROP_Log', (cx + 0.6, cy - 2.4, cz - 0.05), rot(80))
-    M('MK_PROP_Log', (cx - 1.6, cy - 1.2, cz - 0.05), rot(20))
-    M('MK_LORE_lore_rabbits', (cx + 2.8, cy + 2.2, cz + 0.62), S)
-    M('MK_ITEM_food_can', (cx + 2.6, cy + 2.0, cz + 0.65), S)
+    M('MK_PROP_Log', (cx + 0.5, cy - 2.15, T.h(cx + 0.5, cy - 2.15) - 0.05), rot(-8))     # seat log clear of the fire ring
+    M('MK_PROP_Log', (cx - 1.75, cy - 0.3, T.h(cx - 1.75, cy - 0.3) - 0.05), rot(95))
+    M('MK_LORE_lore_rabbits', (cx + 2.85, cy + 2.25, cz + 0.61 + 0.006), S)   # on the crate top
+    M('MK_ITEM_food_can', (cx + 2.6, cy + 2.05, cz + 0.61 + 0.065), S)
     M('MK_PROP_WarningBoard', (cx - 5, cy - 4, T.h(cx - 5, cy - 4) - 0.1), rot(160))
 
     # ---------------- the Clearing (rabbits — and maybe not only rabbits)
@@ -382,7 +540,7 @@ def build(out_dir):
     M('MK_LORE_lore_tall', (cx + 1.0, cy - 0.6, cz + 0.05), S)
     M('MK_LORE_lore_children', (cx - 1.2, cy + 1.0, cz + 0.05), S)
     M('MK_ITEM_glowstick', (cx + 0.8, cy + 1.4, cz + 0.05), S)
-    M('MK_ITEM_medkit', (cx + 12.3, cy + 11.3, T.h(cx + 12, cy + 11) + 6.0), S)  # reward on the tower platform
+    M('MK_ITEM_medkit', (cx + 12.3, cy + 11.3, T.h(cx + 12, cy + 11) - 0.1 + 4.2 + 0.205), S)  # reward on the tower platform (deck top 4.2, tin hangs 0.2 under its handle)
     # a scramble route up the escarpment near the trail (rocks as steps)
     for k, (x, y) in enumerate([(-14, 150), (-15.5, 152), (-17, 154)]):
         M('MK_PROP_Rock_E', (x, y, T.h(x, y) - 0.3 + k * 0.6), rot(k * 50), scale=1.2)
@@ -396,7 +554,7 @@ def build(out_dir):
     M('MK_PROP_Boulder_Large', (gx - 6.5, gy - 3.0, gz - 0.4), rot(140))
     M('MK_ORE_Shallow', (gx + 0.5, gy + 2.0, gz - 0.05), S)
     M('MK_ORE_Mid', (gx - 1.5, gy + 1.0, gz - 0.05), rot(40))
-    M('MK_LORE_lore_borer', (gx + 1.2, gy - 0.5, gz + 0.05), S)
+    M('MK_LORE_lore_borer', (gx + 1.2, gy - 0.5, T.h(gx + 1.2, gy - 0.5) + 0.006), S)
 
     # ---------------- landmarks: gnarled giants
     for (x, y) in ((-20, 146), (58, 108), (-100, 60), (95, 210)):
@@ -405,8 +563,11 @@ def build(out_dir):
     # ---------------- mine apron
     mz = MINE_Z
     M('MK_PROP_MineEntrance', (MINE_X, 235.3, mz), S)
-    for y in np.arange(214, 235, 2.0):
-        M('MK_PROP_Rail_Straight', (MINE_X + 0.6, float(y), T.h(MINE_X, float(y)) - 0.02), N)
+    # rails on the mine's centre line; each piece runs 2 m north of its pivot and the last ends at y 235.5, exactly
+    # where the mine level's first rail starts (no overlap, no gap)
+    for y in np.arange(213.5, 234.0, 2.0):
+        M('MK_PROP_Rail_Straight', (MINE_X, float(y), T.h(MINE_X, float(y)) - 0.02), N)
+    portal_headwall(geo_c, T)
     M('MK_PROP_Minecart_Abandoned', (MINE_X - 5, 222, T.h(MINE_X - 5, 222) - 0.05), rot(110))
     M('MK_PROP_ToolPile', (MINE_X + 5, 226, mz), rot(200))
     M('MK_PROP_Crate_Mine', (MINE_X + 4.5, 229.5, mz), rot(10))

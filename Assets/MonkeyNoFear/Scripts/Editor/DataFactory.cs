@@ -202,25 +202,31 @@ namespace MonkeyNoFear.EditorTools
 
         static void BuildAtmospheres()
         {
-            A(AreaId.Bunker, "Bunker 7", 0, new Color(0.05f, 0.05f, 0.055f), 0.012f, new Color(0.17f, 0.16f, 0.15f), new Color(0.1f, 0.1f, 0.1f), new Color(0.05f, 0.05f, 0.05f), 0f, 60f,
+            // Art direction: readable colour (teal forest fog, teal-to-violet mine), a bright clean safe bunker and
+            // fog that leaves landmarks usable (forest: ~60 m to 8 % visibility). Darkness comes from lights, not fog.
+            A(AreaId.Bunker, "Bunker 7", 0, new Color(0.6f, 0.64f, 0.68f), 0.006f, new Color(0.62f, 0.64f, 0.68f), new Color(0.42f, 0.43f, 0.45f), new Color(0.22f, 0.22f, 0.23f), 0f, 60f,
               new[] { "amb_bunker_bed" }, new string[0], AudioReverbPreset.Room, 0f, true);
-            A(AreaId.Corridor, "Exit Corridor", 0, new Color(0.045f, 0.045f, 0.05f), 0.02f, new Color(0.1f, 0.1f, 0.1f), new Color(0.06f, 0.06f, 0.06f), new Color(0.03f, 0.03f, 0.03f), 0f, 70f,
+            A(AreaId.Corridor, "Exit Corridor", 0, new Color(0.25f, 0.27f, 0.29f), 0.012f, new Color(0.36f, 0.37f, 0.4f), new Color(0.24f, 0.24f, 0.26f), new Color(0.12f, 0.12f, 0.13f), 0f, 70f,
               new[] { "amb_bunker_bed" }, new string[0], AudioReverbPreset.Hallway, 0f, true);
-            A(AreaId.Forest, "Haunted Forest", 0, new Color(0.075f, 0.085f, 0.095f), 0.055f, new Color(0.085f, 0.095f, 0.115f), new Color(0.05f, 0.055f, 0.06f), new Color(0.025f, 0.025f, 0.025f), 1f, 110f,
+            A(AreaId.Forest, "Haunted Forest", 0, new Color(0.21f, 0.33f, 0.32f), 0.026f, new Color(0.3f, 0.42f, 0.42f), new Color(0.2f, 0.28f, 0.27f), new Color(0.1f, 0.12f, 0.1f), 1f, 110f,
               new[] { "amb_forest_bed" }, new[] { "amb_forest_insects_loop" }, AudioReverbPreset.Forest, 1f, false);
-            A(AreaId.MineShallow, "Mine - Level 1", 1, new Color(0.03f, 0.028f, 0.026f), 0.035f, new Color(0.055f, 0.05f, 0.045f), new Color(0.035f, 0.032f, 0.03f), new Color(0.02f, 0.02f, 0.02f), 0f, 75f,
+            A(AreaId.MineShallow, "Mine - Level 1", 1, new Color(0.05f, 0.1f, 0.1f), 0.03f, new Color(0.2f, 0.32f, 0.32f), new Color(0.13f, 0.2f, 0.2f), new Color(0.06f, 0.09f, 0.09f), 0f, 75f,
               new[] { "amb_mine_bed" }, new string[0], AudioReverbPreset.Cave, 1.1f, false);
-            A(AreaId.MineMid, "Mine - Level 2", 2, new Color(0.025f, 0.024f, 0.024f), 0.04f, new Color(0.04f, 0.038f, 0.036f), new Color(0.026f, 0.025f, 0.024f), new Color(0.015f, 0.015f, 0.015f), 0f, 70f,
+            A(AreaId.MineMid, "Mine - Level 2", 2, new Color(0.04f, 0.08f, 0.085f), 0.034f, new Color(0.15f, 0.25f, 0.26f), new Color(0.1f, 0.15f, 0.16f), new Color(0.05f, 0.06f, 0.06f), 0f, 70f,
               new[] { "amb_mine_bed" }, new string[0], AudioReverbPreset.Cave, 1.2f, false);
-            A(AreaId.MineDeep, "Mine - Level 3", 3, new Color(0.03f, 0.024f, 0.036f), 0.045f, new Color(0.03f, 0.026f, 0.034f), new Color(0.02f, 0.018f, 0.022f), new Color(0.01f, 0.01f, 0.012f), 0f, 70f,
+            A(AreaId.MineDeep, "Mine - Level 3", 3, new Color(0.05f, 0.05f, 0.08f), 0.038f, new Color(0.1f, 0.12f, 0.18f), new Color(0.06f, 0.07f, 0.1f), new Color(0.03f, 0.03f, 0.04f), 0f, 70f,
               new[] { "amb_mine_deep_bed" }, new string[0], AudioReverbPreset.Cave, 1.35f, false);
         }
+
+        // fog densities of the first-pass profiles: an asset still carrying one of these was never hand-tuned
+        static readonly float[] LegacyFogDensities = { 0.012f, 0.02f, 0.055f, 0.035f, 0.04f, 0.045f };
 
         static void A(AreaId id, string name, int depth, Color fog, float density, Color sky, Color eq, Color ground, float moon, float far,
             string[] beds, string[] life, AudioReverbPreset reverb, float drain, bool safe)
         {
             var p = Asset<AtmosphereProfile>($"{Atmos}/Atmosphere_{id}.asset", out bool fresh);
-            if (fresh)
+            bool legacy = !fresh && System.Array.IndexOf(LegacyFogDensities, p.fogDensity) >= 0 && p.fogColor.r < 0.1f;
+            if (fresh || legacy)
             {
                 p.area = id; p.displayName = name; p.depthLevel = depth; p.fogColor = fog; p.fogDensity = density;
                 p.ambientSky = sky; p.ambientEquator = eq; p.ambientGround = ground; p.moonIntensity = moon; p.farClip = far;
