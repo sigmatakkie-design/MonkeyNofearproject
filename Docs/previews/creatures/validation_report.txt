@@ -1,0 +1,107 @@
+MONKEY NO FEAR creature FBX validation (re-imported into an empty scene)
+
+Hollowback  (Hollowback.fbx)
+  tris 7910   bones 22   materials ['MNF_EyeClouded', 'MNF_EyeWet', 'MNF_FurRotten', 'MNF_Gums', 'MNF_Nails', 'MNF_SkinDecayed', 'MNF_Teeth']
+  height 2.35  length 1.14  eye_height 2.00  head_rest [0.0, -0.52, 1.99]
+    alert       24 f  0.800 s  loop=False speed=-    events={}
+    attack      36 f  1.200 s  loop=False speed=-    events={"hit": [22]}
+    follow      33 f  1.100 s  loop=True  speed=1.4  events={"step": [0, 16]} loop-delta 0.0000
+    idle       120 f  4.000 s  loop=True  speed=0.0  events={} loop-delta 0.0000
+    inspect     90 f  3.000 s  loop=True  speed=0.0  events={} loop-delta 0.0000
+    listen      90 f  3.000 s  loop=True  speed=0.0  events={} loop-delta 0.0000
+    run         18 f  0.600 s  loop=True  speed=5.5  events={"slap": [7, 10]} loop-delta 0.0000
+    stagger     30 f  1.000 s  loop=False speed=-    events={}
+    walk        48 f  1.600 s  loop=True  speed=0.7  events={"step": [0, 24]} loop-delta 0.0000
+  RESULT: OK
+
+Rabbit  (Rabbit.fbx)
+  tris 4700   bones 23   materials ['MNF_EyeWet', 'MNF_Flesh', 'MNF_FurRabbit']
+  height 0.29  length 0.39  eye_height 0.17  head_rest [0.0, -0.128, 0.152]
+    alert       60 f  2.000 s  loop=True  speed=0.0  events={} loop-delta 0.0000
+    blink        8 f  0.267 s  loop=False speed=-    events={}
+    death       24 f  0.800 s  loop=False speed=-    events={}
+    graze       75 f  2.500 s  loop=True  speed=0.0  events={} loop-delta 0.0000
+    hop         14 f  0.467 s  loop=True  speed=1.6  events={"land": [7], "pushoff": [0]} loop-delta 0.0000
+    idle        90 f  3.000 s  loop=True  speed=0.0  events={} loop-delta 0.0000
+    run         10 f  0.333 s  loop=True  speed=6.0  events={"land": [4]} loop-delta 0.0000
+  RESULT: OK
+
+Falsekin  (Falsekin.fbx)
+  tris 7420   bones 25   materials ['MNF_EyeWet', 'MNF_Flesh', 'MNF_FurRabbitMangy', 'MNF_SkinDecayed', 'MNF_Teeth']
+  height 1.47  length 0.76  eye_height 1.23  head_rest [0.0, -0.22, 1.18]
+    death       30 f  1.000 s  loop=False speed=-    events={}
+    folded      60 f  2.000 s  loop=True  speed=0.0  events={} loop-delta 0.0000
+    idle        60 f  2.000 s  loop=True  speed=0.0  events={} loop-delta 0.0000
+    lunge       24 f  0.800 s  loop=False speed=-    events={"hit": [14]}
+    retreat     18 f  0.600 s  loop=True  speed=3.0  events={} loop-delta 0.0000
+    run         12 f  0.400 s  loop=True  speed=7.0  events={} loop-delta 0.0000
+    unfold      27 f  0.900 s  loop=False speed=-    events={}
+  RESULT: OK
+
+CeilingClerk  (CeilingClerk.fbx)
+  tris 7900   bones 21   materials ['MNF_EyeGlint', 'MNF_FurDark', 'MNF_Gums', 'MNF_Nails', 'MNF_SkinDecayed', 'MNF_Teeth']
+  height 0.51  length 2.93  eye_height 0.20  head_rest [0.0, -0.92, 0.19]
+    cling       90 f  3.000 s  loop=True  speed=0.0  events={} loop-delta 0.0000
+    crawl       27 f  0.900 s  loop=True  speed=1.2  events={"tap": [0, 14]} loop-delta 0.0000
+    drop        15 f  0.500 s  loop=False speed=-    events={}
+    flee        15 f  0.500 s  loop=True  speed=3.0  events={"tap": [0, 8]} loop-delta 0.0000
+    freeze      30 f  1.000 s  loop=True  speed=0.0  events={} loop-delta 0.0000
+    grab        45 f  1.500 s  loop=True  speed=0.0  events={} loop-delta 0.0000
+    jaw_open    18 f  0.600 s  loop=False speed=-    events={}
+  RESULT: OK
+
+Borer  (Borer.fbx)
+  tris 7340   bones 23   materials ['MNF_EyeWet', 'MNF_Flesh', 'MNF_FurDark', 'MNF_MineralCrust', 'MNF_Nails', 'MNF_SkinDecayed']
+  height 1.80  length 2.79  eye_height 0.95  head_rest [0.0, -1.04, 0.95]
+    attack      42 f  1.400 s  loop=False speed=-    events={"hit": [28]}
+    burrow      60 f  2.000 s  loop=False speed=-    events={}
+    charge      18 f  0.600 s  loop=True  speed=4.5  events={"step": [0, 9]} loop-delta 0.0000
+    emerge      60 f  2.000 s  loop=False speed=-    events={}
+    idle       120 f  4.000 s  loop=True  speed=0.0  events={} loop-delta 0.0000
+    sense       90 f  3.000 s  loop=True  speed=0.0  events={} loop-delta 0.0000
+    stagger     30 f  1.000 s  loop=False speed=-    events={}
+    walk        36 f  1.200 s  loop=True  speed=1.3  events={"step": [0, 18]} loop-delta 0.0000
+  RESULT: OK
+
+LanternMourner  (LanternMourner.fbx)
+  tris 7270   bones 23   materials ['MNF_BulbWarm', 'MNF_EyeWet', 'MNF_Glass', 'MNF_MetalRusted', 'MNF_MournerGlow', 'MNF_MournerSkin', 'MNF_Teeth']
+  height 2.63  length 0.54  eye_height 2.47  head_rest [0.05, -0.19, 2.44]
+    idle       120 f  4.000 s  loop=True  speed=0.0  events={} loop-delta 0.0000
+    reach       48 f  1.600 s  loop=False speed=-    events={"hit": [34]}
+    recoil      30 f  1.000 s  loop=False speed=-    events={}
+    retreat     40 f  1.333 s  loop=True  speed=1.2  events={} loop-delta 0.0000
+    turn_head   45 f  1.500 s  loop=False speed=-    events={}
+    walk        60 f  2.000 s  loop=True  speed=0.9  events={"step": [0, 30]} loop-delta 0.0000
+  RESULT: OK
+
+Gaunt  (Gaunt.fbx)
+  tris 3728   bones 21   materials ['MNF_EyeGlint', 'MNF_FurDark', 'MNF_SkinDecayed']
+  height 13.93  length 3.36  eye_height 13.24  head_rest [0.0, -1.4715, 13.6795]
+    look_up    120 f  4.000 s  loop=False speed=-    events={}
+    stand      180 f  6.000 s  loop=True  speed=0.0  events={} loop-delta 0.0000
+    walk       120 f  4.000 s  loop=True  speed=1.0  events={"step": [0, 60]} loop-delta 0.0000
+  RESULT: OK
+
+Boar  (Boar.fbx)
+  tris 6556   bones 21   materials ['MNF_EyeWet', 'MNF_Flesh', 'MNF_FurBoar', 'MNF_Teeth']
+  height 0.79  length 1.30  eye_height 0.50  head_rest [0.0, -0.47, 0.49]
+    alert       60 f  2.000 s  loop=True  speed=0.0  events={} loop-delta 0.0000
+    charge      10 f  0.333 s  loop=True  speed=7.0  events={} loop-delta 0.0000
+    death       30 f  1.000 s  loop=False speed=-    events={}
+    graze       90 f  3.000 s  loop=True  speed=0.0  events={} loop-delta 0.0000
+    idle        90 f  3.000 s  loop=True  speed=0.0  events={} loop-delta 0.0000
+    run         11 f  0.367 s  loop=True  speed=6.5  events={} loop-delta 0.0000
+    walk        18 f  0.600 s  loop=True  speed=1.0  events={"step": [0, 9]} loop-delta 0.0000
+  RESULT: OK
+
+Gloomrat  (Gloomrat.fbx)
+  tris 3776   bones 22   materials ['MNF_EyeGlint', 'MNF_Flesh', 'MNF_FurDark']
+  height 0.08  length 0.40  eye_height 0.05  head_rest [0.0, -0.098, 0.05]
+  extra bones (beyond brief list): ['tail.01', 'tail.02', 'tail.03']
+    hide        15 f  0.500 s  loop=False speed=-    events={}
+    idle        90 f  3.000 s  loop=True  speed=0.0  events={} loop-delta 0.0000
+    peek        60 f  2.000 s  loop=False speed=-    events={}
+    run          6 f  0.200 s  loop=True  speed=4.0  events={} loop-delta 0.0000
+  RESULT: OK
+
+VALIDATION PASSED (0 problems)

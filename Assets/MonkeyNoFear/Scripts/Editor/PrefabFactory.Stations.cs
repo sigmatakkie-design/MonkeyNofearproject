@@ -57,16 +57,25 @@ namespace MonkeyNoFear.EditorTools
             // wall-mounted kit buttons face Unity +Z; console buttons face +Y
             var visRot = wallMounted ? Quaternion.Euler(-90f, 0f, 0f) : Quaternion.identity;
             var bodyGo = KitLibrary.Copy(body);
-            if (bodyGo) { bodyGo.transform.SetParent(b.transform, false); bodyGo.transform.localRotation = visRot; }
+            Vector3 capAt = Vector3.zero;
+            if (bodyGo)
+            {
+                bodyGo.transform.SetParent(b.transform, false);
+                bodyGo.transform.localRotation = visRot;
+                var sock = KitLibrary.FindDeep(bodyGo.transform, "SOCKET_Cap");
+                if (sock) capAt = b.transform.InverseTransformPoint(sock.position);
+            }
             var capGo = KitLibrary.Copy(cap);
             if (!capGo)
             {
                 capGo = Primitive(PrimitiveType.Cylinder, "Cap", b.transform, Vector3.up * 0.012f, new Vector3(radius * 1.6f, 0.012f, radius * 1.6f), command == "close" || command == "sell" ? "MNF_BulbRed" : "MNF_Plastic_Yellow");
                 Object.DestroyImmediate(capGo.GetComponent<Collider>());
             }
-            else { capGo.transform.SetParent(b.transform, false); capGo.transform.localRotation = visRot; }
+            else { capGo.transform.SetParent(b.transform, false); capGo.transform.localRotation = visRot; capGo.transform.localPosition = capAt; }
             var pb = b.AddComponent<PokeButton>();
             pb.receiver = receiver; pb.command = command; pb.cap = capGo.transform; pb.radius = radius; pb.travel = 0.018f;
+            pb.capHeight = body == "BigButton_Body" ? 0.048f : body == "TerminalButton_Body" ? 0.022f : 0.012f;
+            if (body == "TerminalButton_Body") pb.travel = 0.008f;
             pb.indicator = capGo.GetComponentInChildren<Renderer>();
             if (!string.IsNullOrEmpty(label))
             {
@@ -103,13 +112,15 @@ namespace MonkeyNoFear.EditorTools
             var ts = screenGo.AddComponent<TerminalScreen>();
             ts.width = 0.38f; ts.height = 0.29f; ts.rows = 16;
             term.screen = ts;
-            // keypad in front of the monitor
+            // keypad: a flat steel plate on the console front at waist height
+            var plate = Primitive(PrimitiveType.Cube, "KeypadPlate", root.transform, new Vector3(0f, 0.94f, 0.36f), new Vector3(0.78f, 0.04f, 0.26f), "MNF_MetalPainted_Gray");
+            plate.layer = Layers.Environment;
             string[] cmds = { "prev", "next", "up", "down", "select", "back" };
             string[] labels = { "<PAGE", "PAGE>", "UP", "DOWN", "SELECT", "BACK" };
             for (int i = 0; i < cmds.Length; i++)
             {
                 float x = -0.3f + i * 0.12f;
-                MakeButton(root.transform, "Key_" + cmds[i], new Vector3(x, 0.03f, 0.3f), Vector3.up, "TerminalButton_Body", "TerminalButton_Cap", term, cmds[i], labels[i], 0.04f);
+                MakeButton(root.transform, "Key_" + cmds[i], new Vector3(x, 0.96f, 0.34f), Vector3.up, "TerminalButton_Body", "TerminalButton_Cap", term, cmds[i], labels[i], 0.04f, true);
             }
             Save(root, StationsDir, "Station_Terminal");
         }
@@ -133,12 +144,9 @@ namespace MonkeyNoFear.EditorTools
                 front = root.transform.InverseTransformDirection(screenQuad.TransformDirection(n));
             }
             else st.screen = AddText(root.transform, "Readout", new Vector3(0f, 1.35f, 0.42f), Quaternion.Euler(0, 180, 0), 0.016f, TextAnchor.MiddleCenter, new Color(0.6f, 1f, 0.6f));
-            front.y = 0f; if (front.sqrMagnitude < 0.01f) front = Vector3.forward; front.Normalize();
-            var b = KitLibrary.RenderBounds(root);
-            float frontDist = Vector3.Dot(b.extents, new Vector3(Mathf.Abs(front.x), 0, Mathf.Abs(front.z))) + 0.01f;
-            var right = Vector3.Cross(Vector3.up, front);
-            MakeButton(root.transform, "Btn_Sell", front * frontDist + Vector3.up * 1.0f - right * 0.18f, front, "BigButton_Body", "BigButton_Cap", st, "sell", "SELL", 0.055f, true);
-            MakeButton(root.transform, "Btn_SellPack", front * frontDist + Vector3.up * 1.0f + right * 0.18f, front, "BigButton_Body", "BigButton_Cap", st, "sellpack", "SELL PACK", 0.055f, true);
+            // buttons on the front of the cabinet, below the hopper (cabinet front is at +0.505 m)
+            MakeButton(root.transform, "Btn_Sell", new Vector3(-0.3f, 0.62f, 0.51f), Vector3.forward, "BigButton_Body", "BigButton_Cap", st, "sell", "SELL", 0.055f, true);
+            MakeButton(root.transform, "Btn_SellPack", new Vector3(0.3f, 0.62f, 0.51f), Vector3.forward, "BigButton_Body", "BigButton_Cap", st, "sellpack", "SELL PACK", 0.055f, true);
             Save(root, StationsDir, "Station_SellMachine");
         }
 
@@ -168,7 +176,7 @@ namespace MonkeyNoFear.EditorTools
                 h.transform.localPosition = s ? root.transform.InverseTransformPoint(s.position) : new Vector3(-0.85f + i * 0.34f, 1.1f, 0.12f);
                 h.acceptAnyItem = true;
                 h.radius = 0.22f;
-                h.itemLocalEuler = new Vector3(-90f, 0f, 0f); // tool head up, handle hanging down
+                h.itemLocalEuler = new Vector3(0f, 90f, 0f); // tools rest horizontally across the forks
                 rack.sockets.Add(h);
             }
             Save(root, StationsDir, "Station_ToolRack");
@@ -249,23 +257,24 @@ namespace MonkeyNoFear.EditorTools
             gate.beaconRotors = rotors.ToArray();
             gate.statusLamps = lamps.ToArray();
 
-            // button panels: inside (-Z, bunker side) and outside (+Z, corridor side)
+            // button panels: inside on the bunker wall east of the gate (facing -Z, into the hall), outside on
+            // the corridor's west wall just past the gate (facing +X, into the corridor)
             var openB = new List<PokeButton>(); var closeB = new List<PokeButton>();
-            foreach (int side in new[] { -1, 1 })
+            var panels = new[] { (pos: new Vector3(2.35f, 1.25f, -0.18f), dir: Vector3.back, size: new Vector3(0.45f, 0.6f, 0.05f), name: "PanelInside"),
+                                 (pos: new Vector3(-1.98f, 1.25f, 1.4f), dir: Vector3.right, size: new Vector3(0.05f, 0.6f, 0.45f), name: "PanelOutside") };
+            foreach (var pn in panels)
             {
-                var panel = Primitive(PrimitiveType.Cube, side < 0 ? "PanelInside" : "PanelOutside", root.transform,
-                    new Vector3(2.35f * -side, 1.25f, 0.33f * side), new Vector3(0.45f, 0.6f, 0.06f), "MNF_MetalPainted_Yellow");
+                var panel = Primitive(PrimitiveType.Cube, pn.name, root.transform, pn.pos, pn.size, "MNF_MetalPainted_Yellow");
                 panel.layer = Layers.Environment;
-                var outDir = new Vector3(0f, 0f, side);
-                var basePos = panel.transform.localPosition + outDir * 0.035f;
-                openB.Add(MakeButton(root.transform, "Open" + side, basePos + Vector3.up * 0.12f, outDir, "BigButton_Body", "BigButton_Cap", gate, "open", "OPEN", 0.06f, true));
-                closeB.Add(MakeButton(root.transform, "Close" + side, basePos - Vector3.up * 0.14f, outDir, "BigButton_Body", "BigButton_Cap", gate, "close", "CLOSE", 0.06f, true));
+                var basePos = pn.pos + pn.dir * 0.03f;
+                openB.Add(MakeButton(root.transform, "Open_" + pn.name, basePos + Vector3.up * 0.13f, pn.dir, "BigButton_Body", "BigButton_Cap", gate, "open", "OPEN", 0.06f, true));
+                closeB.Add(MakeButton(root.transform, "Close_" + pn.name, basePos - Vector3.up * 0.15f, pn.dir, "BigButton_Body", "BigButton_Cap", gate, "close", "CLOSE", 0.06f, true));
             }
             gate.openButtons = openB.ToArray();
             gate.closeButtons = closeB.ToArray();
 
             // manual override lever on the inside wall
-            MakeLever(root.transform, new Vector3(-2.35f, 1.3f, -0.36f), Vector3.back, gate, "override", "override", "MANUAL\nOVERRIDE");
+            MakeLever(root.transform, new Vector3(-2.35f, 1.3f, -0.15f), Vector3.back, gate, "override", "override", "MANUAL\nOVERRIDE");
             Layers.SetLayerRecursive(barsRoot, Layers.Environment);
             if (frame) Layers.SetLayerRecursive(frame, Layers.Environment);
             Save(root, StationsDir, "Station_Gate");
@@ -282,16 +291,22 @@ namespace MonkeyNoFear.EditorTools
             else Primitive(PrimitiveType.Cube, "Base", root.transform, Vector3.zero, new Vector3(0.18f, 0.3f, 0.06f), "MNF_MetalPainted_Red");
             var hinge = new GameObject("Hinge").transform;
             hinge.SetParent(root.transform, false);
-            hinge.localPosition = new Vector3(0f, 0f, 0.05f);
+            var sock = baseGo ? KitLibrary.FindDeep(baseGo.transform, "SOCKET_Handle") : null;
+            hinge.localPosition = sock ? root.transform.InverseTransformPoint(sock.position) : new Vector3(0f, 0f, 0.07f);
+            // the handle is authored pointing straight out of the wall (+Z); it pivots about X
             var handle = KitLibrary.Copy("Lever_Handle");
-            if (handle) { handle.transform.SetParent(hinge, false); handle.transform.localPosition = new Vector3(0f, 0f, -0.05f); }
-            else Primitive(PrimitiveType.Cylinder, "Handle", hinge, new Vector3(0f, 0.15f, 0f), new Vector3(0.04f, 0.15f, 0.04f), "MNF_Rubber");
+            if (handle) handle.transform.SetParent(hinge, false);
+            else { var h = Primitive(PrimitiveType.Cylinder, "Handle", hinge, new Vector3(0f, 0f, 0.17f), new Vector3(0.04f, 0.17f, 0.04f), "MNF_Rubber"); h.transform.localRotation = Quaternion.Euler(90f, 0f, 0f); }
             foreach (var c in root.GetComponentsInChildren<Collider>(true)) Object.DestroyImmediate(c);
-            var grabCol = hinge.gameObject.AddComponent<BoxCollider>();
-            grabCol.center = new Vector3(0f, 0.18f, 0f); grabCol.size = new Vector3(0.12f, 0.3f, 0.12f); grabCol.isTrigger = true;
+            // grab volume follows the handle (child of the hinge), covering the T-grip end
+            var grip = new GameObject("GripVolume");
+            grip.transform.SetParent(hinge, false);
+            var grabCol = grip.AddComponent<BoxCollider>();
+            grabCol.center = new Vector3(0f, 0f, 0.26f); grabCol.size = new Vector3(0.16f, 0.12f, 0.24f); grabCol.isTrigger = true;
             var lever = hinge.gameObject.AddComponent<PhysicalLever>();
             lever.receiver = receiver; lever.commandDown = cmdDown; lever.commandUp = cmdUp; lever.hinge = hinge;
-            lever.minAngle = -50f; lever.maxAngle = 50f; lever.restAngle = -50f; lever.springReturn = true;
+            // hand angle from straight up (0) toward the front (+90): handle starts raised, pull it down
+            lever.minAngle = 40f; lever.maxAngle = 140f; lever.restAngle = 40f; lever.visualAngleOffset = -90f; lever.springReturn = true;
             if (!string.IsNullOrEmpty(label))
                 AddText(root.transform, "Label", new Vector3(0f, 0.32f, 0.04f), Quaternion.Euler(0f, 180f, 0f), 0.022f, TextAnchor.LowerCenter, new Color(1f, 0.85f, 0.4f), label);
             Layers.SetLayerRecursive(root, Layers.Interactable);

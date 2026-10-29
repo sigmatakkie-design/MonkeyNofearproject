@@ -8,7 +8,7 @@ Flashlight                   1362   1500  ok         Bulb, LIGHT
 Headlamp                     1164   1500  ok         Bulb, LIGHT
 Glowstick                     704   1500  ok         
 Flare                         376   1500  ok         TIP
-Noisemaker                   1266   1500  ok         
+Noisemaker                   1274   1500  ok         
 Scanner                      1454   1500  ok         Lamp, Screen
 RopeCoil                     1448   1500  ok         TIP
 Medkit                        616   1500  ok         
@@ -17,7 +17,7 @@ Backpack                     1428   1500  ok
 Battery                       718   1500  ok         
 FoodCan                      1068   1500  ok         
 RabbitMeat                    420   1500  ok         
-BoarMeat                      888   1500  ok         
+BoarMeat                      920   1500  ok         
 FalsekinGland                1296   1500  ok         
 LoreTape                      496   1500  ok         
 MinerTag                      504   1500  ok         

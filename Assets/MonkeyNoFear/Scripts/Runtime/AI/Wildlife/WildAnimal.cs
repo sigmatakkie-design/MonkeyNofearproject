@@ -56,8 +56,11 @@ namespace MonkeyNoFear.AI.Wildlife
             var st = animator.anim["blink"];
             st.layer = 1;
             st.wrapMode = WrapMode.Once;
+            bool masked = false;
             foreach (var t in GetComponentsInChildren<Transform>(true))
-                if (t.name.StartsWith("eyelid")) st.AddMixingTransform(t, true);
+                if (t.name.StartsWith("eyelid")) { st.AddMixingTransform(t, true); masked = true; }
+            // the clip carries every bone: unmasked it would snap the whole body to rest, so skip blinking
+            if (!masked) blinkRate = 0f;
         }
 
         protected override float ThreatLevel(float d) => _s == S.Charge && d < 15f ? 0.7f : 0f;

@@ -2,13 +2,13 @@
 Kit_Forest  (/home/user/MonkeyNoFear/Assets/MonkeyNoFear/Art/Models/Props/Kit_Forest.fbx, 4.9 MB)
 ====================================================================================================
 object                   tris budget size xyz (m)                 materials              children / helpers
-Tree_Pine_A              2892   4000 9.08 x 8.92 x 15.38          BarkPine,FoliagePine   COL_Trunk
-Tree_Pine_B              2656   4000 9.34 x 8.83 x 17.89          BarkPine,FoliagePine   COL_Trunk
-Tree_Pine_C              2784   4000 8.71 x 8.23 x 12.84          BarkPine,FoliagePine   COL_Trunk
-Tree_Dead_A              2999   4000 8.78 x 9.60 x 11.04          BarkDead               COL_Trunk
-Tree_Dead_B              2794   4000 5.83 x 9.22 x 8.38           BarkDead               COL_Trunk
-Tree_Dead_C              1878   4000 6.51 x 7.47 x 8.60           BarkDead,WoodRotten    COL_Trunk
-Tree_Gnarled             3867   4000 7.73 x 9.07 x 9.99           BarkDead,FoliageLeaf,W COL_Trunk
+Tree_Pine_A              2892   4000 8.94 x 8.74 x 15.37          BarkPine,FoliagePine   COL_Trunk
+Tree_Pine_B              2656   4000 9.18 x 8.70 x 17.90          BarkPine,FoliagePine   COL_Trunk
+Tree_Pine_C              2784   4000 8.73 x 8.23 x 12.81          BarkPine,FoliagePine   COL_Trunk
+Tree_Dead_A              2999   4000 11.25 x 6.72 x 10.63         BarkDead               COL_Trunk
+Tree_Dead_B              2794   4000 6.93 x 9.53 x 9.17           BarkDead               COL_Trunk
+Tree_Dead_C              1878   4000 7.82 x 7.85 x 9.03           BarkDead,WoodRotten    COL_Trunk
+Tree_Gnarled             3867   4000 7.75 x 10.41 x 9.32          BarkDead,FoliageLeaf,W COL_Trunk
 Rock_A                    128   1500 0.62 x 0.50 x 0.43           RockDry                COL_Rock_CONVEX
 Rock_B                    512   1500 1.19 x 0.87 x 0.60           Moss,RockDry           COL_Rock_CONVEX
 Rock_C                    512   1500 0.85 x 0.94 x 1.70           Moss,RockDry           COL_Rock_CONVEX
@@ -20,7 +20,7 @@ CliffChunk_B             3872   5000 6.36 x 4.42 x 13.03          Moss,RockDry_T
 MineEntrance             4402   5000 11.00 x 7.56 x 5.19          MetalBare,MetalRusted, Board COL_Ceiling COL_Floor COL_Header COL_Post_L COL_Post_R COL_RocksL_CONVEX COL_RocksR_CONVEX COL_RocksTop_CONVEX COL_Wall_L COL_Wall_R
 Stump                     440   1500 2.48 x 2.51 x 0.94           BarkPine,Gums,Teeth,Wo COL_Stump
 Log                       248   1500 3.29 x 0.65 x 0.57           BarkPine,Gums,Moss,Tee COL_Log
-FallenTree               1115   5000 13.75 x 5.27 x 2.52          BarkDead,BarkPine,Moss COL_Log COL_RootPlate
+FallenTree               1115   5000 13.80 x 5.05 x 2.78          BarkDead,BarkPine,Moss COL_Log COL_RootPlate
 Bush_A                    324   1500 2.73 x 2.38 x 1.56           BarkDead,FoliageLeaf   
 Bush_B                    220   1500 1.95 x 1.80 x 1.14           BarkDead,FoliageLeaf   
 Fern                       32   1500 1.28 x 1.39 x 0.69           Fern                   
@@ -37,9 +37,9 @@ Cabin_Ruin               4076   5000 6.36 x 6.18 x 3.55           Fern,Grass,Woo
 Watchtower               2688   5000 3.06 x 3.65 x 6.76           WoodBeam,WoodHandle,Wo COL_Ladder COL_Platform COL_Post_0 COL_Post_1 COL_Post_2 COL_Post_3 COL_Rail_Back COL_Rail_FrontL COL_Rail_FrontR COL_Rail_Left COL_Rail_Right COL_Roof SOCKET_LadderTop
 Bridge_Broken            2340   5000 2.22 x 10.13 x 4.36          BarkPine,Rope,WoodBeam COL_DeckEnd_A_CONVEX COL_DeckEnd_B_CONVEX COL_Deck_A COL_Deck_B COL_Post_AL COL_Post_AR COL_Post_BL COL_Post_BR
 Minecart_Abandoned       1628   5000 2.91 x 1.93 x 0.99           Grass,MetalBare,MetalR COL_Cart_CONVEX
-Nest                     1724   5000 1.32 x 1.31 x 0.40           BarkDead,ForestFloor,F 
+Nest                     1442   1500 1.29 x 1.27 x 0.38           BarkDead,ForestFloor,F 
 Burrow                    674   1500 1.60 x 1.63 x 0.72           ForestFloor,Grass,Mud  SOCKET_Hole
--> 37 objects, 58829 tris total, 0 error(s)
+-> 37 objects, 58547 tris total, 0 error(s)
 ====================================================================================================
 Kit_Mine  (/home/user/MonkeyNoFear/Assets/MonkeyNoFear/Art/Models/Props/Kit_Mine.fbx, 2.0 MB)
 ====================================================================================================

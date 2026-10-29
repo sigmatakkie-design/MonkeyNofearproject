@@ -1,0 +1,1704 @@
+{
+ "Workbench": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -1.105,
+   -0.6324,
+   0.0
+  ],
+  "bounds_max": [
+   1.105,
+   0.448,
+   2.16
+  ],
+  "bounds_size": [
+   2.21,
+   1.0804,
+   2.16
+  ],
+  "tris": 2926,
+  "materials": [
+   "MNF_WoodPlanks",
+   "MNF_MetalBare",
+   "MNF_MetalPainted_Gray",
+   "MNF_Rubber",
+   "MNF_MetalDiamond",
+   "MNF_MetalPainted_Green",
+   "MNF_MetalPainted_Yellow",
+   "MNF_WoodHandle",
+   "MNF_MetalPainted_Red",
+   "MNF_Plastic_Yellow",
+   "MNF_MetalRusted",
+   "MNF_FabricCanvas"
+  ],
+  "children": [
+   "COL_Pegboard",
+   "COL_Top"
+  ],
+  "helpers": {
+   "COL_Pegboard": [
+    0.0,
+    0.405,
+    1.555
+   ],
+   "COL_Top": [
+    0.0,
+    0.0,
+    0.475
+   ]
+  },
+  "colliders": {
+   "COL_Pegboard": {
+    "min": [
+     -1.07,
+     0.38,
+     0.95
+    ],
+    "max": [
+     1.07,
+     0.43,
+     2.16
+    ]
+   },
+   "COL_Top": {
+    "min": [
+     -1.1,
+     -0.45,
+     0.0
+    ],
+    "max": [
+     1.1,
+     0.45,
+     0.95
+    ]
+   }
+  },
+  "child_pivots": {},
+  "notes": "Heavy steel/wood workbench 2.2 x 0.9 m, top at 0.95 m, pegboard back panel 1.2 m high with painted tool outlines (some empty), vice, drawer, scattered tools."
+ },
+ "Terminal": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.37,
+   -0.3904,
+   0.0
+  ],
+  "bounds_max": [
+   0.37,
+   0.5553,
+   1.54
+  ],
+  "bounds_size": [
+   0.74,
+   0.9457,
+   1.54
+  ],
+  "tris": 2344,
+  "materials": [
+   "MNF_MetalPainted_Gray",
+   "MNF_Rubber",
+   "MNF_Plastic_Black",
+   "MNF_MetalBare",
+   "MNF_Paper",
+   "MNF_Plastic_Gray",
+   "MNF_BulbGreen",
+   "MNF_Screen"
+  ],
+  "children": [
+   "COL_Console",
+   "COL_Monitor",
+   "Screen"
+  ],
+  "helpers": {
+   "COL_Console": [
+    0.0,
+    -0.04,
+    0.475
+   ],
+   "COL_Monitor": [
+    0.0,
+    0.065,
+    1.245
+   ]
+  },
+  "colliders": {
+   "COL_Console": {
+    "min": [
+     -0.36,
+     -0.38,
+     0.0
+    ],
+    "max": [
+     0.36,
+     0.3,
+     0.95
+    ]
+   },
+   "COL_Monitor": {
+    "min": [
+     -0.26,
+     -0.16,
+     0.95
+    ],
+    "max": [
+     0.26,
+     0.29,
+     1.54
+    ]
+   }
+  },
+  "child_pivots": {
+   "Screen": [
+    0.0,
+    -0.161,
+    1.31
+   ]
+  },
+  "notes": "Floor console terminal: steel pedestal with sloped keyboard shelf, CRT (0.52 m bezel) on a steel stand, cables. Child `Screen` = 0.42 x 0.32 m quad facing -Y, pivot at its centre (1.31 m high), UV 0..1."
+ },
+ "TerminalButton_Body": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.035,
+   -0.017,
+   -0.035
+  ],
+  "bounds_max": [
+   0.035,
+   0.0,
+   0.035
+  ],
+  "bounds_size": [
+   0.07,
+   0.017,
+   0.07
+  ],
+  "tris": 210,
+  "materials": [
+   "MNF_Plastic_Black",
+   "MNF_MetalBare"
+  ],
+  "children": [
+   "SOCKET_Cap"
+  ],
+  "helpers": {
+   "SOCKET_Cap": [
+    0.0,
+    -0.006,
+    0.0
+   ]
+  },
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "7 cm square console push-button bezel, console-mounted (pivot at the console surface, -Y out). SOCKET_Cap marks the cap's rest pivot (y=-0.006)."
+ },
+ "TerminalButton_Cap": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.023,
+   -0.0223,
+   -0.023
+  ],
+  "bounds_max": [
+   0.023,
+   0.0,
+   0.023
+  ],
+  "bounds_size": [
+   0.046,
+   0.0223,
+   0.046
+  ],
+  "tris": 108,
+  "materials": [
+   "MNF_Plastic_Yellow"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Button cap 46 mm, pivot at its base; presses along +Y (~8 mm travel) into the body. Place at TerminalButton_Body/SOCKET_Cap."
+ },
+ "BigButton_Body": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.085,
+   -0.116,
+   -0.095
+  ],
+  "bounds_max": [
+   0.085,
+   0.0,
+   0.335
+  ],
+  "bounds_size": [
+   0.17,
+   0.116,
+   0.43
+  ],
+  "tris": 680,
+  "materials": [
+   "MNF_Plastic_Yellow",
+   "MNF_MetalPainted_Gray",
+   "MNF_Hazard",
+   "MNF_Plastic_Black",
+   "MNF_Paper",
+   "MNF_MetalBare"
+  ],
+  "children": [
+   "SOCKET_Cap"
+  ],
+  "helpers": {
+   "SOCKET_Cap": [
+    0.0,
+    -0.094,
+    0.0
+   ]
+  },
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Emergency mushroom button housing (yellow, hazard frame, black guard) with conduit; wall-mounted pivot (-Y out). SOCKET_Cap marks where the cap pivot sits."
+ },
+ "BigButton_Cap": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.037,
+   -0.048,
+   -0.037
+  ],
+  "bounds_max": [
+   0.037,
+   0.0,
+   0.037
+  ],
+  "bounds_size": [
+   0.074,
+   0.048,
+   0.074
+  ],
+  "tris": 192,
+  "materials": [
+   "MNF_MetalPainted_Red"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Red mushroom cap (MNF_MetalPainted_Red - no red plastic in the catalog), pivot at its base, presses along +Y. Place at BigButton_Body/SOCKET_Cap."
+ },
+ "Lever_Base": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.105,
+   -0.122,
+   -0.18
+  ],
+  "bounds_max": [
+   0.105,
+   0.0,
+   0.36
+  ],
+  "bounds_size": [
+   0.21,
+   0.122,
+   0.54
+  ],
+  "tris": 736,
+  "materials": [
+   "MNF_MetalPainted_Gray",
+   "MNF_MetalBare",
+   "MNF_Hazard",
+   "MNF_Paper"
+  ],
+  "children": [
+   "SOCKET_Handle"
+  ],
+  "helpers": {
+   "SOCKET_Handle": [
+    0.0,
+    -0.07,
+    0.0
+   ]
+  },
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Industrial wall lever box (pivot at wall contact, -Y out) with slot, hazard quadrant, ON/OFF plates. SOCKET_Handle = hinge position for Lever_Handle."
+ },
+ "Lever_Handle": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.07,
+   -0.36,
+   -0.0232
+  ],
+  "bounds_max": [
+   0.07,
+   0.0232,
+   0.0232
+  ],
+  "bounds_size": [
+   0.14,
+   0.3832,
+   0.0464
+  ],
+  "tris": 264,
+  "materials": [
+   "MNF_MetalBare",
+   "MNF_MetalPainted_Red",
+   "MNF_Rubber"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Lever handle, pivot at the hinge axle; authored at neutral pointing -Y out of the wall, rotate about X +-45 deg. T-grip (rubber) at 0.34 m."
+ },
+ "SecurityGate_Frame": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -1.86,
+   -0.28,
+   0.0
+  ],
+  "bounds_max": [
+   1.86,
+   0.28,
+   4.3025
+  ],
+  "bounds_size": [
+   3.72,
+   0.56,
+   4.3025
+  ],
+  "tris": 3556,
+  "materials": [
+   "MNF_MetalPainted_Gray",
+   "MNF_Hazard",
+   "MNF_MetalBare",
+   "MNF_MetalPainted_Yellow",
+   "MNF_Plastic_Black",
+   "MNF_MetalPainted_Green",
+   "MNF_Rubber"
+  ],
+  "children": [
+   "COL_Header",
+   "COL_JambL",
+   "COL_JambR",
+   "SOCKET_Bars"
+  ],
+  "helpers": {
+   "COL_Header": [
+    0.0,
+    0.0,
+    3.1
+   ],
+   "COL_JambL": [
+    -1.65,
+    0.0,
+    1.65
+   ],
+   "COL_JambR": [
+    1.65,
+    0.0,
+    1.65
+   ],
+   "SOCKET_Bars": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  "colliders": {
+   "COL_Header": {
+    "min": [
+     -1.8,
+     -0.25,
+     2.8
+    ],
+    "max": [
+     1.8,
+     0.25,
+     3.4
+    ]
+   },
+   "COL_JambL": {
+    "min": [
+     -1.8,
+     -0.2,
+     0.0
+    ],
+    "max": [
+     -1.5,
+     0.2,
+     3.3
+    ]
+   },
+   "COL_JambR": {
+    "min": [
+     1.5,
+     -0.2,
+     0.0
+    ],
+    "max": [
+     1.8,
+     0.2,
+     3.3
+    ]
+   }
+  },
+  "child_pivots": {},
+  "notes": "Heavy steel gate frame for a 3.0 x 2.8 m opening: hazard-striped jambs with guide channels, slotted header, motor housing on top. Pivot at the floor centre of the opening. SOCKET_Bars = closed position of SecurityGate_Bars (slides +Z up through the header slot; ceiling space needed above)."
+ },
+ "SecurityGate_Bars": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -1.54,
+   -0.056,
+   0.0
+  ],
+  "bounds_max": [
+   1.54,
+   0.05,
+   2.8
+  ],
+  "bounds_size": [
+   3.08,
+   0.106,
+   2.8
+  ],
+  "tris": 2256,
+  "materials": [
+   "MNF_MetalPainted_Gray",
+   "MNF_Hazard",
+   "MNF_MetalBare"
+  ],
+  "children": [
+   "COL_Bars"
+  ],
+  "helpers": {
+   "COL_Bars": [
+    0.0,
+    0.0,
+    1.4
+   ]
+  },
+  "colliders": {
+   "COL_Bars": {
+    "min": [
+     -1.54,
+     -0.05,
+     0.0
+    ],
+    "max": [
+     1.54,
+     0.05,
+     2.8
+    ]
+   }
+  },
+  "child_pivots": {},
+  "notes": "Moving barred gate 3.0 x 2.8 m: 15 thick bars, paired braces, heavy hazard-striped bottom rail. Pivot at the bottom centre; slides upward (+Z). COL_Bars box."
+ },
+ "WarningBeacon": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.0808,
+   -0.2408,
+   -0.1
+  ],
+  "bounds_max": [
+   0.0808,
+   0.0,
+   0.1878
+  ],
+  "bounds_size": [
+   0.1616,
+   0.2408,
+   0.2878
+  ],
+  "tris": 1240,
+  "materials": [
+   "MNF_MetalPainted_Gray",
+   "MNF_MetalBare",
+   "MNF_Plastic_Black",
+   "MNF_Rubber",
+   "MNF_BulbRed"
+  ],
+  "children": [
+   "Lamp"
+  ],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {
+   "Lamp": [
+    0.0,
+    -0.16,
+    0.055
+   ]
+  },
+  "notes": "Rotating amber/red beacon on a wall bracket with wire cage. Child `Lamp` (MNF_BulbRed dome + reflector vane) pivots at the dome base for rotation about Z. Wall pivot, -Y out."
+ },
+ "FluorescentFixture": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.637,
+   -0.09,
+   -0.2298
+  ],
+  "bounds_max": [
+   0.627,
+   0.09,
+   0.0
+  ],
+  "bounds_size": [
+   1.264,
+   0.18,
+   0.2298
+  ],
+  "tris": 1440,
+  "materials": [
+   "MNF_MetalPainted_Gray",
+   "MNF_MetalBare",
+   "MNF_Plastic_Gray",
+   "MNF_Rubber",
+   "MNF_BulbCold"
+  ],
+  "children": [
+   "Tube"
+  ],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {
+   "Tube": [
+    0.0,
+    0.0,
+    -0.195
+   ]
+  },
+  "notes": "1.25 m twin-tube fluorescent fixture hanging on short chains; ceiling mount, pivot at the top contact. Child `Tube` (both MNF_BulbCold tubes) pivoted at the tube centre."
+ },
+ "CageLamp": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.078,
+   -0.18,
+   -0.076
+  ],
+  "bounds_max": [
+   0.078,
+   0.0,
+   0.4
+  ],
+  "bounds_size": [
+   0.156,
+   0.18,
+   0.476
+  ],
+  "tris": 1058,
+  "materials": [
+   "MNF_MetalPainted_Gray",
+   "MNF_MetalBare",
+   "MNF_Plastic_Black",
+   "MNF_MetalPainted_Yellow",
+   "MNF_Glass",
+   "MNF_BulbWarm"
+  ],
+  "children": [
+   "Bulb"
+  ],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {
+   "Bulb": [
+    0.0,
+    -0.12,
+    0.0
+   ]
+  },
+  "notes": "Wall-mounted bulkhead cage lamp (yellow cage, glass globe, conduit up). Child `Bulb` (MNF_BulbWarm) pivoted at the bulb centre. Wall pivot, -Y out."
+ },
+ "EmergencyLight": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.17,
+   -0.135,
+   -0.075
+  ],
+  "bounds_max": [
+   0.17,
+   0.0,
+   0.315
+  ],
+  "bounds_size": [
+   0.34,
+   0.135,
+   0.39
+  ],
+  "tris": 508,
+  "materials": [
+   "MNF_Plastic_Gray",
+   "MNF_MetalPainted_Gray",
+   "MNF_Plastic_Black",
+   "MNF_Rubber",
+   "MNF_BulbGreen",
+   "MNF_Paper",
+   "MNF_MetalBare",
+   "MNF_BulbRed"
+  ],
+  "children": [
+   "Bulb"
+  ],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {
+   "Bulb": [
+    0.0,
+    -0.09,
+    -0.022
+   ]
+  },
+  "notes": "Red emergency light box with a long red lens (child `Bulb`, MNF_BulbRed), test button, conduit. Wall pivot, -Y out."
+ },
+ "ToolRack": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -1.02,
+   -0.1845,
+   -0.188
+  ],
+  "bounds_max": [
+   1.02,
+   0.0,
+   0.19
+  ],
+  "bounds_size": [
+   2.04,
+   0.1845,
+   0.378
+  ],
+  "tris": 2276,
+  "materials": [
+   "MNF_MetalPainted_Gray",
+   "MNF_MetalBare",
+   "MNF_WoodPlanks",
+   "MNF_Hazard",
+   "MNF_Rubber",
+   "MNF_Paper"
+  ],
+  "children": [
+   "SOCKET_0",
+   "SOCKET_1",
+   "SOCKET_2",
+   "SOCKET_3",
+   "SOCKET_4",
+   "SOCKET_5"
+  ],
+  "helpers": {
+   "SOCKET_0": [
+    -0.85,
+    -0.15,
+    0.03
+   ],
+   "SOCKET_1": [
+    -0.51,
+    -0.15,
+    0.03
+   ],
+   "SOCKET_2": [
+    -0.17,
+    -0.15,
+    0.03
+   ],
+   "SOCKET_3": [
+    0.17,
+    -0.15,
+    0.03
+   ],
+   "SOCKET_4": [
+    0.51,
+    -0.15,
+    0.03
+   ],
+   "SOCKET_5": [
+    0.85,
+    -0.15,
+    0.03
+   ]
+  },
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "2.0 m wall tool rack: planked board on steel rails, 6 forked hook brackets with label plates. SOCKET_0..5 at the cradle centres (tools rest across the forks). Wall pivot, -Y out."
+ },
+ "ShelfUnit": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.54,
+   -0.265,
+   0.0
+  ],
+  "bounds_max": [
+   0.54,
+   0.265,
+   2.0
+  ],
+  "bounds_size": [
+   1.08,
+   0.53,
+   2.0
+  ],
+  "tris": 3440,
+  "materials": [
+   "MNF_MetalPainted_Gray",
+   "MNF_MetalBare",
+   "MNF_WoodCrate",
+   "MNF_MetalPainted_Red",
+   "MNF_Paper",
+   "MNF_Rubber",
+   "MNF_Glass",
+   "MNF_Rope"
+  ],
+  "children": [
+   "COL_Shelf"
+  ],
+  "helpers": {
+   "COL_Shelf": [
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  "colliders": {
+   "COL_Shelf": {
+    "min": [
+     -0.5,
+     -0.225,
+     0.0
+    ],
+    "max": [
+     0.5,
+     0.225,
+     2.0
+    ]
+   }
+  },
+  "child_pivots": {},
+  "notes": "2.0 m steel shelving (angle posts, folded shelves, X bracing) stocked with crates, a toolbox, cans, jars, cable and rope coils, paper boxes and a jerrycan."
+ },
+ "StorageLocker": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.6,
+   -0.35,
+   0.0
+  ],
+  "bounds_max": [
+   0.6,
+   0.3,
+   1.6
+  ],
+  "bounds_size": [
+   1.2,
+   0.65,
+   1.6
+  ],
+  "tris": 1494,
+  "materials": [
+   "MNF_MetalPainted_Green",
+   "MNF_MetalPainted_Gray",
+   "MNF_MetalBare",
+   "MNF_Paper",
+   "MNF_MetalPainted_Yellow",
+   "MNF_Hazard"
+  ],
+  "children": [
+   "COL_Body",
+   "SOCKET_Deposit"
+  ],
+  "helpers": {
+   "COL_Body": [
+    0.0,
+    0.0,
+    0.625
+   ],
+   "SOCKET_Deposit": [
+    0.0,
+    0.0,
+    1.435
+   ]
+  },
+  "colliders": {
+   "COL_Body": {
+    "min": [
+     -0.6,
+     -0.3,
+     0.0
+    ],
+    "max": [
+     0.6,
+     0.3,
+     1.25
+    ]
+   }
+  },
+  "child_pivots": {},
+  "notes": "Heavy locker cabinet 1.2 w x 1.6 h x 0.6 d, double louvred doors, open hopper on top (1.0 x 0.45 m opening at 1.6 m). SOCKET_Deposit at the hopper centre."
+ },
+ "SellMachine": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.55,
+   -0.505,
+   0.0
+  ],
+  "bounds_max": [
+   0.55,
+   0.435,
+   3.0
+  ],
+  "bounds_size": [
+   1.1,
+   0.94,
+   3.0
+  ],
+  "tris": 2560,
+  "materials": [
+   "MNF_MetalPainted_Gray",
+   "MNF_Rubber",
+   "MNF_Hazard",
+   "MNF_MetalBare",
+   "MNF_MetalPainted_Yellow",
+   "MNF_Plastic_Black",
+   "MNF_BulbGreen",
+   "MNF_BulbRed",
+   "MNF_Plastic_Yellow",
+   "MNF_Glass",
+   "MNF_Paper",
+   "MNF_Screen"
+  ],
+  "children": [
+   "COL_Cabinet",
+   "COL_Tower",
+   "Screen",
+   "SOCKET_Bin"
+  ],
+  "helpers": {
+   "COL_Cabinet": [
+    0.0,
+    0.0,
+    0.5
+   ],
+   "COL_Tower": [
+    0.0,
+    0.265,
+    1.525
+   ],
+   "SOCKET_Bin": [
+    0.0,
+    -0.125,
+    0.85
+   ]
+  },
+  "colliders": {
+   "COL_Cabinet": {
+    "min": [
+     -0.55,
+     -0.425,
+     0.0
+    ],
+    "max": [
+     0.55,
+     0.425,
+     1.0
+    ]
+   },
+   "COL_Tower": {
+    "min": [
+     -0.55,
+     0.105,
+     1.0
+    ],
+    "max": [
+     0.55,
+     0.425,
+     2.05
+    ]
+   }
+  },
+  "child_pivots": {
+   "Screen": [
+    0.0,
+    0.074,
+    1.52
+   ]
+  },
+  "notes": "Assay & Trade machine: cabinet with hazard kick plate and a 0.6 x 0.5 m hopper bin opening at 1.0 m (SOCKET_Bin at the hopper centre), yellow back tower with child `Screen` (0.44 x 0.32 quad facing -Y), buttons, gauge, sign plate area (1.8-1.98 m) for the ASSAY/TRADE atlas sign, pneumatic tube rising to a ceiling flange at 3.0 m."
+ },
+ "Dispenser": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.22,
+   -0.338,
+   -0.3
+  ],
+  "bounds_max": [
+   0.22,
+   0.0,
+   1.4
+  ],
+  "bounds_size": [
+   0.44,
+   0.338,
+   1.7
+  ],
+  "tris": 1340,
+  "materials": [
+   "MNF_MetalPainted_Yellow",
+   "MNF_Hazard",
+   "MNF_MetalBare",
+   "MNF_MetalPainted_Gray",
+   "MNF_Glass"
+  ],
+  "children": [
+   "SOCKET_Out"
+  ],
+  "helpers": {
+   "SOCKET_Out": [
+    0.0,
+    -0.265,
+    -0.06
+   ]
+  },
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Pneumatic delivery outlet: tube runs down the wall (from 1.4 m above the pivot), bends out to a mouth with a hinged flap over a small tray (SOCKET_Out at the tray centre). Wall pivot, -Y out."
+ },
+ "Bunkbed": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -1.0323,
+   -0.4823,
+   0.0
+  ],
+  "bounds_max": [
+   1.0323,
+   0.4823,
+   1.75
+  ],
+  "bounds_size": [
+   2.0647,
+   0.9647,
+   1.75
+  ],
+  "tris": 2360,
+  "materials": [
+   "MNF_MetalPainted_Green",
+   "MNF_Rubber",
+   "MNF_MetalGrate",
+   "MNF_FabricCanvas",
+   "MNF_FabricBlanket"
+  ],
+  "children": [
+   "COL_Frame",
+   "COL_Lower",
+   "COL_Upper"
+  ],
+  "helpers": {
+   "COL_Frame": [
+    0.0,
+    0.45,
+    0.875
+   ],
+   "COL_Lower": [
+    0.0,
+    0.0,
+    0.225
+   ],
+   "COL_Upper": [
+    0.0,
+    0.0,
+    1.285
+   ]
+  },
+  "colliders": {
+   "COL_Frame": {
+    "min": [
+     -1.03,
+     0.42,
+     0.0
+    ],
+    "max": [
+     1.03,
+     0.48,
+     1.75
+    ]
+   },
+   "COL_Lower": {
+    "min": [
+     -1.0,
+     -0.45,
+     0.0
+    ],
+    "max": [
+     1.0,
+     0.45,
+     0.45
+    ]
+   },
+   "COL_Upper": {
+    "min": [
+     -1.0,
+     -0.45,
+     1.2
+    ],
+    "max": [
+     1.0,
+     0.45,
+     1.37
+    ]
+   }
+  },
+  "child_pivots": {},
+  "notes": "Steel bunk bed 2.0 x 0.9 x 1.75 m, stained canvas mattresses and pillows, blanket draped over the lower bunk (MNF_FabricBlanket), safety rail on top."
+ },
+ "Generator": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -1.05,
+   -0.537,
+   0.0
+  ],
+  "bounds_max": [
+   1.05,
+   0.537,
+   1.86
+  ],
+  "bounds_size": [
+   2.1,
+   1.074,
+   1.86
+  ],
+  "tris": 4136,
+  "materials": [
+   "MNF_MetalPainted_Gray",
+   "MNF_Hazard",
+   "MNF_MetalPainted_Red",
+   "MNF_MetalPainted_Green",
+   "MNF_MetalBare",
+   "MNF_MetalRusted",
+   "MNF_MetalPainted_Yellow",
+   "MNF_MetalGrate",
+   "MNF_Rubber",
+   "MNF_Paper",
+   "MNF_Glass",
+   "MNF_BulbGreen"
+  ],
+  "children": [
+   "COL_Body"
+  ],
+  "helpers": {
+   "COL_Body": [
+    0.0,
+    0.0,
+    0.575
+   ]
+  },
+  "colliders": {
+   "COL_Body": {
+    "min": [
+     -1.05,
+     -0.535,
+     0.0
+    ],
+    "max": [
+     1.05,
+     0.535,
+     1.15
+    ]
+   }
+  },
+  "child_pivots": {},
+  "notes": "Large diesel generator on a hazard-striped skid: engine block, red valve cover, rusty exhaust with muffler and stack, yellow alternator, radiator grille, control panel with 3 gauges, pipes and cables."
+ },
+ "VentFan": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.43,
+   -0.295,
+   -0.43
+  ],
+  "bounds_max": [
+   0.43,
+   0.0,
+   0.43
+  ],
+  "bounds_size": [
+   0.86,
+   0.295,
+   0.86
+  ],
+  "tris": 1496,
+  "materials": [
+   "MNF_MetalPainted_Gray",
+   "MNF_MetalBare",
+   "MNF_Plastic_Black"
+  ],
+  "children": [
+   "Fan"
+  ],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {
+   "Fan": [
+    0.0,
+    -0.17,
+    0.0
+   ]
+  },
+  "notes": "Wall ventilation fan: 0.8 m square housing, round shroud, motor on struts, front guard grille. Child `Fan` (5 twisted blades + hub) pivots at the hub; spin about Y. Wall pivot, -Y out."
+ },
+ "Pipe_Straight": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.006,
+   -0.12,
+   -0.12
+  ],
+  "bounds_max": [
+   2.006,
+   0.12,
+   0.12
+  ],
+  "bounds_size": [
+   2.012,
+   0.24,
+   0.24
+  ],
+  "tris": 1160,
+  "materials": [
+   "MNF_MetalPainted_Green",
+   "MNF_MetalBare",
+   "MNF_Rubber",
+   "MNF_Paper"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "2 m flanged pipe, 0.15 m diameter, along +X from the origin (pivot at the inlet flange face centre)."
+ },
+ "Pipe_Elbow": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.006,
+   -0.12,
+   -0.12
+  ],
+  "bounds_max": [
+   0.5,
+   0.12,
+   0.386
+  ],
+  "bounds_size": [
+   0.506,
+   0.24,
+   0.506
+  ],
+  "tris": 1116,
+  "materials": [
+   "MNF_MetalPainted_Green",
+   "MNF_MetalBare",
+   "MNF_Rubber"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "90 deg flanged elbow: inlet at the origin facing -X, runs +X and turns up to an outlet at (0.38, 0, 0.38) facing +Z. Bend radius 0.3 m."
+ },
+ "Pipe_Valve": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.006,
+   -0.1414,
+   -0.125
+  ],
+  "bounds_max": [
+   0.606,
+   0.1414,
+   0.35
+  ],
+  "bounds_size": [
+   0.612,
+   0.2828,
+   0.475
+  ],
+  "tris": 1496,
+  "materials": [
+   "MNF_MetalPainted_Green",
+   "MNF_MetalBare",
+   "MNF_Rubber",
+   "MNF_MetalPainted_Red"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "0.6 m flanged pipe section with a gate valve and red handwheel on top. Along +X from the origin."
+ },
+ "CableBundle": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -1.05,
+   -0.0448,
+   -0.2989
+  ],
+  "bounds_max": [
+   1.05,
+   0.0533,
+   0.1
+  ],
+  "bounds_size": [
+   2.1,
+   0.0981,
+   0.3989
+  ],
+  "tris": 1268,
+  "materials": [
+   "MNF_MetalBare",
+   "MNF_Rubber",
+   "MNF_Plastic_Black"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "2 m bundle of 6 drooping rubber cables between two clamp brackets at x=+-1 (attachment height z=0), zip ties. Pivot at the centre between the clamps; backs of the clamps at +Y (wall/ceiling side)."
+ },
+ "Crate_A": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.416,
+   -0.32,
+   0.0
+  ],
+  "bounds_max": [
+   0.416,
+   0.318,
+   0.55
+  ],
+  "bounds_size": [
+   0.832,
+   0.638,
+   0.55
+  ],
+  "tris": 1460,
+  "materials": [
+   "MNF_WoodCrate",
+   "MNF_MetalBare",
+   "MNF_Paper"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Wooden supply crate 0.8 x 0.6 x 0.55 m, planked with battens and steel corner brackets, paper label."
+ },
+ "Crate_B": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.5422,
+   -0.264,
+   0.0
+  ],
+  "bounds_max": [
+   0.5422,
+   0.262,
+   0.462
+  ],
+  "bounds_size": [
+   1.0844,
+   0.526,
+   0.462
+  ],
+  "tris": 744,
+  "materials": [
+   "MNF_MetalPainted_Green",
+   "MNF_MetalBare",
+   "MNF_Paper"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Military steel footlocker 1.0 x 0.5 x 0.45 m with lid ribs, latches, side handles, stencil label."
+ },
+ "Barrel": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.298,
+   -0.298,
+   0.0
+  ],
+  "bounds_max": [
+   0.298,
+   0.298,
+   0.884
+  ],
+  "bounds_size": [
+   0.596,
+   0.596,
+   0.884
+  ],
+  "tris": 812,
+  "materials": [
+   "MNF_MetalPainted_Red",
+   "MNF_MetalBare",
+   "MNF_Paper"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Dented steel oil drum 0.58 x 0.88 m (MNF_MetalPainted_Red) with rolling hoops, bungs, label."
+ },
+ "Chair": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.2348,
+   -0.2248,
+   -0.0005
+  ],
+  "bounds_max": [
+   0.2348,
+   0.2248,
+   0.8832
+  ],
+  "bounds_size": [
+   0.4696,
+   0.4496,
+   0.8837
+  ],
+  "tris": 596,
+  "materials": [
+   "MNF_MetalPainted_Gray",
+   "MNF_Rubber",
+   "MNF_WoodPlanks"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Steel-tube chair with plank seat and backrest; seat at 0.46 m."
+ },
+ "Table": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.7,
+   -0.397,
+   0.0
+  ],
+  "bounds_max": [
+   0.7,
+   0.397,
+   0.76
+  ],
+  "bounds_size": [
+   1.4,
+   0.794,
+   0.76
+  ],
+  "tris": 704,
+  "materials": [
+   "MNF_WoodPlanks",
+   "MNF_MetalPainted_Gray"
+  ],
+  "children": [
+   "COL_Top"
+  ],
+  "helpers": {
+   "COL_Top": [
+    0.0,
+    0.0,
+    0.38
+   ]
+  },
+  "colliders": {
+   "COL_Top": {
+    "min": [
+     -0.7,
+     -0.4,
+     0.0
+    ],
+    "max": [
+     0.7,
+     0.4,
+     0.76
+    ]
+   }
+  },
+  "child_pivots": {},
+  "notes": "Steel-framed table 1.4 x 0.8 m, plank top at 0.76 m."
+ },
+ "Radio": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.2,
+   -0.142,
+   0.0
+  ],
+  "bounds_max": [
+   0.2,
+   0.1399,
+   0.943
+  ],
+  "bounds_size": [
+   0.4,
+   0.2819,
+   0.943
+  ],
+  "tris": 1162,
+  "materials": [
+   "MNF_MetalPainted_Green",
+   "MNF_Rubber",
+   "MNF_MetalPainted_Gray",
+   "MNF_Plastic_Black",
+   "MNF_Paper",
+   "MNF_Glass",
+   "MNF_MetalGrate",
+   "MNF_MetalBare"
+  ],
+  "children": [
+   "Dial"
+  ],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {
+   "Dial": [
+    0.12,
+    -0.116,
+    0.2
+   ]
+  },
+  "notes": "Military field radio 0.4 x 0.22 x 0.27 m: dial window, speaker grille, knobs, rubber carry handle, 3-section telescopic antenna. Extra child `Dial` (tuning knob, pivot at its axis, turns about Y). Pivot at the bottom centre."
+ },
+ "Clipboard": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.115,
+   -0.16,
+   0.0
+  ],
+  "bounds_max": [
+   0.115,
+   0.16,
+   0.0232
+  ],
+  "bounds_size": [
+   0.23,
+   0.32,
+   0.0232
+  ],
+  "tris": 160,
+  "materials": [
+   "MNF_WoodPlanks",
+   "MNF_Paper",
+   "MNF_MetalBare"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Clipboard 0.23 x 0.32 m lying flat (papers face +Z, clip toward +Y). Pivot at the bottom centre."
+ },
+ "Locker_Tall": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.225,
+   -0.3,
+   0.0
+  ],
+  "bounds_max": [
+   0.225,
+   0.25,
+   1.9
+  ],
+  "bounds_size": [
+   0.45,
+   0.55,
+   1.9
+  ],
+  "tris": 1160,
+  "materials": [
+   "MNF_MetalPainted_Gray",
+   "MNF_Plastic_Black",
+   "MNF_MetalBare",
+   "MNF_Paper"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Single tall steel locker 0.45 x 0.5 x 1.9 m, dented door, louvres, padlock hasp, name plate."
+ },
+ "FuseBox": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.2132,
+   -0.175,
+   -0.5
+  ],
+  "bounds_max": [
+   0.2329,
+   0.0,
+   0.55
+  ],
+  "bounds_size": [
+   0.4462,
+   0.175,
+   1.05
+  ],
+  "tris": 824,
+  "materials": [
+   "MNF_MetalPainted_Gray",
+   "MNF_MetalBare",
+   "MNF_Hazard",
+   "MNF_Paper",
+   "MNF_MetalPainted_Red",
+   "MNF_Rubber"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Wall fuse box 0.4 x 0.5 x 0.15 m with hinged door, HIGH-VOLTAGE hazard band + label, side breaker handle, conduits up/down. Wall pivot, -Y out."
+ },
+ "Bucket": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.1628,
+   -0.1595,
+   0.0
+  ],
+  "bounds_max": [
+   0.1628,
+   0.1595,
+   0.4501
+  ],
+  "bounds_size": [
+   0.3256,
+   0.3191,
+   0.4501
+  ],
+  "tris": 870,
+  "materials": [
+   "MNF_MetalBare",
+   "MNF_WoodHandle"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Galvanised steel bucket (top 0.32 m dia, 0.3 m tall), dented, wire bail with wooden grip."
+ },
+ "BlastDoor": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -1.306,
+   -0.656,
+   0.074
+  ],
+  "bounds_max": [
+   1.7371,
+   0.0,
+   2.686
+  ],
+  "bounds_size": [
+   3.0431,
+   0.656,
+   2.612
+  ],
+  "tris": 4048,
+  "materials": [
+   "MNF_MetalPainted_Gray",
+   "MNF_Hazard",
+   "MNF_MetalBare",
+   "MNF_MetalPainted_Red"
+  ],
+  "children": [
+   "COL_Door",
+   "COL_Hinge"
+  ],
+  "helpers": {
+   "COL_Door": [
+    0.0,
+    -0.225,
+    1.38
+   ],
+   "COL_Hinge": [
+    1.375,
+    -0.225,
+    1.38
+   ]
+  },
+  "colliders": {
+   "COL_Door": {
+    "min": [
+     -1.3,
+     -0.45,
+     0.08
+    ],
+    "max": [
+     1.3,
+     0.0,
+     2.68
+    ]
+   },
+   "COL_Hinge": {
+    "min": [
+     1.0,
+     -0.45,
+     0.48
+    ],
+    "max": [
+     1.75,
+     0.0,
+     2.28
+    ]
+   }
+  },
+  "child_pivots": {},
+  "notes": "Huge round blast door (2.6 m dia, 0.45 m thick) in the open position swung flat against a wall: inner face out (-Y) showing the red handwheel, hub, bolt carriers/linkage, retracted locking bolts on the hazard-striped rim, hinge arms + barrel on +X. Pivot at the floor below the door centre, back face on the wall plane y=0."
+ },
+ "PosterBoard": {
+  "kit": "Kit_Bunker",
+  "bounds_min": [
+   -0.5,
+   -0.025,
+   -0.35
+  ],
+  "bounds_max": [
+   0.5,
+   0.0,
+   0.35
+  ],
+  "bounds_size": [
+   1.0,
+   0.025,
+   0.7
+  ],
+  "tris": 690,
+  "materials": [
+   "MNF_WoodRotten",
+   "MNF_WoodPlanks",
+   "MNF_Paper",
+   "MNF_Plastic_Yellow",
+   "MNF_Plastic_Orange",
+   "MNF_Rope"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Cork board 1.0 x 0.7 m (cork face uses MNF_WoodRotten - no cork in the catalog) with pinned curled notes and string between pins. Wall pivot, -Y out."
+ }
+}

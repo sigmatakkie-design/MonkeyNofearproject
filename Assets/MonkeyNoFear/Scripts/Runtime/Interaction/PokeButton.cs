@@ -20,6 +20,8 @@ namespace MonkeyNoFear.Interaction
         public Transform cap;
         public float radius = 0.06f;
         public float travel = 0.02f;
+        [Tooltip("Height of the cap above its pivot (the surface the palm touches).")]
+        public float capHeight = 0.03f;
         [Range(0.2f, 1f)] public float pressFraction = 0.6f;
         public string label;
         public TextMesh labelMesh;
@@ -92,7 +94,7 @@ namespace MonkeyNoFear.Interaction
             var local = transform.InverseTransformPoint(h.Target);
             float lateral = new Vector2(local.x, local.z).magnitude;
             if (lateral > radius) return 0f;
-            float top = (cap ? _capRest.y : 0f) + h.radius;
+            float top = (cap ? _capRest.y : 0f) + capHeight + h.radius;
             float d = top - local.y;
             if (d < 0f || d > travel + h.radius * 2f + 0.05f) return 0f;
             return Mathf.Clamp(d, 0f, travel);

@@ -111,7 +111,7 @@ namespace MonkeyNoFear.AI.Creatures
                     Say("clerk_skitter", 0.9f);
                     break;
                 case S.Windup:
-                    animator?.PlayOnce("jaw_open", 0.1f);
+                    animator?.PlayOverlay("jaw_open", "jaw", 0.1f);
                     if (animator) animator.JawOpen = 0f;
                     Say("clerk_jaw_drop", 0.8f);
                     break;
@@ -180,9 +180,9 @@ namespace MonkeyNoFear.AI.Creatures
 
                 case S.Windup:
                     if (animator) animator.JawOpen = Mathf.Lerp(animator.JawOpen, 35f, dt * 3f);
-                    if (lit) { if (animator) animator.JawOpen = 0f; Enter(S.Freeze); break; }
-                    if (!AboveTarget(_at, 1.6f)) { if (animator) animator.JawOpen = 0f; Enter(S.Stalk); break; }
-                    if (_t > windupTime) { if (animator) animator.JawOpen = 0f; Enter(S.Drop); }
+                    if (lit) { CloseJaw(); Enter(S.Freeze); break; }
+                    if (!AboveTarget(_at, 1.6f)) { CloseJaw(); Enter(S.Stalk); break; }
+                    if (_t > windupTime) { CloseJaw(); Enter(S.Drop); }
                     break;
 
                 case S.Drop:
@@ -232,6 +232,13 @@ namespace MonkeyNoFear.AI.Creatures
                     if (k >= 1f) { _to = null; _ambushReadyAt = Time.time + ambushCooldown; Enter(S.Stalk); }
                     break;
             }
+        }
+
+        void CloseJaw()
+        {
+            if (!animator) return;
+            animator.JawOpen = 0f;
+            animator.StopOverlay("jaw_open");
         }
 
         void HoldPlayer(float dt, bool lit)

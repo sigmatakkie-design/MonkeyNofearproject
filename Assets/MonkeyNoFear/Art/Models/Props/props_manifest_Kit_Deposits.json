@@ -1,0 +1,691 @@
+{
+ "Deposit_Iron": {
+  "kit": "Kit_Deposits",
+  "bounds_min": [
+   -0.5525,
+   -0.4734,
+   -0.0673
+  ],
+  "bounds_max": [
+   0.538,
+   0.4714,
+   0.6005
+  ],
+  "bounds_size": [
+   1.0905,
+   0.9448,
+   0.6678
+  ],
+  "tris": 4080,
+  "materials": [
+   "MNF_RockMine",
+   "MNF_OreIron"
+  ],
+  "children": [
+   "Base",
+   "Chunk_00",
+   "Chunk_01",
+   "Chunk_02",
+   "Chunk_03",
+   "Chunk_04",
+   "COL_Body"
+  ],
+  "helpers": {
+   "COL_Body": [
+    -0.0072,
+    -0.001,
+    0.2371
+   ]
+  },
+  "colliders": {
+   "COL_Body": {
+    "min": [
+     -0.5089,
+     -0.4356,
+     0.0
+    ],
+    "max": [
+     0.4944,
+     0.4336,
+     0.4742
+    ]
+   }
+  },
+  "child_pivots": {
+   "Base": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "Chunk_00": [
+    -0.0061,
+    0.0182,
+    0.4261
+   ],
+   "Chunk_01": [
+    0.3289,
+    0.1555,
+    0.2723
+   ],
+   "Chunk_02": [
+    -0.1176,
+    0.2473,
+    0.3513
+   ],
+   "Chunk_03": [
+    -0.2878,
+    -0.0383,
+    0.3441
+   ],
+   "Chunk_04": [
+    0.0256,
+    -0.2908,
+    0.2605
+   ]
+  },
+  "notes": "Iron deposit ~1.0 m: lumpy boulder (MNF_RockMine) with 5 bulbous metallic nodule clusters (MNF_OreIron) erupting through cracked rock lips. Chunk_* pivots at their centres."
+ },
+ "Deposit_Copper": {
+  "kit": "Kit_Deposits",
+  "bounds_min": [
+   -0.5815,
+   -0.5051,
+   -0.0831
+  ],
+  "bounds_max": [
+   0.6091,
+   0.4938,
+   0.5183
+  ],
+  "bounds_size": [
+   1.1906,
+   0.9989,
+   0.6014
+  ],
+  "tris": 2790,
+  "materials": [
+   "MNF_RockMine",
+   "MNF_OreCopper"
+  ],
+  "children": [
+   "Base",
+   "Chunk_00",
+   "Chunk_01",
+   "Chunk_02",
+   "Chunk_03",
+   "Chunk_04",
+   "COL_Body"
+  ],
+  "helpers": {
+   "COL_Body": [
+    0.0138,
+    -0.0348,
+    0.1909
+   ]
+  },
+  "colliders": {
+   "COL_Body": {
+    "min": [
+     -0.5339,
+     -0.4675,
+     0.0
+    ],
+    "max": [
+     0.5615,
+     0.398,
+     0.3817
+    ]
+   }
+  },
+  "child_pivots": {
+   "Base": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "Chunk_00": [
+    0.0301,
+    -0.0534,
+    0.2342
+   ],
+   "Chunk_01": [
+    -0.1195,
+    0.0222,
+    0.2469
+   ],
+   "Chunk_02": [
+    0.2883,
+    0.158,
+    0.1578
+   ],
+   "Chunk_03": [
+    -0.3101,
+    0.2734,
+    0.1022
+   ],
+   "Chunk_04": [
+    0.3254,
+    -0.0814,
+    0.1635
+   ]
+  },
+  "notes": "Copper deposit ~1.1 m: fractured, flat-faceted rock blocks (MNF_RockMine) with 5 jagged copper vein ridges (MNF_OreCopper, removable chunks) and green patina crust patches."
+ },
+ "Deposit_Crystal": {
+  "kit": "Kit_Deposits",
+  "bounds_min": [
+   -0.6019,
+   -0.4692,
+   -0.0861
+  ],
+  "bounds_max": [
+   0.6106,
+   0.5236,
+   0.9231
+  ],
+  "bounds_size": [
+   1.2125,
+   0.9928,
+   1.0092
+  ],
+  "tris": 2564,
+  "materials": [
+   "MNF_RockMine",
+   "MNF_Crystal"
+  ],
+  "children": [
+   "Base",
+   "Chunk_00",
+   "Chunk_01",
+   "Chunk_02",
+   "Chunk_03",
+   "Chunk_04",
+   "COL_Body"
+  ],
+  "helpers": {
+   "COL_Body": [
+    0.0044,
+    0.0272,
+    0.1395
+   ]
+  },
+  "colliders": {
+   "COL_Body": {
+    "min": [
+     -0.5534,
+     -0.4295,
+     0.0
+    ],
+    "max": [
+     0.5621,
+     0.4838,
+     0.2789
+    ]
+   }
+  },
+  "child_pivots": {
+   "Base": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "Chunk_00": [
+    -0.0627,
+    0.0305,
+    0.5107
+   ],
+   "Chunk_01": [
+    0.3187,
+    0.0442,
+    0.3081
+   ],
+   "Chunk_02": [
+    -0.0726,
+    0.2673,
+    0.3161
+   ],
+   "Chunk_03": [
+    -0.3607,
+    0.0483,
+    0.2467
+   ],
+   "Chunk_04": [
+    -0.0638,
+    -0.2761,
+    0.2389
+   ]
+  },
+  "notes": "Crystal deposit ~1.2 m: low rock base with 5 clusters of hexagonal luminous prisms (MNF_Crystal, emissive) growing at different angles; small crystal stubs stay after mining."
+ },
+ "Deposit_Blackstone": {
+  "kit": "Kit_Deposits",
+  "bounds_min": [
+   -0.6986,
+   -0.6317,
+   -0.1434
+  ],
+  "bounds_max": [
+   0.5535,
+   0.6718,
+   1.292
+  ],
+  "bounds_size": [
+   1.2521,
+   1.3035,
+   1.4354
+  ],
+  "tris": 1010,
+  "materials": [
+   "MNF_RockMine",
+   "MNF_Blackstone"
+  ],
+  "children": [
+   "Base",
+   "Chunk_00",
+   "Chunk_01",
+   "Chunk_02",
+   "Chunk_03",
+   "Chunk_04",
+   "COL_Body"
+  ],
+  "helpers": {
+   "COL_Body": [
+    -0.0726,
+    0.0201,
+    0.1228
+   ]
+  },
+  "colliders": {
+   "COL_Body": {
+    "min": [
+     -0.6485,
+     -0.5796,
+     0.0
+    ],
+    "max": [
+     0.5034,
+     0.6197,
+     0.2455
+    ]
+   }
+  },
+  "child_pivots": {
+   "Base": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "Chunk_00": [
+    0.0759,
+    0.0124,
+    0.603
+   ],
+   "Chunk_01": [
+    0.0811,
+    0.1333,
+    0.3725
+   ],
+   "Chunk_02": [
+    -0.1134,
+    0.1806,
+    0.3045
+   ],
+   "Chunk_03": [
+    0.0883,
+    -0.2469,
+    0.2488
+   ],
+   "Chunk_04": [
+    -0.1531,
+    -0.1716,
+    0.1516
+   ]
+  },
+  "notes": "Blackstone deposit ~1.3 m: 5 tall angular obsidian monolith shards (MNF_Blackstone, flat-shaded facets) jutting from heaved, cracked ground plates; a broken stump and glassy debris stay."
+ },
+ "Deposit_Anomalous": {
+  "kit": "Kit_Deposits",
+  "bounds_min": [
+   -0.5458,
+   -0.5249,
+   -0.0454
+  ],
+  "bounds_max": [
+   0.5521,
+   0.5379,
+   0.7921
+  ],
+  "bounds_size": [
+   1.0979,
+   1.0629,
+   0.8374
+  ],
+  "tris": 4820,
+  "materials": [
+   "MNF_Flesh",
+   "MNF_Anomalous",
+   "MNF_RockMine"
+  ],
+  "children": [
+   "Base",
+   "Chunk_00",
+   "Chunk_01",
+   "Chunk_02",
+   "Chunk_03",
+   "Chunk_04",
+   "COL_Body"
+  ],
+  "helpers": {
+   "COL_Body": [
+    0.0031,
+    -0.0217,
+    0.3312
+   ]
+  },
+  "colliders": {
+   "COL_Body": {
+    "min": [
+     -0.5019,
+     -0.475,
+     0.0
+    ],
+    "max": [
+     0.5082,
+     0.4315,
+     0.6624
+    ]
+   }
+  },
+  "child_pivots": {
+   "Base": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "Chunk_00": [
+    0.001,
+    -0.002,
+    0.6921
+   ],
+   "Chunk_01": [
+    0.3289,
+    0.1139,
+    0.4839
+   ],
+   "Chunk_02": [
+    -0.1644,
+    0.4616,
+    0.529
+   ],
+   "Chunk_03": [
+    -0.4112,
+    -0.1484,
+    0.5116
+   ],
+   "Chunk_04": [
+    0.1639,
+    -0.4405,
+    0.52
+   ]
+  },
+  "notes": "Anomalous deposit ~1.0 m: rock (MNF_RockMine) cracked open into 4 thick fragments around a lumpy glowing core (MNF_Anomalous/MNF_Flesh); veins spread outward over the stone. Chunks = 5 pulsing growths bulging from the cracks/top (pulse them in Unity via emission)."
+ },
+ "Deposit_Iron_Wall": {
+  "kit": "Kit_Deposits",
+  "bounds_min": [
+   -0.6367,
+   -0.3828,
+   -0.4851
+  ],
+  "bounds_max": [
+   0.6306,
+   0.0626,
+   0.5571
+  ],
+  "bounds_size": [
+   1.2673,
+   0.4454,
+   1.0422
+  ],
+  "tris": 4080,
+  "materials": [
+   "MNF_RockMine",
+   "MNF_OreIron"
+  ],
+  "children": [
+   "Base",
+   "Chunk_00",
+   "Chunk_01",
+   "Chunk_02",
+   "Chunk_03",
+   "Chunk_04",
+   "COL_Body"
+  ],
+  "helpers": {
+   "COL_Body": [
+    -0.0031,
+    -0.1331,
+    0.036
+   ]
+  },
+  "colliders": {
+   "COL_Body": {
+    "min": [
+     -0.586,
+     -0.2662,
+     -0.4434
+    ],
+    "max": [
+     0.5799,
+     0.0,
+     0.5154
+    ]
+   }
+  },
+  "child_pivots": {
+   "Base": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "Chunk_00": [
+    0.0068,
+    -0.2616,
+    0.0085
+   ],
+   "Chunk_01": [
+    0.2485,
+    -0.1402,
+    0.1361
+   ],
+   "Chunk_02": [
+    -0.1546,
+    -0.2118,
+    0.2441
+   ],
+   "Chunk_03": [
+    -0.2745,
+    -0.1868,
+    -0.0493
+   ],
+   "Chunk_04": [
+    0.0366,
+    -0.1703,
+    -0.2787
+   ]
+  },
+  "notes": "Iron deposit ~1.0 m: lumpy boulder (MNF_RockMine) with 5 bulbous metallic nodule clusters (MNF_OreIron) erupting through cracked rock lips. Chunk_* pivots at their centres. Wall variant: pivot at wall contact, -Y out of the wall."
+ },
+ "Deposit_Copper_Wall": {
+  "kit": "Kit_Deposits",
+  "bounds_min": [
+   -0.571,
+   -0.3204,
+   -0.4913
+  ],
+  "bounds_max": [
+   0.5157,
+   0.122,
+   0.5086
+  ],
+  "bounds_size": [
+   1.0868,
+   0.4424,
+   0.9999
+  ],
+  "tris": 2680,
+  "materials": [
+   "MNF_RockMine",
+   "MNF_OreCopper"
+  ],
+  "children": [
+   "Base",
+   "Chunk_00",
+   "Chunk_01",
+   "Chunk_02",
+   "Chunk_03",
+   "Chunk_04",
+   "COL_Body"
+  ],
+  "helpers": {
+   "COL_Body": [
+    -0.0276,
+    -0.1091,
+    0.0087
+   ]
+  },
+  "colliders": {
+   "COL_Body": {
+    "min": [
+     -0.5275,
+     -0.2181,
+     -0.4513
+    ],
+    "max": [
+     0.4723,
+     0.0,
+     0.4686
+    ]
+   }
+  },
+  "child_pivots": {
+   "Base": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "Chunk_00": [
+    0.0323,
+    -0.1597,
+    -0.0522
+   ],
+   "Chunk_01": [
+    -0.1572,
+    -0.1031,
+    0.0194
+   ],
+   "Chunk_02": [
+    0.2707,
+    -0.1243,
+    0.1756
+   ],
+   "Chunk_03": [
+    -0.29,
+    -0.0316,
+    0.2746
+   ],
+   "Chunk_04": [
+    0.3517,
+    -0.1792,
+    -0.0519
+   ]
+  },
+  "notes": "Copper deposit ~1.1 m: fractured, flat-faceted rock blocks (MNF_RockMine) with 5 jagged copper vein ridges (MNF_OreCopper, removable chunks) and green patina crust patches. Wall variant: pivot at wall contact, -Y out of the wall."
+ },
+ "Deposit_Crystal_Wall": {
+  "kit": "Kit_Deposits",
+  "bounds_min": [
+   -0.6595,
+   -0.6482,
+   -0.4861
+  ],
+  "bounds_max": [
+   0.5786,
+   0.0779,
+   0.5207
+  ],
+  "bounds_size": [
+   1.2382,
+   0.7262,
+   1.0069
+  ],
+  "tris": 2564,
+  "materials": [
+   "MNF_RockMine",
+   "MNF_Crystal"
+  ],
+  "children": [
+   "Base",
+   "Chunk_00",
+   "Chunk_01",
+   "Chunk_02",
+   "Chunk_03",
+   "Chunk_04",
+   "COL_Body"
+  ],
+  "helpers": {
+   "COL_Body": [
+    -0.0404,
+    -0.0923,
+    0.0173
+   ]
+  },
+  "colliders": {
+   "COL_Body": {
+    "min": [
+     -0.61,
+     -0.1846,
+     -0.4459
+    ],
+    "max": [
+     0.5291,
+     0.0,
+     0.4804
+    ]
+   }
+  },
+  "child_pivots": {
+   "Base": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "Chunk_00": [
+    0.0611,
+    -0.3286,
+    0.0241
+   ],
+   "Chunk_01": [
+    0.355,
+    -0.2386,
+    0.0185
+   ],
+   "Chunk_02": [
+    -0.0395,
+    -0.2308,
+    0.2595
+   ],
+   "Chunk_03": [
+    -0.3378,
+    -0.2027,
+    0.0611
+   ],
+   "Chunk_04": [
+    -0.1204,
+    -0.1808,
+    -0.307
+   ]
+  },
+  "notes": "Crystal deposit ~1.2 m: low rock base with 5 clusters of hexagonal luminous prisms (MNF_Crystal, emissive) growing at different angles; small crystal stubs stay after mining. Wall variant: pivot at wall contact, -Y out of the wall."
+ }
+}

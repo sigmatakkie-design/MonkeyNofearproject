@@ -24,7 +24,7 @@ Generator                    4136   5000  ok         COL_Body
 VentFan                      1496   1500  ok         Fan
 Pipe_Straight                1160   1500  ok         
 Pipe_Elbow                   1116   1500  ok         
-Pipe_Valve                   1616   1500  OVER       
+Pipe_Valve                   1496   1500  ok         
 CableBundle                  1268   1500  ok         
 Crate_A                      1460   1500  ok         
 Crate_B                       744   1500  ok         
@@ -41,5 +41,4 @@ PosterBoard                   690   1500  ok
 
 top-level objects in FBX: 38 (expected 38)
 Blender re-import: 78 objects, 38 top-level
-ERROR Pipe_Valve: 1616 tris over budget 1500
-RESULT: FAIL (1 errors, 0 warnings)
+RESULT: PASS (0 errors, 0 warnings)

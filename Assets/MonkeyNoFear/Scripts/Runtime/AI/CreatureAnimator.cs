@@ -125,6 +125,31 @@ namespace MonkeyNoFear.AI
             return Length(clip) / Mathf.Max(0.01f, speed);
         }
 
+        /// <summary>Plays a clip on an upper layer restricted to one bone hierarchy (e.g. only the jaw), so
+        /// clips that were baked with every bone do not override the body pose.</summary>
+        public float PlayOverlay(string clip, string maskBone, float fade = 0.1f)
+        {
+            if (!anim || anim[clip] == null) return Length(clip);
+            var st = anim[clip];
+            if (st.layer != 2)
+            {
+                // unmasked, a clip baked with every bone would override the whole body pose
+                var bone = FindBone(maskBone);
+                if (!bone) return Length(clip);
+                st.layer = 2;
+                st.wrapMode = WrapMode.ClampForever;
+                st.AddMixingTransform(bone, true);
+            }
+            st.time = 0f;
+            anim.CrossFade(clip, fade, PlayMode.StopSameLayer);
+            return st.length;
+        }
+
+        public void StopOverlay(string clip, float fade = 0.2f)
+        {
+            if (anim && anim[clip] != null) anim.Blend(clip, 0f, fade);
+        }
+
         /// <summary>Scale playback so the feet match the ground speed.</summary>
         public void SyncSpeed(string clip, float groundSpeed, float min = 0.5f, float max = 1.8f)
         {

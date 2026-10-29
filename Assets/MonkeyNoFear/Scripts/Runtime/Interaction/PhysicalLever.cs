@@ -17,6 +17,8 @@ namespace MonkeyNoFear.Interaction
         [Range(0.5f, 1f)] public float triggerFraction = 0.85f;
         public bool springReturn = true;
         public float restAngle = -45f;
+        [Tooltip("Hand angles are measured from straight up (0) toward the lever's front (+90). Offset maps that to the handle mesh's authored direction (-90 for a handle modelled pointing out of the wall).")]
+        public float visualAngleOffset;
 
         float _angle;
         bool _down;
@@ -67,6 +69,6 @@ namespace MonkeyNoFear.Interaction
             }
         }
 
-        void Apply() => hinge.localRotation = _hingeRest * Quaternion.Euler(_angle - restAngle, 0f, 0f);
+        void Apply() => hinge.localRotation = _hingeRest * Quaternion.Euler(_angle + visualAngleOffset, 0f, 0f);
     }
 }

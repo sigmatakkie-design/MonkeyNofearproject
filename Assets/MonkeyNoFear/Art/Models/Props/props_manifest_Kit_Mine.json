@@ -1,0 +1,1120 @@
+{
+  "SupportFrame": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -2.233,
+      -0.481,
+      -0.003
+    ],
+    "bounds_max": [
+      2.232,
+      0.45,
+      3.634
+    ],
+    "bounds_size": [
+      4.465,
+      0.931,
+      3.637
+    ],
+    "tris": 1088,
+    "materials": [
+      "MNF_WoodBeam",
+      "MNF_MetalRusted",
+      "MNF_WoodPlanks"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Header": [
+        0.0,
+        0.0,
+        3.36
+      ],
+      "COL_Post_L": [
+        -1.925,
+        0.0,
+        1.6
+      ],
+      "COL_Post_R": [
+        1.925,
+        0.0,
+        1.6
+      ]
+    },
+    "notes": "Timber set for a 3.5 m wide x 3.2 m tall tunnel (inner clearance), posts battered inwards, cracked/sagging header, rusted iron brackets + bolts, wedges, lagging boards on top (+-0.45 m along Y). Frame plane = XZ, tunnel runs along Y; stack sets every ~1.5-2.5 m."
+  },
+  "SupportFrame_Broken": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -2.789,
+      -1.322,
+      -0.202
+    ],
+    "bounds_max": [
+      2.193,
+      1.281,
+      3.546
+    ],
+    "bounds_size": [
+      4.982,
+      2.603,
+      3.748
+    ],
+    "tris": 1834,
+    "materials": [
+      "MNF_WoodBeam",
+      "MNF_MetalRusted",
+      "MNF_WoodPlanks",
+      "MNF_RockMine"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Header_CONVEX": [
+        -0.015,
+        0.06,
+        2.365
+      ],
+      "COL_Post_R": [
+        1.925,
+        0.0,
+        1.6
+      ],
+      "COL_PostStump_L": [
+        -1.91,
+        0.015,
+        0.6
+      ],
+      "COL_Rubble_CONVEX": [
+        -1.257,
+        -0.21,
+        0.161
+      ]
+    },
+    "notes": "Collapsed set: left post snapped (stump + fallen piece), cracked header dropped onto the stump at ~1.4 m, rock rubble pile on the left, fallen lagging. The passage on the right half (x>-0.3) stays open above ~2.3 m only at the right."
+  },
+  "Rail_Straight": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -0.562,
+      -2.0,
+      -0.0
+    ],
+    "bounds_max": [
+      0.562,
+      0.0,
+      0.19
+    ],
+    "bounds_size": [
+      1.124,
+      2.0,
+      0.19
+    ],
+    "tris": 488,
+    "materials": [
+      "MNF_WoodBeam",
+      "MNF_MetalRusted",
+      "MNF_MetalBare"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Track": [
+        0.0,
+        -1.0,
+        0.095
+      ],
+      "SOCKET_End": [
+        0.0,
+        -2.0,
+        0.0
+      ]
+    },
+    "notes": "2 m narrow-gauge track (0.6 m gauge), sleepers 0.1 m (MNF_WoodBeam), rails MNF_MetalRusted with worn MNF_MetalBare heads; rail top at z=0.19. Runs from the pivot (y=0) to y=-2; SOCKET_End marks the joint (its -Y = track direction)."
+  },
+  "Rail_Curve": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -0.557,
+      -2.157,
+      -0.0
+    ],
+    "bounds_max": [
+      0.747,
+      0.001,
+      0.19
+    ],
+    "bounds_size": [
+      1.303,
+      2.158,
+      0.19
+    ],
+    "tris": 824,
+    "materials": [
+      "MNF_WoodBeam",
+      "MNF_MetalRusted",
+      "MNF_MetalBare"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Track_CONVEX": [
+        0.136,
+        -1.035,
+        0.095
+      ],
+      "SOCKET_End": [
+        0.273,
+        -2.071,
+        0.0
+      ]
+    },
+    "notes": "Gentle curve: radius 8 m, 15 deg, arc 2.09 m, starts at the pivot heading -Y and bends towards +X. SOCKET_End at the end (rotated 15 deg, -Y = track direction). For a left curve use the piece reversed (enter from SOCKET_End)."
+  },
+  "Rail_End": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -0.72,
+      -1.979,
+      -0.0
+    ],
+    "bounds_max": [
+      0.72,
+      0.0,
+      0.78
+    ],
+    "bounds_size": [
+      1.44,
+      1.979,
+      0.78
+    ],
+    "tris": 756,
+    "materials": [
+      "MNF_WoodBeam",
+      "MNF_MetalRusted",
+      "MNF_MetalBare",
+      "MNF_Hazard"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Stop": [
+        0.0,
+        -1.27,
+        0.39
+      ],
+      "COL_Track": [
+        0.0,
+        -0.85,
+        0.095
+      ]
+    },
+    "notes": "1.7 m track ending in a buffer stop at y=-1.35 (steel posts, timber bumper with a MNF_Hazard plate facing the incoming cart, back braces). Attach its pivot to a SOCKET_End."
+  },
+  "MineLamp": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -0.109,
+      -0.409,
+      -0.226
+    ],
+    "bounds_max": [
+      0.109,
+      0.0,
+      0.12
+    ],
+    "bounds_size": [
+      0.218,
+      0.409,
+      0.346
+    ],
+    "tris": 580,
+    "materials": [
+      "MNF_MetalRusted",
+      "MNF_Plastic_Black",
+      "MNF_MetalPainted_Green",
+      "MNF_Rubber",
+      "MNF_BulbWarm"
+    ],
+    "children": [
+      "Bulb"
+    ],
+    "helpers": {},
+    "notes": "Wall-mounted caged mining lamp. Pivot = wall-contact centre, -Y out of the wall. Child `Bulb` (MNF_BulbWarm, pivot at the bulb centre [0.0, -0.3, -0.149]) - put the light there."
+  },
+  "LampString": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -2.03,
+      -0.032,
+      -0.678
+    ],
+    "bounds_max": [
+      2.03,
+      0.032,
+      0.136
+    ],
+    "bounds_size": [
+      4.059,
+      0.064,
+      0.814
+    ],
+    "tris": 984,
+    "materials": [
+      "MNF_Rubber",
+      "MNF_MetalRusted",
+      "MNF_Plastic_Black",
+      "MNF_BulbWarm"
+    ],
+    "children": [
+      "Bulb_0",
+      "Bulb_1",
+      "Bulb_2",
+      "Bulb_3"
+    ],
+    "helpers": {},
+    "notes": "4 m string of bare bulbs sagging 0.45 m between two eye hooks at x=+-2. Pivot = midpoint between the hooks at hook height (z=0); everything hangs below. Children Bulb_0..Bulb_3 (MNF_BulbWarm), each pivot at the bulb centre."
+  },
+  "Ladder": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -0.275,
+      -0.06,
+      0.0
+    ],
+    "bounds_max": [
+      0.275,
+      0.152,
+      3.132
+    ],
+    "bounds_size": [
+      0.55,
+      0.212,
+      3.132
+    ],
+    "tris": 320,
+    "materials": [
+      "MNF_WoodBeam",
+      "MNF_MetalRusted",
+      "MNF_WoodHandle"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Ladder": [
+        0.0,
+        0.0,
+        1.5
+      ],
+      "SOCKET_Top": [
+        0.0,
+        0.0,
+        3.0
+      ]
+    },
+    "notes": "3 m wooden ladder in the XZ plane (climb from -Y), 10 rungs at 0.29 m, steel hooks at the top curling towards +Y to hang over a ledge. COL_Ladder = climb volume."
+  },
+  "Walkway": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -1.0,
+      -0.53,
+      0.0
+    ],
+    "bounds_max": [
+      1.0,
+      0.53,
+      1.332
+    ],
+    "bounds_size": [
+      2.0,
+      1.06,
+      1.332
+    ],
+    "tris": 448,
+    "materials": [
+      "MNF_MetalRusted",
+      "MNF_MetalGrate",
+      "MNF_MetalPainted_Yellow"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Floor": [
+        0.0,
+        0.0,
+        0.105
+      ],
+      "COL_Rail_Back": [
+        0.0,
+        0.5,
+        0.77
+      ],
+      "COL_Rail_Front": [
+        0.0,
+        -0.5,
+        0.77
+      ]
+    },
+    "notes": "2 m (X) x 1 m grated walkway section (MNF_MetalGrate deck, rusted stringers), yellow pipe railings both sides. Pivot at the bottom centre; deck top at z=0.21. Chain along X every 2 m."
+  },
+  "Railing": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -1.02,
+      -0.07,
+      0.0
+    ],
+    "bounds_max": [
+      1.02,
+      0.07,
+      1.122
+    ],
+    "bounds_size": [
+      2.04,
+      0.14,
+      1.122
+    ],
+    "tris": 458,
+    "materials": [
+      "MNF_MetalPainted_Yellow",
+      "MNF_MetalRusted"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Railing": [
+        0.0,
+        0.0,
+        0.56
+      ]
+    },
+    "notes": "2 m yellow pipe railing (top 1.1 m, mid rail, toe board) with bolted floor base plates."
+  },
+  "Elevator_Platform": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -1.5,
+      -1.5,
+      0.0
+    ],
+    "bounds_max": [
+      1.5,
+      1.5,
+      4.88
+    ],
+    "bounds_size": [
+      3.0,
+      3.0,
+      4.88
+    ],
+    "tris": 896,
+    "materials": [
+      "MNF_MetalPainted_Yellow",
+      "MNF_MetalRusted",
+      "MNF_MetalDiamond",
+      "MNF_Hazard",
+      "MNF_MetalGrate",
+      "MNF_MetalBare",
+      "MNF_MetalPainted_Gray",
+      "MNF_Plastic_Black",
+      "MNF_BulbRed"
+    ],
+    "children": [
+      "Lamp"
+    ],
+    "helpers": {
+      "COL_Floor": [
+        0.0,
+        0.0,
+        0.115
+      ],
+      "COL_Rail_Back": [
+        0.0,
+        1.45,
+        1.455
+      ],
+      "COL_Rail_Left": [
+        -1.45,
+        0.0,
+        1.455
+      ],
+      "COL_Rail_Right": [
+        1.45,
+        0.0,
+        1.455
+      ]
+    },
+    "notes": "3 x 3 m caged lift platform; moves vertically. Pivot at the bottom centre of the frame, floor (MNF_MetalDiamond, hazard edge) top at z=0.23; railings + grate cage on back/left/right up to 2.68 m, front (-Y) open. Hoist bridle + cable stub on top (to ~4.9 m). Small control box with child `Lamp` (MNF_BulbRed indicator)."
+  },
+  "Elevator_Frame": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -1.834,
+      -1.795,
+      0.0
+    ],
+    "bounds_max": [
+      1.834,
+      1.834,
+      8.0
+    ],
+    "bounds_size": [
+      3.668,
+      3.629,
+      8.0
+    ],
+    "tris": 732,
+    "materials": [
+      "MNF_MetalRusted",
+      "MNF_MetalPainted_Yellow",
+      "MNF_WoodBeam"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Guide_0": [
+        -1.72,
+        -1.72,
+        4.0
+      ],
+      "COL_Guide_1": [
+        -1.72,
+        1.72,
+        4.0
+      ],
+      "COL_Guide_2": [
+        1.72,
+        -1.72,
+        4.0
+      ],
+      "COL_Guide_3": [
+        1.72,
+        1.72,
+        4.0
+      ],
+      "COL_Side_Back": [
+        0.0,
+        1.78,
+        4.0
+      ],
+      "COL_Side_L": [
+        -1.78,
+        0.0,
+        4.0
+      ],
+      "COL_Side_R": [
+        1.78,
+        0.0,
+        4.0
+      ]
+    },
+    "notes": "8 m stackable shaft segment (stack every 8 m along Z for the 40 m shaft): four H-beam corner guides on a 3.44 m square around the 3 x 3 m platform, ring frames at 0.15 and 4.15 m (front ring only at the bottom so landings stay open), X bracing on back/sides, timber cage-shoe guides at x=+-1.58. Pivot at the bottom centre; front (-Y) open."
+  },
+  "Minecart": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -0.476,
+      -0.899,
+      -0.013
+    ],
+    "bounds_max": [
+      0.476,
+      0.901,
+      1.105
+    ],
+    "bounds_size": [
+      0.953,
+      1.8,
+      1.118
+    ],
+    "tris": 1564,
+    "materials": [
+      "MNF_MetalRusted",
+      "MNF_MetalBare",
+      "MNF_OreIron",
+      "MNF_RockMine"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Body": [
+        0.0,
+        0.0,
+        0.59
+      ],
+      "COL_Wheels": [
+        0.0,
+        0.0,
+        0.1
+      ]
+    },
+    "notes": "Rusty narrow-gauge ore cart, long axis along Y, ore heap inside (MNF_RockMine + MNF_OreIron). Pivot = bottom centre at the wheel running surface; to sit on Kit_Mine rails place it at z=+0.19 (rail top). Wheel gauge 0.6 m."
+  },
+  "Helmet": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -0.148,
+      -0.193,
+      -0.01
+    ],
+    "bounds_max": [
+      0.148,
+      0.148,
+      0.181
+    ],
+    "bounds_size": [
+      0.296,
+      0.341,
+      0.191
+    ],
+    "tris": 450,
+    "materials": [
+      "MNF_Plastic_Yellow",
+      "MNF_Plastic_Black",
+      "MNF_MetalBare",
+      "MNF_Glass",
+      "MNF_Rubber"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Helmet": [
+        0.0,
+        -0.025,
+        0.085
+      ]
+    },
+    "notes": "Miner hard hat (MNF_Plastic_Yellow) with brim peak and lamp facing -Y (MNF_Glass lens), cable to the back. Pivot at the brim bottom centre."
+  },
+  "Workstation": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -0.736,
+      -1.209,
+      -0.044
+    ],
+    "bounds_max": [
+      0.993,
+      0.38,
+      1.09
+    ],
+    "bounds_size": [
+      1.729,
+      1.589,
+      1.134
+    ],
+    "tris": 1430,
+    "materials": [
+      "MNF_MetalPainted_Gray",
+      "MNF_WoodPlanks",
+      "MNF_MetalPainted_Green",
+      "MNF_MetalBare",
+      "MNF_Paper",
+      "MNF_Plastic_Yellow",
+      "MNF_Plastic_Black",
+      "MNF_Glass",
+      "MNF_Rubber"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Chair": [
+        -0.277,
+        -0.852,
+        0.397
+      ],
+      "COL_Desk": [
+        0.0,
+        0.0,
+        0.38
+      ]
+    },
+    "notes": "Abandoned miner desk 1.45 x 0.68 m, top at 0.76 m: drawer unit with one drawer pulled out, helmet, thermos, mug, scattered papers (also on the floor), chair pushed back. Desk front = -Y."
+  },
+  "RubblePile_A": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -1.668,
+      -1.392,
+      -0.237
+    ],
+    "bounds_max": [
+      1.738,
+      1.316,
+      1.194
+    ],
+    "bounds_size": [
+      3.405,
+      2.708,
+      1.431
+    ],
+    "tris": 1480,
+    "materials": [
+      "MNF_RockMine",
+      "MNF_WoodBeam",
+      "MNF_WoodPlanks"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Pile_CONVEX": [
+        0.035,
+        -0.038,
+        0.479
+      ]
+    },
+    "notes": "Collapsed rock & timber rubble ~3.4 m wide, 1.3 m tall (MNF_RockMine, broken beams, planks). Convex collider."
+  },
+  "RubblePile_B": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -1.052,
+      -0.979,
+      -0.191
+    ],
+    "bounds_max": [
+      1.39,
+      0.805,
+      0.863
+    ],
+    "bounds_size": [
+      2.442,
+      1.784,
+      1.054
+    ],
+    "tris": 888,
+    "materials": [
+      "MNF_RockMine",
+      "MNF_WoodBeam",
+      "MNF_WoodPlanks"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Pile_CONVEX": [
+        0.169,
+        -0.087,
+        0.124
+      ]
+    },
+    "notes": "Collapsed rock & timber rubble ~2.2 m wide, 0.8 m tall (MNF_RockMine, broken beams, planks). Convex collider."
+  },
+  "LooseRockWall": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -1.928,
+      -1.62,
+      -0.146
+    ],
+    "bounds_max": [
+      2.62,
+      0.651,
+      3.643
+    ],
+    "bounds_size": [
+      4.548,
+      2.271,
+      3.79
+    ],
+    "tris": 3500,
+    "materials": [
+      "MNF_RockMine",
+      "MNF_WoodBeam"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Wall": [
+        0.0,
+        0.0,
+        1.625
+      ]
+    },
+    "notes": "Plug of packed loose boulders filling a 3.5 x 3.2 m tunnel section (XZ plane, ~1 m thick along Y) with broken timbers and spill on the -Y side. Borer emergence point; the builder can hide the whole object."
+  },
+  "BorerHole": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -2.9,
+      -1.434,
+      -0.181
+    ],
+    "bounds_max": [
+      2.9,
+      3.4,
+      4.2
+    ],
+    "bounds_size": [
+      5.8,
+      4.834,
+      4.381
+    ],
+    "tris": 1462,
+    "materials": [
+      "MNF_RockMine",
+      "MNF_Blackstone"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Floor": [
+        0.0,
+        1.6,
+        -0.075
+      ],
+      "COL_Wall_L": [
+        -2.044,
+        0.05,
+        2.1
+      ],
+      "COL_Wall_R": [
+        2.044,
+        0.05,
+        2.1
+      ],
+      "COL_Wall_Top": [
+        0.0,
+        0.05,
+        3.3
+      ]
+    },
+    "notes": "Ragged 2.5 m burrow opening in a 5.8 x 4.2 m rock wall piece (XZ plane, -Y out), broken rock lip pushed outwards, throat tunnelling 3.4 m into +Y (faces point inwards), rock debris, deep claw gouges (MNF_Blackstone grooves). Pivot = centre of the opening floor."
+  },
+  "PA_Speaker": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -0.232,
+      -0.686,
+      -0.374
+    ],
+    "bounds_max": [
+      0.232,
+      0.0,
+      0.13
+    ],
+    "bounds_size": [
+      0.464,
+      0.686,
+      0.504
+    ],
+    "tris": 566,
+    "materials": [
+      "MNF_MetalRusted",
+      "MNF_MetalPainted_Gray",
+      "MNF_Rubber"
+    ],
+    "children": [],
+    "helpers": {
+      "SOCKET_Sound": [
+        0.0,
+        -0.615,
+        -0.152
+      ]
+    },
+    "notes": "Old horn loudspeaker on a wall bracket, horn aimed -Y and 15 deg down. Pivot = wall-contact centre. SOCKET_Sound at the horn mouth (-Y = sound direction) for the audio source."
+  },
+  "Crate_Mine": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -0.465,
+      -0.315,
+      0.0
+    ],
+    "bounds_max": [
+      0.465,
+      0.36,
+      0.61
+    ],
+    "bounds_size": [
+      0.93,
+      0.675,
+      0.61
+    ],
+    "tris": 924,
+    "materials": [
+      "MNF_WoodCrate",
+      "MNF_MetalRusted"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Crate": [
+        0.0,
+        0.0,
+        0.305
+      ]
+    },
+    "notes": "0.9 x 0.6 x 0.6 m board crate (MNF_WoodCrate) with rusted iron corners, one lid board shifted."
+  },
+  "Barrel_Mine": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -0.296,
+      -0.302,
+      0.0
+    ],
+    "bounds_max": [
+      0.302,
+      0.298,
+      0.88
+    ],
+    "bounds_size": [
+      0.598,
+      0.6,
+      0.88
+    ],
+    "tris": 340,
+    "materials": [
+      "MNF_MetalRusted",
+      "MNF_MetalPainted_Red"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Barrel": [
+        0.0,
+        0.0,
+        0.44
+      ]
+    },
+    "notes": "200 l steel drum (MNF_MetalPainted_Red, rusted rims/lid), rolling hoops, dent, bungs."
+  },
+  "ToolPile": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -0.61,
+      -0.567,
+      0.0
+    ],
+    "bounds_max": [
+      0.719,
+      0.912,
+      1.261
+    ],
+    "bounds_size": [
+      1.329,
+      1.479,
+      1.261
+    ],
+    "tris": 364,
+    "materials": [
+      "MNF_WoodHandle",
+      "MNF_MetalRusted"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Pile": [
+        0.055,
+        0.172,
+        0.125
+      ]
+    },
+    "notes": "Heap of broken shovels and picks (MNF_WoodHandle, MNF_MetalRusted): one shovel leaning, broken handles. Decorative (not the Kit_Tools pickaxes)."
+  },
+  "Sign_Level": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -0.261,
+      -0.09,
+      0.0
+    ],
+    "bounds_max": [
+      0.259,
+      0.13,
+      1.85
+    ],
+    "bounds_size": [
+      0.521,
+      0.22,
+      1.85
+    ],
+    "tris": 374,
+    "materials": [
+      "MNF_MetalRusted",
+      "MNF_MetalPainted_Gray",
+      "MNF_Signs"
+    ],
+    "children": [
+      "Board"
+    ],
+    "helpers": {
+      "COL_Post": [
+        0.0,
+        0.02,
+        0.925
+      ]
+    },
+    "notes": "Steel post 1.85 m with a 0.52 m painted plate. Child `Board`: 0.46 m square quad (MNF_Signs) facing -Y, pivot at its centre (0, -0.027, 1.55)."
+  },
+  "TunnelMarker_Red": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -0.169,
+      -0.068,
+      -0.169
+    ],
+    "bounds_max": [
+      0.168,
+      0.0,
+      0.168
+    ],
+    "bounds_size": [
+      0.336,
+      0.068,
+      0.337
+    ],
+    "tris": 148,
+    "materials": [
+      "MNF_MetalRusted",
+      "MNF_MetalPainted_Red"
+    ],
+    "children": [
+      "Plate"
+    ],
+    "helpers": {},
+    "notes": "Wall-mounted colour-coded tunnel marker: diamond plate child `Plate` (MNF_MetalPainted_Red), pivot at the plate centre; bracket pivot = wall-contact centre, -Y out."
+  },
+  "TunnelMarker_Yellow": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -0.169,
+      -0.068,
+      -0.169
+    ],
+    "bounds_max": [
+      0.168,
+      0.0,
+      0.168
+    ],
+    "bounds_size": [
+      0.336,
+      0.068,
+      0.337
+    ],
+    "tris": 148,
+    "materials": [
+      "MNF_MetalRusted",
+      "MNF_MetalPainted_Yellow"
+    ],
+    "children": [
+      "Plate"
+    ],
+    "helpers": {},
+    "notes": "Wall-mounted colour-coded tunnel marker: diamond plate child `Plate` (MNF_MetalPainted_Yellow), pivot at the plate centre; bracket pivot = wall-contact centre, -Y out."
+  },
+  "TunnelMarker_Green": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -0.169,
+      -0.068,
+      -0.169
+    ],
+    "bounds_max": [
+      0.168,
+      0.0,
+      0.168
+    ],
+    "bounds_size": [
+      0.336,
+      0.068,
+      0.337
+    ],
+    "tris": 148,
+    "materials": [
+      "MNF_MetalRusted",
+      "MNF_MetalPainted_Green"
+    ],
+    "children": [
+      "Plate"
+    ],
+    "helpers": {},
+    "notes": "Wall-mounted colour-coded tunnel marker: diamond plate child `Plate` (MNF_MetalPainted_Green), pivot at the plate centre; bracket pivot = wall-contact centre, -Y out."
+  },
+  "PipeRun": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -2.025,
+      -0.4,
+      -0.001
+    ],
+    "bounds_max": [
+      2.025,
+      0.48,
+      0.998
+    ],
+    "bounds_size": [
+      4.05,
+      0.88,
+      0.999
+    ],
+    "tris": 856,
+    "materials": [
+      "MNF_MetalRusted",
+      "MNF_Rubber",
+      "MNF_MetalPainted_Green"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Pipe": [
+        0.0,
+        0.025,
+        0.505
+      ]
+    },
+    "notes": "4 m rusty ventilation duct (0.5 m) along X on two floor saddles, flanged joints at x=-2/0/+2 (chain every 4 m), dent, small green air line alongside."
+  },
+  "Generator_Small": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -0.677,
+      -0.713,
+      0.0
+    ],
+    "bounds_max": [
+      1.306,
+      0.36,
+      1.056
+    ],
+    "bounds_size": [
+      1.983,
+      1.073,
+      1.056
+    ],
+    "tris": 947,
+    "materials": [
+      "MNF_MetalRusted",
+      "MNF_Hazard",
+      "MNF_MetalPainted_Green",
+      "MNF_MetalPainted_Red",
+      "MNF_MetalPainted_Gray",
+      "MNF_MetalBare",
+      "MNF_Glass",
+      "MNF_Plastic_Black",
+      "MNF_Rubber"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Body": [
+        0.0,
+        0.0,
+        0.49
+      ]
+    },
+    "notes": "Dead mine generator on a skid (1.3 x 0.72 m): engine block with cooling fins, alternator, red fuel tank, exhaust + muffler, gauge panel facing -Y, hazard-striped skid ends, trailing cable."
+  },
+  "ScratchedPlate": {
+    "kit": "Kit_Mine",
+    "bounds_min": [
+      -1.0,
+      -0.079,
+      -1.0
+    ],
+    "bounds_max": [
+      1.0,
+      0.0,
+      1.0
+    ],
+    "bounds_size": [
+      2.0,
+      0.079,
+      2.0
+    ],
+    "tris": 1980,
+    "materials": [
+      "MNF_MetalPainted_Gray",
+      "MNF_MetalRusted"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Plate": [
+        0.0,
+        -0.015,
+        0.0
+      ]
+    },
+    "notes": "2 x 2 m riveted steel wall panel (MNF_MetalPainted_Gray). Pivot = wall-contact centre (panel spans z=-1..1), -Y out. Raised claw-stroke ridges and a dent bulge TOWARDS the player, as if something scratched and hit it from the other side."
+  }
+}

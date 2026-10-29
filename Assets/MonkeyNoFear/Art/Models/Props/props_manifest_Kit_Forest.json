@@ -1,0 +1,1458 @@
+{
+  "Tree_Pine_A": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -4.183,
+      -4.339,
+      -0.164
+    ],
+    "bounds_max": [
+      4.754,
+      4.404,
+      15.201
+    ],
+    "bounds_size": [
+      8.937,
+      8.742,
+      15.365
+    ],
+    "tris": 2892,
+    "materials": [
+      "MNF_BarkPine",
+      "MNF_FoliagePine"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Trunk": [
+        0.009,
+        -0.035,
+        3.29
+      ]
+    },
+    "notes": "Dark conifer, 15.0 m. Bark MNF_BarkPine (V tiles along trunk), needle cards MNF_FoliagePine (full 0..1 UV, cluster base at V=0, custom normals point out of the crown). Lower whorls are dead bare branches. COL_Trunk covers the trunk to 7 m."
+  },
+  "Tree_Pine_B": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -4.871,
+      -4.605,
+      -0.153
+    ],
+    "bounds_max": [
+      4.308,
+      4.092,
+      17.745
+    ],
+    "bounds_size": [
+      9.179,
+      8.697,
+      17.898
+    ],
+    "tris": 2656,
+    "materials": [
+      "MNF_BarkPine",
+      "MNF_FoliagePine"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Trunk": [
+        -0.015,
+        -0.01,
+        3.355
+      ]
+    },
+    "notes": "Dark conifer, 17.5 m. Bark MNF_BarkPine (V tiles along trunk), needle cards MNF_FoliagePine (full 0..1 UV, cluster base at V=0, custom normals point out of the crown). Lower whorls are dead bare branches. COL_Trunk covers the trunk to 7 m."
+  },
+  "Tree_Pine_C": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -4.719,
+      -3.954,
+      -0.181
+    ],
+    "bounds_max": [
+      4.007,
+      4.277,
+      12.625
+    ],
+    "bounds_size": [
+      8.726,
+      8.231,
+      12.806
+    ],
+    "tris": 2784,
+    "materials": [
+      "MNF_BarkPine",
+      "MNF_FoliagePine"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Trunk": [
+        -0.135,
+        0.241,
+        3.423
+      ]
+    },
+    "notes": "Dark conifer, 12.5 m. Bark MNF_BarkPine (V tiles along trunk), needle cards MNF_FoliagePine (full 0..1 UV, cluster base at V=0, custom normals point out of the crown). Lower whorls are dead bare branches. COL_Trunk covers the trunk to 7 m."
+  },
+  "Tree_Dead_A": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -4.89,
+      -2.836,
+      -0.188
+    ],
+    "bounds_max": [
+      6.364,
+      3.885,
+      10.446
+    ],
+    "bounds_size": [
+      11.254,
+      6.721,
+      10.634
+    ],
+    "tris": 2999,
+    "materials": [
+      "MNF_BarkDead"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Trunk": [
+        0.192,
+        0.002,
+        1.937
+      ]
+    },
+    "notes": "Twisted dead tree, bare clawing branches (MNF_BarkDead). COL_Trunk covers the lower 4 m of trunk."
+  },
+  "Tree_Dead_B": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -3.167,
+      -4.125,
+      -0.301
+    ],
+    "bounds_max": [
+      3.765,
+      5.4,
+      8.874
+    ],
+    "bounds_size": [
+      6.932,
+      9.525,
+      9.174
+    ],
+    "tris": 2794,
+    "materials": [
+      "MNF_BarkDead"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Trunk": [
+        0.093,
+        0.578,
+        1.821
+      ]
+    },
+    "notes": "Twisted dead tree, bare clawing branches (MNF_BarkDead). COL_Trunk covers the lower 4 m of trunk."
+  },
+  "Tree_Dead_C": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -4.96,
+      -3.573,
+      -0.19
+    ],
+    "bounds_max": [
+      2.856,
+      4.273,
+      8.834
+    ],
+    "bounds_size": [
+      7.816,
+      7.846,
+      9.025
+    ],
+    "tris": 1878,
+    "materials": [
+      "MNF_BarkDead",
+      "MNF_WoodRotten"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Trunk": [
+        -0.053,
+        0.001,
+        1.973
+      ]
+    },
+    "notes": "Twisted dead tree, bare clawing branches (MNF_BarkDead). COL_Trunk covers the lower 4 m of trunk."
+  },
+  "Tree_Gnarled": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -2.811,
+      -3.389,
+      -0.225
+    ],
+    "bounds_max": [
+      4.934,
+      7.023,
+      9.093
+    ],
+    "bounds_size": [
+      7.745,
+      10.412,
+      9.318
+    ],
+    "tris": 3867,
+    "materials": [
+      "MNF_BarkDead",
+      "MNF_WoodRotten",
+      "MNF_FoliageLeaf"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Trunk": [
+        0.149,
+        0.004,
+        1.98
+      ]
+    },
+    "notes": "Huge old twisted tree, 10 m, trunk ~1.5 m, buttress roots, hollow at the base facing -Y (inner faces MNF_WoodRotten), a few dying leaf tufts (MNF_FoliageLeaf). The COL_Trunk box covers the trunk (the hollow is inside the box)."
+  },
+  "Rock_A": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -0.306,
+      -0.255,
+      -0.043
+    ],
+    "bounds_max": [
+      0.319,
+      0.249,
+      0.385
+    ],
+    "bounds_size": [
+      0.625,
+      0.504,
+      0.427
+    ],
+    "tris": 128,
+    "materials": [
+      "MNF_RockDry"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Rock_CONVEX": [
+        0.007,
+        -0.003,
+        0.171
+      ]
+    },
+    "notes": "Sharp fractured, weathered rock ~0.6 m (MNF_RockDry). Base sunk ~10% below z=0. COL_Rock_CONVEX = convex hull."
+  },
+  "Rock_B": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -0.595,
+      -0.449,
+      -0.06
+    ],
+    "bounds_max": [
+      0.599,
+      0.42,
+      0.539
+    ],
+    "bounds_size": [
+      1.194,
+      0.868,
+      0.598
+    ],
+    "tris": 512,
+    "materials": [
+      "MNF_RockDry",
+      "MNF_Moss"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Rock_CONVEX": [
+        0.002,
+        -0.015,
+        0.24
+      ]
+    },
+    "notes": "Sharp fractured, weathered rock ~1.2 m (MNF_RockDry, moss on up-facing faces). Base sunk ~10% below z=0. COL_Rock_CONVEX = convex hull."
+  },
+  "Rock_C": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -0.44,
+      -0.544,
+      -0.17
+    ],
+    "bounds_max": [
+      0.406,
+      0.397,
+      1.532
+    ],
+    "bounds_size": [
+      0.846,
+      0.941,
+      1.702
+    ],
+    "tris": 512,
+    "materials": [
+      "MNF_RockDry",
+      "MNF_Moss"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Rock_CONVEX": [
+        -0.016,
+        -0.074,
+        0.681
+      ]
+    },
+    "notes": "Sharp fractured, weathered rock ~1.7 m (MNF_RockDry, moss on up-facing faces). Base sunk ~10% below z=0. COL_Rock_CONVEX = convex hull."
+  },
+  "Rock_D": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -1.069,
+      -0.942,
+      -0.139
+    ],
+    "bounds_max": [
+      1.102,
+      0.785,
+      1.248
+    ],
+    "bounds_size": [
+      2.17,
+      1.727,
+      1.387
+    ],
+    "tris": 608,
+    "materials": [
+      "MNF_RockDry",
+      "MNF_Moss"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Rock_CONVEX": [
+        0.017,
+        -0.078,
+        0.555
+      ]
+    },
+    "notes": "Sharp fractured, weathered rock ~2.2 m (MNF_RockDry, moss on up-facing faces). Base sunk ~10% below z=0. COL_Rock_CONVEX = convex hull."
+  },
+  "Rock_E": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -1.565,
+      -1.298,
+      -0.228
+    ],
+    "bounds_max": [
+      1.519,
+      1.275,
+      2.052
+    ],
+    "bounds_size": [
+      3.084,
+      2.573,
+      2.28
+    ],
+    "tris": 656,
+    "materials": [
+      "MNF_RockDry",
+      "MNF_Moss"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Rock_CONVEX": [
+        -0.023,
+        -0.012,
+        0.912
+      ]
+    },
+    "notes": "Sharp fractured, weathered rock ~3.0 m (MNF_RockDry, moss on up-facing faces). Base sunk ~10% below z=0. COL_Rock_CONVEX = convex hull."
+  },
+  "Boulder_Large": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -2.634,
+      -3.321,
+      -0.396
+    ],
+    "bounds_max": [
+      4.061,
+      2.344,
+      3.563
+    ],
+    "bounds_size": [
+      6.695,
+      5.665,
+      3.959
+    ],
+    "tris": 3232,
+    "materials": [
+      "MNF_RockDry",
+      "MNF_Moss"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Boulder_CONVEX": [
+        0.101,
+        -0.045,
+        1.562
+      ],
+      "COL_Step_CONVEX": [
+        2.496,
+        -1.831,
+        0.864
+      ]
+    },
+    "notes": "5.6 m climbable boulder with a ~2 m step block at the front-right (+X/-Y) to climb up. Two convex colliders."
+  },
+  "CliffChunk_A": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -4.076,
+      -2.515,
+      -0.301
+    ],
+    "bounds_max": [
+      3.95,
+      1.723,
+      11.158
+    ],
+    "bounds_size": [
+      8.026,
+      4.238,
+      11.459
+    ],
+    "tris": 4896,
+    "materials": [
+      "MNF_RockDry_Tri",
+      "MNF_Moss"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Block_0_CONVEX": [
+        -0.163,
+        -0.729,
+        1.336
+      ],
+      "COL_Block_1_CONVEX": [
+        -2.016,
+        0.102,
+        3.487
+      ],
+      "COL_Block_2_CONVEX": [
+        1.998,
+        -0.164,
+        3.539
+      ],
+      "COL_Block_3_CONVEX": [
+        -1.573,
+        -0.382,
+        5.55
+      ],
+      "COL_Block_4_CONVEX": [
+        2.061,
+        -0.074,
+        5.531
+      ],
+      "COL_Block_5_CONVEX": [
+        -1.863,
+        -0.218,
+        7.52
+      ],
+      "COL_Block_6_CONVEX": [
+        2.023,
+        -0.014,
+        7.543
+      ],
+      "COL_Block_7_CONVEX": [
+        -1.768,
+        0.029,
+        9.53
+      ],
+      "COL_Block_8_CONVEX": [
+        2.071,
+        -0.135,
+        9.543
+      ]
+    },
+    "notes": "Cliff wall piece 8 m wide x 10 m tall: stacked fractured strata blocks with ledges on the -Y face; back (+Y) flattened to butt into terrain. MNF_RockDry_Tri (triplanar) + MNF_Moss on ledge tops. One convex collider per block."
+  },
+  "CliffChunk_B": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -3.406,
+      -2.65,
+      -0.305
+    ],
+    "bounds_max": [
+      2.95,
+      1.774,
+      12.72
+    ],
+    "bounds_size": [
+      6.356,
+      4.424,
+      13.025
+    ],
+    "tris": 3872,
+    "materials": [
+      "MNF_RockDry_Tri",
+      "MNF_Moss"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Block_0_CONVEX": [
+        0.03,
+        -0.336,
+        1.264
+      ],
+      "COL_Block_1_CONVEX": [
+        -0.287,
+        0.3,
+        3.369
+      ],
+      "COL_Block_2_CONVEX": [
+        -0.405,
+        0.008,
+        5.309
+      ],
+      "COL_Block_3_CONVEX": [
+        -1.444,
+        -0.407,
+        7.194
+      ],
+      "COL_Block_4_CONVEX": [
+        1.407,
+        -0.529,
+        7.158
+      ],
+      "COL_Block_5_CONVEX": [
+        -0.229,
+        -1.302,
+        9.129
+      ],
+      "COL_Block_6_CONVEX": [
+        -0.164,
+        -0.688,
+        11.118
+      ]
+    },
+    "notes": "Cliff wall piece 6 m wide x 12 m tall: stacked fractured strata blocks with ledges and an overhang on the -Y face; back (+Y) flattened to butt into terrain. MNF_RockDry_Tri (triplanar) + MNF_Moss on ledge tops. One convex collider per block."
+  },
+  "MineEntrance": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -5.704,
+      -3.551,
+      -0.277
+    ],
+    "bounds_max": [
+      5.296,
+      4.005,
+      4.91
+    ],
+    "bounds_size": [
+      11.0,
+      7.556,
+      5.186
+    ],
+    "tris": 4402,
+    "materials": [
+      "MNF_WoodBeam",
+      "MNF_WoodPlanks",
+      "MNF_MetalRusted",
+      "MNF_Mud",
+      "MNF_MetalBare",
+      "MNF_Moss",
+      "MNF_RockDry",
+      "MNF_Signs"
+    ],
+    "children": [
+      "Board"
+    ],
+    "helpers": {
+      "COL_Ceiling": [
+        0.0,
+        2.1,
+        3.425
+      ],
+      "COL_Floor": [
+        0.0,
+        2.1,
+        -0.075
+      ],
+      "COL_Header": [
+        0.0,
+        0.0,
+        3.85
+      ],
+      "COL_Post_L": [
+        -1.955,
+        0.0,
+        1.6
+      ],
+      "COL_Post_R": [
+        1.955,
+        0.0,
+        1.6
+      ],
+      "COL_RocksL_CONVEX": [
+        -3.763,
+        0.786,
+        0.897
+      ],
+      "COL_RocksR_CONVEX": [
+        3.542,
+        0.953,
+        0.779
+      ],
+      "COL_RocksTop_CONVEX": [
+        -0.112,
+        1.734,
+        4.054
+      ],
+      "COL_Wall_L": [
+        -2.05,
+        2.1,
+        1.8
+      ],
+      "COL_Wall_R": [
+        2.05,
+        2.1,
+        1.8
+      ]
+    },
+    "notes": "Timber mine portal, 5 m wide x 4.5 m tall; opening 3.5 x 3.2 m (= Kit_Mine SupportFrame). Pivot = bottom centre of the opening at the portal face; -Y faces the forest; a 4 m timbered tunnel section runs into +Y (two support sets, wall/ceiling lagging, mud floor top at z=0), continue with the mine level from y=4. Rails from y=+4 to y=-3 (rail top ~z=0.15). Child `Board` = 0.72 m square quad (MNF_Signs, UV 0..1) on the rusted plate, facing -Y, pivot at its centre. Rock piles at both sides/top blend into cliffs."
+  },
+  "Stump": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -1.056,
+      -1.319,
+      -0.153
+    ],
+    "bounds_max": [
+      1.428,
+      1.189,
+      0.789
+    ],
+    "bounds_size": [
+      2.484,
+      2.508,
+      0.941
+    ],
+    "tris": 440,
+    "materials": [
+      "MNF_BarkPine",
+      "MNF_WoodRotten",
+      "MNF_Teeth",
+      "MNF_Gums"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Stump": [
+        0.0,
+        0.0,
+        0.275
+      ]
+    },
+    "notes": "Snapped pine stump ~0.6 m, jagged rotten top, roots, pale bracket fungi (MNF_Teeth/MNF_Gums)."
+  },
+  "Log": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -1.611,
+      -0.305,
+      -0.018
+    ],
+    "bounds_max": [
+      1.677,
+      0.34,
+      0.551
+    ],
+    "bounds_size": [
+      3.288,
+      0.645,
+      0.569
+    ],
+    "tris": 248,
+    "materials": [
+      "MNF_BarkPine",
+      "MNF_Moss",
+      "MNF_WoodRotten",
+      "MNF_Teeth",
+      "MNF_Gums"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Log": [
+        0.0,
+        0.0,
+        0.225
+      ]
+    },
+    "notes": "3.2 m fallen pine log along X, moss on top, one snapped end, branch stubs, shelf fungi."
+  },
+  "FallenTree": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -7.564,
+      -2.293,
+      -0.361
+    ],
+    "bounds_max": [
+      6.233,
+      2.754,
+      2.423
+    ],
+    "bounds_size": [
+      13.797,
+      5.047,
+      2.784
+    ],
+    "tris": 1115,
+    "materials": [
+      "MNF_BarkPine",
+      "MNF_Moss",
+      "MNF_WoodRotten",
+      "MNF_Mud",
+      "MNF_RockDry",
+      "MNF_BarkDead"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Log": [
+        0.0,
+        0.0,
+        0.37
+      ],
+      "COL_RootPlate": [
+        -6.1,
+        0.0,
+        1.0
+      ]
+    },
+    "notes": "12 m fallen pine along X (root plate at -X), walkable top surface ~0.78 m -> 0.66 m, usable as a bridge. COL_Log = capsule-like box over the trunk (top 0.74 m), COL_RootPlate."
+  },
+  "Bush_A": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -1.404,
+      -1.285,
+      -0.065
+    ],
+    "bounds_max": [
+      1.327,
+      1.1,
+      1.495
+    ],
+    "bounds_size": [
+      2.731,
+      2.385,
+      1.56
+    ],
+    "tris": 324,
+    "materials": [
+      "MNF_BarkDead",
+      "MNF_FoliageLeaf"
+    ],
+    "children": [],
+    "helpers": {},
+    "notes": "Dense shrub 1.4 m tall, 1.9 m wide: woody stems + 64 leaf cards (MNF_FoliageLeaf, full 0..1 UV, custom spherical normals). No collider wanted (builder: do not auto-generate)."
+  },
+  "Bush_B": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -0.905,
+      -0.838,
+      -0.063
+    ],
+    "bounds_max": [
+      1.04,
+      0.96,
+      1.077
+    ],
+    "bounds_size": [
+      1.945,
+      1.798,
+      1.14
+    ],
+    "tris": 220,
+    "materials": [
+      "MNF_BarkDead",
+      "MNF_FoliageLeaf"
+    ],
+    "children": [],
+    "helpers": {},
+    "notes": "Dense shrub 0.9 m tall, 1.3 m wide: woody stems + 40 leaf cards (MNF_FoliageLeaf, full 0..1 UV, custom spherical normals). No collider wanted (builder: do not auto-generate)."
+  },
+  "Fern": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -0.624,
+      -0.728,
+      -0.02
+    ],
+    "bounds_max": [
+      0.652,
+      0.664,
+      0.665
+    ],
+    "bounds_size": [
+      1.276,
+      1.392,
+      0.685
+    ],
+    "tris": 32,
+    "materials": [
+      "MNF_Fern"
+    ],
+    "children": [],
+    "helpers": {},
+    "notes": "Fern clump ~0.6 m tall, 1.3 m wide: 7 outward-arching + 2 crossed upright cards (MNF_Fern, cluster base at V=0). No collider."
+  },
+  "GrassTuft": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -0.299,
+      -0.271,
+      -0.02
+    ],
+    "bounds_max": [
+      0.299,
+      0.299,
+      0.44
+    ],
+    "bounds_size": [
+      0.598,
+      0.57,
+      0.46
+    ],
+    "tris": 12,
+    "materials": [
+      "MNF_Grass"
+    ],
+    "children": [],
+    "helpers": {},
+    "notes": "Grass tuft ~0.5 m: 3 crossed + 3 splayed cards (MNF_Grass). No collider."
+  },
+  "MushroomCluster": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -0.321,
+      -0.245,
+      -0.02
+    ],
+    "bounds_max": [
+      0.308,
+      0.149,
+      0.329
+    ],
+    "bounds_size": [
+      0.629,
+      0.394,
+      0.349
+    ],
+    "tris": 632,
+    "materials": [
+      "MNF_WoodRotten",
+      "MNF_Moss",
+      "MNF_Teeth",
+      "MNF_Gums"
+    ],
+    "children": [],
+    "helpers": {},
+    "notes": "Pale sickly mushrooms (MNF_Teeth caps/stems, MNF_Gums gills) on a rotten log stub; geometry, not cards (no mushroom card texture in the catalog). No collider."
+  },
+  "Fence_Section": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -1.33,
+      -0.112,
+      -0.15
+    ],
+    "bounds_max": [
+      1.33,
+      0.065,
+      1.48
+    ],
+    "bounds_size": [
+      2.66,
+      0.177,
+      1.63
+    ],
+    "tris": 480,
+    "materials": [
+      "MNF_WoodBeam",
+      "MNF_WoodPlanks",
+      "MNF_MetalRusted"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Fence": [
+        0.0,
+        -0.02,
+        0.725
+      ]
+    },
+    "notes": "2.5 m weathered mining-company fence along X: square posts at x=+-1.25 (identical and symmetric so sections chain every 2.5 m and may be rotated 180), two boards and two barbed-wire strands on the -Y face."
+  },
+  "Fence_Broken": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -1.332,
+      -0.771,
+      -0.175
+    ],
+    "bounds_max": [
+      1.71,
+      0.065,
+      1.48
+    ],
+    "bounds_size": [
+      3.042,
+      0.836,
+      1.655
+    ],
+    "tris": 586,
+    "materials": [
+      "MNF_WoodBeam",
+      "MNF_WoodPlanks",
+      "MNF_MetalRusted"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Fence": [
+        0.0,
+        -0.02,
+        0.5
+      ]
+    },
+    "notes": "Broken 2.5 m fence: right post snapped and leaning, top board broken and hanging, wire sagging / cut and coiled on the ground. Same post spacing as Fence_Section."
+  },
+  "SignPost": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -0.331,
+      -0.1,
+      -0.201
+    ],
+    "bounds_max": [
+      0.331,
+      0.081,
+      2.33
+    ],
+    "bounds_size": [
+      0.662,
+      0.181,
+      2.531
+    ],
+    "tris": 218,
+    "materials": [
+      "MNF_WoodBeam",
+      "MNF_WoodPlanks",
+      "MNF_MetalRusted",
+      "MNF_Signs"
+    ],
+    "children": [
+      "Board"
+    ],
+    "helpers": {
+      "COL_Post": [
+        0.01,
+        0.01,
+        1.15
+      ],
+      "COL_Sign": [
+        0.0,
+        -0.085,
+        1.82
+      ]
+    },
+    "notes": "Wooden trail post 2.3 m with a 0.66 m board panel. Child `Board`: 0.56 m square quad (MNF_Signs, UV 0..1 - Unity assigns the atlas cell) facing -Y, pivot at its centre (0, -0.1, 1.82)."
+  },
+  "WarningBoard": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -1.08,
+      -0.145,
+      -0.301
+    ],
+    "bounds_max": [
+      1.08,
+      0.12,
+      2.551
+    ],
+    "bounds_size": [
+      2.16,
+      0.265,
+      2.852
+    ],
+    "tris": 534,
+    "materials": [
+      "MNF_WoodBeam",
+      "MNF_WoodPlanks",
+      "MNF_MetalRusted",
+      "MNF_Signs"
+    ],
+    "children": [
+      "Board"
+    ],
+    "helpers": {
+      "COL_Board": [
+        0.0,
+        0.0,
+        1.3
+      ]
+    },
+    "notes": "Large old warning board 2.0 x 1.6 m on two posts. Child `Board`: 1.42 m square quad (MNF_Signs) facing -Y, pivot at its centre (0, -0.122, 1.65)."
+  },
+  "Tent": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -1.071,
+      -2.065,
+      -0.1
+    ],
+    "bounds_max": [
+      1.071,
+      2.165,
+      1.2
+    ],
+    "bounds_size": [
+      2.141,
+      4.23,
+      1.3
+    ],
+    "tris": 412,
+    "materials": [
+      "MNF_FabricCanvas",
+      "MNF_WoodHandle",
+      "MNF_Rope",
+      "MNF_FabricBlanket"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Tent": [
+        0.0,
+        0.025,
+        0.55
+      ]
+    },
+    "notes": "Collapsed, torn A-frame canvas tent (front pole fallen, canvas double-sided, rip with a hanging flap), guy ropes, pegs, old blanket inside."
+  },
+  "Campfire": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -0.616,
+      -0.639,
+      -0.052
+    ],
+    "bounds_max": [
+      0.642,
+      0.652,
+      0.313
+    ],
+    "bounds_size": [
+      1.258,
+      1.29,
+      0.364
+    ],
+    "tris": 1120,
+    "materials": [
+      "MNF_RockDry",
+      "MNF_Mud",
+      "MNF_BarkDead",
+      "MNF_Blackstone"
+    ],
+    "children": [],
+    "helpers": {
+      "SOCKET_Fire": [
+        0.0,
+        0.0,
+        0.12
+      ]
+    },
+    "notes": "Stone ring (~1.2 m) with ash bed (MNF_Mud), charred collapsed logs (MNF_BarkDead, MNF_Blackstone ends/charcoal). SOCKET_Fire at the fire centre (z=0.12). No collider (stones are ankle height)."
+  },
+  "CampLantern": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -0.079,
+      -0.077,
+      -0.335
+    ],
+    "bounds_max": [
+      0.105,
+      0.077,
+      0.003
+    ],
+    "bounds_size": [
+      0.184,
+      0.154,
+      0.338
+    ],
+    "tris": 638,
+    "materials": [
+      "MNF_MetalRusted",
+      "MNF_MetalPainted_Red",
+      "MNF_Glass",
+      "MNF_BulbWarm"
+    ],
+    "children": [
+      "Bulb"
+    ],
+    "helpers": {},
+    "notes": "Hanging oil lantern (0.34 m). Pivot = top of the wire bail (hang point), body hangs along -Z. Child `Bulb` = flame (MNF_BulbWarm), pivot at (0, 0, -0.232) - put the light there."
+  },
+  "Cabin_Ruin": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -2.66,
+      -3.12,
+      -0.015
+    ],
+    "bounds_max": [
+      3.698,
+      3.06,
+      3.536
+    ],
+    "bounds_size": [
+      6.358,
+      6.18,
+      3.551
+    ],
+    "tris": 4076,
+    "materials": [
+      "MNF_WoodBeam",
+      "MNF_WoodRotten",
+      "MNF_WoodPlanks",
+      "MNF_Grass",
+      "MNF_Fern"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Floor": [
+        0.0,
+        0.0,
+        0.087
+      ],
+      "COL_Lintel": [
+        0.0,
+        -2.5,
+        2.105
+      ],
+      "COL_Roof_L_CONVEX": [
+        -1.175,
+        -0.95,
+        2.81
+      ],
+      "COL_Wall_Back": [
+        0.0,
+        2.5,
+        1.13
+      ],
+      "COL_Wall_FrontL": [
+        -1.35,
+        -2.5,
+        1.13
+      ],
+      "COL_Wall_FrontR": [
+        1.35,
+        -2.5,
+        1.13
+      ],
+      "COL_Wall_Left": [
+        -2.0,
+        0.0,
+        1.13
+      ],
+      "COL_Wall_Right_A": [
+        2.0,
+        -0.975,
+        1.13
+      ],
+      "COL_Wall_Right_B": [
+        2.0,
+        1.675,
+        0.55
+      ]
+    },
+    "notes": "Ruined 4 x 5 m log cabin. Door gap 1.1 x 1.95 m in the front (-Y) wall, window in the left wall, raised plank floor (top z=0.175, one board missing), right-back corner and back half of the roof collapsed (broken ridge, dangling rafter, fallen boards), front gable intact, grass/fern cards growing around. COL_* boxes for floor, walls (door gap kept open), lintel and the intact left roof slope."
+  },
+  "Watchtower": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -1.531,
+      -2.124,
+      -0.207
+    ],
+    "bounds_max": [
+      1.531,
+      1.531,
+      6.554
+    ],
+    "bounds_size": [
+      3.062,
+      3.655,
+      6.761
+    ],
+    "tris": 2688,
+    "materials": [
+      "MNF_WoodBeam",
+      "MNF_WoodPlanks",
+      "MNF_WoodRotten",
+      "MNF_WoodHandle"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Ladder": [
+        0.0,
+        -1.655,
+        2.525
+      ],
+      "COL_Platform": [
+        0.0,
+        0.0,
+        4.075
+      ],
+      "COL_Post_0": [
+        -1.235,
+        -1.235,
+        2.0
+      ],
+      "COL_Post_1": [
+        -1.235,
+        1.235,
+        2.0
+      ],
+      "COL_Post_2": [
+        1.235,
+        -1.235,
+        2.0
+      ],
+      "COL_Post_3": [
+        1.235,
+        1.235,
+        2.0
+      ],
+      "COL_Rail_Back": [
+        0.0,
+        1.175,
+        4.74
+      ],
+      "COL_Rail_FrontL": [
+        -0.825,
+        -1.195,
+        4.74
+      ],
+      "COL_Rail_FrontR": [
+        0.825,
+        -1.195,
+        4.74
+      ],
+      "COL_Rail_Left": [
+        -1.175,
+        0.0,
+        4.74
+      ],
+      "COL_Rail_Right": [
+        1.175,
+        0.0,
+        4.74
+      ],
+      "COL_Roof": [
+        0.0,
+        0.0,
+        6.2
+      ],
+      "SOCKET_LadderTop": [
+        0.0,
+        -0.87,
+        4.2
+      ]
+    },
+    "notes": "Wooden lookout: splayed posts, X-bracing, platform top at z=4.2 (2.5 m square) with 1.08 m railing, ladder on the front (-Y) leading through a 0.76 m railing gap, partly collapsed gable roof (top ~6.6 m). COL_Ladder is the climb volume (ladder inclined ~10 deg); SOCKET_LadderTop = exit point on the platform."
+  },
+  "Bridge_Broken": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -1.112,
+      -5.065,
+      -3.209
+    ],
+    "bounds_max": [
+      1.112,
+      5.066,
+      1.151
+    ],
+    "bounds_size": [
+      2.224,
+      10.131,
+      4.36
+    ],
+    "tris": 2340,
+    "materials": [
+      "MNF_BarkPine",
+      "MNF_WoodRotten",
+      "MNF_WoodPlanks",
+      "MNF_WoodBeam",
+      "MNF_Rope"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Deck_A": [
+        0.0,
+        -3.5,
+        -0.035
+      ],
+      "COL_Deck_B": [
+        0.0,
+        3.5,
+        -0.035
+      ],
+      "COL_DeckEnd_A_CONVEX": [
+        0.0,
+        -1.5,
+        -0.206
+      ],
+      "COL_DeckEnd_B_CONVEX": [
+        0.0,
+        1.5,
+        -0.206
+      ],
+      "COL_Post_AL": [
+        -0.95,
+        -5.0,
+        0.425
+      ],
+      "COL_Post_AR": [
+        0.95,
+        -5.0,
+        0.425
+      ],
+      "COL_Post_BL": [
+        -0.95,
+        5.0,
+        0.425
+      ],
+      "COL_Post_BR": [
+        0.95,
+        5.0,
+        0.425
+      ]
+    },
+    "notes": "10 m plank bridge along Y, pivot at the centre of the span at abutment level (deck top z~0.1 at both ends, sagging; trestle piers reach z=-3.2 into the ravine). The middle 1.5 m is broken out: both halves droop into the gap, planks hang down, rope handrails snapped and dangling. COL_Deck_A/B (flat parts) + COL_DeckEnd_*_CONVEX (drooping ends) + end posts."
+  },
+  "Minecart_Abandoned": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -1.719,
+      -0.994,
+      -0.082
+    ],
+    "bounds_max": [
+      1.192,
+      0.937,
+      0.907
+    ],
+    "bounds_size": [
+      2.911,
+      1.931,
+      0.99
+    ],
+    "tris": 1628,
+    "materials": [
+      "MNF_MetalRusted",
+      "MNF_MetalBare",
+      "MNF_RockMine",
+      "MNF_OreIron",
+      "MNF_Grass"
+    ],
+    "children": [],
+    "helpers": {
+      "COL_Cart_CONVEX": [
+        0.502,
+        0.08,
+        0.434
+      ]
+    },
+    "notes": "Rusty ore cart tipped on its side, one wheel missing (lying nearby), spilled ore (MNF_RockMine/MNF_OreIron), grass growing around. Convex collider of the cart."
+  },
+  "Nest": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -0.62,
+      -0.608,
+      -0.049
+    ],
+    "bounds_max": [
+      0.673,
+      0.664,
+      0.33
+    ],
+    "bounds_size": [
+      1.293,
+      1.272,
+      0.379
+    ],
+    "tris": 1442,
+    "materials": [
+      "MNF_FurRotten",
+      "MNF_ForestFloor",
+      "MNF_BarkDead",
+      "MNF_Teeth",
+      "MNF_Gums",
+      "MNF_FurRabbitMangy"
+    ],
+    "children": [],
+    "helpers": {},
+    "notes": "1.25 m twig nest bowl (MNF_BarkDead twigs, MNF_FurRotten lining) with bones and a small skull (MNF_Teeth) and mangy fur clumps. No collider (auto)."
+  },
+  "Burrow": {
+    "kit": "Kit_Forest",
+    "bounds_min": [
+      -0.8,
+      -0.816,
+      -0.293
+    ],
+    "bounds_max": [
+      0.8,
+      0.816,
+      0.433
+    ],
+    "bounds_size": [
+      1.6,
+      1.632,
+      0.725
+    ],
+    "tris": 674,
+    "materials": [
+      "MNF_Mud",
+      "MNF_ForestFloor",
+      "MNF_Grass"
+    ],
+    "children": [],
+    "helpers": {
+      "SOCKET_Hole": [
+        0.0,
+        -0.42,
+        0.194
+      ]
+    },
+    "notes": "Earth mound 1.6 m wide with a 0.32 m dark hole on the -Y side tunnelling down into it (tunnel faces point inwards). SOCKET_Hole = hole mouth, its -Y axis points into the hole (+Y world). No collider (auto)."
+  }
+}

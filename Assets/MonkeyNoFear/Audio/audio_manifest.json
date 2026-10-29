@@ -1,0 +1,2620 @@
+{
+ "amb_bunker_bed": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/amb_bunker_bed.ogg"
+  ],
+  "loop": true,
+  "spatial": false,
+  "channels": 2,
+  "duration": 20.0,
+  "durations": [
+   20.0
+  ],
+  "description": "Bunker room tone: ventilation rumble, distant machinery thrum, faint mains tone (stereo 20 s loop)."
+ },
+ "button_press": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/button_press.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.09,
+  "durations": [
+   0.09
+  ],
+  "description": "Chunky industrial push-button press."
+ },
+ "button_release": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/button_release.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.08,
+  "durations": [
+   0.08
+  ],
+  "description": "Push-button spring release (lighter click)."
+ },
+ "coin_tick": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/coin_tick.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.06,
+  "durations": [
+   0.06
+  ],
+  "description": "Counter tick (mechanical number wheel advancing)."
+ },
+ "dispenser_thunk": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/dispenser_thunk.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.98,
+  "durations": [
+   0.98
+  ],
+  "description": "Pneumatic tube canister arriving: rising rush, thunk, air release hiss."
+ },
+ "distant_impact": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/distant_impact_01.ogg",
+   "Bunker/distant_impact_02.ogg",
+   "Bunker/distant_impact_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 3.53,
+  "durations": [
+   3.62,
+   3.47,
+   3.5
+  ],
+  "description": "Deep structural boom from far away, long dark tail."
+ },
+ "fluorescent_flicker": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/fluorescent_flicker_01.ogg",
+   "Bunker/fluorescent_flicker_02.ogg",
+   "Bunker/fluorescent_flicker_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.77,
+  "durations": [
+   0.85,
+   0.77,
+   0.69
+  ],
+  "description": "Fluorescent tube flickering: starter tick + stuttering buzz bursts."
+ },
+ "fluorescent_hum_loop": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/fluorescent_hum_loop.ogg"
+  ],
+  "loop": true,
+  "spatial": true,
+  "channels": 1,
+  "duration": 4.0,
+  "durations": [
+   4.0
+  ],
+  "description": "Fluorescent tube: 100 Hz mains hum + ballast buzz (4 s loop)."
+ },
+ "gate_alarm": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/gate_alarm.ogg"
+  ],
+  "loop": true,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.0,
+  "durations": [
+   1.0
+  ],
+  "description": "Gate warning: two-tone alarm beep through a horn speaker (exactly 1 s, loopable)."
+ },
+ "gate_motor_loop": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/gate_motor_loop.ogg"
+  ],
+  "loop": true,
+  "spatial": true,
+  "channels": 1,
+  "duration": 3.0,
+  "durations": [
+   3.0
+  ],
+  "description": "Heavy gate drive: electric motor whine, gearbox, chain rattle, rolling rumble (3 s loop)."
+ },
+ "gate_start": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/gate_start.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.633,
+  "durations": [
+   1.633
+  ],
+  "description": "Gate start: relay contactor clunk then motor spinning up, chain engages."
+ },
+ "gate_stop": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/gate_stop.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 2.49,
+  "durations": [
+   2.49
+  ],
+  "description": "Gate stop: motor winds down, heavy reverberant steel clank."
+ },
+ "generator_loop": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/generator_loop.ogg"
+  ],
+  "loop": true,
+  "spatial": true,
+  "channels": 1,
+  "duration": 4.0,
+  "durations": [
+   4.0
+  ],
+  "description": "Diesel generator idling (750 rpm 4-cyl thrum, injector clatter, 4 s loop)."
+ },
+ "lever_pull": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/lever_pull.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.128,
+  "durations": [
+   1.128
+  ],
+  "description": "Heavy lever pulled: ratchet pawl clicks then a solid clunk."
+ },
+ "pipe_knock": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/pipe_knock_01.ogg",
+   "Bunker/pipe_knock_02.ogg",
+   "Bunker/pipe_knock_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.78,
+  "durations": [
+   1.7,
+   1.7,
+   1.94
+  ],
+  "description": "Knocking travelling inside the pipes."
+ },
+ "purchase": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/purchase.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.29,
+  "durations": [
+   1.29
+  ],
+  "description": "Mechanical cash register 'ka-chunk', drawer roll and bell."
+ },
+ "radio_burst": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/radio_burst_01.ogg",
+   "Bunker/radio_burst_02.ogg",
+   "Bunker/radio_burst_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 2.387,
+  "durations": [
+   2.42,
+   2.3,
+   2.44
+  ],
+  "description": "Radio interference burst with garbled, voice-like babble that warps unsettlingly."
+ },
+ "radio_static_loop": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/radio_static_loop.ogg"
+  ],
+  "loop": true,
+  "spatial": true,
+  "channels": 1,
+  "duration": 4.0,
+  "durations": [
+   4.0
+  ],
+  "description": "Radio static: band-limited hiss, crackle and a wandering heterodyne whistle (4 s loop)."
+ },
+ "sell_vacuum": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/sell_vacuum.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.51,
+  "durations": [
+   1.51
+  ],
+  "description": "Pneumatic tube suction: seal pop, roaring whoosh away, distant thunk."
+ },
+ "spark": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/spark_01.ogg",
+   "Bunker/spark_02.ogg",
+   "Bunker/spark_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.499,
+  "durations": [
+   0.433,
+   0.48,
+   0.584
+  ],
+  "description": "Electrical spark: sharp snap with arcing crackle tail."
+ },
+ "structural_creak": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/structural_creak_01.ogg",
+   "Bunker/structural_creak_02.ogg",
+   "Bunker/structural_creak_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 3.177,
+  "durations": [
+   3.08,
+   3.2,
+   3.25
+  ],
+  "description": "Metal structure under stress: slow stick-slip groan."
+ },
+ "terminal_boot": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/terminal_boot.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 2.1,
+  "durations": [
+   2.1
+  ],
+  "description": "Old CRT terminal boot: relay, degauss thoom, flyback whine, POST beeps."
+ },
+ "terminal_confirm": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/terminal_confirm.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.23,
+  "durations": [
+   0.23
+  ],
+  "description": "Terminal confirm: rising two-note chirp."
+ },
+ "terminal_error": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/terminal_error.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.38,
+  "durations": [
+   0.38
+  ],
+  "description": "Terminal error: low double buzz."
+ },
+ "terminal_select": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/terminal_select.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.09,
+  "durations": [
+   0.09
+  ],
+  "description": "Terminal soft key beep."
+ },
+ "terminal_type": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/terminal_type_01.ogg",
+   "Bunker/terminal_type_02.ogg",
+   "Bunker/terminal_type_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.127,
+  "durations": [
+   0.13,
+   0.12,
+   0.13
+  ],
+  "description": "Single mechanical keyboard keystroke (down + bottom-out + release)."
+ },
+ "vent_loop": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/vent_loop.ogg"
+  ],
+  "loop": true,
+  "spatial": true,
+  "channels": 1,
+  "duration": 6.0,
+  "durations": [
+   6.0
+  ],
+  "description": "Air vent: duct hiss, fan blade tone and a loose louver rattle (6 s loop)."
+ },
+ "water_drip_bunker": {
+  "category": "Bunker",
+  "files": [
+   "Bunker/water_drip_bunker_01.ogg",
+   "Bunker/water_drip_bunker_02.ogg",
+   "Bunker/water_drip_bunker_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.183,
+  "durations": [
+   0.1,
+   0.3,
+   0.15
+  ],
+  "description": "Water drip in the bunker (puddle / on metal)."
+ },
+ "boar_charge": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/boar_charge.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 2.17,
+  "durations": [
+   2.17
+  ],
+  "description": "Boar charging: snorting rush and drumming hooves, angry grunts, getting closer."
+ },
+ "boar_grunt": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/boar_grunt_01.ogg",
+   "Creatures/boar_grunt_02.ogg",
+   "Creatures/boar_grunt_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.613,
+  "durations": [
+   0.31,
+   0.9,
+   0.63
+  ],
+  "description": "Boar: low nasal grunts, sometimes with a snort."
+ },
+ "boar_squeal": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/boar_squeal_01.ogg",
+   "Creatures/boar_squeal_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.802,
+  "durations": [
+   0.707,
+   0.896
+  ],
+  "description": "Boar squeal: shrill, harsh pig scream."
+ },
+ "borer_dig_loop": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/borer_dig_loop.ogg"
+  ],
+  "loop": true,
+  "spatial": true,
+  "channels": 1,
+  "duration": 2.0,
+  "durations": [
+   2.0
+  ],
+  "description": "Borer digging: rhythmic churning crunch of rock (2 s loop)."
+ },
+ "borer_emerge": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/borer_emerge.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 2.5,
+  "durations": [
+   2.5
+  ],
+  "description": "Borer bursting out of the rock: explosion of stone, rubble cascade, roar onset."
+ },
+ "borer_grind_loop": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/borer_grind_loop.ogg"
+  ],
+  "loop": true,
+  "spatial": true,
+  "channels": 1,
+  "duration": 3.0,
+  "durations": [
+   3.0
+  ],
+  "description": "Borer: deep vibrating grinding vocal with rock grind (3 s loop)."
+ },
+ "borer_hurt": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/borer_hurt.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 2.29,
+  "durations": [
+   2.29
+  ],
+  "description": "Borer hurt: grinding bellow breaking upward, rock shudder."
+ },
+ "borer_impact_close": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/borer_impact_close_01.ogg",
+   "Creatures/borer_impact_close_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 2.27,
+  "durations": [
+   2.3,
+   2.24
+  ],
+  "description": "Borer: closer, louder impact under the floor - rock crack and heavy debris fall."
+ },
+ "borer_impact_deep": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/borer_impact_deep_01.ogg",
+   "Creatures/borer_impact_deep_02.ogg",
+   "Creatures/borer_impact_deep_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 2.33,
+  "durations": [
+   2.24,
+   2.35,
+   2.4
+  ],
+  "description": "Borer: huge low thump from beneath the floor, sub-bass with falling grit."
+ },
+ "borer_roar": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/borer_roar_01.ogg",
+   "Creatures/borer_roar_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 2.975,
+  "durations": [
+   2.99,
+   2.96
+  ],
+  "description": "Borer roar: enormous grinding, distorted bellow."
+ },
+ "borer_step": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/borer_step_01.ogg",
+   "Creatures/borer_step_02.ogg",
+   "Creatures/borer_step_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.843,
+  "durations": [
+   0.74,
+   0.89,
+   0.9
+  ],
+  "description": "Borer footfall: very heavy, ground-shaking crunch."
+ },
+ "clerk_click_loop": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/clerk_click_loop.ogg"
+  ],
+  "loop": true,
+  "spatial": true,
+  "channels": 1,
+  "duration": 2.0,
+  "durations": [
+   2.0
+  ],
+  "description": "Ceiling Clerk: soft wet jaw clicking (2 s loop)."
+ },
+ "clerk_drop": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/clerk_drop.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.45,
+  "durations": [
+   0.45
+  ],
+  "description": "Ceiling Clerk dropping from the ceiling: rush, heavy body thud, limbs clattering."
+ },
+ "clerk_hiss": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/clerk_hiss_01.ogg",
+   "Creatures/clerk_hiss_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.965,
+  "durations": [
+   1.02,
+   0.91
+  ],
+  "description": "Ceiling Clerk hiss: breathy throat hiss with jaw clicks."
+ },
+ "clerk_hurt": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/clerk_hurt.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.55,
+  "durations": [
+   0.55
+  ],
+  "description": "Ceiling Clerk hurt: raspy yelp and rapid jaw clicks."
+ },
+ "clerk_jaw_drop": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/clerk_jaw_drop.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.86,
+  "durations": [
+   0.86
+  ],
+  "description": "Ceiling Clerk unhinging its jaw: wet click then a long cartilage creak."
+ },
+ "clerk_screech": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/clerk_screech.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.29,
+  "durations": [
+   1.29
+  ],
+  "description": "Ceiling Clerk grab: dry, raspy, inhaled vocal-fry screech with clicks."
+ },
+ "clerk_skitter": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/clerk_skitter_01.ogg",
+   "Creatures/clerk_skitter_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.65,
+  "durations": [
+   0.77,
+   0.53
+  ],
+  "description": "Ceiling Clerk: rapid finger-drumming tapping run (wood / stone)."
+ },
+ "clerk_tap": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/clerk_tap_01.ogg",
+   "Creatures/clerk_tap_02.ogg",
+   "Creatures/clerk_tap_03.ogg",
+   "Creatures/clerk_tap_04.ogg",
+   "Creatures/clerk_tap_05.ogg",
+   "Creatures/clerk_tap_06.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.095,
+  "durations": [
+   0.12,
+   0.12,
+   0.12,
+   0.07,
+   0.07,
+   0.07
+  ],
+  "description": "Ceiling Clerk: a single fingernail tap (1-3 wood, 4-6 stone)."
+ },
+ "dust_fall": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/dust_fall_01.ogg",
+   "Creatures/dust_fall_02.ogg",
+   "Creatures/dust_fall_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.04,
+  "durations": [
+   1.03,
+   1.04,
+   1.05
+  ],
+  "description": "Sprinkle of grit and dust falling from the ceiling."
+ },
+ "fk_death": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/fk_death.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.55,
+  "durations": [
+   1.55
+  ],
+  "description": "Falsekin death: shriek collapsing into a gurgle, last twitching clicks."
+ },
+ "fk_hiss": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/fk_hiss_01.ogg",
+   "Creatures/fk_hiss_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.056,
+  "durations": [
+   1.082,
+   1.03
+  ],
+  "description": "Falsekin hiss with a chitinous mandible rattle."
+ },
+ "fk_mimic": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/fk_mimic_01.ogg",
+   "Creatures/fk_mimic_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.555,
+  "durations": [
+   1.57,
+   1.54
+  ],
+  "description": "Falsekin mimicking a rabbit: sniff/chitter that slows, detunes and goes wrong."
+ },
+ "fk_reveal": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/fk_reveal.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.29,
+  "durations": [
+   1.29
+  ],
+  "description": "Falsekin reveal (key sound): stretching, tearing, wet bone cracks, then a rising ring-modulated screech."
+ },
+ "fk_shriek": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/fk_shriek_01.ogg",
+   "Creatures/fk_shriek_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.883,
+  "durations": [
+   0.92,
+   0.846
+  ],
+  "description": "Falsekin shriek: harsh, detuned, ring-modulated scream."
+ },
+ "fk_skitter_loop": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/fk_skitter_loop.ogg"
+  ],
+  "loop": true,
+  "spatial": true,
+  "channels": 1,
+  "duration": 2.0,
+  "durations": [
+   2.0
+  ],
+  "description": "Falsekin skittering: very fast clicky multi-leg footsteps (2 s loop)."
+ },
+ "gaunt_groan": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/gaunt_groan.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 8.37,
+  "durations": [
+   8.37
+  ],
+  "description": "Gaunt: huge, distant, horn-like groan."
+ },
+ "gaunt_step": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/gaunt_step_01.ogg",
+   "Creatures/gaunt_step_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 5.375,
+  "durations": [
+   5.37,
+   5.38
+  ],
+  "description": "Gaunt: enormous distant footfall rolling through the valley."
+ },
+ "hb_alert": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/hb_alert.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.41,
+  "durations": [
+   0.41
+  ],
+  "description": "Hollowback alert: sharp wet rattling intake then a teeth click."
+ },
+ "hb_attack": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/hb_attack_01.ogg",
+   "Creatures/hb_attack_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.215,
+  "durations": [
+   1.22,
+   1.21
+  ],
+  "description": "Hollowback lunge: ragged, choking roar with wet stutters (not a scream)."
+ },
+ "hb_breath_loop": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/hb_breath_loop.ogg"
+  ],
+  "loop": true,
+  "spatial": true,
+  "channels": 1,
+  "duration": 6.0,
+  "durations": [
+   6.0
+  ],
+  "description": "Hollowback: slow, wet, rattling breaths (6 s loop)."
+ },
+ "hb_chase_loop": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/hb_chase_loop.ogg"
+  ],
+  "loop": true,
+  "spatial": true,
+  "channels": 1,
+  "duration": 3.0,
+  "durations": [
+   3.0
+  ],
+  "description": "Hollowback chasing: fast, ragged, wet panting with grunts (3 s loop)."
+ },
+ "hb_hurt": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/hb_hurt_01.ogg",
+   "Creatures/hb_hurt_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.79,
+  "durations": [
+   0.8,
+   0.78
+  ],
+  "description": "Hollowback hurt: choked yelp breaking upwards, wet cough."
+ },
+ "hb_listen_click": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/hb_listen_click_01.ogg",
+   "Creatures/hb_listen_click_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.26,
+  "durations": [
+   1.26,
+   1.26
+  ],
+  "description": "Hollowback listening: quiet palatal clicks."
+ },
+ "hb_scrape": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/hb_scrape_01.ogg",
+   "Creatures/hb_scrape_02.ogg",
+   "Creatures/hb_scrape_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.513,
+  "durations": [
+   1.42,
+   1.53,
+   1.59
+  ],
+  "description": "Hollowback dragging long nails down tree bark."
+ },
+ "hb_slap": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/hb_slap_01.ogg",
+   "Creatures/hb_slap_02.ogg",
+   "Creatures/hb_slap_03.ogg",
+   "Creatures/hb_slap_04.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.15,
+  "durations": [
+   0.15,
+   0.15,
+   0.12,
+   0.18
+  ],
+  "description": "Hollowback palm slapping the ground while galloping: wet fleshy 'pa-tap' (signature)."
+ },
+ "hb_step": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/hb_step_01.ogg",
+   "Creatures/hb_step_02.ogg",
+   "Creatures/hb_step_03.ogg",
+   "Creatures/hb_step_04.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.315,
+  "durations": [
+   0.31,
+   0.31,
+   0.31,
+   0.33
+  ],
+  "description": "Hollowback heavy, soft, padded footfall."
+ },
+ "hb_warning": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/hb_warning.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.68,
+  "durations": [
+   1.68
+  ],
+  "description": "Hollowback warning: low gurgling growl rising in pitch and intensity."
+ },
+ "mourner_buzz_loop": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/mourner_buzz_loop.ogg"
+  ],
+  "loop": true,
+  "spatial": true,
+  "channels": 1,
+  "duration": 2.0,
+  "durations": [
+   2.0
+  ],
+  "description": "Lantern Mourner: electrical interference buzz near the creature (2 s loop)."
+ },
+ "mourner_clink": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/mourner_clink_01.ogg",
+   "Creatures/mourner_clink_02.ogg",
+   "Creatures/mourner_clink_03.ogg",
+   "Creatures/mourner_clink_04.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.722,
+  "durations": [
+   0.9,
+   0.71,
+   0.67,
+   0.61
+  ],
+  "description": "Lantern Mourner: broken lamp glass and metal fragments clinking."
+ },
+ "mourner_hum_loop": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/mourner_hum_loop.ogg"
+  ],
+  "loop": true,
+  "spatial": true,
+  "channels": 1,
+  "duration": 6.0,
+  "durations": [
+   6.0
+  ],
+  "description": "Lantern Mourner: eerie breathy nasal hum, pitch slowly wavering (6 s loop)."
+ },
+ "mourner_reach": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/mourner_reach.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.6,
+  "durations": [
+   1.6
+  ],
+  "description": "Lantern Mourner reaching: the hum rises into a thin, whistling shriek."
+ },
+ "mourner_recoil": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/mourner_recoil.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.76,
+  "durations": [
+   0.76
+  ],
+  "description": "Lantern Mourner recoiling: electric crackle and a pained falling moan."
+ },
+ "mourner_wail": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/mourner_wail_01.ogg",
+   "Creatures/mourner_wail_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 5.865,
+  "durations": [
+   5.84,
+   5.89
+  ],
+  "description": "Lantern Mourner: very distant, sad, falling wail."
+ },
+ "rabbit_hop": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/rabbit_hop_01.ogg",
+   "Creatures/rabbit_hop_02.ogg",
+   "Creatures/rabbit_hop_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.17,
+  "durations": [
+   0.17,
+   0.17,
+   0.17
+  ],
+  "description": "Rabbit hop: soft double thump on the forest floor."
+ },
+ "rabbit_sniff": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/rabbit_sniff_01.ogg",
+   "Creatures/rabbit_sniff_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.725,
+  "durations": [
+   0.8,
+   0.65
+  ],
+  "description": "Rabbit: quick nasal sniffing."
+ },
+ "rabbit_squeal": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/rabbit_squeal_01.ogg",
+   "Creatures/rabbit_squeal_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.15,
+  "durations": [
+   0.81,
+   1.49
+  ],
+  "description": "Rabbit hurt: harrowing high squeal."
+ },
+ "rabbit_thump": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/rabbit_thump.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.13,
+  "durations": [
+   0.13
+  ],
+  "description": "Rabbit warning: hard hind-foot thump on the ground."
+ },
+ "rat_scurry": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/rat_scurry_01.ogg",
+   "Creatures/rat_scurry_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.985,
+  "durations": [
+   0.92,
+   1.05
+  ],
+  "description": "Gloomrat scurrying: tiny claws ticking and scratching."
+ },
+ "rat_squeak": {
+  "category": "Creatures",
+  "files": [
+   "Creatures/rat_squeak_01.ogg",
+   "Creatures/rat_squeak_02.ogg",
+   "Creatures/rat_squeak_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.25,
+  "durations": [
+   0.11,
+   0.25,
+   0.39
+  ],
+  "description": "Gloomrat: short high chirping squeaks."
+ },
+ "amb_forest_bed": {
+  "category": "Forest",
+  "files": [
+   "Forest/amb_forest_bed.ogg"
+  ],
+  "loop": true,
+  "spatial": false,
+  "channels": 2,
+  "duration": 30.0,
+  "durations": [
+   30.0
+  ],
+  "description": "Night forest: gusting wind through branches and needles, leaf rustle, very sparse distant life (stereo 30 s loop)."
+ },
+ "amb_forest_insects_loop": {
+  "category": "Forest",
+  "files": [
+   "Forest/amb_forest_insects_loop.ogg"
+  ],
+  "loop": true,
+  "spatial": false,
+  "channels": 2,
+  "duration": 15.0,
+  "durations": [
+   15.0
+  ],
+  "description": "Crickets and insect chorus layer (stereo 15 s loop) - muted near threats."
+ },
+ "bird_flutter": {
+  "category": "Forest",
+  "files": [
+   "Forest/bird_flutter_01.ogg",
+   "Forest/bird_flutter_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.0,
+  "durations": [
+   0.96,
+   1.04
+  ],
+  "description": "Bird startled off a branch: leaf rustle then wingbeats flying away."
+ },
+ "branch_snap": {
+  "category": "Forest",
+  "files": [
+   "Forest/branch_snap_01.ogg",
+   "Forest/branch_snap_02.ogg",
+   "Forest/branch_snap_03.ogg",
+   "Forest/branch_snap_04.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.375,
+  "durations": [
+   1.23,
+   1.29,
+   1.46,
+   1.52
+  ],
+  "description": "Twig / branch cracking somewhere out in the dark (near to far)."
+ },
+ "crow_caw": {
+  "category": "Forest",
+  "files": [
+   "Forest/crow_caw_01.ogg",
+   "Forest/crow_caw_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 2.03,
+  "durations": [
+   2.26,
+   1.8
+  ],
+  "description": "Crow cawing from a tree: harsh, rough 'kaaw'."
+ },
+ "distant_call": {
+  "category": "Forest",
+  "files": [
+   "Forest/distant_call_01.ogg",
+   "Forest/distant_call_02.ogg",
+   "Forest/distant_call_03.ogg",
+   "Forest/distant_call_04.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 3.117,
+  "durations": [
+   3.11,
+   2.86,
+   2.41,
+   4.09
+  ],
+  "description": "Unidentifiable animal far away: owl-like, fox-like, a bark, and one that is slightly wrong."
+ },
+ "footsteps_foliage": {
+  "category": "Forest",
+  "files": [
+   "Forest/footsteps_foliage_01.ogg",
+   "Forest/footsteps_foliage_02.ogg",
+   "Forest/footsteps_foliage_03.ogg",
+   "Forest/footsteps_foliage_04.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.73,
+  "durations": [
+   0.71,
+   0.65,
+   0.79,
+   0.77
+  ],
+  "description": "Something heavy stepping slowly into undergrowth."
+ },
+ "frogs_loop": {
+  "category": "Forest",
+  "files": [
+   "Forest/frogs_loop.ogg"
+  ],
+  "loop": true,
+  "spatial": true,
+  "channels": 1,
+  "duration": 8.0,
+  "durations": [
+   8.0
+  ],
+  "description": "Frogs calling around a pond, near and far (mono 8 s loop)."
+ },
+ "leaves_rustle": {
+  "category": "Forest",
+  "files": [
+   "Forest/leaves_rustle_01.ogg",
+   "Forest/leaves_rustle_02.ogg",
+   "Forest/leaves_rustle_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.241,
+  "durations": [
+   1.554,
+   1.145,
+   1.023
+  ],
+  "description": "Something brushing through leafy undergrowth."
+ },
+ "stream_loop": {
+  "category": "Forest",
+  "files": [
+   "Forest/stream_loop.ogg"
+  ],
+  "loop": true,
+  "spatial": true,
+  "channels": 1,
+  "duration": 6.0,
+  "durations": [
+   6.0
+  ],
+  "description": "Babbling forest stream: bubbling water texture (mono 6 s loop)."
+ },
+ "tree_creak": {
+  "category": "Forest",
+  "files": [
+   "Forest/tree_creak_01.ogg",
+   "Forest/tree_creak_02.ogg",
+   "Forest/tree_creak_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 3.377,
+  "durations": [
+   2.9,
+   3.57,
+   3.66
+  ],
+  "description": "Wooden trunk swaying and groaning."
+ },
+ "wind_gust": {
+  "category": "Forest",
+  "files": [
+   "Forest/wind_gust_01.ogg",
+   "Forest/wind_gust_02.ogg",
+   "Forest/wind_gust_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 3.495,
+  "durations": [
+   3.158,
+   3.861,
+   3.467
+  ],
+  "description": "A gust of wind swelling through the trees, leaves stirring."
+ },
+ "amb_mine_bed": {
+  "category": "Mine",
+  "files": [
+   "Mine/amb_mine_bed.ogg"
+  ],
+  "loop": true,
+  "spatial": false,
+  "channels": 2,
+  "duration": 30.0,
+  "durations": [
+   30.0
+  ],
+  "description": "Mine tunnels: low rumble, distant cave drips, slow air movement (stereo 30 s loop)."
+ },
+ "amb_mine_deep_bed": {
+  "category": "Mine",
+  "files": [
+   "Mine/amb_mine_deep_bed.ogg"
+  ],
+  "loop": true,
+  "spatial": false,
+  "channels": 2,
+  "duration": 30.0,
+  "durations": [
+   30.0
+  ],
+  "description": "Deep mine: darker sub-bass pressure, faint distant metallic stress groans and pings (stereo 30 s loop)."
+ },
+ "drip": {
+  "category": "Mine",
+  "files": [
+   "Mine/drip_01.ogg",
+   "Mine/drip_02.ogg",
+   "Mine/drip_03.ogg",
+   "Mine/drip_04.ogg",
+   "Mine/drip_05.ogg",
+   "Mine/drip_06.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.142,
+  "durations": [
+   0.18,
+   0.13,
+   0.11,
+   0.09,
+   0.18,
+   0.16
+  ],
+  "description": "Cave water drip into a pool (short cave early reflections)."
+ },
+ "electrical_buzz_loop": {
+  "category": "Mine",
+  "files": [
+   "Mine/electrical_buzz_loop.ogg"
+  ],
+  "loop": true,
+  "spatial": true,
+  "channels": 1,
+  "duration": 2.0,
+  "durations": [
+   2.0
+  ],
+  "description": "Faulty junction box: harsh 100 Hz buzz with arcing crackle (2 s loop)."
+ },
+ "elevator_arrive": {
+  "category": "Mine",
+  "files": [
+   "Mine/elevator_arrive.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 2.17,
+  "durations": [
+   2.17
+  ],
+  "description": "Elevator arrives: heavy cage stop clank, then the old arrival bell."
+ },
+ "elevator_clank": {
+  "category": "Mine",
+  "files": [
+   "Mine/elevator_clank_01.ogg",
+   "Mine/elevator_clank_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.26,
+  "durations": [
+   1.33,
+   1.19
+  ],
+  "description": "Elevator cage clanking against its guides."
+ },
+ "elevator_motor_loop": {
+  "category": "Mine",
+  "files": [
+   "Mine/elevator_motor_loop.ogg"
+  ],
+  "loop": true,
+  "spatial": true,
+  "channels": 1,
+  "duration": 3.0,
+  "durations": [
+   3.0
+  ],
+  "description": "Mine elevator hoist motor running, cable creak and cage rattle (3 s loop)."
+ },
+ "footsteps_echo": {
+  "category": "Mine",
+  "files": [
+   "Mine/footsteps_echo_01.ogg",
+   "Mine/footsteps_echo_02.ogg",
+   "Mine/footsteps_echo_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 3.87,
+  "durations": [
+   3.59,
+   3.96,
+   4.06
+  ],
+  "description": "Phantom footsteps somewhere down the tunnel, reverberant."
+ },
+ "light_buzz_on": {
+  "category": "Mine",
+  "files": [
+   "Mine/light_buzz_on.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.0,
+  "durations": [
+   1.0
+  ],
+  "description": "Work light switching on: relay click, filament surge buzz, thermal tink."
+ },
+ "machinery_hum_loop": {
+  "category": "Mine",
+  "files": [
+   "Mine/machinery_hum_loop.ogg"
+  ],
+  "loop": true,
+  "spatial": true,
+  "channels": 1,
+  "duration": 4.0,
+  "durations": [
+   4.0
+  ],
+  "description": "Heavy mine machinery hum: motor, transformer, gear whine (4 s loop)."
+ },
+ "metal_impact_distant": {
+  "category": "Mine",
+  "files": [
+   "Mine/metal_impact_distant_01.ogg",
+   "Mine/metal_impact_distant_02.ogg",
+   "Mine/metal_impact_distant_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 2.807,
+  "durations": [
+   2.79,
+   2.93,
+   2.7
+  ],
+  "description": "A metallic bang far away down the tunnels."
+ },
+ "metal_impact_repeat": {
+  "category": "Mine",
+  "files": [
+   "Mine/metal_impact_repeat.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 5.12,
+  "durations": [
+   5.12
+  ],
+  "description": "Three identical metal bangs, each one farther away."
+ },
+ "minecart_roll": {
+  "category": "Mine",
+  "files": [
+   "Mine/minecart_roll.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 2.653,
+  "durations": [
+   2.653
+  ],
+  "description": "Mine cart rolling past: rail joint clacks, rumble, wheel squeal, rattle."
+ },
+ "rock_fall_large": {
+  "category": "Mine",
+  "files": [
+   "Mine/rock_fall_large_01.ogg",
+   "Mine/rock_fall_large_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 2.245,
+  "durations": [
+   2.24,
+   2.25
+  ],
+  "description": "Larger rockfall: heavy chunks, rumble and rubble."
+ },
+ "rock_fall_small": {
+  "category": "Mine",
+  "files": [
+   "Mine/rock_fall_small_01.ogg",
+   "Mine/rock_fall_small_02.ogg",
+   "Mine/rock_fall_small_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.777,
+  "durations": [
+   0.71,
+   0.79,
+   0.83
+  ],
+  "description": "A few pebbles falling and bouncing."
+ },
+ "scratch_metal": {
+  "category": "Mine",
+  "files": [
+   "Mine/scratch_metal_01.ogg",
+   "Mine/scratch_metal_02.ogg",
+   "Mine/scratch_metal_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.995,
+  "durations": [
+   1.845,
+   2.288,
+   1.851
+  ],
+  "description": "Claws scraping the other side of a metal plate (muffled, ringing)."
+ },
+ "walkway_steps": {
+  "category": "Mine",
+  "files": [
+   "Mine/walkway_steps_01.ogg",
+   "Mine/walkway_steps_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.59,
+  "durations": [
+   1.57,
+   1.61
+  ],
+  "description": "Footsteps on metal grating walkway: clang and rattle."
+ },
+ "wall_knock": {
+  "category": "Mine",
+  "files": [
+   "Mine/wall_knock_01.ogg",
+   "Mine/wall_knock_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.485,
+  "durations": [
+   1.6,
+   1.37
+  ],
+  "description": "Knocking on the rock wall from the other side."
+ },
+ "warning_recording": {
+  "category": "Mine",
+  "files": [
+   "Mine/warning_recording_01.ogg",
+   "Mine/warning_recording_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 4.18,
+  "durations": [
+   4.21,
+   4.15
+  ],
+  "description": "Old PA announcement: chime, then a distorted robotic voice babble that cuts off abruptly mid-word."
+ },
+ "water_trickle_loop": {
+  "category": "Mine",
+  "files": [
+   "Mine/water_trickle_loop.ogg"
+  ],
+  "loop": true,
+  "spatial": true,
+  "channels": 1,
+  "duration": 5.0,
+  "durations": [
+   5.0
+  ],
+  "description": "Thin trickle of water down rock (mono 5 s loop)."
+ },
+ "whisper_air": {
+  "category": "Mine",
+  "files": [
+   "Mine/whisper_air_01.ogg",
+   "Mine/whisper_air_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 3.37,
+  "durations": [
+   3.27,
+   3.47
+  ],
+  "description": "Breathy air movement in the tunnel that could almost be a whisper."
+ },
+ "sting_dread": {
+  "category": "Music",
+  "files": [
+   "Music/sting_dread.ogg"
+  ],
+  "loop": false,
+  "spatial": false,
+  "channels": 2,
+  "duration": 6.84,
+  "durations": [
+   6.84
+  ],
+  "description": "Low dread swell: dissonant low cluster crescendo with opening filter (stereo 5 s)."
+ },
+ "sting_lore": {
+  "category": "Music",
+  "files": [
+   "Music/sting_lore.ogg"
+  ],
+  "loop": false,
+  "spatial": false,
+  "channels": 2,
+  "duration": 4.75,
+  "durations": [
+   4.75
+  ],
+  "description": "Mysterious lore sting: inharmonic glass bells over a soft unresolved pad (stereo 3 s)."
+ },
+ "sting_purchase": {
+  "category": "Music",
+  "files": [
+   "Music/sting_purchase.ogg"
+  ],
+  "loop": false,
+  "spatial": false,
+  "channels": 2,
+  "duration": 1.25,
+  "durations": [
+   1.25
+  ],
+  "description": "Bright short purchase jingle: marimba / bell arpeggio (stereo 1 s)."
+ },
+ "sting_reveal": {
+  "category": "Music",
+  "files": [
+   "Music/sting_reveal.ogg"
+  ],
+  "loop": false,
+  "spatial": false,
+  "channels": 2,
+  "duration": 4.08,
+  "durations": [
+   4.08
+  ],
+  "description": "Dissonant reveal hit: impact, tritone brass cluster, screeching high strings (stereo 2.5 s)."
+ },
+ "sting_safe": {
+  "category": "Music",
+  "files": [
+   "Music/sting_safe.ogg"
+  ],
+  "loop": false,
+  "spatial": false,
+  "channels": 2,
+  "duration": 5.41,
+  "durations": [
+   5.41
+  ],
+  "description": "Soft warm chord on returning to the bunker (stereo 4 s)."
+ },
+ "tension_drone_loop": {
+  "category": "Music",
+  "files": [
+   "Music/tension_drone_loop.ogg"
+  ],
+  "loop": true,
+  "spatial": false,
+  "channels": 2,
+  "duration": 12.0,
+  "durations": [
+   12.0
+  ],
+  "description": "Low pulsing chase drone (stereo 12 s seamless loop, 120 bpm pulse)."
+ },
+ "backpack_store": {
+  "category": "Player",
+  "files": [
+   "Player/backpack_store.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.93,
+  "durations": [
+   0.93
+  ],
+  "description": "Item pushed into canvas backpack, zip closes."
+ },
+ "backpack_take": {
+  "category": "Player",
+  "files": [
+   "Player/backpack_take.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.94,
+  "durations": [
+   0.94
+  ],
+  "description": "Backpack zip opens, rummage, item pulled out."
+ },
+ "body_scrape": {
+  "category": "Player",
+  "files": [
+   "Player/body_scrape.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.05,
+  "durations": [
+   1.05
+  ],
+  "description": "Monkey body sliding along rock: grit, fur and stone friction."
+ },
+ "breath_panic_loop": {
+  "category": "Player",
+  "files": [
+   "Player/breath_panic_loop.ogg"
+  ],
+  "loop": true,
+  "spatial": false,
+  "channels": 1,
+  "duration": 4.0,
+  "durations": [
+   4.0
+  ],
+  "description": "Fast, shaky panicked breathing with small whimpers (seamless 4 s loop)."
+ },
+ "death_sting": {
+  "category": "Player",
+  "files": [
+   "Player/death_sting.ogg"
+  ],
+  "loop": false,
+  "spatial": false,
+  "channels": 1,
+  "duration": 4.4,
+  "durations": [
+   4.4
+  ],
+  "description": "Player death: dark distorted impact followed by a falling detuned moan into darkness (3 s)."
+ },
+ "eat_munch": {
+  "category": "Player",
+  "files": [
+   "Player/eat_munch_01.ogg",
+   "Player/eat_munch_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.79,
+  "durations": [
+   0.92,
+   0.66
+  ],
+  "description": "Chewing: crunchy bites turning wet, heard from inside the head."
+ },
+ "grab": {
+  "category": "Player",
+  "files": [
+   "Player/grab_01.ogg",
+   "Player/grab_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.22,
+  "durations": [
+   0.22,
+   0.22
+  ],
+  "description": "Soft hand closing on an object."
+ },
+ "hand_tap_foliage": {
+  "category": "Player",
+  "files": [
+   "Player/hand_tap_foliage_01.ogg",
+   "Player/hand_tap_foliage_02.ogg",
+   "Player/hand_tap_foliage_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.446,
+  "durations": [
+   0.411,
+   0.4,
+   0.526
+  ],
+  "description": "Hand pushing into leaves: leafy crinkle rustle."
+ },
+ "hand_tap_ground": {
+  "category": "Player",
+  "files": [
+   "Player/hand_tap_ground_01.ogg",
+   "Player/hand_tap_ground_02.ogg",
+   "Player/hand_tap_ground_03.ogg",
+   "Player/hand_tap_ground_04.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.148,
+  "durations": [
+   0.15,
+   0.14,
+   0.15,
+   0.15
+  ],
+  "description": "Hand slapping soft dirt: low padded thump + grit."
+ },
+ "hand_tap_metal": {
+  "category": "Player",
+  "files": [
+   "Player/hand_tap_metal_01.ogg",
+   "Player/hand_tap_metal_02.ogg",
+   "Player/hand_tap_metal_03.ogg",
+   "Player/hand_tap_metal_04.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.097,
+  "durations": [
+   1.11,
+   0.9,
+   1.24,
+   1.14
+  ],
+  "description": "Ringing clank of a hand hitting a metal panel."
+ },
+ "hand_tap_mud": {
+  "category": "Player",
+  "files": [
+   "Player/hand_tap_mud_01.ogg",
+   "Player/hand_tap_mud_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.35,
+  "durations": [
+   0.35,
+   0.35
+  ],
+  "description": "Wet squelch of a hand in mud, with suction release."
+ },
+ "hand_tap_rock": {
+  "category": "Player",
+  "files": [
+   "Player/hand_tap_rock_01.ogg",
+   "Player/hand_tap_rock_02.ogg",
+   "Player/hand_tap_rock_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.17,
+  "durations": [
+   0.16,
+   0.16,
+   0.19
+  ],
+  "description": "Dull click/thud on rock with a little grit."
+ },
+ "hand_tap_wood": {
+  "category": "Player",
+  "files": [
+   "Player/hand_tap_wood_01.ogg",
+   "Player/hand_tap_wood_02.ogg",
+   "Player/hand_tap_wood_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.353,
+  "durations": [
+   0.31,
+   0.32,
+   0.43
+  ],
+  "description": "Hollow wooden knock under a palm/knuckle."
+ },
+ "heartbeat_loop": {
+  "category": "Player",
+  "files": [
+   "Player/heartbeat_loop.ogg"
+  ],
+  "loop": true,
+  "spatial": false,
+  "channels": 1,
+  "duration": 4.286,
+  "durations": [
+   4.286
+  ],
+  "description": "Muffled double-beat heartbeat, 70 bpm, 5 beats (seamless loop, 4.29 s)."
+ },
+ "holster_snap": {
+  "category": "Player",
+  "files": [
+   "Player/holster_snap.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.13,
+  "durations": [
+   0.13
+  ],
+  "description": "Tool clipped into holster: leather slap + metal press-stud snap."
+ },
+ "hurt_grunt": {
+  "category": "Player",
+  "files": [
+   "Player/hurt_grunt_01.ogg",
+   "Player/hurt_grunt_02.ogg",
+   "Player/hurt_grunt_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.397,
+  "durations": [
+   0.445,
+   0.26,
+   0.485
+  ],
+  "description": "Short pained monkey vocal ('hoo' / 'ack'), formant synthesis."
+ },
+ "land_thud": {
+  "category": "Player",
+  "files": [
+   "Player/land_thud_01.ogg",
+   "Player/land_thud_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.41,
+  "durations": [
+   0.41,
+   0.41
+  ],
+  "description": "Monkey body landing on the ground: feet then hands, fur rustle."
+ },
+ "whoosh": {
+  "category": "Player",
+  "files": [
+   "Player/whoosh_01.ogg",
+   "Player/whoosh_02.ogg",
+   "Player/whoosh_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.403,
+  "durations": [
+   0.425,
+   0.364,
+   0.418
+  ],
+  "description": "Fast arm / tool swing through air."
+ },
+ "battery_low": {
+  "category": "Tools",
+  "files": [
+   "Tools/battery_low.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.31,
+  "durations": [
+   0.31
+  ],
+  "description": "Weak, sagging double beep: battery low."
+ },
+ "flare_burn_loop": {
+  "category": "Tools",
+  "files": [
+   "Tools/flare_burn_loop.ogg"
+  ],
+  "loop": true,
+  "spatial": true,
+  "channels": 1,
+  "duration": 3.0,
+  "durations": [
+   3.0
+  ],
+  "description": "Burning flare: hissing, sputtering crackle (seamless 3 s loop)."
+ },
+ "flare_ignite": {
+  "category": "Tools",
+  "files": [
+   "Tools/flare_ignite.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.3,
+  "durations": [
+   1.3
+  ],
+  "description": "Road flare struck: scratch, fwoomph ignition, sputtering into hiss."
+ },
+ "flashlight_flicker_loop": {
+  "category": "Tools",
+  "files": [
+   "Tools/flashlight_flicker_loop.ogg"
+  ],
+  "loop": true,
+  "spatial": true,
+  "channels": 1,
+  "duration": 2.0,
+  "durations": [
+   2.0
+  ],
+  "description": "Failing flashlight: intermittent contact buzz and crackle (seamless 2 s loop)."
+ },
+ "flashlight_off": {
+  "category": "Tools",
+  "files": [
+   "Tools/flashlight_off.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.08,
+  "durations": [
+   0.08
+  ],
+  "description": "Flashlight tail-switch click off (lower, softer)."
+ },
+ "flashlight_on": {
+  "category": "Tools",
+  "files": [
+   "Tools/flashlight_on.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.09,
+  "durations": [
+   0.09
+  ],
+  "description": "Flashlight tail-switch click on."
+ },
+ "glowstick_crack": {
+  "category": "Tools",
+  "files": [
+   "Tools/glowstick_crack.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.62,
+  "durations": [
+   0.62
+  ],
+  "description": "Glowstick bent: plastic creak, inner glass vial snaps, liquid shake."
+ },
+ "item_drop_metal": {
+  "category": "Tools",
+  "files": [
+   "Tools/item_drop_metal_01.ogg",
+   "Tools/item_drop_metal_02.ogg",
+   "Tools/item_drop_metal_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.983,
+  "durations": [
+   1.09,
+   1.15,
+   0.71
+  ],
+  "description": "Small metal item dropped: clank and bounces."
+ },
+ "item_drop_soft": {
+  "category": "Tools",
+  "files": [
+   "Tools/item_drop_soft_01.ogg",
+   "Tools/item_drop_soft_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.27,
+  "durations": [
+   0.27,
+   0.27
+  ],
+  "description": "Soft item (food / cloth) dropped: padded thump."
+ },
+ "item_drop_stone": {
+  "category": "Tools",
+  "files": [
+   "Tools/item_drop_stone_01.ogg",
+   "Tools/item_drop_stone_02.ogg",
+   "Tools/item_drop_stone_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.26,
+  "durations": [
+   0.27,
+   0.25,
+   0.26
+  ],
+  "description": "Stone / ore chunk dropped: knock, bounce, grit."
+ },
+ "item_drop_wood": {
+  "category": "Tools",
+  "files": [
+   "Tools/item_drop_wood_01.ogg",
+   "Tools/item_drop_wood_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.39,
+  "durations": [
+   0.35,
+   0.43
+  ],
+  "description": "Wooden item dropped: knock and bounces."
+ },
+ "marker_blip": {
+  "category": "Tools",
+  "files": [
+   "Tools/marker_blip.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.14,
+  "durations": [
+   0.14
+  ],
+  "description": "Marker beacon periodic soft blip."
+ },
+ "marker_deploy": {
+  "category": "Tools",
+  "files": [
+   "Tools/marker_deploy.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.5,
+  "durations": [
+   0.5
+  ],
+  "description": "Marker beacon stuck into the ground (thunk) then arming beep."
+ },
+ "medkit_use": {
+  "category": "Tools",
+  "files": [
+   "Tools/medkit_use.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.45,
+  "durations": [
+   1.45
+  ],
+  "description": "Medkit: latches snap, lid opens, bandage wrapped, tape torn."
+ },
+ "noisemaker_rattle": {
+  "category": "Tools",
+  "files": [
+   "Tools/noisemaker_rattle_01.ogg",
+   "Tools/noisemaker_rattle_02.ogg",
+   "Tools/noisemaker_rattle_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.767,
+  "durations": [
+   0.7,
+   0.7,
+   0.9
+  ],
+  "description": "Tin can full of bolts shaken hard: loud metallic rattle."
+ },
+ "ore_break": {
+  "category": "Tools",
+  "files": [
+   "Tools/ore_break_01.ogg",
+   "Tools/ore_break_02.ogg",
+   "Tools/ore_break_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.79,
+  "durations": [
+   0.76,
+   0.85,
+   0.76
+  ],
+  "description": "Ore deposit stage breaking: crack + crumble of chunks."
+ },
+ "ore_break_final": {
+  "category": "Tools",
+  "files": [
+   "Tools/ore_break_final_01.ogg",
+   "Tools/ore_break_final_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.63,
+  "durations": [
+   1.62,
+   1.64
+  ],
+  "description": "Ore deposit final collapse: big crack, rumble and rubble."
+ },
+ "ore_pickup": {
+  "category": "Tools",
+  "files": [
+   "Tools/ore_pickup_01.ogg",
+   "Tools/ore_pickup_02.ogg",
+   "Tools/ore_pickup_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.17,
+  "durations": [
+   0.17,
+   0.17,
+   0.17
+  ],
+  "description": "Picking up an ore chunk: stone clink against stone."
+ },
+ "pick_hit_anomalous": {
+  "category": "Tools",
+  "files": [
+   "Tools/pick_hit_anomalous_01.ogg",
+   "Tools/pick_hit_anomalous_02.ogg",
+   "Tools/pick_hit_anomalous_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 1.36,
+  "durations": [
+   1.27,
+   1.45,
+   1.36
+  ],
+  "description": "Pickaxe on anomalous ore: wet organic squelch with a low unnatural throbbing tone."
+ },
+ "pick_hit_blackstone": {
+  "category": "Tools",
+  "files": [
+   "Tools/pick_hit_blackstone_01.ogg",
+   "Tools/pick_hit_blackstone_02.ogg",
+   "Tools/pick_hit_blackstone_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.42,
+  "durations": [
+   0.42,
+   0.42,
+   0.42
+  ],
+  "description": "Pickaxe on blackstone: dead, dull, swallowed thud, almost no ring."
+ },
+ "pick_hit_copper": {
+  "category": "Tools",
+  "files": [
+   "Tools/pick_hit_copper_01.ogg",
+   "Tools/pick_hit_copper_02.ogg",
+   "Tools/pick_hit_copper_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.483,
+  "durations": [
+   0.46,
+   0.4,
+   0.59
+  ],
+  "description": "Pickaxe on copper ore: softer, warmer metallic tone."
+ },
+ "pick_hit_crystal": {
+  "category": "Tools",
+  "files": [
+   "Tools/pick_hit_crystal_01.ogg",
+   "Tools/pick_hit_crystal_02.ogg",
+   "Tools/pick_hit_crystal_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 2.163,
+  "durations": [
+   2.17,
+   2.16,
+   2.16
+  ],
+  "description": "Pickaxe on crystal: glassy chime with a sinking, beating, subtly wrong resonance."
+ },
+ "pick_hit_iron": {
+  "category": "Tools",
+  "files": [
+   "Tools/pick_hit_iron_01.ogg",
+   "Tools/pick_hit_iron_02.ogg",
+   "Tools/pick_hit_iron_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.607,
+  "durations": [
+   0.59,
+   0.7,
+   0.53
+  ],
+  "description": "Pickaxe on iron ore: metallic ring over the stone crack."
+ },
+ "pick_hit_rock": {
+  "category": "Tools",
+  "files": [
+   "Tools/pick_hit_rock_01.ogg",
+   "Tools/pick_hit_rock_02.ogg",
+   "Tools/pick_hit_rock_03.ogg",
+   "Tools/pick_hit_rock_04.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.443,
+  "durations": [
+   0.44,
+   0.49,
+   0.44,
+   0.4
+  ],
+  "description": "Pickaxe on plain rock: sharp stone crack, chips skittering."
+ },
+ "pick_miss_metal": {
+  "category": "Tools",
+  "files": [
+   "Tools/pick_miss_metal_01.ogg",
+   "Tools/pick_miss_metal_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.52,
+  "durations": [
+   0.52,
+   0.52
+  ],
+  "description": "Pick glancing off metal: short screeching scrape."
+ },
+ "rope_unroll": {
+  "category": "Tools",
+  "files": [
+   "Tools/rope_unroll.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 2.04,
+  "durations": [
+   2.04
+  ],
+  "description": "Climbing rope thrown down / unrolling: fibre rustle and coil flops."
+ },
+ "scanner_beep": {
+  "category": "Tools",
+  "files": [
+   "Tools/scanner_beep.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.18,
+  "durations": [
+   0.18
+  ],
+  "description": "Ore scanner ping (electronic)."
+ },
+ "scanner_beep_strong": {
+  "category": "Tools",
+  "files": [
+   "Tools/scanner_beep_strong.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.16,
+  "durations": [
+   0.16
+  ],
+  "description": "Ore scanner strong signal: brighter rapid double beep."
+ },
+ "spear_hit_hard": {
+  "category": "Tools",
+  "files": [
+   "Tools/spear_hit_hard_01.ogg",
+   "Tools/spear_hit_hard_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.52,
+  "durations": [
+   0.52,
+   0.52
+  ],
+  "description": "Spear tip striking stone/hard surface; shaft buzzes in the hand."
+ },
+ "spear_hit_wood": {
+  "category": "Tools",
+  "files": [
+   "Tools/spear_hit_wood_01.ogg",
+   "Tools/spear_hit_wood_02.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.7,
+  "durations": [
+   0.7,
+   0.7
+  ],
+  "description": "Spear thunking into wood; shaft wobbles."
+ },
+ "spear_stab_flesh": {
+  "category": "Tools",
+  "files": [
+   "Tools/spear_stab_flesh_01.ogg",
+   "Tools/spear_stab_flesh_02.ogg",
+   "Tools/spear_stab_flesh_03.ogg"
+  ],
+  "loop": false,
+  "spatial": true,
+  "channels": 1,
+  "duration": 0.43,
+  "durations": [
+   0.44,
+   0.41,
+   0.44
+  ],
+  "description": "Spear stab into flesh: swish, wet puncture, gristle crunch."
+ }
+}

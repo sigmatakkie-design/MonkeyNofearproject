@@ -1,0 +1,1020 @@
+{
+ "Pickaxe_T1": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.0273,
+   -0.635,
+   -0.2373
+  ],
+  "bounds_max": [
+   0.0305,
+   0.1207,
+   0.1826
+  ],
+  "bounds_size": [
+   0.0578,
+   0.7557,
+   0.4199
+  ],
+  "tris": 1344,
+  "materials": [
+   "MNF_WoodHandle",
+   "MNF_MetalRusted",
+   "MNF_Rope",
+   "MNF_FabricCanvas"
+  ],
+  "children": [
+   "COL_Handle",
+   "COL_Head",
+   "TIP"
+  ],
+  "helpers": {
+   "COL_Handle": [
+    0.0052,
+    -0.2547,
+    -0.0294
+   ],
+   "COL_Head": [
+    0.0002,
+    -0.5825,
+    -0.0274
+   ],
+   "TIP": [
+    0.0,
+    -0.533,
+    -0.235
+   ]
+  },
+  "colliders": {
+   "COL_Handle": {
+    "min": [
+     -0.0222,
+     -0.632,
+     -0.0847
+    ],
+    "max": [
+     0.0325,
+     0.1227,
+     0.0258
+    ]
+   },
+   "COL_Head": {
+    "min": [
+     -0.0293,
+     -0.637,
+     -0.2393
+    ],
+    "max": [
+     0.0297,
+     -0.5281,
+     0.1846
+    ]
+   }
+  },
+  "child_pivots": {},
+  "notes": "Rusty Pick. Handle 0.75 m, grip (pivot) 0.12 m from the butt. TIP at the pick point, its -Y axis points along the strike direction (-Z of the tool)."
+ },
+ "Pickaxe_T2": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.033,
+   -0.683,
+   -0.2648
+  ],
+  "bounds_max": [
+   0.033,
+   0.126,
+   0.2
+  ],
+  "bounds_size": [
+   0.066,
+   0.809,
+   0.4648
+  ],
+  "tris": 1326,
+  "materials": [
+   "MNF_WoodHandle",
+   "MNF_MetalBare",
+   "MNF_MetalPainted_Yellow",
+   "MNF_Rubber"
+  ],
+  "children": [
+   "COL_Handle",
+   "COL_Head",
+   "TIP"
+  ],
+  "helpers": {
+   "COL_Handle": [
+    0.0,
+    -0.2771,
+    0.0
+   ],
+   "COL_Head": [
+    0.0,
+    -0.6295,
+    -0.0324
+   ],
+   "TIP": [
+    0.0,
+    -0.602,
+    -0.264
+   ]
+  },
+  "colliders": {
+   "COL_Handle": {
+    "min": [
+     -0.0215,
+     -0.6822,
+     -0.0266
+    ],
+    "max": [
+     0.0215,
+     0.128,
+     0.0266
+    ]
+   },
+   "COL_Head": {
+    "min": [
+     -0.035,
+     -0.685,
+     -0.2668
+    ],
+    "max": [
+     0.035,
+     -0.574,
+     0.202
+    ]
+   }
+  },
+  "child_pivots": {},
+  "notes": "Tempered Pick. Handle 0.8 m, grip 0.12 m from the butt. Steel head, yellow collar, rubber grip."
+ },
+ "Pickaxe_T3": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.068,
+   -0.733,
+   -0.2914
+  ],
+  "bounds_max": [
+   0.068,
+   0.1235,
+   0.192
+  ],
+  "bounds_size": [
+   0.136,
+   0.8565,
+   0.4834
+  ],
+  "tris": 1454,
+  "materials": [
+   "MNF_WoodHandle",
+   "MNF_Blackstone",
+   "MNF_MetalBare",
+   "MNF_Crystal",
+   "MNF_OreCopper",
+   "MNF_Rubber"
+  ],
+  "children": [
+   "COL_Handle",
+   "COL_Head",
+   "TIP"
+  ],
+  "helpers": {
+   "COL_Handle": [
+    0.0,
+    -0.3033,
+    0.0
+   ],
+   "COL_Head": [
+    0.0,
+    -0.6701,
+    -0.0497
+   ],
+   "TIP": [
+    0.0,
+    -0.609,
+    -0.29
+   ]
+  },
+  "colliders": {
+   "COL_Handle": {
+    "min": [
+     -0.0226,
+     -0.7321,
+     -0.0281
+    ],
+    "max": [
+     0.0226,
+     0.1255,
+     0.0281
+    ]
+   },
+   "COL_Head": {
+    "min": [
+     -0.07,
+     -0.735,
+     -0.2934
+    ],
+    "max": [
+     0.07,
+     -0.6053,
+     0.194
+    ]
+   }
+  },
+  "child_pivots": {},
+  "notes": "Resonance Pick. Handle 0.85 m, grip 0.12 m from the butt. Dark alloy head (MNF_Blackstone) with bare-steel edges, luminous crystals (MNF_Crystal) in both eye sockets, copper wire wrap (MNF_OreCopper - no copper metal in the catalog)."
+ },
+ "Spear": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.029,
+   -1.165,
+   -0.0182
+  ],
+  "bounds_max": [
+   0.0305,
+   0.4502,
+   0.0182
+  ],
+  "bounds_size": [
+   0.0595,
+   1.6152,
+   0.0364
+  ],
+  "tris": 1426,
+  "materials": [
+   "MNF_WoodHandle",
+   "MNF_MetalBare",
+   "MNF_MetalRusted",
+   "MNF_Rope",
+   "MNF_FabricCanvas"
+  ],
+  "children": [
+   "COL_Blade",
+   "COL_Shaft",
+   "TIP"
+  ],
+  "helpers": {
+   "COL_Blade": [
+    0.0007,
+    -1.0225,
+    0.0
+   ],
+   "COL_Shaft": [
+    0.0003,
+    -0.27,
+    -0.0
+   ],
+   "TIP": [
+    0.0,
+    -1.165,
+    0.0
+   ]
+  },
+  "colliders": {
+   "COL_Blade": {
+    "min": [
+     -0.031,
+     -1.167,
+     -0.0064
+    ],
+    "max": [
+     0.0325,
+     -0.878,
+     0.0064
+    ]
+   },
+   "COL_Shaft": {
+    "min": [
+     -0.0212,
+     -0.9922,
+     -0.0202
+    ],
+    "max": [
+     0.0218,
+     0.4522,
+     0.0202
+    ]
+   }
+  },
+  "child_pivots": {},
+  "notes": "Improvised spear, 1.6 m. Grip (pivot) 0.45 m from the butt. TIP at the blade point (-Y). Blade lies flat in the XY plane."
+ },
+ "Flashlight": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.0338,
+   -0.1415,
+   -0.0338
+  ],
+  "bounds_max": [
+   0.0338,
+   0.1139,
+   0.0338
+  ],
+  "bounds_size": [
+   0.0676,
+   0.2554,
+   0.0676
+  ],
+  "tris": 1362,
+  "materials": [
+   "MNF_Rubber",
+   "MNF_Plastic_Yellow",
+   "MNF_Glass",
+   "MNF_MetalBare",
+   "MNF_BulbWarm"
+  ],
+  "children": [
+   "Bulb",
+   "LIGHT"
+  ],
+  "helpers": {
+   "LIGHT": [
+    0.0,
+    -0.142,
+    0.0
+   ]
+  },
+  "colliders": {},
+  "child_pivots": {
+   "Bulb": [
+    0.0,
+    -0.12,
+    -0.0
+   ]
+  },
+  "notes": "Chunky industrial torch, 0.24 m. Pivot at the grip ring centre. LIGHT at the lens facing -Y. Extra child `Bulb` (MNF_BulbWarm) so the bulb can be switched."
+ },
+ "Headlamp": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.0828,
+   -0.1585,
+   -0.019
+  ],
+  "bounds_max": [
+   0.0828,
+   0.105,
+   0.114
+  ],
+  "bounds_size": [
+   0.1657,
+   0.2635,
+   0.133
+  ],
+  "tris": 1164,
+  "materials": [
+   "MNF_FabricCanvas",
+   "MNF_Plastic_Black",
+   "MNF_Plastic_Gray",
+   "MNF_Plastic_Yellow",
+   "MNF_Glass",
+   "MNF_MetalBare",
+   "MNF_Rubber",
+   "MNF_BulbWarm"
+  ],
+  "children": [
+   "Bulb",
+   "LIGHT"
+  ],
+  "helpers": {
+   "LIGHT": [
+    0.0,
+    -0.159,
+    0.0
+   ]
+  },
+  "colliders": {},
+  "child_pivots": {
+   "Bulb": [
+    0.0,
+    -0.145,
+    0.0
+   ]
+  },
+  "notes": "Headlamp on an elastic strap. Pivot at the strap (head) centre; lamp at -Y. LIGHT at the lens facing -Y. Extra child `Bulb`."
+ },
+ "Glowstick": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.0088,
+   -0.1268,
+   -0.0125
+  ],
+  "bounds_max": [
+   0.0088,
+   0.0725,
+   0.0125
+  ],
+  "bounds_size": [
+   0.0176,
+   0.1993,
+   0.0249
+  ],
+  "tris": 704,
+  "materials": [
+   "MNF_BulbGreen",
+   "MNF_Plastic_Gray",
+   "MNF_Rope"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Glowstick 0.15 m along Y (plus lanyard loop at -Y). Pivot at centre."
+ },
+ "Flare": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.0168,
+   -0.1274,
+   -0.0164
+  ],
+  "bounds_max": [
+   0.0168,
+   0.1238,
+   0.0164
+  ],
+  "bounds_size": [
+   0.0336,
+   0.2512,
+   0.0328
+  ],
+  "tris": 376,
+  "materials": [
+   "MNF_Plastic_Orange",
+   "MNF_Paper",
+   "MNF_Plastic_Black",
+   "MNF_MetalBare"
+  ],
+  "children": [
+   "TIP"
+  ],
+  "helpers": {
+   "TIP": [
+    0.0,
+    -0.1275,
+    0.0
+   ]
+  },
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Road flare 0.25 m along Y, striker cap at the burning end (-Y). Pivot at centre (grip)."
+ },
+ "Noisemaker": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.042,
+   -0.042,
+   -0.0612
+  ],
+  "bounds_max": [
+   0.049,
+   0.042,
+   0.1051
+  ],
+  "bounds_size": [
+   0.091,
+   0.084,
+   0.1663
+  ],
+  "tris": 1274,
+  "materials": [
+   "MNF_MetalBare",
+   "MNF_MetalRusted",
+   "MNF_Plastic_Gray"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Rattle can: tin can of bolts, wired shut and taped. Axis Z, pivot at the can centre."
+ },
+ "Scanner": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.049,
+   -0.169,
+   -0.019
+  ],
+  "bounds_max": [
+   0.049,
+   0.0649,
+   0.0402
+  ],
+  "bounds_size": [
+   0.098,
+   0.2339,
+   0.0592
+  ],
+  "tris": 1454,
+  "materials": [
+   "MNF_Plastic_Black",
+   "MNF_Rubber",
+   "MNF_Plastic_Gray",
+   "MNF_Plastic_Yellow",
+   "MNF_MetalBare",
+   "MNF_Glass",
+   "MNF_BulbGreen",
+   "MNF_Screen"
+  ],
+  "children": [
+   "Lamp",
+   "Screen"
+  ],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {
+   "Lamp": [
+    0.026,
+    -0.115,
+    0.0262
+   ],
+   "Screen": [
+    0.0,
+    -0.081,
+    0.0292
+   ]
+  },
+  "notes": "Handheld ore scanner. Pivot at the handle; antenna/sensor at -Y. Child `Screen` is a flat 58x44 mm quad facing +Z (UV 0..1), `Lamp` indicator (MNF_BulbGreen), both pivoted at their centre."
+ },
+ "RopeCoil": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.1374,
+   -0.0336,
+   -0.4552
+  ],
+  "bounds_max": [
+   0.1465,
+   0.0339,
+   0.0194
+  ],
+  "bounds_size": [
+   0.2839,
+   0.0675,
+   0.4746
+  ],
+  "tris": 1448,
+  "materials": [
+   "MNF_Rope",
+   "MNF_MetalBare"
+  ],
+  "children": [
+   "TIP"
+  ],
+  "helpers": {
+   "TIP": [
+    0.0864,
+    -0.02,
+    -0.4089
+   ]
+  },
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Coiled climbing rope (coil in the XZ plane), pivot at the top of the coil where the hand holds it. TIP at the hook point (its -Y axis points up the hook's point direction)."
+ },
+ "Medkit": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.1265,
+   -0.0485,
+   -0.2012
+  ],
+  "bounds_max": [
+   0.1265,
+   0.0425,
+   0.0065
+  ],
+  "bounds_size": [
+   0.253,
+   0.091,
+   0.2077
+  ],
+  "tris": 616,
+  "materials": [
+   "MNF_MetalPainted_Red",
+   "MNF_Paper",
+   "MNF_MetalBare",
+   "MNF_Rubber"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Dented first-aid tin, 0.25 m wide. Pivot at the carry handle (main grip); box hangs below, cross faces -Y."
+ },
+ "MarkerBeacon": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.0295,
+   -0.0305,
+   -0.13
+  ],
+  "bounds_max": [
+   0.0295,
+   0.0295,
+   0.0718
+  ],
+  "bounds_size": [
+   0.059,
+   0.06,
+   0.2018
+  ],
+  "tris": 680,
+  "materials": [
+   "MNF_Plastic_Orange",
+   "MNF_Rubber",
+   "MNF_Plastic_Black",
+   "MNF_MetalBare",
+   "MNF_BulbRed"
+  ],
+  "children": [
+   "Lamp"
+  ],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {
+   "Lamp": [
+    0.0,
+    0.0,
+    0.041
+   ]
+  },
+  "notes": "Deployable beacon, 0.2 m tall, spike down (-Z). Pivot at the body (grip). Child `Lamp` = red dome, pivot at its base."
+ },
+ "Backpack": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.2138,
+   -0.1432,
+   -0.529
+  ],
+  "bounds_max": [
+   0.2122,
+   0.1595,
+   0.0045
+  ],
+  "bounds_size": [
+   0.426,
+   0.3027,
+   0.5335
+  ],
+  "tris": 1428,
+  "materials": [
+   "MNF_FabricCanvas",
+   "MNF_Rubber",
+   "MNF_MetalBare",
+   "MNF_FabricBlanket"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Canvas expedition backpack, 0.5 m. Pivot at the top carry strap; back panel/shoulder straps face +Y, front pocket faces -Y."
+ },
+ "Battery": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.0288,
+   -0.058,
+   -0.019
+  ],
+  "bounds_max": [
+   0.0288,
+   0.058,
+   0.019
+  ],
+  "bounds_size": [
+   0.0575,
+   0.116,
+   0.038
+  ],
+  "tris": 718,
+  "materials": [
+   "MNF_Plastic_Black",
+   "MNF_Plastic_Yellow",
+   "MNF_Rubber",
+   "MNF_Paper",
+   "MNF_MetalBare"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Battery pack 0.1 m, terminals at -Y. Pivot at centre."
+ },
+ "FoodCan": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.0378,
+   -0.0378,
+   -0.06
+  ],
+  "bounds_max": [
+   0.0378,
+   0.0378,
+   0.0585
+  ],
+  "bounds_size": [
+   0.0756,
+   0.0756,
+   0.1185
+  ],
+  "tris": 1068,
+  "materials": [
+   "MNF_MetalBare",
+   "MNF_Paper"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Ration can 0.12 m tall (axis Z), pivot at centre."
+ },
+ "RabbitMeat": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.0275,
+   -0.1123,
+   -0.0243
+  ],
+  "bounds_max": [
+   0.0244,
+   0.042,
+   0.0395
+  ],
+  "bounds_size": [
+   0.0519,
+   0.1543,
+   0.0638
+  ],
+  "tris": 420,
+  "materials": [
+   "MNF_Meat",
+   "MNF_Teeth"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Skinned rabbit haunch 0.15 m. Pivot at the shank bone (grip); meaty end toward -Y."
+ },
+ "BoarMeat": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.0603,
+   -0.1685,
+   -0.0667
+  ],
+  "bounds_max": [
+   0.0611,
+   0.0741,
+   0.0616
+  ],
+  "bounds_size": [
+   0.1214,
+   0.2426,
+   0.1282
+  ],
+  "tris": 920,
+  "materials": [
+   "MNF_Meat",
+   "MNF_Rope",
+   "MNF_Teeth"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Boar leg roast on the bone, tied with twine, 0.25 m. Pivot at the bone shank (grip); cut face toward -Y."
+ },
+ "FalsekinGland": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.0495,
+   -0.0719,
+   -0.0347
+  ],
+  "bounds_max": [
+   0.0518,
+   0.0578,
+   0.0369
+  ],
+  "bounds_size": [
+   0.1014,
+   0.1297,
+   0.0715
+  ],
+  "tris": 1296,
+  "materials": [
+   "MNF_Flesh",
+   "MNF_Anomalous"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Falsekin gland ~0.12 m: lumpy multi-lobed organ (MNF_Flesh) with a branching network of glowing veins (MNF_Anomalous). Pivot at centre."
+ },
+ "LoreTape": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.05,
+   -0.0326,
+   -0.0068
+  ],
+  "bounds_max": [
+   0.05,
+   0.0318,
+   0.0068
+  ],
+  "bounds_size": [
+   0.1,
+   0.0644,
+   0.0136
+  ],
+  "tris": 496,
+  "materials": [
+   "MNF_Plastic_Black",
+   "MNF_Paper",
+   "MNF_Glass",
+   "MNF_Plastic_Gray",
+   "MNF_MetalBare",
+   "MNF_Rubber"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Cassette tape 0.1 m lying flat in XY (labels on +-Z faces). Pivot at centre."
+ },
+ "MinerTag": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.025,
+   -0.0288,
+   -0.0051
+  ],
+  "bounds_max": [
+   0.1116,
+   0.0286,
+   0.0052
+  ],
+  "bounds_size": [
+   0.1366,
+   0.0573,
+   0.0102
+  ],
+  "tris": 504,
+  "materials": [
+   "MNF_MetalBare"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Dog tag 50 mm lying flat (embossed face +Z) with a ball-chain loop toward +X. Pivot at the tag centre."
+ },
+ "OreChunk_Iron": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.0611,
+   -0.0516,
+   -0.0464
+  ],
+  "bounds_max": [
+   0.0611,
+   0.0516,
+   0.0464
+  ],
+  "bounds_size": [
+   0.1223,
+   0.1032,
+   0.0929
+  ],
+  "tris": 852,
+  "materials": [
+   "MNF_OreIron",
+   "MNF_MetalBare"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Iron ore chunk ~0.11 m: heavy dark lumpy nugget with nodules and metallic cubic flecks."
+ },
+ "OreChunk_Copper": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.0592,
+   -0.0461,
+   -0.0464
+  ],
+  "bounds_max": [
+   0.0592,
+   0.0461,
+   0.0464
+  ],
+  "bounds_size": [
+   0.1183,
+   0.0923,
+   0.0929
+  ],
+  "tris": 532,
+  "materials": [
+   "MNF_OreCopper"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Copper ore chunk ~0.12 m: fractured, flat-faceted rock with protruding vein ridges and patina crust."
+ },
+ "OreChunk_Crystal": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.0433,
+   -0.0366,
+   -0.0602
+  ],
+  "bounds_max": [
+   0.0433,
+   0.0366,
+   0.0602
+  ],
+  "bounds_size": [
+   0.0865,
+   0.0732,
+   0.1204
+  ],
+  "tris": 216,
+  "materials": [
+   "MNF_RockMine",
+   "MNF_Crystal"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Crystal ore chunk ~0.14 m: cluster of 4 hexagonal luminous prisms on a small rock matrix."
+ },
+ "OreChunk_Blackstone": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.0502,
+   -0.0826,
+   -0.0457
+  ],
+  "bounds_max": [
+   0.0502,
+   0.0826,
+   0.0457
+  ],
+  "bounds_size": [
+   0.1005,
+   0.1653,
+   0.0915
+  ],
+  "tris": 110,
+  "materials": [
+   "MNF_Blackstone"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Blackstone chunk ~0.15 m: angular glassy-black shard (flat-shaded facets)."
+ },
+ "OreChunk_Anomalous": {
+  "kit": "Kit_Tools",
+  "bounds_min": [
+   -0.0485,
+   -0.0509,
+   -0.044
+  ],
+  "bounds_max": [
+   0.0485,
+   0.0509,
+   0.044
+  ],
+  "bounds_size": [
+   0.097,
+   0.1018,
+   0.0881
+  ],
+  "tris": 952,
+  "materials": [
+   "MNF_RockMine",
+   "MNF_Anomalous"
+  ],
+  "children": [],
+  "helpers": {},
+  "colliders": {},
+  "child_pivots": {},
+  "notes": "Anomalous chunk ~0.1 m: rock shell cracked open on one face showing a rounded glowing core, glowing veins."
+ }
+}

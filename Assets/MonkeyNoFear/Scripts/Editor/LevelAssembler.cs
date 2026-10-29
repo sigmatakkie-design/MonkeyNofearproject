@@ -138,9 +138,10 @@ namespace MonkeyNoFear.EditorTools
                 UnityEngine.Object.DestroyImmediate(t.gameObject);
                 return;
             }
-            bool noCol = name.StartsWith("NOCOL_") || name.StartsWith("WATER_");
-            bool colOnly = name.StartsWith("COLONLY_");
-            bool noClimb = name.StartsWith("NOCLIMB_");
+            // flags combine, e.g. "COLONLY_NOCLIMB_Bounds" = invisible slippery boundary wall
+            bool noCol = name.Contains("NOCOL_") || name.StartsWith("WATER_");
+            bool colOnly = name.Contains("COLONLY_");
+            bool noClimb = name.Contains("NOCLIMB_");
             if (name.StartsWith("WATER_") && mr) mr.sharedMaterial = MaterialFactory.Get("MNF_Water");
             if (!noCol)
             {

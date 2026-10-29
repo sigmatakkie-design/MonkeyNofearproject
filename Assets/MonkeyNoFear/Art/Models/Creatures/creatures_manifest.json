@@ -1,0 +1,922 @@
+{
+ "Hollowback": {
+  "file": "Hollowback.fbx",
+  "height": 2.347,
+  "length": 1.138,
+  "width": 0.882,
+  "eye_height": 2.0,
+  "tris": 7910,
+  "materials": [
+   "MNF_FurRotten",
+   "MNF_SkinDecayed",
+   "MNF_Teeth",
+   "MNF_Gums",
+   "MNF_Nails",
+   "MNF_EyeWet",
+   "MNF_EyeClouded"
+  ],
+  "bones": [
+   "root",
+   "hips",
+   "spine",
+   "chest",
+   "hump",
+   "neck",
+   "head",
+   "jaw",
+   "upperarm.L",
+   "forearm.L",
+   "hand.L",
+   "fingers.L",
+   "upperarm.R",
+   "forearm.R",
+   "hand.R",
+   "fingers.R",
+   "thigh.L",
+   "shin.L",
+   "foot.L",
+   "thigh.R",
+   "shin.R",
+   "foot.R"
+  ],
+  "head_rest_position": [
+   0.0,
+   -0.52,
+   1.99
+  ],
+  "fbx_take_prefix": "Hollowback|",
+  "fps": 30,
+  "clips": {
+   "idle": {
+    "length": 4.0,
+    "loop": true,
+    "frames": 120,
+    "speed": 0.0,
+    "events": {}
+   },
+   "listen": {
+    "length": 3.0,
+    "loop": true,
+    "frames": 90,
+    "speed": 0.0,
+    "events": {}
+   },
+   "walk": {
+    "length": 1.6,
+    "loop": true,
+    "frames": 48,
+    "speed": 0.7,
+    "events": {
+     "step": [
+      0,
+      24
+     ]
+    }
+   },
+   "follow": {
+    "length": 1.1,
+    "loop": true,
+    "frames": 33,
+    "speed": 1.4,
+    "events": {
+     "step": [
+      0,
+      16
+     ]
+    }
+   },
+   "run": {
+    "length": 0.6,
+    "loop": true,
+    "frames": 18,
+    "speed": 5.5,
+    "events": {
+     "slap": [
+      7,
+      10
+     ]
+    }
+   },
+   "alert": {
+    "length": 0.8,
+    "loop": false,
+    "frames": 24,
+    "events": {}
+   },
+   "inspect": {
+    "length": 3.0,
+    "loop": true,
+    "frames": 90,
+    "speed": 0.0,
+    "events": {}
+   },
+   "attack": {
+    "length": 1.2,
+    "loop": false,
+    "frames": 36,
+    "events": {
+     "hit": [
+      22
+     ]
+    }
+   },
+   "stagger": {
+    "length": 1.0,
+    "loop": false,
+    "frames": 30,
+    "events": {}
+   }
+  }
+ },
+ "Rabbit": {
+  "file": "Rabbit.fbx",
+  "height": 0.287,
+  "length": 0.39,
+  "width": 0.168,
+  "eye_height": 0.166,
+  "tris": 4700,
+  "materials": [
+   "MNF_FurRabbit",
+   "MNF_EyeWet",
+   "MNF_Flesh"
+  ],
+  "bones": [
+   "root",
+   "hips",
+   "spine",
+   "chest",
+   "neck",
+   "head",
+   "nose",
+   "ear.L",
+   "ear.R",
+   "eyelid.L",
+   "eyelid.R",
+   "upperarm.L",
+   "forearm.L",
+   "hand.L",
+   "upperarm.R",
+   "forearm.R",
+   "hand.R",
+   "thigh.L",
+   "shin.L",
+   "foot.L",
+   "thigh.R",
+   "shin.R",
+   "foot.R"
+  ],
+  "head_rest_position": [
+   0.0,
+   -0.128,
+   0.152
+  ],
+  "fbx_take_prefix": "Rabbit|",
+  "fps": 30,
+  "clips": {
+   "idle": {
+    "length": 3.0,
+    "loop": true,
+    "frames": 90,
+    "speed": 0.0,
+    "events": {}
+   },
+   "graze": {
+    "length": 2.5,
+    "loop": true,
+    "frames": 75,
+    "speed": 0.0,
+    "events": {}
+   },
+   "hop": {
+    "length": 0.4667,
+    "loop": true,
+    "frames": 14,
+    "speed": 1.6,
+    "events": {
+     "land": [
+      7
+     ],
+     "pushoff": [
+      0
+     ]
+    }
+   },
+   "run": {
+    "length": 0.3333,
+    "loop": true,
+    "frames": 10,
+    "speed": 6.0,
+    "events": {
+     "land": [
+      4
+     ]
+    }
+   },
+   "alert": {
+    "length": 2.0,
+    "loop": true,
+    "frames": 60,
+    "speed": 0.0,
+    "events": {}
+   },
+   "blink": {
+    "length": 0.2667,
+    "loop": false,
+    "frames": 8,
+    "events": {},
+    "notes": "Only eyelid.L/R animate; FBX bake writes constant rest curves for other bones - play on a masked layer."
+   },
+   "death": {
+    "length": 0.8,
+    "loop": false,
+    "frames": 24,
+    "events": {}
+   }
+  },
+  "notes": "Falsekin disguise reuses this rig (bone-scale tweaks + MNF_FurRabbitMangy)."
+ },
+ "Falsekin": {
+  "file": "Falsekin.fbx",
+  "height": 1.468,
+  "length": 0.764,
+  "width": 0.462,
+  "eye_height": 1.225,
+  "tris": 7420,
+  "materials": [
+   "MNF_FurRabbitMangy",
+   "MNF_SkinDecayed",
+   "MNF_Flesh",
+   "MNF_Teeth",
+   "MNF_EyeWet"
+  ],
+  "bones": [
+   "root",
+   "hips",
+   "spine",
+   "chest",
+   "neck",
+   "head",
+   "jaw",
+   "jaw.L",
+   "jaw.R",
+   "ear.L",
+   "ear.R",
+   "upperarm.L",
+   "forearm.L",
+   "hand.L",
+   "fingers.L",
+   "upperarm.R",
+   "forearm.R",
+   "hand.R",
+   "fingers.R",
+   "thigh.L",
+   "shin.L",
+   "foot.L",
+   "thigh.R",
+   "shin.R",
+   "foot.R"
+  ],
+  "head_rest_position": [
+   0.0,
+   -0.22,
+   1.18
+  ],
+  "fbx_take_prefix": "Falsekin|",
+  "fps": 30,
+  "clips": {
+   "folded": {
+    "length": 2.0,
+    "loop": true,
+    "frames": 60,
+    "speed": 0.0,
+    "events": {}
+   },
+   "unfold": {
+    "length": 0.9,
+    "loop": false,
+    "frames": 27,
+    "events": {},
+    "notes": "Starts exactly on the folded pose, ends on the idle pose."
+   },
+   "idle": {
+    "length": 2.0,
+    "loop": true,
+    "frames": 60,
+    "speed": 0.0,
+    "events": {}
+   },
+   "run": {
+    "length": 0.4,
+    "loop": true,
+    "frames": 12,
+    "speed": 7.0,
+    "events": {}
+   },
+   "lunge": {
+    "length": 0.8,
+    "loop": false,
+    "frames": 24,
+    "events": {
+     "hit": [
+      14
+     ]
+    }
+   },
+   "retreat": {
+    "length": 0.6,
+    "loop": true,
+    "frames": 18,
+    "speed": 3.0,
+    "events": {}
+   },
+   "death": {
+    "length": 1.0,
+    "loop": false,
+    "frames": 30,
+    "events": {}
+   }
+  },
+  "notes": "Rest/bind pose is the risen form. 'folded' uses a uniform scale of 0.50 on hips plus 0.36 on upperarm.L/R and 0.62 on thigh.L/R (scale keys only on these bones; 1.0 in all other clips)."
+ },
+ "CeilingClerk": {
+  "file": "CeilingClerk.fbx",
+  "height": 0.513,
+  "length": 2.927,
+  "width": 2.005,
+  "eye_height": 0.205,
+  "tris": 7900,
+  "materials": [
+   "MNF_FurDark",
+   "MNF_SkinDecayed",
+   "MNF_Teeth",
+   "MNF_Gums",
+   "MNF_EyeGlint",
+   "MNF_Nails"
+  ],
+  "bones": [
+   "root",
+   "hips",
+   "spine",
+   "chest",
+   "neck",
+   "head",
+   "jaw",
+   "upperarm.L",
+   "forearm.L",
+   "hand.L",
+   "fingers.L",
+   "upperarm.R",
+   "forearm.R",
+   "hand.R",
+   "fingers.R",
+   "thigh.L",
+   "shin.L",
+   "foot.L",
+   "thigh.R",
+   "shin.R",
+   "foot.R"
+  ],
+  "head_rest_position": [
+   0.0,
+   -0.92,
+   0.19
+  ],
+  "fbx_take_prefix": "CeilingClerk|",
+  "fps": 30,
+  "clips": {
+   "cling": {
+    "length": 3.0,
+    "loop": true,
+    "frames": 90,
+    "speed": 0.0,
+    "events": {}
+   },
+   "crawl": {
+    "length": 0.9,
+    "loop": true,
+    "frames": 27,
+    "speed": 1.2,
+    "events": {
+     "tap": [
+      0,
+      14
+     ]
+    }
+   },
+   "freeze": {
+    "length": 1.0,
+    "loop": true,
+    "frames": 30,
+    "speed": 0.0,
+    "events": {}
+   },
+   "jaw_open": {
+    "length": 0.6,
+    "loop": false,
+    "frames": 18,
+    "events": {}
+   },
+   "drop": {
+    "length": 0.5,
+    "loop": false,
+    "frames": 15,
+    "events": {},
+    "notes": "Ends rolled 180 deg about its forward axis (belly facing local +Z)."
+   },
+   "grab": {
+    "length": 1.5,
+    "loop": true,
+    "frames": 45,
+    "speed": 0.0,
+    "events": {},
+    "notes": "Hands clutch ~1.0 m from the surface along local +Z, in front of the head."
+   },
+   "flee": {
+    "length": 0.5,
+    "loop": true,
+    "frames": 15,
+    "speed": 3.0,
+    "events": {
+     "tap": [
+      0,
+      8
+     ]
+    }
+   }
+  },
+  "notes": "Crawling frame: belly -Z toward the surface, back +Z. eye_height is above the surface in that frame."
+ },
+ "Borer": {
+  "file": "Borer.fbx",
+  "height": 1.804,
+  "length": 2.791,
+  "width": 1.821,
+  "eye_height": 0.95,
+  "tris": 7340,
+  "materials": [
+   "MNF_SkinDecayed",
+   "MNF_MineralCrust",
+   "MNF_FurDark",
+   "MNF_Nails",
+   "MNF_Flesh",
+   "MNF_EyeWet"
+  ],
+  "bones": [
+   "root",
+   "hips",
+   "spine",
+   "chest",
+   "neck",
+   "head",
+   "jaw",
+   "mouth.L",
+   "mouth.R",
+   "upperarm.L",
+   "forearm.L",
+   "hand.L",
+   "fingers.L",
+   "upperarm.R",
+   "forearm.R",
+   "hand.R",
+   "fingers.R",
+   "thigh.L",
+   "shin.L",
+   "foot.L",
+   "thigh.R",
+   "shin.R",
+   "foot.R"
+  ],
+  "head_rest_position": [
+   0.0,
+   -1.04,
+   0.95
+  ],
+  "fbx_take_prefix": "Borer|",
+  "fps": 30,
+  "clips": {
+   "idle": {
+    "length": 4.0,
+    "loop": true,
+    "frames": 120,
+    "speed": 0.0,
+    "events": {}
+   },
+   "sense": {
+    "length": 3.0,
+    "loop": true,
+    "frames": 90,
+    "speed": 0.0,
+    "events": {}
+   },
+   "walk": {
+    "length": 1.2,
+    "loop": true,
+    "frames": 36,
+    "speed": 1.3,
+    "events": {
+     "step": [
+      0,
+      18
+     ]
+    }
+   },
+   "charge": {
+    "length": 0.6,
+    "loop": true,
+    "frames": 18,
+    "speed": 4.5,
+    "events": {
+     "step": [
+      0,
+      9
+     ]
+    }
+   },
+   "attack": {
+    "length": 1.4,
+    "loop": false,
+    "frames": 42,
+    "events": {
+     "hit": [
+      28
+     ]
+    }
+   },
+   "emerge": {
+    "length": 2.0,
+    "loop": false,
+    "frames": 60,
+    "events": {},
+    "notes": "Frame 0: whole body below z=0; ends standing on z=0."
+   },
+   "burrow": {
+    "length": 2.0,
+    "loop": false,
+    "frames": 60,
+    "events": {},
+    "notes": "Ends with the whole body below z=0."
+   },
+   "stagger": {
+    "length": 1.0,
+    "loop": false,
+    "frames": 30,
+    "events": {}
+   }
+  },
+  "shoulder_height": 1.5
+ },
+ "LanternMourner": {
+  "file": "LanternMourner.fbx",
+  "height": 2.634,
+  "length": 0.544,
+  "width": 0.838,
+  "eye_height": 2.47,
+  "tris": 7270,
+  "materials": [
+   "MNF_MournerSkin",
+   "MNF_EyeWet",
+   "MNF_Teeth",
+   "MNF_MournerGlow",
+   "MNF_MetalRusted",
+   "MNF_Glass",
+   "MNF_BulbWarm"
+  ],
+  "bones": [
+   "root",
+   "hips",
+   "spine",
+   "chest",
+   "socket_chestlight",
+   "neck",
+   "head",
+   "jaw",
+   "upperarm.L",
+   "forearm.L",
+   "hand.L",
+   "fingers.L",
+   "upperarm.R",
+   "forearm.R",
+   "hand.R",
+   "fingers.R",
+   "lamps",
+   "thigh.L",
+   "shin.L",
+   "foot.L",
+   "thigh.R",
+   "shin.R",
+   "foot.R"
+  ],
+  "head_rest_position": [
+   0.05,
+   -0.19,
+   2.44
+  ],
+  "fbx_take_prefix": "LanternMourner|",
+  "fps": 30,
+  "clips": {
+   "idle": {
+    "length": 4.0,
+    "loop": true,
+    "frames": 120,
+    "speed": 0.0,
+    "events": {}
+   },
+   "walk": {
+    "length": 2.0,
+    "loop": true,
+    "frames": 60,
+    "speed": 0.9,
+    "events": {
+     "step": [
+      0,
+      30
+     ]
+    }
+   },
+   "retreat": {
+    "length": 1.3333,
+    "loop": true,
+    "frames": 40,
+    "speed": 1.2,
+    "events": {},
+    "notes": "Moves backwards (+Y in Blender / -Z in Unity) while facing forward."
+   },
+   "turn_head": {
+    "length": 1.5,
+    "loop": false,
+    "frames": 45,
+    "events": {}
+   },
+   "reach": {
+    "length": 1.6,
+    "loop": false,
+    "frames": 48,
+    "events": {
+     "hit": [
+      34
+     ]
+    }
+   },
+   "recoil": {
+    "length": 1.0,
+    "loop": false,
+    "frames": 30,
+    "events": {}
+   }
+  },
+  "socket_chestlight": [
+   0,
+   -0.08,
+   1.9
+  ],
+  "notes": "Lamp cluster is a separate mesh (LanternMourner_Lamps) skinned 100% to bone 'lamps' (child of hand.R); MNF_BulbWarm is the dimmable bulb. socket_chestlight is a non-deforming bone at the cavity centre for a point light."
+ },
+ "Gaunt": {
+  "file": "Gaunt.fbx",
+  "height": 13.927,
+  "length": 3.362,
+  "width": 4.508,
+  "eye_height": 13.244,
+  "tris": 3728,
+  "materials": [
+   "MNF_SkinDecayed",
+   "MNF_FurDark",
+   "MNF_EyeGlint"
+  ],
+  "bones": [
+   "root",
+   "hips",
+   "spine",
+   "chest",
+   "neck",
+   "head",
+   "jaw",
+   "upperarm.L",
+   "forearm.L",
+   "hand.L",
+   "fingers.L",
+   "upperarm.R",
+   "forearm.R",
+   "hand.R",
+   "fingers.R",
+   "thigh.L",
+   "shin.L",
+   "foot.L",
+   "thigh.R",
+   "shin.R",
+   "foot.R"
+  ],
+  "head_rest_position": [
+   0.0,
+   -1.4715,
+   13.6795
+  ],
+  "fbx_take_prefix": "Gaunt|",
+  "fps": 30,
+  "clips": {
+   "walk": {
+    "length": 4.0,
+    "loop": true,
+    "frames": 120,
+    "speed": 1.0,
+    "events": {
+     "step": [
+      0,
+      60
+     ]
+    }
+   },
+   "stand": {
+    "length": 6.0,
+    "loop": true,
+    "frames": 180,
+    "speed": 0.0,
+    "events": {}
+   },
+   "look_up": {
+    "length": 4.0,
+    "loop": false,
+    "frames": 120,
+    "events": {}
+   }
+  }
+ },
+ "Boar": {
+  "file": "Boar.fbx",
+  "height": 0.788,
+  "length": 1.298,
+  "width": 0.456,
+  "eye_height": 0.5,
+  "tris": 6556,
+  "materials": [
+   "MNF_FurBoar",
+   "MNF_Teeth",
+   "MNF_EyeWet",
+   "MNF_Flesh"
+  ],
+  "bones": [
+   "root",
+   "hips",
+   "spine",
+   "chest",
+   "neck",
+   "head",
+   "jaw",
+   "ear.L",
+   "ear.R",
+   "upperarm.L",
+   "forearm.L",
+   "hand.L",
+   "upperarm.R",
+   "forearm.R",
+   "hand.R",
+   "thigh.L",
+   "shin.L",
+   "foot.L",
+   "thigh.R",
+   "shin.R",
+   "foot.R"
+  ],
+  "head_rest_position": [
+   0.0,
+   -0.47,
+   0.49
+  ],
+  "fbx_take_prefix": "Boar|",
+  "fps": 30,
+  "clips": {
+   "idle": {
+    "length": 3.0,
+    "loop": true,
+    "frames": 90,
+    "speed": 0.0,
+    "events": {}
+   },
+   "graze": {
+    "length": 3.0,
+    "loop": true,
+    "frames": 90,
+    "speed": 0.0,
+    "events": {}
+   },
+   "walk": {
+    "length": 0.6,
+    "loop": true,
+    "frames": 18,
+    "speed": 1.0,
+    "events": {
+     "step": [
+      0,
+      9
+     ]
+    }
+   },
+   "run": {
+    "length": 0.3667,
+    "loop": true,
+    "frames": 11,
+    "speed": 6.5,
+    "events": {}
+   },
+   "alert": {
+    "length": 2.0,
+    "loop": true,
+    "frames": 60,
+    "speed": 0.0,
+    "events": {}
+   },
+   "charge": {
+    "length": 0.3333,
+    "loop": true,
+    "frames": 10,
+    "speed": 7.0,
+    "events": {}
+   },
+   "death": {
+    "length": 1.0,
+    "loop": false,
+    "frames": 30,
+    "events": {}
+   }
+  }
+ },
+ "Gloomrat": {
+  "file": "Gloomrat.fbx",
+  "height": 0.081,
+  "length": 0.399,
+  "width": 0.076,
+  "eye_height": 0.053,
+  "tris": 3776,
+  "materials": [
+   "MNF_FurDark",
+   "MNF_EyeGlint",
+   "MNF_Flesh"
+  ],
+  "bones": [
+   "root",
+   "hips",
+   "spine",
+   "chest",
+   "neck",
+   "head",
+   "jaw",
+   "upperarm.L",
+   "forearm.L",
+   "hand.L",
+   "upperarm.R",
+   "forearm.R",
+   "hand.R",
+   "tail.01",
+   "tail.02",
+   "tail.03",
+   "thigh.L",
+   "shin.L",
+   "foot.L",
+   "thigh.R",
+   "shin.R",
+   "foot.R"
+  ],
+  "head_rest_position": [
+   0.0,
+   -0.098,
+   0.05
+  ],
+  "fbx_take_prefix": "Gloomrat|",
+  "fps": 30,
+  "clips": {
+   "idle": {
+    "length": 3.0,
+    "loop": true,
+    "frames": 90,
+    "speed": 0.0,
+    "events": {}
+   },
+   "run": {
+    "length": 0.2,
+    "loop": true,
+    "frames": 6,
+    "speed": 4.0,
+    "events": {}
+   },
+   "peek": {
+    "length": 2.0,
+    "loop": false,
+    "frames": 60,
+    "events": {},
+    "notes": "Starts fully below z=0 (inside the hole at the origin), ends half out with front paws on the rim."
+   },
+   "hide": {
+    "length": 0.5,
+    "loop": false,
+    "frames": 15,
+    "events": {},
+    "notes": "Starts on the final pose of 'peek', ends fully below z=0."
+   }
+  },
+  "extra_bones": [
+   "tail.01",
+   "tail.02",
+   "tail.03"
+  ]
+ }
+}
